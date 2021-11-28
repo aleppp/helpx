@@ -1,36 +1,27 @@
-import React, { Component } from 'react';
-import ReactDom from 'react-dom';
+import "./App.css";
+import React from "react";
+import PendingConfigurationApplication from "./components/Admin/AdminDashboard/AppConfiguration/PendingAppConfigList";
 
-class index extends Component {
-  render() {
-    return (
-      <div>
-        <div className="container">
-          <div className="row">
-            <div className="col order-first">
-              Pending Configuration Application
-            </div>
-          </div>
+function App() {
+  return (
+    <div className="container">
+      <div className="row">
+        <div className="col order-first">
+          <h3>Pending Configuration Application</h3>
         </div>
 
-
-        <div>
-          <a href="https://wwww.alphaoil.com" >
-            1.  AlphaOil
-          </a>
+        <div className="links">
+          <a href="https://wwww.alphaoil.com">1.AlphaOil</a>
         </div>
 
-        <div>
-          <a href="https://wwww.petronasup.com" >
-            2.  PetronasUp
-          </a>
+        <div className="links">
+          <a href="https://wwww.petronasup.com">2.PetronasUp</a>
         </div>
-
       </div>
-    );
-  }
+    </div>
+
+  );
 }
 
-export default index;
-
-
+export default App;
+(app.js)

@@ -10,11 +10,11 @@ function App() {
         </div>
 
         <div className="links">
-          <a href="https://wwww.alphaoil.com">1.AlphaOil</a>
+          <a href="/alphaoil">1.AlphaOil</a>
         </div>
 
         <div className="links">
-          <a href="https://wwww.petronasup.com">2.PetronasUp</a>
+          <a href="/petronasup">2.PetronasUp</a>
         </div>
       </div>
     </div>

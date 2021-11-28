@@ -1,0 +1,55 @@
+@import url("https://fonts.googleapis.com/css2?family=Mulish:wght@500&display=swap");
+
+/* base styles */
+* {
+  margin: 0;
+  font-family: "Mulish";
+  color: #ffffff;
+}
+
+.admin-nav {
+  height: 100%;
+  width: 25%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #27323c;
+  transition: 0.5s ease;
+  overflow-x: hidden;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.admin-nav h1 {
+  padding-left: 30px;
+  padding-top: 20px;
+}
+
+.admin-nav .links {
+  padding-left: 9px;
+  margin-top: 40px;
+  left: 0;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: right;
+}
+
+.admin-nav a {
+  margin-left: 16px;
+  text-decoration: none;
+  padding: 6px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.yellow {
+  font-size: 50px;
+  position: relative;
+  /* Adjust these values accordingly */
+  top: 5px;
+  right: 50px;
+}

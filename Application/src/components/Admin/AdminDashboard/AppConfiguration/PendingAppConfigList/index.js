@@ -1,6 +1,5 @@
 import "./App.css";
 import React from "react";
-import PendingConfigurationApplication from "./components/Admin/AdminDashboard/AppConfiguration/PendingAppConfigList";
 
 function App() {
   return (
@@ -24,4 +23,5 @@ function App() {
 }
 
 export default App;
+
 

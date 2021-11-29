@@ -10,11 +10,16 @@ function BookmarkIcon(props) {
 }
 
 function Bookmarked() {
-  return <img src={linkwithopaquebookmarkicon} />;
+  return <img src={Application / public / icons / unbookmarked.svg} />;
 }
 
 function Unbookmarked() {
-  return <img src={linkwithseethroughbookmarkicon} onClick={BookmarkPopup} />;
+  return (
+    <img
+      src={Application / public / icons / bookmarked.svg}
+      onClick={BookmarkPopup}
+    />
+  );
 }
 
 ReactDOM.render(<BookmarkIcon />, document.getElementById("root"));

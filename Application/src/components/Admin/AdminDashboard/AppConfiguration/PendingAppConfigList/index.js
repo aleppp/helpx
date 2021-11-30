@@ -1,27 +1,43 @@
-import "./App.css";
-import React from "react";
-
-function App() {
+import "./components/Admin/AdminDashboard/AppConfiguration/style.css";
+function PendingAppConfigList() {
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col order-first">
-          <h3>Pending Configuration Application</h3>
-        </div>
+    <div className="PendingAppConfigList">
+      <h2>
+        Pending Configuration <br />
+        Application
+      </h2>
+      <div>
+        <table>
+          <tr>
+            <th>Application</th>
+            <th>Description</th>
+            <th>Action</th>
 
-        <div className="links">
-          <a href="/alphaoil">1.AlphaOil</a>
-        </div>
+          </tr>
+          <tr>
+            <td>Alpha Oil</td>
+            <td>Stylesheet not defined!</td>
+            <td>
+              <button onclick="Configure()">
+                Configure
+              </button>
+            </td>
 
-        <div className="links">
-          <a href="/petronasup">2.PetronasUp</a>
-        </div>
+          </tr>
+          <br />
+          <tr>
+            <td>Petronas Up</td>
+            <td>URL not defined!</td>
+            <td>
+              <button className="button" onclick="Configure()">
+                Configure
+              </button>
+            </td>
+          </tr>
+        </table>
       </div>
     </div>
-
-  );
+  )
 }
 
-export default App;
-
-
+export default PendingAppConfigList;

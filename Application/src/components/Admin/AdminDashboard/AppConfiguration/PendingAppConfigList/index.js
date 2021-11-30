@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import "./components/Admin/AdminDashboard/AppConfiguration/style.css";
 function PendingAppConfigList() {
   return (
@@ -41,3 +42,5 @@ function PendingAppConfigList() {
 }
 
 export default PendingAppConfigList;
+=======
+>>>>>>> 2e5f89fd65ea5879774dc8e80eba7977a54dab98

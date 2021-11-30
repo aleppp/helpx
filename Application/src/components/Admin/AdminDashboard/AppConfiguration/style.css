@@ -1,0 +1,49 @@
+h2 {
+    font-size: 15px;
+    text-align: center;
+  }
+  
+  .PendingAppConfigList {
+    background-color: #f8f8f8;
+    border-radius: 5pt;
+    width: 500px;
+    padding-left: 15pt;
+    padding-right: 15pt;
+    padding-top: 20pt;
+    padding-bottom: 20pt;
+    margin: 20pt;
+    font-family: "Mulish", sans-serif;
+    font-size: 15pt;
+  }
+  
+  div {
+    font-size: 15px;
+  }
+  
+  table {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: #f8f8f8;
+    width: 100%;
+    justify-content: space-between;
+    table-layout: fixed;
+  }
+
+  button{
+      background-color: #38B09D;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      color: white;
+      text-align: center;
+      transition-duration: 0.4s;
+
+  }
+
+  button:hover {
+    background-color: #4CAF50; /* Green */
+    color: white;
+  }
+
+  

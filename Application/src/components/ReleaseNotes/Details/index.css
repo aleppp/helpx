@@ -1,0 +1,177 @@
+/* @import url("https://fonts.googleapis.com/css2?family=kristi"); */
+@import url("https://fonts.googleapis.com/css2?family=Mulish:wght@500&display=swap%22");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h2 {
+  font-size: 20px;
+  text-align: left;
+  padding-bottom: 3pt;
+}
+
+.container {
+  background-color: #ededed;
+  border-radius: 5pt 5pt 0pt 0pt;
+  width: 375px;
+  padding-left: 15pt;
+  padding-right: 15pt;
+  padding-top: 10pt;
+  padding-bottom: 20pt;
+  margin-left: 20pt;
+  margin-top: 20pt;
+  /* font-family: "kristi", sans-serif; */
+  font-size: 10pt;
+  /* border: 3px solid rgb(0, 36, 241);  */
+}
+
+.buttonContainer {
+  background-color: #e4dcdc;
+  width: 375px;
+  padding-left: 2pt;
+  padding-right: 2pt;
+  padding-top: 3pt;
+  padding-bottom: 3pt;
+  margin-left: 20pt;
+  border-radius: 0pt 0pt 5pt 5pt;
+}
+
+div {
+  /* border: 3px solid green;  */
+  font-family: "mulish";
+}
+
+.word {
+  padding-top: 3pt;
+  padding-bottom: 3pt;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+}
+
+.word label {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+/* ==================================== */
+
+button {
+  border: none;
+  border-radius: 5px;
+  margin: 3px;
+  text-align: center;
+  transition-duration: 0.4s;
+}
+
+.darkgreen {
+  background-color: #26afab;
+  color: white;
+  border: 1px solid #26afab;
+  padding: 5px 10px;
+}
+.blue {
+  background-color: #20419a;
+  color: white;
+  border: 1px solid #20419a;
+  padding: 10px 20px;
+}
+.red {
+  background-color: #fd4343;
+  color: white;
+  border: 1px solid #fd4343;
+  padding: 10px 20px;
+}
+.green {
+  background-color: #26afab;
+  color: white;
+  border: 1px solid #26afab;
+  padding: 10px 20px;
+}
+
+.darkgreen:hover {
+  background-color: #ffffff; /* Green */
+  color: #26afab;
+  cursor: pointer;
+  border: 1px solid;
+}
+.blue:hover {
+  background-color: #ffffff; /* Green */
+  color: #20419a;
+  cursor: pointer;
+  border: 1px solid;
+}
+.red:hover {
+  background-color: #ffffff; /* Green */
+  color: #fd4343;
+  cursor: pointer;
+  border: 1px solid;
+}
+.green:hover {
+  background-color: #ffffff; /* Green */
+  color: #26afab;
+  cursor: pointer;
+  border: 1px solid;
+}
+
+.darkgreen:active {
+  background-color: #26afab;
+}
+.blue:active {
+  background-color: #20419a;
+}
+.red:active {
+  background-color: #fd4343;
+}
+.green:active {
+  background-color: #26afab;
+}
+
+/* ==================================== */
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  color: #777777;
+  margin-top: 5px;
+  /* border-bottom: 1px dotted black; */
+}
+
+.calander {
+  position: relative;
+  display: inline-block;
+  color: #000000;
+  margin-top: 5px;
+  margin-left: 7px;
+  /* border-bottom: 1px dotted black; */
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 200px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  color: rgb(17, 17, 17);
+  text-align: center;
+  border-radius: 6px;
+  padding: 10px 15px;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+/* .tooltip {
+  padding-top: 3pt;
+  padding-bottom: 3pt;
+} */
+
+/* ==================================== */

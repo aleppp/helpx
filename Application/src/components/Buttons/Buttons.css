@@ -1,4 +1,4 @@
-.button-preview {
+.button-white {
   background-color: #f4f1f1;
   border: none;
   color: black;
@@ -14,7 +14,7 @@
   border-radius: 5px;
 }
 
-.button-edit {
+.button-green {
   background-color: #26afab;
   border: none;
   color: black;
@@ -30,7 +30,7 @@
   border-radius: 5px;
 }
 
-.button-delete {
+.button-red {
   background-color: #fd4343;
   border: none;
   color: black;
@@ -46,7 +46,7 @@
   border-radius: 5px;
 }
 
-.button-addnew {
+.button-blue {
   background-color: #20419a; /* Green */
   border: none;
   color: white;

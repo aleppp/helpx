@@ -1,0 +1,27 @@
+@import url("https://fonts.googleapis.com/css2?family=Mulish:wght@500&display=swap%22");
+
+.AuditLogHistory {
+  color: black;
+  font-family: "Mulish", serif;
+  text-align: left;
+  margin-left: 50px;
+}
+
+.h1 {
+  font-size: 15;
+  font-family: "Mulish", serif;
+  margin-left: 50px;
+}
+
+table {
+  font-family: "Mulish", serif;
+  border-collapse: collapse;
+  text-align: left;
+  width: 80%;
+  border: 1px solid black;
+  color: black;
+  height: 100px;
+  margin: 20px;
+  margin-left: 50px;
+  padding-bottom: 200px;
+}

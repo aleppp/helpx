@@ -1,4 +1,12 @@
 import "./style.css";
+import Button from "../../../../Buttons/Buttons";
+
+const button = [
+    {
+        type: "button-blue-small",
+        text: "Configure",
+    },
+];
 function PendingAppConfigList() {
     return (
         <div className="PendingAppConfigList">
@@ -18,9 +26,7 @@ function PendingAppConfigList() {
                         <td>Alpha Oil</td>
                         <td>Stylesheet not defined!</td>
                         <td>
-                            <button onclick="Configure()">
-                                Configure
-                            </button>
+                            <Button button={button[0]}></Button>
                         </td>
 
                     </tr>
@@ -29,9 +35,7 @@ function PendingAppConfigList() {
                         <td>Petronas Up</td>
                         <td>URL not defined!</td>
                         <td>
-                            <button className="button" onclick="Configure()">
-                                Configure
-                            </button>
+                            <Button button={button[0]}></Button>
                         </td>
                     </tr>
                 </table>

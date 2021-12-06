@@ -63,3 +63,17 @@
   font-size: 15px;
   margin: 15px 15px;
 }
+
+.button-green-center {
+  background-color: #26afab;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 15px;
+  margin: 4px 2px;
+  cursor: pointer;
+  width: 80px;
+  height: 45px;
+  border-radius: 5px;
+}

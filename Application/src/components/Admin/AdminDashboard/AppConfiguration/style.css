@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Mulish:wght@200&display=swap");
+
 h2 {
     font-size: 15px;
     text-align: center;
@@ -30,16 +32,6 @@ h2 {
     table-layout: fixed;
   }
 
-  button{
-      background-color: #38B09D;
-      border: none;
-      border-radius: 5px;
-      padding: 10px 20px;
-      color: white;
-      text-align: center;
-      transition-duration: 0.4s;
-
-  }
 
   button:hover {
     background-color: #4CAF50; /* Green */

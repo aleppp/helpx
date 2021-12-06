@@ -1,0 +1,160 @@
+@import url("https://fonts.googleapis.com/css2?family=Mulish:wght@200&display=swap%22");
+
+.App {
+  text-align: left;
+  padding: 50px;
+  overflow: hidden;
+}
+
+div {
+  font-family: "Mulish";
+}
+.h3 {
+  padding: 0px;
+  padding-top: 30px;
+  margin: 0px;
+  font-size: 15px;
+}
+
+.p {
+  font-size: 12px;
+  padding-left: 5px;
+  margin: 2px;
+}
+
+.label {
+  color: #223495;
+  font-size: 15pt;
+  font-weight: bold;
+}
+.button-newtemplate {
+  background-color: #8c8c8c;
+  color: #fbf6f6;
+  position: absolute;
+  right: 130px;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 10px;
+}
+
+.button-template {
+  background-color: #ffffff;
+  color: #0f0f0f;
+  position: absolute;
+  right: 20px;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 20px;
+}
+
+.button-delete {
+  background-color: #fd4343;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px;
+  margin-left: 5px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.button-update {
+  background-color: #20419a;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px;
+  margin-left: 5px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.button-draft {
+  background-color: #26afab;
+  position: absolute;
+  right: 35px;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px;
+  margin-left: 5px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.button-save {
+  background-color: #26afab;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px;
+  margin-left: 280px;
+  margin-top: 15px;
+}
+
+.button-cancel {
+  background-color: #fd4343;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px;
+  margin-left: 5px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.textfield {
+  background-color: #fafafa;
+  min-height: 5vh;
+  width: 98%;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+  color: rgb(10, 10, 10);
+  padding: 2px;
+}
+
+.editor-background {
+  position: relative;
+  padding: 10px;
+  padding-top: 15px;
+  background-color: #d7d4d4;
+  min-height: 60vh;
+  width: 55%;
+  margin-right: 15px;
+}
+
+.ck-editor__editable_inline {
+  min-height: 300px;
+  max-height: 300px;
+}
+
+.spell-icon {
+  position: absolute;
+  right: 20px;
+  margin-top: 10px;
+}
+
+.template-popup {
+  background-color: #cac7c7;
+  padding: 10px;
+  padding-top: 15px;
+  min-height: 30vh;
+  width: 70vh;
+  margin-right: 15px;
+  margin-top: 80px;
+}
+
+.name-field {
+  background-color: #fafafa;
+  min-height: 5vh;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+  color: rgb(10, 10, 10);
+  padding: 2px;
+  padding-left: 5px;
+}

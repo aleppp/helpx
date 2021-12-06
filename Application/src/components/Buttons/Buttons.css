@@ -77,3 +77,20 @@
   height: 45px;
   border-radius: 5px;
 }
+
+.button-blue-small {
+  background-color: #20419a;
+  border: none;
+  color: white;
+  /* padding: 15px 32px; */
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  margin: 4px 2px;
+  cursor: pointer;
+  width: 80px;
+  height: 45px;
+  border-radius: 5px;
+}
+

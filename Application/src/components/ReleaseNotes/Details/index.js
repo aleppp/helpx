@@ -1,13 +1,12 @@
 import "./components/ReleaseNotes/Details/index.css";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
-import SwitchUnstyled from "@mui/material/Switch";
 import DateRangeOutlinedIcon from "@mui/icons-material/DateRangeOutlined";
 
 const label = { componentsProps: { input: { "aria-label": "Demo switch" } } };
 
 function index() {
   return (
-    <div>
+    <div className="superContain">
       <div className="container">
         <h2>Details</h2>
 
@@ -16,7 +15,8 @@ function index() {
         </button>
 
         <div className="word">
-          <SwitchUnstyled {...label} size="small" />
+          {/* <Switch {...label} size="small" /> */}
+          <input type="checkbox" />
           <label htmlFor="Visibility"> Visibility </label>
           <div className="tooltip">
             <HelpOutlineIcon fontSize="extrasmall" />
@@ -30,7 +30,8 @@ function index() {
         </div>
 
         <div className="word">
-          <SwitchUnstyled {...label} size="small" />
+          {/* <Switch {...label} size="small" /> */}
+          <input type="checkbox" />
           <label htmlFor="Show Feedback Button"> Show Feedback Button </label>
           <div className="tooltip">
             <HelpOutlineIcon fontSize="extarasmall" />

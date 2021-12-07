@@ -1,0 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Mulish:wght@200&display=swap");
+
+.content {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  background-color: white;
+  text-align: center;
+}
+
+.content-1 {
+  margin: 0px 50px;
+}
+
+.content-2 {
+}
+
+.images-1 {
+  height: 100px;
+  width: 100px;
+}

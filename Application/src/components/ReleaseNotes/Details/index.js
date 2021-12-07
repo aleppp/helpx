@@ -1,10 +1,10 @@
-import "./components/ReleaseNotes/Details/index.css";
+import "./index.css";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import DateRangeOutlinedIcon from "@mui/icons-material/DateRangeOutlined";
 
 const label = { componentsProps: { input: { "aria-label": "Demo switch" } } };
 
-function index() {
+function Index() {
   return (
     <div className="superContain">
       <div className="container">
@@ -67,4 +67,4 @@ function index() {
   );
 }
 
-export default index;
+export default Index;

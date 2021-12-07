@@ -1,35 +1,33 @@
-import { useState, useReducer, useMemo } from "react";
+import { useState, useReducer, useMemo, useEffect } from "react";
 import "./index.css";
-import { default as DATA } from "./MOCKDATA.json";
+import { default as DATA } from "./mockdata.json";
 import UnfoldMoreOutlinedIcon from "@material-ui/icons/UnfoldMoreOutlined";
 import ExpandLessOutlinedIcon from "@material-ui/icons/ExpandLessOutlined";
 import KeyboardArrowDownOutlinedIcon from "@material-ui/icons/KeyboardArrowDownOutlined";
 import { Pagination } from "@material-ui/lab";
 
 export default function Dashboard() {
+
   const mockdata = useMemo(() => DATA, []);
-  const prevData = useMemo(() => DATA, []); //trying to store the unsorted, but not working
   const [current, setCurrent] = useState("unsorted");
 
-  //initialisation for pagination
+  //for pagination
   let [page, setPage] = useState(1);
   const PER_PAGE = 4;
   const count = Math.ceil(mockdata.length / PER_PAGE);
   const _DATA = usePagination(mockdata, PER_PAGE);
-  const _DATAP = usePagination(prevData, PER_PAGE);
 
   const handleChange = (e, p) => {
     setPage(p);
     _DATA.jump(p);
   };
 
-  //initial state for sorting
+  //for sorting
   const initialState = {
     isSorted: false,
     isDesc: false
   };
 
-  
   const [state, dispatch] = useReducer(sortReducer, initialState);
 
   function sortReducer(state, action) {
@@ -46,7 +44,7 @@ export default function Dashboard() {
         };
       case "desc":
         return {
-          isSorted: false,
+          isSorted: true,
           isDesc: false
         };
       default:
@@ -64,9 +62,9 @@ export default function Dashboard() {
       dispatch({ type: "asc" });
       mockdata.sort((a, b) => b.Date.localeCompare(a.Date));
     } else {
-      setCurrent("unsorted");
-      dispatch({ type: "desc" });
-      //mockdata = prevData;
+      setCurrent("asc");
+      dispatch({ type: "unsorted" });
+      mockdata.sort((a, b) => a.Date.localeCompare(b.Date));
     }
   }
 
@@ -121,33 +119,19 @@ export default function Dashboard() {
           </tr>
         </thead>
         <tbody>
-          {state.isSorted
-            ? _DATA.currentData().map((item) => {
-                return (
-                  <tr>
-                    <td>{item.Date}</td>
-                    <td>{item.Title}</td>
-                    <td>{item.Schedule}</td>
-                    <td>{item.FeedbackButton}</td>
-                    <td>{item.Feedback}</td>
-                    <td>{item.Visibility}</td>
-                    <td>{item.Status}</td>
-                  </tr>
-                );
-              })
-            : _DATAP.currentData().map((item) => {
-                return (
-                  <tr>
-                    <td>{item.Date}</td>
-                    <td>{item.Title}</td>
-                    <td>{item.Schedule}</td>
-                    <td>{item.FeedbackButton}</td>
-                    <td>{item.Feedback}</td>
-                    <td>{item.Visibility}</td>
-                    <td>{item.Status}</td>
-                  </tr>
-                );
-              })}
+          {_DATA.currentData().map((item) => {
+            return (
+              <tr>
+                <td>{item.Date}</td>
+                <td>{item.Title}</td>
+                <td>{item.Schedule}</td>
+                <td>{item.FeedbackButton}</td>
+                <td>{item.Feedback}</td>
+                <td>{item.Visibility}</td>
+                <td>{item.Status}</td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
       <Pagination

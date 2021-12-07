@@ -1,13 +1,12 @@
-import logo from './logo.svg';
-import './App.css';
-import App from "./components/LandingPage/App";
+import "./App.css";
+import LandingPage from "./components/LandingPage/LandingPage";
 
 function App() {
-    return (
-        <div className="App">
-        <App />
-        </div>
-    );
+  return (
+    <div className="App">
+      <LandingPage />
+    </div>
+  );
 }
 
 export default App;

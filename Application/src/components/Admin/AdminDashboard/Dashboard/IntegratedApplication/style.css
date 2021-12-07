@@ -1,0 +1,18 @@
+.IntegratedApp {
+  background-color: #00a19c;
+  color: white;
+  border-radius: 5px;
+  width: 250px;
+  padding-left: 10pt;
+  padding-right: 10pt;
+  padding-top: 20pt;
+  padding-bottom: 20pt;
+  margin: 20pt;
+  font-family: "Mulish", sans-serif;
+  font-size: 15pt;
+  text-align: center;
+}
+
+div {
+  font-size: 15px;
+}

@@ -1,72 +1,39 @@
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
-import React, { useState } from "react";
+import React from "react";
 import "./TemplateEditor.css";
-import SpellcheckIcon from "@mui/icons-material/Spellcheck";
-import Popup from "reactjs-popup";
+import TemplatePopup from "./TemplatePopup";
+
+const TEMPLATES = [
+  { name: "Template 1.0" },
+  { name: "Template 2.0" },
+  { name: "Template 3.0" },
+];
 
 function TemplateEditor() {
-  const [name, setName] = useState("");
   return (
     <div className="App">
       <div className="editor-background">
-        <Popup
-          trigger={
-            <button className="button-newtemplate">
+        <button className="button-newtemplate"> Save as New Template</button>
+        <div>
+          <form>
+            <select className="template">
               {" "}
-              Save as New Template
-            </button>
-          }
-          modal
-        >
-          {(close) => (
-            <div className="template-popup">
-              {" "}
-              <h2> New Template </h2>
-              <form>
-                <label className="label">Name</label>
-                <input
-                  className="name-field"
-                  type="text"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
-              </form>{" "}
-              <div className="actions">
-                <button
-                  className="button-save"
-                  onClick={() => {
-                    console.log("modal closed ");
-
-                    close();
-                  }}
-                >
-                  Save
-                </button>
-
-                <button
-                  className="button-cancel"
-                  onClick={() => {
-                    console.log("modal closed ");
-
-                    close();
-                  }}
-                >
-                  Cancel
-                </button>
-              </div>
-            </div>
-          )}
-        </Popup>
-
-        <button className="button-template" onClick="myFunction()">
-          Template
-        </button>
+              {TEMPLATES.map((item) => {
+                return <option> {item.name}</option>;
+              })}
+            </select>
+          </form>
+        </div>
         <h3 className="h3">Title </h3>
         <form>
           <input className="textfield" type="text" value="Release Note 3.2" />
         </form>
-        <SpellcheckIcon className="spell-icon" />
+        <img
+          className="spell-icon"
+          src={process.env.PUBLIC_URL + "/images/spellCheck.png"}
+          alt="spell-icon"
+        />
         <h3 className="h3">Body Content</h3>
         <CKEditor
           editor={ClassicEditor}
@@ -80,6 +47,7 @@ function TemplateEditor() {
         <button className="button-update">Update</button>
         <button className="button-draft">Save to Draft</button>
       </div>
+      <TemplatePopup />
     </div>
   );
 }

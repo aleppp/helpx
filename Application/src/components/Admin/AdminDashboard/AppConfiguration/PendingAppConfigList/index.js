@@ -1,4 +1,4 @@
-import "./style.css";
+import "../style.css";
 import Button from "../../../../Buttons/Buttons";
 
 const button = [

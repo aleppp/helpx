@@ -2,7 +2,7 @@
 
 .App {
   text-align: left;
-  padding: 50px;
+  padding: 20px;
   overflow: hidden;
 }
 
@@ -37,14 +37,14 @@ div {
   padding: 5px 10px;
 }
 
-.button-template {
+.template {
   background-color: #ffffff;
   color: #0f0f0f;
   position: absolute;
   right: 20px;
   border: none;
   border-radius: 4px;
-  padding: 5px 20px;
+  padding: 5px 2px;
 }
 
 .button-delete {
@@ -133,6 +133,7 @@ div {
 .spell-icon {
   position: absolute;
   right: 20px;
+  width: 30px;
   margin-top: 10px;
 }
 

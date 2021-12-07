@@ -1,6 +1,5 @@
 import "./style.css";
 import Button from "../../Buttons/Buttons";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 const button = [
     {
@@ -18,23 +17,29 @@ function AdminInboxPage() {
                 <tr>
                     <th>
                         Notification ID
-                        <ExpandMoreIcon />
+                        <img className="dropdown"
+                            src={process.env.PUBLIC_URL + "/images/expandMore.png"} />
                     </th>
                     <th>
                         Type of Notification
-                        <ExpandMoreIcon />
+                        <img className="dropdown"
+                            src={process.env.PUBLIC_URL + "/images/expandMore.png"} />
                     </th>
                     <th>
-                        User Name <ExpandMoreIcon />
+                        User Name
+                        <img className="dropdown"
+                            src={process.env.PUBLIC_URL + "/images/expandMore.png"} />
                     </th>
                     <th>
-                        Application <ExpandMoreIcon />
+                        Application
+                        <img className="dropdown"
+                            src={process.env.PUBLIC_URL + "/images/expandMore.png"} />
                     </th>
                     <th>
-                        Summary <ExpandMoreIcon />
+                        Summary
                     </th>
                     <th>
-                        Action <ExpandMoreIcon />
+                        Action
                     </th>
                 </tr>
                 <tr>
@@ -79,7 +84,6 @@ function AdminInboxPage() {
                     </td>
                 </tr>
             </table>
-
         </div>
     );
 }

@@ -10,9 +10,11 @@ const button = [
 
 function AdminInboxPage() {
     return (
+        <div>
         <div className="admin-inbox-page">
             <h1>Notifications</h1>
-            <div></div>
+            </div>
+            <div>
             <table>
                 <tr>
                     <th>
@@ -84,6 +86,7 @@ function AdminInboxPage() {
                     </td>
                 </tr>
             </table>
+        </div>
         </div>
     );
 }

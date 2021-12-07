@@ -1,8 +1,8 @@
 import React from "react";
 import "./style.css";
 import Button from "../../Buttons/Buttons";
-import UserHeader from "./UserHeader";
-import UserNavigation from "./UserNavigation";
+import UserHeader from "../../LandingPageUser/UserHeader";
+import UserNavigation from "../../LandingPageUser/UserNavigation";
 
 export default function FeedbackList(props) {
   const data = [

@@ -1,6 +1,5 @@
 import React from "react";
 import "./style.css";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Button from "../../../Buttons/Buttons";
 
 const button = [
@@ -29,10 +28,16 @@ function RolesManagement() {
       <table>
         <tr>
           <th>
-            Role ID <ExpandMoreIcon />
+            Role ID <img
+                className="dropdown"
+                src={process.env.PUBLIC_URL + "/images/expandMore.png"}
+              />
           </th>
           <th>
-            Role Name <ExpandMoreIcon />
+            Role Name <img
+                className="dropdown"
+                src={process.env.PUBLIC_URL + "/images/expandMore.png"}
+              />
           </th>
           <th> Description </th>
           <th> Number of Users </th>

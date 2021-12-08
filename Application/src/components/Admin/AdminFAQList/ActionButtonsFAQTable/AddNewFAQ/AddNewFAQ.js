@@ -16,6 +16,7 @@ export default function AddNewFAQ() {
 
   return (
     <div class="container-addnew-admin">
+     <h2 className="title-addfaq">Add New FAQ</h2>
       <div>
         <label class="switch">
           <input type="checkbox"></input>

@@ -1,6 +1,8 @@
 import React from "react";
 import "./style.css";
 import Button from "../../Buttons/Buttons";
+import UserHeader from "../../LandingPageUser/UserHeader";
+import UserNavigation from "../../LandingPageUser/UserNavigation";
 
 export default function FeedbackList(props) {
   const data = [
@@ -41,6 +43,10 @@ export default function FeedbackList(props) {
 
   return (
     <>
+      <div>
+        <UserNavigation />
+        <UserHeader />
+      </div>
       <div className="overall">
         <table className="table table-borderless">
           <thead>

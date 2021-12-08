@@ -1,6 +1,5 @@
 import "./style.css";
 import Button from "../../Buttons/Buttons";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 const button = [
     {
@@ -11,30 +10,38 @@ const button = [
 
 function AdminInboxPage() {
     return (
+        <div>
         <div className="admin-inbox-page">
             <h1>Notifications</h1>
-            <div></div>
+            </div>
+            <div>
             <table>
                 <tr>
                     <th>
                         Notification ID
-                        <ExpandMoreIcon />
+                        <img className="dropdown"
+                            src={process.env.PUBLIC_URL + "/images/expandMore.png"} />
                     </th>
                     <th>
                         Type of Notification
-                        <ExpandMoreIcon />
+                        <img className="dropdown"
+                            src={process.env.PUBLIC_URL + "/images/expandMore.png"} />
                     </th>
                     <th>
-                        User Name <ExpandMoreIcon />
+                        User Name
+                        <img className="dropdown"
+                            src={process.env.PUBLIC_URL + "/images/expandMore.png"} />
                     </th>
                     <th>
-                        Application <ExpandMoreIcon />
+                        Application
+                        <img className="dropdown"
+                            src={process.env.PUBLIC_URL + "/images/expandMore.png"} />
                     </th>
                     <th>
-                        Summary <ExpandMoreIcon />
+                        Summary
                     </th>
                     <th>
-                        Action <ExpandMoreIcon />
+                        Action
                     </th>
                 </tr>
                 <tr>
@@ -79,7 +86,7 @@ function AdminInboxPage() {
                     </td>
                 </tr>
             </table>
-
+        </div>
         </div>
     );
 }

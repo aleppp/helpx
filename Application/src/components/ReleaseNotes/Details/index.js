@@ -1,6 +1,4 @@
 import "./index.css";
-import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
-import DateRangeOutlinedIcon from "@mui/icons-material/DateRangeOutlined";
 
 const label = { componentsProps: { input: { "aria-label": "Demo switch" } } };
 
@@ -15,11 +13,13 @@ function Index() {
         </button>
 
         <div className="word">
-          {/* <Switch {...label} size="small" /> */}
           <input type="checkbox" />
           <label htmlFor="Visibility"> Visibility </label>
           <div className="tooltip">
-            <HelpOutlineIcon fontSize="extrasmall" />
+            <img
+              src={process.env.PUBLIC_URL + "/images/helpIcon.png"}
+              className="helpIcon"
+            />
             <span className="tooltiptext">
               <p>Visible On: End user can view the content</p>
               <br />
@@ -30,11 +30,13 @@ function Index() {
         </div>
 
         <div className="word">
-          {/* <Switch {...label} size="small" /> */}
           <input type="checkbox" />
           <label htmlFor="Show Feedback Button"> Show Feedback Button </label>
           <div className="tooltip">
-            <HelpOutlineIcon fontSize="extarasmall" />
+            <img
+              src={process.env.PUBLIC_URL + "/images/helpIcon.png"}
+              className="helpIcon"
+            />
             <span className="tooltiptext">
               <p>Feedback On: End user can give feedback about the content</p>
               <br />
@@ -44,9 +46,10 @@ function Index() {
         </div>
 
         <div className="word">
-          <div className="calander">
-            <DateRangeOutlinedIcon />
-          </div>
+          <img
+            src={process.env.PUBLIC_URL + "/images/calendar.png"}
+            className="calendar"
+          />
           <label htmlFor="Schedule">Schedule: 30/2/2022 </label>
           <a href="www.editlink.com">Edit</a>
         </div>

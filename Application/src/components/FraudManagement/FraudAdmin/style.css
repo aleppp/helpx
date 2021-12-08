@@ -1,0 +1,67 @@
+@import url("https://fonts.googleapis.com/css2?family=Mulish:wght@500&display=swap");
+@import url("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css");
+
+/* base styles */
+* {
+  margin: 0;
+  font-family: "Mulish";
+}
+
+.App {
+  text-align: center;
+}
+
+h1 {
+  font-size: 30px;
+  font-family: "Mulish", sans-serif;
+}
+
+table {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  border: 1px solid black;
+  background-color: white;
+  height: 100px;
+  margin: 20px;
+  text-align: center;
+  margin-left: 270px;
+  width: 60%;
+  margin-top: 100px;
+}
+
+th {
+  border-bottom: 1px solid black;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: white;
+  color: black;
+}
+
+td,
+th {
+  padding: 8px;
+  text-align: center;
+}
+
+tr:hover {
+  background-color: #ddd;
+}
+
+.action-column td {
+  width: max-content;
+}
+
+.fraud-config-component {
+  background-color: white;
+  margin: 15px 15px;
+}
+
+.dropdown {
+  width: 25px;
+  text-align: center;
+}
+
+.fraud-config-component button {
+  margin-right: 260px;
+}

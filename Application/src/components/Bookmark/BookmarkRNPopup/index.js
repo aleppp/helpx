@@ -1,7 +1,5 @@
 import React from "react";
 import "./style.css";
-import bookmarkedicon from "..public/icons/bookmarked.svg";
-import unbookmarkedicon from "..public/icons/unbookmarked.svg";
 import "reactjs-popup/dist/index.css";
 import Popup from "reactjs-popup";
 
@@ -19,7 +17,7 @@ function Bookmarked() {
   return (
     <>
       <h1>Release Notes </h1>
-      <img src={bookmarkedicon} />
+      <img src={process.env.PUBLIC_URL + "/icons/bookmarked.svg"} />
     </>
   );
 }
@@ -27,15 +25,11 @@ function Bookmarked() {
 function BookmarkPopup() {
   return (
     <>
-      <div>
+      <div data-testid="divTest">
         <h1>Release Notes</h1>
         <Popup
           trigger={
-            <img
-              className="image"
-              src={unbookmarkedicon}
-              alt={"Bookmark this icon"}
-            />
+            <img src={process.env.PUBLIC_URL + "/icons/unbookmarked.svg"} />
           }
           modal
         >

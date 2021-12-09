@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import VerticalBar from "./VerticalBar";
+import VerticalBar from "./index";
 
 it("render without crashing", () => {
   const div = document.createElement("div");

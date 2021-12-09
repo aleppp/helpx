@@ -13,7 +13,7 @@ h1 {
     text-align: center;
   }
   
-  table {
+  #inbox table {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 100%;
@@ -21,7 +21,7 @@ h1 {
     background-color: white;
   }
   
-th {
+#inbox th {
   border-bottom: 1px solid black;
   padding-top: 12px;
   padding-bottom: 12px;
@@ -42,3 +42,28 @@ tr:hover {
   margin: 15px 15px;
 }
 
+.dropdown {
+  width: 30px;
+}
+
+.pagination {
+ float: right;
+  margin-top: 50px;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.pagination a.active {
+  background-color: #4caf50;
+  color: white;
+}
+
+.pagination a:hover:not(.active) {
+  background-color: #ddd;
+}

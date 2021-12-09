@@ -1,1 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@20;200;500;711;898&display=swap');
+
+
+
+
+.BodySearchVertical  {
+  float: right;
+  top: 10px;
+  font-family: 'Mulish', sans-serif;
+  width:270px;
+  border:5px;
+}
+
+.VerticalLine {
+  float: right;
+  border-left: 1px solid black;
+  height: 100%;
+  position: fixed;
+  top: 0px;
+}
+
+.releaseNoteList{
+  font-family: 'Mulish', sans-serif;
+  float: right;
+  font-size: 15px;
+  text-decoration: none;
+  position:absolute;
+  margin-top: 40px;
+}
+
+/* Style the search field */
+form.SearchBar input[type=text] {
+  font-family: 'Mulish', sans-serif;
+  padding: 7px;
+  font-size: 15px;
+  border: none;
+  float:right;
+  width: auto;
+  background: #EEEEEE;
+  height: 20px;
+  margin-left: 0px;
+  border-radius: 5px;
+  position:absolute;
+  box-shadow: 1px 1px 2px rgb(134, 133, 133);
+}
+
+/* Style the submit button */
+form.SearchBar button {
+  float: left;
+  width: auto;
+  padding: 7px;
+  background: #EEEEEE;
+  color: white;
+  font-size: 17px;
+  border: none;
+  border-left: none; /* Prevent double borders */
+  cursor: pointer;
+  border-radius: 5px;
+  margin-left: 17px;
+  max-width:30px;
+  height:34px;
+  box-shadow: 1px 1px 2px rgb(134, 133, 133);
+}
+
+form.SearchBar img {
+  width:18px;
+  height: 18px;
+}
+
+form.SearchBar button:hover {
+  background: #c7c6c6;
+}
+
+/* Clear floats */
+form.SearchBar::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+ul li {
+  text-align: left;
+  padding: 1px;
+  color: #38B09D;
+  text-shadow: 1px 1px 2px rgb(134, 133, 133);
+}
+
+li a:visited{
+  color: #4100FC;
+}
+
+a{
+  font-family: 'Mulish', sans-serif;
+  text-decoration: none;
+}
+
+.dataResult {
+  margin-top: 5px;
+  width: 300px;
+  height: auto;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  overflow: hidden;
+  overflow-y: hidden;
+}
+
+.dataResult::-webkit-scrollbar {
+  display: none;
+}
+
+.dataResult .dataItem {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  color: black;
+}
+
+.dataItem p {
+  margin-left: 10px;
+}
 

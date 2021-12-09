@@ -93,3 +93,35 @@
   border-radius: 5px;
 }
 
+.button-white-big {
+  background-color: #f4f1f1;
+  border: none;
+  color: black;
+  /* padding: 15px 32px; */
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  margin: 4px 2px;
+  cursor: pointer;
+  width: 200px;
+  height: 45px;
+  border-radius: 5px;
+}
+
+.button-green-big {
+  background-color: #26afab;
+  border: none;
+  color: black;
+  /* padding: 15px 32px; */
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  margin: 4px 2px;
+  cursor: pointer;
+  width: 200px;
+  height: 45px;
+  border-radius: 5px;
+}
+

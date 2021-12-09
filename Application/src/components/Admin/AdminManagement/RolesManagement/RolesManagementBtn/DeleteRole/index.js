@@ -1,46 +1,40 @@
 import React from "react";
 import "./style.css";
+import Button from "../../../Buttons/Buttons";
 
-function PopupButton() {
+export default function FAQNew() {
+  const button = [
+    {
+      type: "button-blue",
+      text: "Yes",
+    },
+    {
+      type: "button-red",
+      text: "No",
+    },
+  ];
+
   return (
-    <div class="PopupButton">
-      <button onclick="document.getElementById('id01').style.display='block'">
-        Open Modal
-      </button>
-      <div id="id01" class="modal">
-        <span
-          onclick="document.getElementById('id01').style.display='none'"
-          class="close"
-          title="Close Modal"
-        >
-          ×
-        </span>
-      </div>
+    <div class="container">
+      <br />
 
-      <form class="modal-content" action="/action_page.php">
-        <div class="container">
-          <h1>Delete Account</h1>
-          <p>Are you sure you want to delete your account?</p>
-          <div class="clearfix">
-            <button
-              type="button"
-              onclick="document.getElementById('id01').style.display='none'"
-              class="cancelbtn"
-            >
-              Cancel
-            </button>
-            <button
-              type="button"
-              onclick="document.getElementById('id01').style.display='none'"
-              class="deletebtn"
-            >
-              Delete
-            </button>
-          </div>
-        </div>
-      </form>
+      <h1 class="head">Delete User</h1>
+      <br></br>
+      <label for="question">User Name</label>
+      <textarea
+        id="question"
+        name="question"
+        placeholder="Nisa Asri"
+      ></textarea>
+      <label for="answer">Roles Description</label>
+      <textarea
+        id="answer"
+        name="answer"
+        placeholder="Content Contributor"
+      ></textarea>
+      <br />
+      <Button button={button[0]}></Button>
+      <Button button={button[1]}></Button>
     </div>
   );
 }
-
-export default PopupButton;

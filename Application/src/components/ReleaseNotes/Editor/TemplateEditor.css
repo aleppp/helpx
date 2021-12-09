@@ -2,7 +2,7 @@
 
 .App {
   text-align: left;
-  padding: 50px;
+  padding: 20px;
   overflow: hidden;
 }
 
@@ -37,14 +37,14 @@ div {
   padding: 5px 10px;
 }
 
-.button-template {
+.template {
   background-color: #ffffff;
   color: #0f0f0f;
   position: absolute;
   right: 20px;
   border: none;
   border-radius: 4px;
-  padding: 5px 20px;
+  padding: 5px 2px;
 }
 
 .button-delete {
@@ -88,7 +88,7 @@ div {
   border: none;
   border-radius: 8px;
   padding: 8px;
-  margin-left: 280px;
+  margin-left: 260px;
   margin-top: 15px;
 }
 
@@ -133,17 +133,8 @@ div {
 .spell-icon {
   position: absolute;
   right: 20px;
+  width: 30px;
   margin-top: 10px;
-}
-
-.template-popup {
-  background-color: #cac7c7;
-  padding: 10px;
-  padding-top: 15px;
-  min-height: 30vh;
-  width: 70vh;
-  margin-right: 15px;
-  margin-top: 80px;
 }
 
 .name-field {
@@ -157,4 +148,44 @@ div {
   color: rgb(10, 10, 10);
   padding: 2px;
   padding-left: 5px;
+}
+
+.popup-box {
+  position: fixed;
+  background: #00000050;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+}
+
+.box {
+  position: relative;
+  width: 30%;
+  top: 23%;
+  margin: 0 auto;
+  height: auto;
+  max-height: 70vh;
+  margin-top: calc(100vh - 85vh - 20px);
+  background: #f1f1f1;
+  border-radius: 4px;
+  padding: 10px;
+  border: 1px solid #999;
+  overflow: auto;
+}
+
+.close-icon {
+  content: "x";
+  cursor: pointer;
+  position: fixed;
+  right: calc(35% - 20px);
+  top: calc(100vh - 65vh - 10px);
+  background: #ededed;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  line-height: 20px;
+  text-align: center;
+  border: 1px solid #999;
+  font-size: 20px;
 }

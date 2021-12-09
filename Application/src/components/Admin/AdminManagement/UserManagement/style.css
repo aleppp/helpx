@@ -40,3 +40,11 @@ tr:hover {
   background-color: white;
   margin: 15px 15px;
 }
+
+.dropdown {
+  width: 25px;
+}
+
+.checkbox {
+  width: 30px;
+}

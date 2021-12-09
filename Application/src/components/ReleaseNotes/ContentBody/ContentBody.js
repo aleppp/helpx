@@ -3,7 +3,7 @@ import "./ContentBody.css";
 function ContentBody() {
   return (
     <>
-      <div class="center">
+      <div className="center">
         <div className="scroll">
           <div className="page-header">
             <h1>
@@ -12,19 +12,19 @@ function ContentBody() {
           </div>
           <div className="list-content">
             <ul>
-              <li class="contents-h2">
+              <li className="contents-h2">
                 <a href="#content1">What is New</a>
               </li>
-              <li class="contents-h2">
+              <li className="contents-h2">
                 <a href="#content2">Purpose of the Change</a>
               </li>
-              <li class="contents-h2">
+              <li className="contents-h2">
                 <a href="#content3">How are you affected</a>
               </li>
-              <li class="contents-h2">
+              <li className="contents-h2">
                 <a href="#content4">Action needed</a>
               </li>
-              <li class="contents-h2">
+              <li className="contents-h2">
                 <a href="#content5">History</a>
               </li>
             </ul>

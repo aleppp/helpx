@@ -1,7 +1,7 @@
-import "./App.css";
+import "./style.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-export default function App() {
+export default function WordFilterList() {
   return (
     <>
       <div className="container">

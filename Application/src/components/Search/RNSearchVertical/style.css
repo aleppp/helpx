@@ -1,8 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Mulish:wght@20;200;500;711;898&display=swap');
 
 
-
-
 .BodySearchVertical  {
   float: right;
   top: 10px;
@@ -39,7 +37,6 @@ form.SearchBar input[type=text] {
   background: #EEEEEE;
   height: 20px;
   margin-left: 0px;
-  border-radius: 5px;
   position:absolute;
   box-shadow: 1px 1px 2px rgb(134, 133, 133);
 }
@@ -55,7 +52,6 @@ form.SearchBar button {
   border: none;
   border-left: none; /* Prevent double borders */
   cursor: pointer;
-  border-radius: 5px;
   margin-left: 17px;
   max-width:30px;
   height:34px;
@@ -95,13 +91,16 @@ a{
 }
 
 .dataResult {
+  margin-left:17px;
+  margin-right:30px;
   margin-top: 5px;
-  width: 300px;
+  width: 250px;
   height: auto;
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  overflow: hidden;
-  overflow-y: hidden;
+  overflow: auto;
+  overflow-y: auto;
+  position: relative;
 }
 
 .dataResult::-webkit-scrollbar {
@@ -110,13 +109,13 @@ a{
 
 .dataResult .dataItem {
   width: 100%;
-  height: 50px;
+  height: 30px;
   display: flex;
   align-items: center;
   color: black;
+  
 }
 
 .dataItem p {
   margin-left: 10px;
 }
-

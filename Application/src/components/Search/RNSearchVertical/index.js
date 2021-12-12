@@ -1,6 +1,5 @@
 import './index.css';
 import * as React from 'react';
-import SearchIcon from '..public/images/search.png';
 import MockData from './mockdata.json';
 import {useState} from 'react';
 
@@ -26,12 +25,12 @@ function RNSearchVertical() {
 
 
   return (
-     <div class = "content" id = "content">
+     <div className = "content" id = "content">
     <div className="BodySearchVertical">
-      <div class="VerticalLine"></div>
+      <div className="VerticalLine"></div>
       <div className="Search">
-        <form class="SearchBar">
-          <button type="submit" class="searchIcon"><img src={SearchIcon}></img></button>
+        <form className="SearchBar">
+          <button type="submit" className="searchIcon"><img src={process.env.PUBLIC_URL + "/images/search.png"}></img></button>
           <input type="text" placeholder="Search.." value = {wordEntered} name="search" onChange={handleChange}/>
           {filteredData.length != 0 && (
             <div className="dataResult">
@@ -49,7 +48,7 @@ function RNSearchVertical() {
       <div className="releaseNoteList">
         {MockData.map(MockData => {
           return (
-            <ul>
+            <ul key ={MockData.ReleaseNoteID}>
               <li><a href = {MockData.Link} >{MockData.ReleaseNote}</a></li>
             </ul>
 
@@ -62,4 +61,3 @@ function RNSearchVertical() {
 }
 
 export default RNSearchVertical;
-

@@ -1,0 +1,44 @@
+.button-float-right {
+  float: right;
+}
+h1 {
+  font-size: 30px;
+  font-family: "Mulish", sans-serif;
+}
+
+.app-list {
+  background-color: white;
+  margin: 15px 15px;
+}
+
+#applist {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid black;
+  background-color: white;
+}
+
+#applist th {
+  border-bottom: 1px solid black;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: white;
+  color: black;
+}
+
+#applist td,
+#applist th {
+  padding: 8px;
+  text-align: left;
+}
+
+#applist tr:hover {
+  background-color: #ddd;
+}
+
+.action-column td {
+  width: max-content;
+  text-align: center;
+}

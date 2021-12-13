@@ -6,7 +6,7 @@ export default function EditFAQ() {
   const button = [
     {
       type: "button-red",
-      text: "Delete",
+      text: "Cancel",
     },
     {
       type: "button-green",

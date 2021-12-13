@@ -1,6 +1,6 @@
 import React from "react";
 import "../style.css";
-import Buttons from "../../../../Buttons/Buttons";
+import Buttons from "../../../../../Buttons/Buttons";
 
 export default function EditFAQ() {
   const button = [
@@ -47,19 +47,29 @@ export default function EditFAQ() {
           <option value="4">4</option>
         </select>
       </div>
-      <label className="float-left" for="question">
-        Question
-      </label>
-      <textarea id="question" name="question" placeholder="Enter a question.">
-        What is the contents of release notes?
-      </textarea>
-      <label className="float-left" for="answer">
-        Answer
-      </label>
-      <textarea id="answer" name="answer" placeholder="Enter an answer.">
-        Release notes contains the changes, bugs fixed, and documentation on
-        uses.
-      </textarea>
+      <div className="display-column">
+        <label className="float-left" for="question">
+          Question
+        </label>
+        <textarea
+          className="textarea-question"
+          name="question"
+          placeholder="Enter a question."
+        >
+          What is the contents of release notes?
+        </textarea>
+        <label className="float-left" for="answer">
+          Answer
+        </label>
+        <textarea
+          className="textarea-answer"
+          name="answer"
+          placeholder="Enter an answer."
+        >
+          Release notes contains the changes, bugs fixed, and documentation on
+          uses.
+        </textarea>
+      </div>
       <div className="button-float">
         <Buttons button={button[0]}></Buttons>
         <Buttons button={button[1]}></Buttons>

@@ -1,39 +1,33 @@
-import React, { Component } from "react";
 import { Route, Redirect } from "react-router-dom";
-import "./LandingPage.css";
-import VerticalBar from "./VerticalBar/VerticalBar";
-import Header from "./Header/Header";
-import HorizontalBar from "./HorizontalBar/HorizontalBar";
-import Menu from "./Menu/Menu";
-import Auth from "../../Services/Auth/Auth";
+import "./App.css";
+import LandingPage from "./components/LandingPage/LandingPage";
+import Auth from "./Services/Auth/Auth";
+import { Component } from "react";
+import Header from "./components/LandingPage/Header/Header";
+import Callback from "./Services/Auth/Callback";
+import ListOfReleaseNotes from "./components/UserHomepage/UserHomepage";
 
-class LandingPage extends Component {
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.auth = new Auth(this.props.history);
+  }
+
   render() {
-    const { isAuthenticated, login } = this.props.auth;
-
     return (
-      <div className="container">
-        <div className="nav">
-          <VerticalBar />
+      <>
+        <Header auth={this.auth} />
+        <div className="App">
+          <Route
+            path="/"
+            exact
+            render={(props) => <LandingPage auth={this.auth} {...props} />}
+          />
+          <Route path="/UserHomepage" component={ListOfReleaseNotes} />
         </div>
-        <div className="body">
-          <div className="header">
-            <Route
-              path="/"
-              exact
-              render={(props) => <Header auth={this.auth} {...props} />}
-            />
-          </div>
-          <div className="navhor">
-            <HorizontalBar />
-          </div>
-          <div className="menu">
-            {isAuthenticated() ? <p>Sucess</p> : <Menu />}
-          </div>
-        </div>
-      </div>
+      </>
     );
   }
 }
 
-export default LandingPage;
+export default App;

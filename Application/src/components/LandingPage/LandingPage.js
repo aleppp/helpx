@@ -5,7 +5,7 @@ import VerticalBar from "./VerticalBar/VerticalBar";
 import Header from "./Header/Header";
 import HorizontalBar from "./HorizontalBar/HorizontalBar";
 import Menu from "./Menu/Menu";
-import Auth from "../../Services/Auth/Auth";
+import Auth from "../../services/Auth/Auth";
 
 class LandingPage extends Component {
   render() {

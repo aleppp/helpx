@@ -1,9 +1,15 @@
-import { React, Component } from "react";
+import React, { Component } from "react";
 import "./Header.css";
 import "../../Buttons/Buttons.css";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
+import Auth from "../../../services/Auth/Auth";
 
-class Header extends Component() {
+class Header extends Component {
+  constructor(props) {
+    super(props);
+    this.auth = new Auth(this.props.history);
+    // const { isAuthenticated, login, logout } = this.props.auth;
+  }
   render() {
     const { isAuthenticated, login, logout } = this.props.auth;
     return (

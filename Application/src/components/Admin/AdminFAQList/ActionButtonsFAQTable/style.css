@@ -29,25 +29,17 @@ input[type="text"] {
   font-size: 15px;
 }
 
-#question {
-  height: 100px;
-}
-
-#answer {
-  height: 200px;
-}
-
 .textarea-answer {
-  width: 100%;
+  width: 500px;
   padding: 10px;
   border: 1px solid #ccc;
   resize: vertical;
   font-size: 15px;
-  height: 200px;
+  height: 150px;
 }
 
 .textarea-question {
-  width: 100%;
+  width: 500px;
   padding: 10px;
   border: 1px solid #ccc;
   resize: vertical;
@@ -181,6 +173,14 @@ input:focus + .slider {
 .display-row {
   display: flex;
   flex-direction: row;
+  width: max-content;
+  column-count: 2;
+  column-gap: 8px;
+}
+
+.display-column {
+  display: flex;
+  flex-direction: column;
   width: max-content;
   column-count: 2;
   column-gap: 8px;

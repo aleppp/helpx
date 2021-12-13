@@ -1,6 +1,5 @@
-import React from "react";
 import "../style.css";
-import Buttons from "../../../../Buttons/Buttons";
+import Buttons from "../../../../../Buttons/Buttons";
 
 export default function AddNewFAQ() {
   const button = [
@@ -16,7 +15,7 @@ export default function AddNewFAQ() {
 
   return (
     <div class="container-addnew-admin">
-     <h2 className="title-addfaq">Add New FAQ</h2>
+      <h2 className="title-addfaq">Add New FAQ</h2>
       <div>
         <label class="switch">
           <input type="checkbox"></input>
@@ -46,22 +45,22 @@ export default function AddNewFAQ() {
           <option value="4">4</option>
         </select>
       </div>
-      <label className="float-left" for="question">
-        Question
-      </label>
-      <textarea
-        id="question"
-        name="question"
-        placeholder="Enter a question."
-      ></textarea>
-      <label className="float-left" for="answer">
-        Answer
-      </label>
-      <textarea
-        id="answer"
-        name="answer"
-        placeholder="Enter an answer."
-      ></textarea>
+      <div className="display-column">
+        <label className="float-left">Question</label>
+        <textarea
+          className="textarea-question"
+          name="question"
+          placeholder="Enter a question."
+        ></textarea>
+        <label className="float-left" for="answer">
+          Answer
+        </label>
+        <textarea
+          className="textarea-answer"
+          name="answer"
+          placeholder="Enter an answer."
+        ></textarea>
+      </div>
       <div className="button-float">
         <Buttons button={button[0]}></Buttons>
         <Buttons button={button[1]}></Buttons>

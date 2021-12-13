@@ -13,7 +13,7 @@ import Emoji5 from "./Emoji5.png";
 
 function FeedbackRN() {
   return (
-    <div class="center">
+    <div className="center" data-testid="divTest">
       <h2>
         If you find this documentation helpful, please give us a feedback.{" "}
       </h2>
@@ -27,7 +27,7 @@ function FeedbackRN() {
         <input type="text" placeholder="Enter your feedback here" />
 
         <br />
-        <Popup trigger={<button class="button"> Submit</button>} modal>
+        <Popup trigger={<button className="button"> Submit</button>} modal>
           {(close) => (
             <div className="modal">
               <div className="content">

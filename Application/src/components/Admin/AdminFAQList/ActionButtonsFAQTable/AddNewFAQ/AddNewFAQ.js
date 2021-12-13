@@ -5,7 +5,7 @@ export default function AddNewFAQ() {
   const button = [
     {
       type: "button-red",
-      text: "Delete",
+      text: "Cancel",
     },
     {
       type: "button-green",

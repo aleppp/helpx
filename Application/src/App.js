@@ -1,7 +1,7 @@
 import { Route, Redirect } from "react-router-dom";
 import "./App.css";
 import LandingPage from "./components/LandingPage/LandingPage";
-import Auth from "./Services/Auth/Auth";
+import Auth from "./services/Auth/Auth";
 import { Component } from "react";
 import Header from "./components/LandingPage/Header/Header";
 import Callback from "./Services/Auth/Callback";

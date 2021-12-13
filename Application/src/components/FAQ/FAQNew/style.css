@@ -2,23 +2,96 @@
   box-sizing: border-box;
 }
 
-input[type="text"],
-select,
-textarea {
+input[type="text"] {
   width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  /* border-radius: 4px; */
+  resize: vertical;
+  font-size: 15px;
+}
+
+.select-section {
+  width: 150px;
   padding: 12px;
   border: 1px solid #ccc;
   border-radius: 4px;
   resize: vertical;
-  font-size: 18px;
+  font-size: 15px;
+}
+
+.select-order {
+  width: 55px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+  font-size: 15px;
 }
 
 #question {
   height: 100px;
+  width: max-content;
 }
 
 #answer {
   height: 200px;
+  width: max-content;
+}
+
+.textarea-answer {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  resize: vertical;
+  font-size: 15px;
+  height: 200px;
+}
+
+.textarea-question {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  resize: vertical;
+  font-size: 15px;
+  height: 100px;
+  margin: 5px;
+}
+
+.textarea-question-del {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  resize: vertical;
+  font-size: 15px;
+  height: max-content;
+}
+
+.textarea-answer-del {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  resize: vertical;
+  font-size: 15px;
+  height: max-content;
+}
+
+.textarea-order {
+  width: 50px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  resize: vertical;
+  font-size: 15px;
+  height: 50px;
+}
+
+.textarea-section {
+  width: 130px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  resize: vertical;
+  font-size: 15px;
+  height: 50px;
 }
 
 label {
@@ -26,8 +99,8 @@ label {
   display: inline-block;
 }
 
-.container {
-  border-radius: 5px;
+.container-addnew-admin {
+  /* border-radius: 5px; */
   background-color: #f2f2f2;
   padding: 20px;
   width: 30%;
@@ -85,6 +158,11 @@ label {
   transition: 0.4s;
 }
 
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
 /* To slide the toggle */
 input:checked + .slider {
   background-color: #2196f3;
@@ -94,12 +172,6 @@ input:focus + .slider {
   box-shadow: 0 0 1px #2196f3;
 }
 
-input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
-}
-
 /* Rounded sliders */
 .slider.round {
   border-radius: 34px;
@@ -107,4 +179,34 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
+}
+
+.display-row {
+  display: flex;
+  flex-direction: row;
+  width: max-content;
+  column-count: 2;
+  column-gap: 8px;
+}
+
+.display-column {
+  display: flex;
+  flex-direction: column;
+  width: max-content;
+  column-count: 2;
+  column-gap: 8px;
+}
+
+.float-left {
+  float: left;
+}
+
+.title-addfaq {
+  font-family: "Mulish";
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.float-center {
+  align-items: center;
 }

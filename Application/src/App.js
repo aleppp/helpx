@@ -4,6 +4,7 @@ import "./App.css";
 import LandingPage from "./components/LandingPage/LandingPage";
 import Auth from "./services/Auth/Auth";
 //import Callback from "./services/Auth/Callback";
+import EndUserHomePage from "./components/HomePage/EndUserHomepage/EndUserHomePage";
 
 class App extends Component {
   constructor(props) {
@@ -14,14 +15,15 @@ class App extends Component {
   render() {
     return (
       <>
+        <EndUserHomePage />
         <BrowserRouter>
           {/* <Header auth={this.auth} />  */}
           <div className="App">
-            <Route
+            {/* <Route
               path="/"
               exact
               render={(props) => <LandingPage {...props} />}
-            />
+            /> */}
             {/* <Route
                path="/callback"
                render={(props) => <Callback auth={this.auth} {...props} />}

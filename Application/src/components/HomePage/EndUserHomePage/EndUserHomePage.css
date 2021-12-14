@@ -1,0 +1,69 @@
+.LandingPage {
+  width: 90%;
+  height: 50%;
+  display: inline-block;
+}
+
+.rectangle {
+  height: auto;
+  margin: 35px;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  padding-left: 150px;
+  background: #c4c4c4;
+  position: relative;
+  border: 1px solid rgb(19, 18, 18);
+}
+.column {
+  float: left;
+  width: 50%;
+  padding: 0px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.vl {
+  border-left: 5px solid #777575;
+  height: 200px;
+  position: absolute;
+  left: 50%;
+  margin-left: -25px;
+  top: 50px;
+}
+.TopLeft {
+  position: absolute;
+  top: 8px;
+  left: 16px;
+  font-size: 36px;
+}
+#myInput {
+  background-image: url("./search-icon.png");
+  background-position: left;
+  background-repeat: no-repeat;
+  background-size: 28px;
+  width: 50%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 5px solid rgb(184, 182, 182);
+  margin-bottom: 12px;
+  margin-left: -100px;
+}
+
+.list {
+  font-size: 20px;
+  font-family: mulish;
+  margin-left: 1em;
+}
+
+.list {
+  list-style: none;
+}
+li {
+  font-size: 18px;
+  font-family: mulish;
+}

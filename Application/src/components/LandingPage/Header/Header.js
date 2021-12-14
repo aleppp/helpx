@@ -18,7 +18,10 @@ class Header extends Component {
           <div className="col-1">Helpx</div>
           <div className="col-2"></div>
           <div className="col-3">
-            <button onClick={isAuthenticated() ? logout : login}>
+            <button
+              className="button-green"
+              onClick={isAuthenticated() ? logout : login}
+            >
               {isAuthenticated() ? "Log Out" : "Log In"}
             </button>
           </div>

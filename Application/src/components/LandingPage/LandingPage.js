@@ -1,13 +1,17 @@
 import React, { Component } from "react";
 // import { Route, Redirect } from "react-router-dom";
 import "./LandingPage.css";
+import Header from "./Header/Header";
 import VerticalBar from "./VerticalBar/VerticalBar";
-// import Header from "./Header/Header";
 import HorizontalBar from "./HorizontalBar/HorizontalBar";
-// import Menu from "./Menu/Menu";
-// import Auth from "../../services/Auth/Auth";
+import Menu from "./Menu/Menu";
+import Auth from "../../services/Auth/Auth";
 
 class LandingPage extends Component {
+  constructor(props) {
+    super(props);
+    this.auth = new Auth(this.props.history);
+  }
   render() {
     // const { isAuthenticated, login } = this.props.auth;
 
@@ -16,21 +20,14 @@ class LandingPage extends Component {
         <div className="nav">
           <VerticalBar />
         </div>
+        <Header auth={this.auth} />
         <div className="body">
-          {/* <div className="header">
-            {/* <Route
-              path="/"
-              exact
-              render={(props) => <Header auth={this.auth} {...props} />}
-            /> 
-          </div>
           <div className="navhor">
             <HorizontalBar />
           </div>
           <div className="menu">
-            {/* {isAuthenticated() ? <p>Sucess</p> : <Menu />} 
-          </div> 
-          */}
+            <Menu />
+          </div>
         </div>
       </div>
     );

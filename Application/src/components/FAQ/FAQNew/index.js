@@ -1,4 +1,3 @@
-import React from "react";
 import "./style.css";
 import Buttons from "../../Buttons/Buttons";
 
@@ -6,7 +5,7 @@ export default function NewFAQ() {
   const button = [
     {
       type: "button-red",
-      text: "Delete",
+      text: "Cancel",
     },
     {
       type: "button-green",
@@ -47,11 +46,9 @@ export default function NewFAQ() {
         </select>
       </div>
       <div className="display-column">
-        <label className="float-left" for="question">
-          Question
-        </label>
+        <label className="float-left">Question</label>
         <textarea
-          id="question"
+          className="textarea-question"
           name="question"
           placeholder="Enter a question."
         ></textarea>
@@ -59,7 +56,7 @@ export default function NewFAQ() {
           Answer
         </label>
         <textarea
-          id="answer"
+          className="textarea-answer"
           name="answer"
           placeholder="Enter an answer."
         ></textarea>

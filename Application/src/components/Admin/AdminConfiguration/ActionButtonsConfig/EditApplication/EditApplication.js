@@ -1,7 +1,7 @@
 import "../style.css";
 import Buttons from "../../../Buttons/Buttons";
 
-export default function EditApplication() {
+export default function EditApplicationSettings() {
   const button = [
     {
       type: "button-blue-small",

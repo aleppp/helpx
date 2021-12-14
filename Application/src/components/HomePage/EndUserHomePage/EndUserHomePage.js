@@ -20,6 +20,7 @@ function EndUserHomePage() {
                 id="myInput"
                 placeholder="Search.."
                 title="Type in a name"
+                src="../../../../public/images/search-icon.png"
               ></input>
 
               <p>Sort by: Date</p>

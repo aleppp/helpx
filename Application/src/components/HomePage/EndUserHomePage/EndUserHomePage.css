@@ -42,7 +42,7 @@
   font-size: 36px;
 }
 #myInput {
-  background-image: url("./search-icon.png");
+  background-image: url("../../../assets/images/search-icon.png");
   background-position: left;
   background-repeat: no-repeat;
   background-size: 28px;

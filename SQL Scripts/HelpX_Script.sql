@@ -13,7 +13,7 @@ SET
     DateModified datetime,
     PRIMARY KEY(ID)
   );
--- Applications Table
+  -- Applications Table
   CREATE TABLE IF NOT EXISTS Applications (
     ID INT NOT NULL AUTO_INCREMENT,
     Name VARCHAR(25),
@@ -22,7 +22,75 @@ SET
     DateModified DATETIME,
     PRIMARY KEY (ID)
   );
--- UsersApplications table
+  -- LookupUserRoles table
+  CREATE TABLE IF NOT EXISTS LookupUserRoles(
+    ID INT NOT NULL AUTO_INCREMENT,
+    Name VARCHAR(25),
+    Description VARCHAR(50),
+    DateCreated DATETIME,
+    DateModified DATETIME,
+    PRIMARY KEY (ID)
+  );
+  -- LookupAppAttributes table
+  CREATE TABLE IF NOT EXISTS LookupAppAttributes (
+    ID Int NOT NULL AUTO_INCREMENT,
+    Name Varchar(25),
+    Description Varchar(50),
+    DefaultValue Varchar(20),
+    DateCreated datetime,
+    DateModified datetime,
+    PRIMARY KEY (ID)
+  );
+  -- LookupAuditLogActions table
+  CREATE TABLE IF NOT EXISTS LookupAuditLogActions (
+    ID INT NOT NULL AUTO_INCREMENT,
+    Name VARCHAR(20),
+    DateCreated DATETIME,
+    DateModified DATETIME,
+    PRIMARY KEY(ID)
+  );
+  -- LookupAuditLogObjects table
+  CREATE TABLE IF NOT EXISTS LookupAuditLogObjects(
+    ID INT NOT NULL AUTO_INCREMENT,
+    Name VARCHAR(30),
+    DateCreated DATETIME,
+    DateModified DATETIME,
+    PRIMARY KEY(ID)
+  );
+  -- LookupContentTypes table
+  CREATE TABLE IF NOT EXISTS LookupContentTypes(
+    ID INT NOT NULL AUTO_INCREMENT,
+    Name VARCHAR(25),
+    DateCreated DATETIME,
+    DateModified DATETIME,
+    PRIMARY KEY (ID)
+  );
+  -- LookupNotificationTypes table
+  CREATE TABLE IF NOT EXISTS LookupNotificationTypes(
+    ID INT NOT NULL AUTO_INCREMENT,
+    Name VARCHAR (25) NOT NULL,
+    DateCreated DATETIME,
+    DateModified DATETIME,
+    PRIMARY KEY (ID)
+  );
+-- LookupStatuses table
+  CREATE TABLE IF NOT EXISTS LookupStatuses(
+    ID int NOT NULL AUTO_INCREMENT,
+    Name varchar (25),
+    Description varchar (70),
+    DateCreated datetime,
+    DateModified datetime,
+    PRIMARY KEY (ID)
+  );
+  -- FraudManagement table
+  CREATE TABLE IF NOT EXISTS FraudManagement(
+    ID int NOT NULL AUTO_INCREMENT,
+    Term varchar(25),
+    DateCreated datetime,
+    DateModified datetime,
+    PRIMARY KEY(ID)
+  );
+  -- UsersApplications table
   CREATE TABLE IF NOT EXISTS UsersApplications(
     ID INT NOT NULL AUTO_INCREMENT,
     UserID INT NOT NULL,
@@ -33,7 +101,7 @@ SET
     CONSTRAINT FK_UsersApplications_UserID FOREIGN KEY (UserID) REFERENCES Users(ID),
     CONSTRAINT FK_UsersApplications_AppID FOREIGN KEY (AppID) REFERENCES Applications(ID)
   );
--- UsersAppsRoles table
+  -- UsersAppsRoles table
   CREATE TABLE IF NOT EXISTS UsersAppsRoles(
     ID int NOT NULL AUTO_INCREMENT,
     UserAppID int,
@@ -44,16 +112,7 @@ SET
     CONSTRAINT FK_UsersAppsRoles_UserAppID FOREIGN KEY (UserAppID) REFERENCES UsersApplications(ID),
     CONSTRAINT FK_UsersAppsRoles_UserRoleID FOREIGN KEY (UserRoleID) REFERENCES LookupUserRoles (ID)
   );
--- LookupUserRoles table
-  CREATE TABLE IF NOT EXISTS LookupUserRoles(
-    ID INT NOT NULL AUTO_INCREMENT,
-    Name VARCHAR(25),
-    Description VARCHAR(50),
-    DateCreated DATETIME,
-    DateModified DATETIME,
-    PRIMARY KEY (ID)
-  );
--- Bookmarks table
+  -- Bookmarks table
   CREATE TABLE IF NOT EXISTS Bookmarks (
     ID int NOT NULL AUTO_INCREMENT,
     UserID int NOT NULL,
@@ -64,7 +123,7 @@ SET
     PRIMARY KEY(ID),
     CONSTRAINT FK_Bookmarks_UsersID FOREIGN KEY (UserID) REFERENCES Users (ID)
   );
--- Contents table
+  -- Contents table
   CREATE TABLE IF NOT EXISTS Content(
     ID INT NOT NULL AUTO_INCREMENT,
     AppID INT,
@@ -84,7 +143,7 @@ SET
     CONSTRAINT FK_Content_ContentTypeID FOREIGN KEY (ContentTypeID) REFERENCES LookupContentTypes(ID),
     CONSTRAINT FK_Content_StatusID FOREIGN KEY (StatusID) REFERENCES LookupStatuses(ID)
   );
--- ApplicationAttributes table
+  -- ApplicationAttributes table
   CREATE TABLE IF NOT EXISTS ApplicationsAttributes (
     ID int NOT NULL AUTO_INCREMENT,
     AppID INT NOT NULL,
@@ -96,7 +155,7 @@ SET
     CONSTRAINT FK_ApplicationsAttributes_AppID FOREIGN KEY (AppID) REFERENCES Applications(ID),
     CONSTRAINT FK_ApplicationsAttributes_AttributeID FOREIGN KEY (AttributeID) REFERENCES LookupAppAttributes(ID)
   );
--- AuditLogs table
+  -- AuditLogs table
   CREATE TABLE IF NOT EXISTS AuditLogs (
     ID INT NOT NULL AUTO_INCREMENT,
     UserID INT NOT NULL,
@@ -106,7 +165,7 @@ SET
     CONSTRAINT FK_AuditLogs_UserID FOREIGN KEY (UserID) REFERENCES Users(ID),
     CONSTRAINT FK_AuditLogs_ActionID FOREIGN KEY (ActionID) REFERENCES LookupAuditLogActions(ID)
   );
--- AuditLogsObjects table
+  -- AuditLogsObjects table
   CREATE TABLE IF NOT EXISTS AuditLogObjects(
     ID INT NOT NULL AUTO_INCREMENT,
     AuditLogID INT NOT NULL,
@@ -117,7 +176,7 @@ SET
     CONSTRAINT FK_AuditLogObjects_AuditLogID FOREIGN KEY (AuditLogID) REFERENCES AuditLogs(ID),
     CONSTRAINT FK_AuditLogObjects_ObjectID FOREIGN KEY (ObjectID) REFERENCES LookupAuditLogObjects(ID)
   );
--- FAQ table
+  -- FAQ table
   CREATE TABLE IF NOT EXISTS FAQ(
     ID int NOT NULL AUTO_INCREMENT,
     AppID int NOT NULL,
@@ -130,7 +189,7 @@ SET
     PRIMARY KEY(ID),
     CONSTRAINT FK_FAQ_AppID FOREIGN KEY (AppID) REFERENCES Applications(ID)
   );
--- FAQHistory table
+  -- FAQHistory table
   CREATE TABLE IF NOT EXISTS FAQHistory (
     ID int NOT NULL AUTO_INCREMENT,
     UserID int,
@@ -153,66 +212,7 @@ SET
     CONSTRAINT FK_Feedback_ContentID FOREIGN KEY (ContentID) REFERENCES Content(ID),
     CONSTRAINT FK_Feedback_UserID FOREIGN KEY (UserID) REFERENCES UsersApplications(UserID)
   );
--- FraudManagement table
-  CREATE TABLE IF NOT EXISTS FraudManagement(
-    ID int NOT NULL AUTO_INCREMENT,
-    Term varchar(25),
-    DateCreated datetime,
-    DateModified datetime,
-    PRIMARY KEY(ID)
-  );
--- LookupAppAttributes table
-  CREATE TABLE IF NOT EXISTS LookupAppAttributes (
-    ID Int NOT NULL AUTO_INCREMENT,
-    Name Varchar(15),
-    Description Varchar(50),
-    DefaultValue Varchar(20),
-    DateCreated datetime,
-    DateModified datetime,
-    PRIMARY KEY (ID)
-  );
---LookupAuditLogActions table
-  CREATE TABLE IF NOT EXISTS LookupAuditLogActions (
-    ID INT NOT NULL AUTO_INCREMENT,
-    Name VARCHAR(20),
-    DateCreated DATETIME,
-    DateModified DATETIME,
-    PRIMARY KEY(ID)
-  );
--- LookupAuditLogObjects table
-  CREATE TABLE IF NOT EXISTS LookupAuditLogObjects(
-    ID INT NOT NULL AUTO_INCREMENT,
-    Name VARCHAR(30),
-    DateCreated DATETIME,
-    DateModified DATETIME,
-    PRIMARY KEY(ID)
-  );
--- LookupContentTypes table
-  CREATE TABLE IF NOT EXISTS LookupContentTypes(
-    ID INT NOT NULL AUTO_INCREMENT,
-    Name VARCHAR(25),
-    DateCreated DATETIME,
-    DateModified DATETIME,
-    PRIMARY KEY (ID)
-  );
--- LookupNotificationTypes table
-  CREATE TABLE IF NOT EXISTS LookupNotificationTypes(
-    ID INT NOT NULL AUTO_INCREMENT,
-    Name VARCHAR (25) NOT NULL,
-    DateCreated DATETIME,
-    DateModified DATETIME,
-    PRIMARY KEY (ID)
-  );
--- LookupStatuses table
-  CREATE TABLE IF NOT EXISTS LookupStatuses(
-    ID int NOT NULL AUTO_INCREMENT,
-    Name varchar (25),
-    Description varchar (70),
-    DateCreated datetime,
-    DateModified datetime,
-    PRIMARY KEY (ID)
-  );
--- Notifications table
+  -- Notifications table
   CREATE TABLE IF NOT EXISTS Notifications(
     ID int NOT NULL AUTO_INCREMENT,
     TypeID int NOT NULL,
@@ -247,8 +247,11 @@ CREATE TABLE IF NOT EXISTS ContentFiles (
     PRIMARY KEY (ID),
     CONSTRAINT FK_ContentFiles_contentid FOREIGN KEY (contentid) REFERENCES content(ID)
   );
--- DUMMY DATA SECTIONS
-  --Users
+-- ************************** -- 
+--     DUMMY DATA SCRIPTS     --
+-- ************************** --
+
+-- Users
 INSERT INTO
   users(
     FirstName,
@@ -274,83 +277,7 @@ WHERE
     WHERE
       Email = 'alifmuqri.hazmi@petronas.com.my'
   );
-INSERT INTO
-  users(
-    FirstName,
-    LastName,
-    Email,
-    DateCreated,
-    DateModified
-  )
-SELECT
-  'Hanis',
-  'Aqilah Hisham',
-  'nurhanisaqilah.badru@petronas.com.my',
-  '2021-11-07 12:12:12',
-  '2021-11-08 12:12:12'
-FROM
-  DUAL
-WHERE
-  not EXISTS (
-    SELECT
-      Email
-    FROM
-      Users
-    WHERE
-      Email = 'nurhanisaqilah.badru@petronas.com.my'
-  );
--- UserApplications
-INSERT INTO
-  usersapplications(userid, appid, datecreated, datemodified)
-VALUES
-  (
-    '1',
-    '1',
-    '2021-11-07 12:12:12',
-    '2021-11-08 12:12:12'
-  );
-INSERT INTO
-  usersapplications(userid, appid, datecreated, datemodified)
-SELECT
-  '1',
-  '1',
-  '2021-11-07 12:12:12',
-  '2021-11-08 12:12:12'
-FROM
-  DUAL
-WHERE
-  NOT EXISTS(
-    SELECT
-      USERID,
-      APPID
-    FROM
-      usersapplications
-    WHERE
-      USERID = 1
-      AND APPID = 1
-  );
---usersappsroles
-INSERT INTO
-  UsersAppsRoles(UserAppID, UserRoleID, DateCreated, DateModified)
-SELECT
-  '1',
-  '1',
-  '2021-11-06 11:11:11',
-  '2021-11-06 11:11:11'
-FROM
-  DUAL
-WHERE
-  NOT EXISTS(
-    SELECT
-      UserAppID,
-      UserRoleID
-    FROM
-      UsersAppsRoles
-    WHERE
-      UserAppID = '1'
-      AND UserRoleID = '1'
-  );
---Applications
+-- Applications
 INSERT INTO
   applications(Name, URL, DateCreated, DateModified)
 SELECT
@@ -369,7 +296,7 @@ WHERE
     WHERE
       Name = 'AlphaOil'
   );
---LookupUserRoles
+-- LookupUserRoles
 INSERT INTO
   lookupuserroles(Name, Description, DateCreated, DateModified)
 SELECT
@@ -442,8 +369,8 @@ WHERE
     WHERE
       Name = 'System Admin'
   );
---FraudManagement
-INSERT INTO
+  -- FraudManagement
+  INSERT INTO
   fraudmanagement(Term, DateCreated, DateModified)
 SELECT
   'Shit',
@@ -460,24 +387,7 @@ WHERE
     WHERE
       Term = 'Shit'
   );
-INSERT INTO
-  fraudmanagement(Term, DateCreated, DateModified)
-SELECT
-  'Bodoh',
-  '2021-02-22 08:30:45',
-  '2021-11-05 14:30:00'
-FROM
-  DUAL
-WHERE
-  NOT EXISTS(
-    SELECT
-      Term
-    FROM
-      fraudmanagement
-    WHERE
-      Term = 'Bodoh'
-  );
---LookupContentTypes
+  -- LookupContentTypes
 INSERT INTO
   lookupcontenttypes(Name, DateCreated, DateModified)
 SELECT
@@ -512,7 +422,7 @@ WHERE
     WHERE
       Name = 'Documentation'
   );
---LookupNotificationTypes
+-- LookupNotificationTypes
 INSERT INTO
   LookupNotificationTypes (Name, DateCreated, DateModified)
 SELECT
@@ -564,7 +474,7 @@ WHERE
     WHERE
       Name = 'Content Status'
   );
---LookupStatuses
+-- LookupStatuses
 INSERT INTO
   lookupstatuses (Name, Description, DateCreated, DateModified)
 SELECT
@@ -941,7 +851,7 @@ WHERE
       Name = "UserRoleName"
   );
 -- User Role Description
-  LookupAuditLogObjects (Name, DateCreated, DateModified)
+  INSERT INTO LookupAuditLogObjects (Name, DateCreated, DateModified)
 SELECT
   "UserRoleDescription",
   "2021-11-16 11:01:11",
@@ -1243,11 +1153,53 @@ WHERE
     WHERE
       Name = "TemplateTitle"
   );
--- ApplicationsAttributes
+  -- UsersApplications
+  INSERT INTO
+  usersapplications(userid, appid, datecreated, datemodified)
+SELECT
+  '1',
+  '1',
+  '2021-11-07 12:12:12',
+  '2021-11-08 12:12:12'
+FROM
+  DUAL
+WHERE
+  NOT EXISTS(
+    SELECT
+      USERID,
+      APPID
+    FROM
+      usersapplications
+    WHERE
+      USERID = 1
+      AND APPID = 1
+  );
+  -- usersappsroles
+INSERT INTO
+  UsersAppsRoles(UserAppID, UserRoleID, DateCreated, DateModified)
+SELECT
+  '1',
+  '1',
+  '2021-11-06 11:11:11',
+  '2021-11-06 11:11:11'
+FROM
+  DUAL
+WHERE
+  NOT EXISTS(
+    SELECT
+      UserAppID,
+      UserRoleID
+    FROM
+      UsersAppsRoles
+    WHERE
+      UserAppID = '1'
+      AND UserRoleID = '1'
+  );
+  -- ApplicationsAttributes
 INSERT INTO
   applicationsattributes (
     AppID,
-    AppAttributeID,
+    AttributeID,
     AppAttributeValue,
     DateCreated,
     DateModified
@@ -1264,14 +1216,46 @@ WHERE
   NOT EXISTS(
     SELECT
       AppID,
-      AppAttributeID
+      AttributeID
     FROM
       applicationsattributes
     WHERE
       AppID = 1
-      AND AppAttributeID = 1
+      AND AttributeID = 1
   );
--- FAQHistory
+  -- FAQ
+INSERT INTO
+  FAQ(
+    AppID,
+    Question,
+    Answer,
+    IsFeedbackAllowed,
+    IsVisible,
+    DateCreated,
+    DateModified
+  )
+SELECT
+  1,
+  'What is a release note?',
+  'Release notes are documents that are distributed with software products',
+  1,
+  1,
+  '2021-02-22 08:30:45',
+  '2021-11-05 14:30:00'
+FROM
+  DUAL
+WHERE
+  NOT EXISTS(
+    SELECT
+      AppID,
+      question
+    FROM
+      faq
+    WHERE
+      AppID = '1'
+      AND question = 'What is a release note?'
+  );
+  -- FAQHistory
 INSERT INTO
   FAQHistory(UserID, FAQID, DateCreated, DateModified)
 SELECT
@@ -1292,60 +1276,8 @@ WHERE
       UserID = 1
       AND FAQID = 1
   );
--- Feedback
-INSERT INTO
-  Feedback(ContentID, UserID, Feedback, Rating, DateCreated)
-SELECT
-  '1',
-  '1',
-  'This application is good for us to see changes applied on the system',
-  '5',
-  '2021-11-06 11:11:11'
-FROM
-  DUAL
-WHERE
-  NOT EXISTS (
-    SELECT
-      UserID,
-      ContentID
-    FROM
-      Feedback
-    WHERE
-      UserID = 1
-      AND ContentID = 1
-  );
--- Templates
-INSERT INTO
-  Templates(
-    AppID,
-    UserID,
-    Title,
-    Body,
-    DateCreated,
-    DateModified
-  )
-SELECT
-  "1",
-  "1",
-  "TemplateName",
-  "Content of template",
-  "2021-11-04 09:23:11",
-  "2021-11-15 11:01:11"
-FROM
-  DUAL
-WHERE
-  NOT EXISTS (
-    SELECT
-      Title,
-      UserID
-    FROM
-      Templates
-    WHERE
-      Title = "TemplateName"
-      AND UserID = 1
-  );
--- Content
-INSERT INTO
+  -- Content
+  INSERT INTO
   content (
     AppID,
     UserID,
@@ -1388,7 +1320,29 @@ WHERE
     WHERE
       Title = 'Release Note 11.1'
   );
--- Bookmark
+  -- Feedback
+INSERT INTO
+  Feedback(ContentID, UserID, Feedback, Rating, DateCreated)
+SELECT
+  '1',
+  '1',
+  'This application is good for us to see changes applied on the system',
+  '5',
+  '2021-11-06 11:11:11'
+FROM
+  DUAL
+WHERE
+  NOT EXISTS (
+    SELECT
+      UserID,
+      ContentID
+    FROM
+      Feedback
+    WHERE
+      UserID = 1
+      AND ContentID = 1
+  );
+  -- Bookmark
 INSERT INTO
   bookmarks(UserID, URL, Name, DateCreated, DateModified)
 SELECT
@@ -1409,26 +1363,7 @@ WHERE
       UserID = '1'
       AND URL = 'helpx.petronas.com/releasenote.1.1'
   );
--- AuditLogObjects
-INSERT INTO
-  AuditLogObjects (AuditLogID, ObjectID, ObjectValue, DateCreated)
-SELECT
-  "1",
-  "1",
-  "Jenny",
-  "2021-11-16 11:01:11"
-FROM
-  DUAL
-WHERE
-  NOT EXISTS (
-    SELECT
-      auditlogid
-    FROM
-      AuditLogObjects
-    WHERE
-      AuditLogID = 1
-  );
--- AuditLogs
+  -- AuditLogs
 INSERT INTO
   auditlogs (UserID, ActionID, DateCreated)
 SELECT
@@ -1448,73 +1383,27 @@ WHERE
       UserID = 1
       AND ActionID = 2
   );
--- FAQ
+  -- AuditLogObjects
 INSERT INTO
-  FAQ(
-    AppID,
-    Question,
-    Answer,
-    IsFeedbackAllowed,
-    IsVisible,
-    DateCreated,
-    DateModified
-  )
+  AuditLogObjects (AuditLogID, ObjectID, ObjectValue, DateCreated)
 SELECT
-  1,
-  'What is a release note?',
-  'Release notes are documents that are distributed with software products',
-  1,
-  1,
-  '2021-02-22 08:30:45',
-  '2021-11-05 14:30:00'
+  "1",
+  "1",
+  "Jenny",
+  "2021-11-16 11:01:11"
 FROM
   DUAL
 WHERE
-  NOT EXISTS(
+  NOT EXISTS (
     SELECT
-      AppID,
-      question
+      auditlogid
     FROM
-      faq
+      AuditLogObjects
     WHERE
-      AppID = '1'
-      AND question = 'What is a release note?'
+      AuditLogID = 1
   );
-ALTER TABLE
-  content DROP FOREIGN KEY fk_content_statusid;
-ALTER TABLE
-  content
-add
-  foreign key (statusid) references lookupstatuses(ID);
--- ApplicationAttributes
-INSERT INTO
-  applicationsattributes(
-    Appid,
-    appattributeid,
-    appattributevalue,
-    datecreated,
-    datemodified
-  )
-SELECT
-  1,
-  1,
-  'Red',
-  '2021-02-22 08:30:45',
-  '2021-11-05 14:30:00'
-FROM
-  DUAL
-WHERE
-  NOT EXISTS(
-    SELECT
-      appattributeid,
-      appid
-    FROM
-      applicationsattributes
-    where
-      AppAttributeID = 1
-      and AppID = 1
-  );
-INSERT INTO
+  -- Notification
+  INSERT INTO
   Notifications(
     TypeID,
     UserAppID,
@@ -1543,8 +1432,38 @@ WHERE
       UserAppID = 1
       AND Body = 'Release notes Version 6.0 has been approved'
   );
--- FilePath dummy
+  -- Templates
 INSERT INTO
+  Templates(
+    AppID,
+    UserID,
+    Title,
+    Body,
+    DateCreated,
+    DateModified
+  )
+SELECT
+  "1",
+  "1",
+  "TemplateName",
+  "Content of template",
+  "2021-11-04 09:23:11",
+  "2021-11-15 11:01:11"
+FROM
+  DUAL
+WHERE
+  NOT EXISTS (
+    SELECT
+      Title,
+      UserID
+    FROM
+      Templates
+    WHERE
+      Title = "TemplateName"
+      AND UserID = 1
+  );
+  -- contentFiles
+  INSERT INTO
   ContentFiles(ContentID, FilePath, DateCreated, DateModified)
 SELECT
   '1',
@@ -1562,3 +1481,10 @@ WHERE
     WHERE
       FilePath = 'img/Notes1/22015.png'
   );
+  
+-- ************************************************* --
+--                 Stored Procedure                  --
+-- ************************************************* --
+
+
+

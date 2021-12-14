@@ -49,3 +49,12 @@
   font-size: 20px;
   font-weight: bold;
 }
+
+.container-editapp-1 {
+  /* border-radius: 5px; */
+  background-color: #f2f2f2;
+  padding: 30px;
+  width: 450px;
+  float: right;
+}
+

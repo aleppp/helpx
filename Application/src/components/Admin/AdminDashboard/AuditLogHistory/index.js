@@ -7,10 +7,7 @@ function AuditLogHistory() {
     <div>
       <div className="audit-1">
         <h1>Audit Log History</h1>
-        <img
-          src={process.env.PUBLIC_URL + "/images/export.png"}
-          className="export"
-        />
+        <img src="images/export.png" alt="Download" className="export"></img>
       </div>
 
       <table>
@@ -70,6 +67,17 @@ function AuditLogHistory() {
           <a href="a">Show More</a>
         </tr>
       </table>
+      <div className="pagination">
+        <a href="#">&laquo;</a>
+        <a href="#">2</a>
+        <a href="#">3</a>
+        <a href="#" class="active">
+          4
+        </a>
+        <a href="#">5</a>
+        <a href="#">6</a>
+        <a href="#">&raquo;</a>
+      </div>
     </div>
   );
 }

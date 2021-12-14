@@ -1,4 +1,4 @@
-import "./style.css";
+import "../style.css";
 import Buttons from "../../../Buttons/Buttons";
 
 export default function EditApplication() {

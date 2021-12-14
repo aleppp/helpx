@@ -29,33 +29,22 @@ input[type="text"] {
   font-size: 15px;
 }
 
-#question {
-  height: 100px;
-  width: max-content;
-}
-
-#answer {
-  height: 200px;
-  width: max-content;
-}
-
 .textarea-answer {
-  width: 100%;
+  width: 500px;
   padding: 10px;
   border: 1px solid #ccc;
   resize: vertical;
   font-size: 15px;
-  height: 200px;
+  height: 150px;
 }
 
 .textarea-question {
-  width: 100%;
+  width: 500px;
   padding: 10px;
   border: 1px solid #ccc;
   resize: vertical;
   font-size: 15px;
   height: 100px;
-  margin: 5px;
 }
 
 .textarea-question-del {

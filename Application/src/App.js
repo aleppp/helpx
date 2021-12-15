@@ -32,7 +32,9 @@ class App extends Component {
             <Route
               path="/homepage"
               exact
-              render={(props) => <EndUserHomePage {...props} />}
+              render={(props) => (
+                <EndUserHomePage auth={this.auth} {...props} />
+              )}
             />
           </div>
         </Switch>

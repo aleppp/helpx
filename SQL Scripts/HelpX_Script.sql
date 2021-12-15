@@ -1486,5 +1486,13 @@ WHERE
 --                 Stored Procedure                  --
 -- ************************************************* --
 
+DROP PROCEDURE IF EXISTS `sp_applications_sel`;
+DELIMITER $$
+CREATE PROCEDURE `sp_applications_sel`()
+BEGIN
+select id, IFNULL(name, ' ') as name , IFNULL(url, ' ') as url, IFNULL(datecreated, ' ') as datecreated, IFNULL(datemodified, ' ') as datemodified from applications;
+END $$
+DELIMITER ;
 
+call sp_applications_sel()
 

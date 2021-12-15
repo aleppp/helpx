@@ -1494,5 +1494,8 @@ select id, IFNULL(name, ' ') as name , IFNULL(url, ' ') as url, IFNULL(datecreat
 END $$
 DELIMITER ;
 
+-- ************************************************* --
+--              Call Stored Procedure                --
+-- ************************************************* --
 call sp_applications_sel()
 

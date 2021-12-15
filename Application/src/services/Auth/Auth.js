@@ -4,6 +4,7 @@ export default class Auth {
   constructor(history) {
     this.history = history;
     this.userProfile = null;
+
     this.auth0 = new auth0.WebAuth({
       domain: process.env.REACT_APP_AUTH0_DOMAIN,
       clientID: process.env.REACT_APP_AUTH0_CLIENT_ID,
@@ -20,10 +21,11 @@ export default class Auth {
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
-        this.history.push("/");
-      } else if (err) {
-        this.history.push("/");
-        alert("Error: ${err.error}. Check the console for further details."); 
+        this.history.push("/success");
+      }
+      else if (err) {
+        this.history.push("/failed");
+        alert(`Error: ${err.error}. Check the console for further details.`);
         console.log(err);
       }
     });

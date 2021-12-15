@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, Redirect, BrowserRouter } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import "./App.css";
 import LandingPage from "./components/LandingPage/LandingPage";
 import Auth from "./services/Auth/Auth";
@@ -16,8 +16,8 @@ class App extends Component {
     return (
       <>
         {/* <EndUserHomePage /> */}
-        <BrowserRouter>
-          {/* <Header auth={this.auth} />  */}
+        {/* <Header auth={this.auth} />  */}{" "}
+        <Switch>
           <div className="App">
             <Route
               path="/"
@@ -26,15 +26,16 @@ class App extends Component {
             />
             <Route
               path="/callback"
+              exact
               render={(props) => <Callback auth={this.auth} {...props} />}
             />
-            {/* <Route
+            <Route
               path="/homepage"
               exact
               render={(props) => <EndUserHomePage {...props} />}
-            /> */}
+            />
           </div>
-        </BrowserRouter>
+        </Switch>
       </>
     );
   }

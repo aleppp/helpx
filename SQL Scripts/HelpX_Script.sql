@@ -1490,11 +1490,11 @@ DROP PROCEDURE IF EXISTS `sp_applications_sel`;
 DELIMITER $$
 CREATE PROCEDURE `sp_applications_sel`()
 BEGIN
-select id, IFNULL(name, ' ') as name , IFNULL(url, ' ') as url, IFNULL(datecreated, ' ') as datecreated, IFNULL(datemodified, ' ') as datemodified from applications;
+select id, name ,url, datecreated, datemodified from applications;
 END $$
 DELIMITER ;
 
-DROP PROCEDURE IF EXISTS `sp_contentdb_sel` 
+DROP PROCEDURE IF EXISTS `sp_contentdb_sel`
 DELIMITER $$
 CREATE PROCEDURE `sp_contentdb_sel`()
 BEGIN
@@ -1509,45 +1509,15 @@ BEGIN
     FROM content as ct
     LEFT JOIN feedback as fb
         ON ct.ID  = fb.contentID
-    LEFT JOIN lookupstatuses as ls
+    RIGHT JOIN lookupstatuses as ls
         ON ct.StatusID = ls.ID
     GROUP BY ct.ID;
 END $$
-DELIMITER ;
-
-DROP PROCEDURE IF EXISTS `sp_bookmarks_sel`
-DELIMITER $$
-CREATE PROCEDURE `sp_bookmarks_sel`()
-BEGIN
-    SELECT bm.ID,
-    bm.UserID,
-    bm.URL,
-    bm.Name,
-    bm.DateCreated,
-    bm.DateModified,
-    us.ID
-    FROM bookmarks as bm
-    LEFT JOIN users as us
-        ON bm.UserID  = us.ID
-    GROUP BY bm.UserID;
-END $$
-DELIMITER ;
-
-DROP PROCEDURE IF EXISTS `sp_template_ins`;
-DELIMITER $$
-CREATE PROCEDURE `sp_template_ins` (
-	IN appid INT, userid INT, title varchar(65), body varchar(10256), datecreated datetime, datemodified datetime
-)
-BEGIN 
-	INSERT INTO templates (appid, userid, title, body, datecreated, datemodified)
-    VALUES (appid, userid, title, body, now(), now());
-    END $$
-    DELIMITER ;
+DELIMITER;
 
 -- ************************************************* --
 --              Call Stored Procedure                --
 -- ************************************************* --
-CALL sp_applications_sel()
-CALL sp_contentdb_sel()
-CALL sp_bookmarks_sel()
-CALL sp_template_ins() 
+call sp_applications_sel()
+
+CALL `sp_contentdb_sel`()

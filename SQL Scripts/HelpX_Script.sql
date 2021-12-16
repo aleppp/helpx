@@ -1525,7 +1525,7 @@ BEGIN
     bm.Name,
     bm.DateCreated,
     bm.DateModified,
-    us.ID,
+    us.ID
     FROM bookmarks as bm
     LEFT JOIN users as us
         ON ct.UserID  = us.ID

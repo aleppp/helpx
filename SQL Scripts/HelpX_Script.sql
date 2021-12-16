@@ -1515,9 +1515,27 @@ BEGIN
 END $$
 DELIMITER;
 
+DROP PROCEDURE IF EXISTS `sp_bookmarks_sel`
+DELIMITER $$
+CREATE PROCEDURE `sp_bookmarks_sel`()
+BEGIN
+    SELECT bm.ID,
+    bm.UserID,
+    bm.URL,
+    bm.Name,
+    bm.DateCreated,
+    bm.DateModified,
+    us.ID,
+    FROM bookmarks as bm
+    LEFT JOIN users as us
+        ON ct.UserID  = us.ID
+    GROUP BY bm.UserID;
+END $$
+DELIMITER;
+
 -- ************************************************* --
 --              Call Stored Procedure                --
 -- ************************************************* --
-call sp_applications_sel()
-
-CALL `sp_contentdb_sel`()
+CALL sp_applications_sel()
+CALL sp_contentdb_sel()
+CALL sp_bookmarks_sel()

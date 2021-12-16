@@ -1,6 +1,7 @@
 import React from "react";
 import "./fraud.css";
 import Button from "../Buttons/Buttons";
+import Pagination from "../Pagination/pagination";
 
 const Buttons = [
   {
@@ -38,10 +39,11 @@ function FraudConfig() {
         <tr>
           <th>
             ID
-            <img
+            {/*<img
               className="dropdown"
+              alt="dropdown arrow"
               src={process.env.PUBLIC_URL + "/images/expandMore.png"}
-            />
+            />*/}
           </th>
           <th>Term</th>
           <th>Action</th>
@@ -64,6 +66,7 @@ function FraudConfig() {
           })}
         </tbody>
       </table>
+      <Pagination />
     </div>
   );
 }

@@ -1494,7 +1494,7 @@ select id, name ,url, datecreated, datemodified from applications;
 END $$
 DELIMITER ;
 
-DROP PROCEDURE IF EXISTS `sp_contentdb_sel`
+DROP PROCEDURE IF EXISTS `sp_contentdb_sel`;
 DELIMITER $$
 CREATE PROCEDURE `sp_contentdb_sel`()
 BEGIN
@@ -1513,7 +1513,36 @@ BEGIN
         ON ct.StatusID = ls.ID
     GROUP BY ct.ID;
 END $$
-DELIMITER;
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS `sp_bookmarks_sel`;
+DELIMITER $$
+CREATE PROCEDURE `sp_bookmarks_sel`()
+BEGIN
+    SELECT bm.ID,
+    bm.UserID,
+    bm.URL,
+    bm.Name,
+    bm.DateCreated,
+    bm.DateModified,
+    us.ID
+    FROM bookmarks as bm
+    LEFT JOIN users as us
+        ON bm.UserID  = us.ID
+    GROUP BY bm.UserID;
+END $$
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS `sp_template_ins`;
+DELIMITER $$
+CREATE PROCEDURE `sp_template_ins` (
+	IN appid INT, userid INT, title varchar(65), body varchar(10256), datecreated datetime, datemodified datetime
+)
+BEGIN 
+	INSERT INTO templates (appid, userid, title, body, datecreated, datemodified)
+    VALUES (appid, userid, title, body, now(), now());
+    END $$
+    DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `sp_ListOfReleaseNotes_sel`;
 DELIMITER $$
@@ -1535,7 +1564,9 @@ DELIMITER ;
 -- ************************************************* --
 --              Call Stored Procedure                --
 -- ************************************************* --
-call sp_applications_sel()
+CALL sp_applications_sel();
+CALL sp_contentdb_sel();
+CALL sp_bookmarks_sel();
+CALL sp_template_ins(1,1,'Release Note 1','Here are some details on..', now(), now());
 
-CALL `sp_contentdb_sel`()
-CALL `sp_ListOfReleaseNotes_sel`()
+CALL sp_ListOfReleaseNotes_sel();

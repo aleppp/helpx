@@ -1,0 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Mulish:wght@200&display=swap");
+
+body {
+  font-size: 50px;
+}
+
+input[type="checkbox"] {
+  width: 50px;
+  height: 35px;
+  zoom: 1.25;
+}
+
+ul {
+  list-style-type: none;
+}

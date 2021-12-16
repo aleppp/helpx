@@ -1,6 +1,6 @@
 import React from "react";
 //import ReactDOM from "react";
-import "./style.css";
+import "./checkbox.css";
 
 export default function Checkbox() {
   class Checkbox extends React.Component {
@@ -97,13 +97,13 @@ export default function Checkbox() {
             <Checkbox
               name="New Box"
               id="testId"
-              label="Drivers License"
+              label="User Name"
               checked={true}
               handleCheckboxChange={this.onChange}
             />
 
-            <Checkbox name="2nd Box" id="other-id" label="State Id" />
-            <Checkbox name="3rd Box" id="other-id" label="Military Id" />
+            <Checkbox name="2nd Box" id="other-id" label="User Id" />
+            <Checkbox name="3rd Box" id="other-id" label="User Role" />
           </CheckboxGroup>
         </div>
       );

@@ -1494,6 +1494,16 @@ select id, name ,url, datecreated, datemodified from applications;
 END $$
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `sp_applications_ins`;
+DELIMITER $$
+CREATE PROCEDURE `sp_applications_ins`(
+IN name varchar(25), url varchar(25), datecreated datetime, datemodified datetime)
+BEGIN
+INSERT INTO applications (name,url,datecreated,datemodified)
+VALUES (name,url,datecreated,datemodified);
+END $$
+DELIMITER ;
+
 DROP PROCEDURE IF EXISTS `sp_contentdb_sel`;
 DELIMITER $$
 CREATE PROCEDURE `sp_contentdb_sel`()

@@ -1494,7 +1494,7 @@ select id, IFNULL(name, ' ') as name , IFNULL(url, ' ') as url, IFNULL(datecreat
 END $$
 DELIMITER ;
 
-DROP PROCEDURE IF EXISTS `sp_contentdb_sel`
+DROP PROCEDURE IF EXISTS `sp_contentdb_sel` 
 DELIMITER $$
 CREATE PROCEDURE `sp_contentdb_sel`()
 BEGIN
@@ -1509,11 +1509,11 @@ BEGIN
     FROM content as ct
     LEFT JOIN feedback as fb
         ON ct.ID  = fb.contentID
-    RIGHT JOIN lookupstatuses as ls
+    LEFT JOIN lookupstatuses as ls
         ON ct.StatusID = ls.ID
     GROUP BY ct.ID;
 END $$
-DELIMITER;
+DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `sp_bookmarks_sel`
 DELIMITER $$
@@ -1531,7 +1531,18 @@ BEGIN
         ON ct.UserID  = us.ID
     GROUP BY bm.UserID;
 END $$
-DELIMITER;
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS `sp_template_ins`;
+DELIMITER $$
+CREATE PROCEDURE `sp_template_ins` (
+	IN appid INT, userid INT, title varchar(65), body varchar(10256), datecreated datetime, datemodified datetime
+)
+BEGIN 
+	INSERT INTO templates (appid, userid, title, body, datecreated, datemodified)
+    VALUES (appid, userid, title, body, now(), now());
+    END $$
+    DELIMITER ;
 
 -- ************************************************* --
 --              Call Stored Procedure                --
@@ -1539,3 +1550,4 @@ DELIMITER;
 CALL sp_applications_sel()
 CALL sp_contentdb_sel()
 CALL sp_bookmarks_sel()
+CALL sp_template_ins() 

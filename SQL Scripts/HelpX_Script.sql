@@ -1498,20 +1498,20 @@ DROP PROCEDURE IF EXISTS `sp_contentdb_sel`
 DELIMITER $$
 CREATE PROCEDURE `sp_contentdb_sel`()
 BEGIN
-    SELECT content.ID as id,
-    content.IsFeebackAllowed as feedback,
-    content.IsVisible as visibility,
-    content.Title as title,
-    content.DateCreated as date,
-    content.DatePublished as schedule,
+    SELECT ct.ID as id,
+    ct.IsFeebackAllowed,
+    ct.IsVisible,
+    ct.Title,
+    ct.DateCreated,
+    ct.DatePublished,
     COUNT(fb.ID) as feedback,
-    statuses.Name as status
-    FROM content
+    ls.Name as status
+    FROM content as ct
     LEFT JOIN feedback as fb
-        ON content.ID  = fb.contentID
-    RIGHT JOIN lookupstatuses as statuses
-        ON content.StatusID = statuses.ID
-    GROUP BY content.ID;
+        ON ct.ID  = fb.contentID
+    RIGHT JOIN lookupstatuses as ls
+        ON ct.StatusID = ls.ID
+    GROUP BY ct.ID;
 END $$
 DELIMITER;
 

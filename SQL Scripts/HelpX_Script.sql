@@ -1528,7 +1528,7 @@ BEGIN
     us.ID
     FROM bookmarks as bm
     LEFT JOIN users as us
-        ON ct.UserID  = us.ID
+        ON bm.UserID  = us.ID
     GROUP BY bm.UserID;
 END $$
 DELIMITER ;

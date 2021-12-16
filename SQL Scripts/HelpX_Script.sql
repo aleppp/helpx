@@ -1515,9 +1515,27 @@ BEGIN
 END $$
 DELIMITER;
 
+DROP PROCEDURE IF EXISTS `sp_ListOfReleaseNotes_sel`;
+DELIMITER $$
+CREATE PROCEDURE `sp_ListOfReleaseNotes_sel`()
+BEGIN
+SELECT ct.ID as id,
+ct.Title,
+lct.ID
+FROM content as ct
+LEFT JOIN Applications as app
+ON ct.AppID = app.ID
+LEFT JOIN lookupcontenttypes as lct
+ON ct.ContentTypeID = lct.ID
+WHERE lct.ID = 1  
+GROUP BY ct.ID;
+END $$
+DELIMITER ;
+
 -- ************************************************* --
 --              Call Stored Procedure                --
 -- ************************************************* --
 call sp_applications_sel()
 
 CALL `sp_contentdb_sel`()
+CALL `sp_ListOfReleaseNotes_sel`()

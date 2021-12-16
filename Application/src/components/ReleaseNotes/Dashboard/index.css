@@ -1,5 +1,122 @@
-App {
-    font-family: sans-serif;
-    text-align: center;
-  }
-  
+
+.dashboard{
+  display: inline-block;
+  width: 1620px;
+  height: 648px;
+  margin-top: 5%;
+  margin-left: 4%;
+ }
+ 
+ .dashboard table{
+     width: 100%;
+     height: 100%;
+     background-color: #F3F3F3;
+     overflow: hidden;
+     border-radius: 20px;
+     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+     table-layout: fixed;
+ }
+ 
+ .dashboard thead{
+     text-align: center;
+     background-color: #38B09D;
+     font-size: 24px;
+     color: white;
+ }
+ 
+ .fbHead {
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+ }
+ 
+ .dashSummary {
+     background-color: #F3F3F3;
+     color: black;
+ }
+ 
+ .dashSummary td{
+     overflow: hidden;
+     white-space: nowrap;
+ }
+ 
+ .dashSummary button {
+     float: right;
+     margin-right: 30px;
+     margin-top: 40px;
+     width: 225px;
+     height: 58px;
+     background-color: #20419A;
+     color: white;
+     border-style: none;
+     border-radius: 5px;
+     font-size: 18px;
+     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+ }
+ 
+ .dashSummary button:hover {
+     background-color: #4F70C9;
+ }
+ 
+ .supscript {
+     display: inline;
+     float: left;
+     font-size: 96px;
+ }
+ 
+ .supscript sup {
+     font-size: 24px;
+     vertical-align: super;
+ }
+ 
+ #sup1 sup  {
+     color: #FF4040;
+     font-weight: bold;
+ }
+ 
+ #sup2 sup  {
+     color: #FFD600;
+     font-weight: bold;
+ }
+ 
+ #sup1 {
+     margin-left: 48px;
+     margin-right: 212px;
+     
+ }
+ 
+ #sup2 {
+     margin-right: 628px;
+ }
+
+ .tableHeader button {
+    background-color: transparent;
+    border: none;
+    font-size: 24px;
+    color: white;
+    font-weight: bold;
+ }
+ 
+ .dashboard tbody tr td {
+     font-size: 18px;
+     padding-top: 10px;
+     vertical-align: middle;
+ }
+ 
+ .dashboard tfoot{
+     background-color: #38B09D;
+     height: 68px;
+ }
+ 
+ .foot {
+     float: left;
+     margin-top: 10px;
+     margin-left: 40px;
+     font-weight: normal;
+     font-size: 18px;
+     color: white;
+ }
+ 
+ .pageBar {
+     float: right;
+ }

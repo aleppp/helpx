@@ -1494,8 +1494,30 @@ select id, IFNULL(name, ' ') as name , IFNULL(url, ' ') as url, IFNULL(datecreat
 END $$
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `sp_contentdb_sel`
+DELIMITER $$
+CREATE PROCEDURE `sp_contentdb_sel`()
+BEGIN
+    SELECT ct.ID as id,
+    ct.IsFeebackAllowed,
+    ct.IsVisible,
+    ct.Title,
+    ct.DateCreated,
+    ct.DatePublished,
+    COUNT(fb.ID) as feedback,
+    ls.Name as status
+    FROM content as ct
+    LEFT JOIN feedback as fb
+        ON ct.ID  = fb.contentID
+    RIGHT JOIN lookupstatuses as ls
+        ON ct.StatusID = ls.ID
+    GROUP BY ct.ID;
+END $$
+DELIMITER;
+
 -- ************************************************* --
 --              Call Stored Procedure                --
 -- ************************************************* --
 call sp_applications_sel()
 
+CALL `sp_contentdb_sel`()

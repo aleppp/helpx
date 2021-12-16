@@ -28,19 +28,15 @@ function TemplateEditor() {
           onClick={togglePopup}
         />
         <div>
-          <form>
-            <select className="template">
-              {" "}
-              {TEMPLATES.map((item) => {
-                return <option> {item.name}</option>;
-              })}
-            </select>
-          </form>
+          <select className="template">
+            {" "}
+            {TEMPLATES.map((item) => {
+              return <option> {item.name}</option>;
+            })}
+          </select>
         </div>
         <h3 className="h3">Title </h3>
-        <form>
-          <input className="textfield" type="text" value="Release Note 3.2" />
-        </form>
+        <input className="textfield" type="text" value="Release Note 3.2" />
         <img
           className="spell-icon"
           src={process.env.PUBLIC_URL + "/images/spellCheck.png"}
@@ -63,15 +59,13 @@ function TemplateEditor() {
             content={
               <>
                 <h2> New Template </h2>
-                <form>
-                  <label className="label">Name</label>
-                  <input
-                    className="name-field"
-                    type="text"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                  />
-                </form>{" "}
+                <label className="label">Name</label>
+                <input
+                  className="name-field"
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />{" "}
                 <div className="actions">
                   <button className="button-save">Save</button>
 

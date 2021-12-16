@@ -1,28 +1,31 @@
-import { useState, useReducer, useMemo, useEffect } from "react";
-import "./index.css";
-import { default as DATA } from "./mockdata.json";
-import UnfoldMoreOutlinedIcon from "@material-ui/icons/UnfoldMoreOutlined";
-import ExpandLessOutlinedIcon from "@material-ui/icons/ExpandLessOutlined";
-import KeyboardArrowDownOutlinedIcon from "@material-ui/icons/KeyboardArrowDownOutlined";
-import { Pagination } from "@material-ui/lab";
+import React, {useState, useReducer, useEffect} from 'react';
+import {Pagination} from "@mui/material";
+import './index.css';
+import axios from 'axios'
+
 
 export default function Dashboard() {
-
-  const mockdata = useMemo(() => DATA, []);
+  const [tableData, setTableData] = useState([])
   const [current, setCurrent] = useState("unsorted");
 
-  //for pagination
   let [page, setPage] = useState(1);
   const PER_PAGE = 4;
-  const count = Math.ceil(mockdata.length / PER_PAGE);
-  const _DATA = usePagination(mockdata, PER_PAGE);
+
+  const count = Math.ceil(tableData.length / PER_PAGE);
+  const _DATA = usePagination(tableData, PER_PAGE);
 
   const handleChange = (e, p) => {
     setPage(p);
     _DATA.jump(p);
   };
 
-  //for sorting
+  useEffect(() => {
+    axios
+      .get("./MOCKDATA.json")
+      .then((res) => setTableData(res.data))
+      .catch((err) => console.log(err));
+  }, []);
+
   const initialState = {
     isSorted: false,
     isDesc: false
@@ -53,19 +56,22 @@ export default function Dashboard() {
   }
 
   function dispatchSort() {
+    let sortData = [...tableData]
     if (current === "unsorted") {
       setCurrent("asc");
       dispatch({ type: "unsorted" });
-      mockdata.sort((a, b) => a.Date.localeCompare(b.Date));
+      sortData = sortData.sort((a, b) => a.Date.localeCompare(b.Date));
     } else if (current === "asc") {
       setCurrent("desc");
       dispatch({ type: "asc" });
-      mockdata.sort((a, b) => b.Date.localeCompare(a.Date));
+      sortData = sortData.sort((a, b) => b.Date.localeCompare(a.Date));
     } else {
       setCurrent("asc");
       dispatch({ type: "unsorted" });
-      mockdata.sort((a, b) => a.Date.localeCompare(b.Date));
+      sortData = sortData.sort((a, b) => a.Date.localeCompare(b.Date));
     }
+
+    setTableData(sortData);
   }
 
   function usePagination(data, itemsPerPage) {
@@ -89,38 +95,45 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="App">
-      <h1>Dashboard</h1>
-      <table>
+    <>
+    <div className="dashboard"> 
+      <table className="table table-borderless text-center">
         <thead>
+          <tr className="dashSummary">
+            <td colSpan={7}>
+            <div className="supscript" id="sup1">5<sup>Pending Approval</sup></div>
+            <div className="supscript" id="sup2">2<sup>In Draft</sup></div> 
+            <button>{"New Release Note"}</button>
+            </td>
+          </tr>
           <tr>
-            <th>
-              Date
+            <th className="tableHeader">
               <button onClick={() => dispatchSort()}>
+                Date
                 <span>
                   {state.isSorted ? (
                     state.isDesc ? (
-                      <KeyboardArrowDownOutlinedIcon />
+                      <img  src={process.env.PUBLIC_URL + '/icons/descend.svg'} />
                     ) : (
-                      <ExpandLessOutlinedIcon />
+                      <img src={process.env.PUBLIC_URL + '/icons/ascend.svg'} />
                     )
                   ) : (
-                    <UnfoldMoreOutlinedIcon />
+                    <img src={process.env.PUBLIC_URL + '/icons/unsort.svg'} />
                   )}
                 </span>
               </button>
             </th>
-            <th>Title</th>
-            <th>Schedule</th>
-            <th>Feedback Button</th>
-            <th>Feedback</th>
-            <th>Visibility </th>
-            <th>Status</th>
+            <th>Title <img  src={process.env.PUBLIC_URL + '/icons/descend.svg'} /></th>
+            <th>Schedule <img  src={process.env.PUBLIC_URL + '/icons/descend.svg'} /></th>
+            <th><div className="fbHead">Feedback Button <img  src={process.env.PUBLIC_URL + '/icons/descend.svg'} /></div></th>
+            <th>Feedback <img  src={process.env.PUBLIC_URL + '/icons/descend.svg'} /></th>
+            <th>Visibility <img  src={process.env.PUBLIC_URL + '/icons/descend.svg'} /></th>
+            <th>Status <img  src={process.env.PUBLIC_URL + '/icons/descend.svg'} /></th>
           </tr>
         </thead>
         <tbody>
-          {_DATA.currentData().map((item) => {
-            return (
+          {_DATA.currentData().map(item => {
+            return(
               <tr>
                 <td>{item.Date}</td>
                 <td>{item.Title}</td>
@@ -133,16 +146,24 @@ export default function Dashboard() {
             );
           })}
         </tbody>
+        <tfoot>
+          <tr>
+            <td colSpan={7}><p className="foot">Total Number of Release: {tableData.length}</p></td>
+          </tr>
+        </tfoot>
       </table>
-      <Pagination
-        className="pageBar"
-        count={count}
-        size="large"
-        color="primary"
-        page={page}
-        shape="rounded"
-        onChange={handleChange}
-      />
+      <Pagination 
+      className = "pageBar"
+      count = {count}
+      size = "large"
+      color = "primary"
+      page = {page}
+      shape = "rounded"
+      onChange = {handleChange} 
+    />
     </div>
+    
+    
+    </>
   );
 }

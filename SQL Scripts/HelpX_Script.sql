@@ -1602,6 +1602,15 @@ BEGIN
     END $$
     DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `sp_fraudmanagement_sel`;
+DELIMITER $$
+CREATE PROCEDURE `sp_fraudmanagement_sel`()
+BEGIN
+    SELECT ID, Term
+    FROM fraudmanagement;
+END $$
+DELIMITER ;
+
 -- ************************************************* --
 --              Call Stored Procedure                --
 -- ************************************************* --
@@ -1614,3 +1623,5 @@ CALL sp_auditlogs_sel()
 CALL sp_ListOfReleaseNotes_sel();
 
 CALL sp_content_ins(1, 1, 1, 1, true, true, 'Release Note 5.0', 'This is a new Release Notes', now(), now());
+
+CALL sp_fraudmanagement_sel();

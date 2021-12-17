@@ -1571,6 +1571,22 @@ GROUP BY ct.ID;
 END $$
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `sp_auditlogs_sel`
+DELIMITER $$
+CREATE PROCEDURE `sp_auditlogs_sel`()
+BEGIN
+    SELECT al.ID as id,
+    al.UserID,
+    al.ActionID,
+    al.DateCreated,
+    us.ID
+    FROM auditlogs as al
+    LEFT JOIN users as us
+        ON al.UserID  = us.ID
+    GROUP BY al.UserID;
+END $$
+DELIMITER ;
+
 -- ************************************************* --
 --              Call Stored Procedure                --
 -- ************************************************* --
@@ -1578,5 +1594,6 @@ CALL sp_applications_sel();
 CALL sp_contentdb_sel();
 CALL sp_bookmarks_sel();
 CALL sp_template_ins(1,1,'Release Note 1','Here are some details on..', now(), now());
+CALL sp_auditlogs_sel()
 
 CALL sp_ListOfReleaseNotes_sel();

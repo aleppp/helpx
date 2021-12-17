@@ -1587,6 +1587,21 @@ BEGIN
 END $$
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `sp_content_ins`;
+DELIMITER $$
+CREATE PROCEDURE `sp_content_ins` (
+	IN appid INT, userid INT, contenttypeid INT, statusid INT, 
+    isfeebackallowed BOOLEAN, isvisible BOOLEAN, title varchar(65), 
+    body varchar(10256), datecreated datetime, datemodified datetime
+)
+BEGIN 
+	INSERT INTO content (appid, userid, contenttypeid, statusid, isfeebackallowed,
+    isvisible, title, body, datecreated, datemodified)
+    VALUES (appid, userid, contenttypeid, statusid, isfeebackallowed,
+    isvisible, title, body, now(), now());
+    END $$
+    DELIMITER ;
+
 -- ************************************************* --
 --              Call Stored Procedure                --
 -- ************************************************* --
@@ -1597,3 +1612,5 @@ CALL sp_template_ins(1,1,'Release Note 1','Here are some details on..', now(), n
 CALL sp_auditlogs_sel()
 
 CALL sp_ListOfReleaseNotes_sel();
+
+CALL sp_content_ins(1, 1, 1, 1, true, true, 'Release Note 5.0', 'This is a new Release Notes', now(), now());

@@ -1,6 +1,6 @@
 import React from "react";
-import "./fraud.css";
-import Button from "../Buttons/Buttons";
+import "./style.css";
+import Button from "./button";
 import Pagination from "../Pagination/pagination";
 
 const Buttons = [

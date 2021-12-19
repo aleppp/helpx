@@ -1,5 +1,5 @@
 import "./style.css";
-import Button from "../Buttons/Buttons";
+import Button from "./button";
 
 export default function App() {
   const button = [

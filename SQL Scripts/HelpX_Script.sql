@@ -1563,20 +1563,17 @@ BEGIN
     END $$
     DELIMITER ;
 
-DROP PROCEDURE IF EXISTS `sp_ListOfReleaseNotes_sel`;
+DROP PROCEDURE IF EXISTS `sp_ReleaseNotes_sel`;
 DELIMITER $$
-CREATE PROCEDURE `sp_ListOfReleaseNotes_sel`()
+CREATE PROCEDURE `sp_ReleaseNotes_sel`()
 BEGIN
 SELECT ct.ID as id,
 ct.Title,
-lct.ID
+ct.Body
 FROM content as ct
 LEFT JOIN Applications as app
 ON ct.AppID = app.ID
-LEFT JOIN lookupcontenttypes as lct
-ON ct.ContentTypeID = lct.ID
-WHERE lct.ID = 1  
-GROUP BY ct.ID;
+WHERE ContentTypeID = 1; 
 END $$
 DELIMITER ;
 
@@ -1629,7 +1626,7 @@ CALL sp_bookmarks_sel();
 CALL sp_template_ins(1,1,'Release Note 1','Here are some details on..', now(), now());
 CALL sp_auditlogs_sel()
 
-CALL sp_ListOfReleaseNotes_sel();
+CALL sp_ReleaseNotes_sel();
 
 CALL sp_content_ins(1, 1, 1, 1, true, true, 'Release Note 5.0', 'This is a new Release Notes', now(), now());
 

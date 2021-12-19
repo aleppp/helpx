@@ -1504,6 +1504,15 @@ VALUES (name,url,datecreated,datemodified);
 END $$
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `sp_applications_del`;
+DELIMITER $$
+CREATE PROCEDURE `sp_applications_del`(IN id int)
+BEGIN
+DELETE FROM applications AS ap
+WHERE ap.id = id;
+END $$
+DELIMITER ;
+
 DROP PROCEDURE IF EXISTS `sp_contentdb_sel`;
 DELIMITER $$
 CREATE PROCEDURE `sp_contentdb_sel`()
@@ -1625,3 +1634,5 @@ CALL sp_ListOfReleaseNotes_sel();
 CALL sp_content_ins(1, 1, 1, 1, true, true, 'Release Note 5.0', 'This is a new Release Notes', now(), now());
 
 CALL sp_fraudmanagement_sel();
+
+call `sp_applications_del`(2);

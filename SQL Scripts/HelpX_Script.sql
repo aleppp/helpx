@@ -1637,6 +1637,17 @@ BEGIN
 END $$
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `sp_users_ins`;
+DELIMITER $$
+CREATE PROCEDURE `sp_users_ins`(
+IN FirstName varchar(20), LastName varchar(40), Email varchar(50), DateCreated datetime, datemodified datetime)
+BEGIN
+INSERT INTO users (FirstName, LastName, Email, DateCreated, DateModified)
+VALUES (FirstName, LastName, Email, DateCreated, DateModified);
+END $$
+DELIMITER ; 
+
+
 -- ************************************************* --
 --              Call Stored Procedure                --
 -- ************************************************* --
@@ -1656,3 +1667,4 @@ call `sp_applications_del`(2);
 
 CALL sp_users_sel() ;
 call sp_bookmarks_sel_user(2);
+call sp_users_ins('Roman', 'Kvaska', 'roman.kvaska@gmail.com', now(), now() ) ;

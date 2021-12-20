@@ -1534,21 +1534,31 @@ BEGIN
 END $$
 DELIMITER ;
 
-DROP PROCEDURE IF EXISTS `sp_bookmarks_sel`;
+DROP PROCEDURE IF EXISTS `sp_bookmarks_sel_user`;
 DELIMITER $$
-CREATE PROCEDURE `sp_bookmarks_sel`()
+CREATE PROCEDURE `sp_bookmarks_sel_user`(IN UserID INT)
 BEGIN
-    SELECT bm.ID,
-    bm.UserID,
-    bm.URL,
-    bm.Name,
-    bm.DateCreated,
-    bm.DateModified,
-    us.ID
-    FROM bookmarks as bm
-    LEFT JOIN users as us
-        ON bm.UserID  = us.ID
-    GROUP BY bm.UserID;
+    SELECT ID,
+    UserID,
+    URL,
+    Name,
+    DateCreated,
+    DateModified from Bookmarks where UserID = UserID;
+    
+END $$
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS `sp_bookmarks_sel_all`;
+DELIMITER $$
+CREATE PROCEDURE `sp_bookmarks_sel_all`()
+BEGIN
+    SELECT ID,
+    UserID,
+    URL,
+    Name,
+    DateCreated,
+    DateModified from Bookmarks;
+    
 END $$
 DELIMITER ;
 
@@ -1632,7 +1642,7 @@ DELIMITER ;
 -- ************************************************* --
 CALL sp_applications_sel();
 CALL sp_contentdb_sel();
-CALL sp_bookmarks_sel();
+CALL sp_bookmarks_sel_all();
 CALL sp_template_ins(1,1,'Release Note 1','Here are some details on..', now(), now());
 CALL sp_auditlogs_sel_byuserid();
 
@@ -1645,3 +1655,4 @@ CALL sp_fraudmanagement_sel();
 call `sp_applications_del`(2);
 
 CALL sp_users_sel_byuserid() ;
+call sp_bookmarks_sel_user(2);

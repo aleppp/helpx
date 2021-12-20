@@ -1613,6 +1613,20 @@ BEGIN
 END $$
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `sp_users_sel`
+DELIMITER $$
+CREATE PROCEDURE `sp_users_sel_byuserid`()
+BEGIN
+    SELECT u.ID as id,
+    u.FirstName,
+    u.LastName,
+    u.Email,
+    u.DateCreated,
+    u.DateModified
+    FROM users as u;
+END $$
+DELIMITER ;
+
 -- ************************************************* --
 --              Call Stored Procedure                --
 -- ************************************************* --
@@ -1629,3 +1643,5 @@ CALL sp_content_ins(1, 1, 1, 1, true, true, 'Release Note 5.0', 'This is a new R
 CALL sp_fraudmanagement_sel();
 
 call `sp_applications_del`(2);
+
+CALL sp_users_sel_byuserid() ;

@@ -1504,6 +1504,15 @@ VALUES (name,url,datecreated,datemodified);
 END $$
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `sp_applications_del`;
+DELIMITER $$
+CREATE PROCEDURE `sp_applications_del`(IN id int)
+BEGIN
+DELETE FROM applications AS ap
+WHERE ap.id = id;
+END $$
+DELIMITER ;
+
 DROP PROCEDURE IF EXISTS `sp_contentdb_sel`;
 DELIMITER $$
 CREATE PROCEDURE `sp_contentdb_sel`()
@@ -1519,27 +1528,37 @@ BEGIN
     FROM content as ct
     LEFT JOIN feedback as fb
         ON ct.ID  = fb.contentID
-    RIGHT JOIN lookupstatuses as ls
+    LEFT JOIN lookupstatuses as ls
         ON ct.StatusID = ls.ID
     GROUP BY ct.ID;
 END $$
 DELIMITER ;
 
-DROP PROCEDURE IF EXISTS `sp_bookmarks_sel`;
+DROP PROCEDURE IF EXISTS `sp_bookmarks_sel_user`;
 DELIMITER $$
-CREATE PROCEDURE `sp_bookmarks_sel`()
+CREATE PROCEDURE `sp_bookmarks_sel_user`(IN UserID INT)
 BEGIN
-    SELECT bm.ID,
-    bm.UserID,
-    bm.URL,
-    bm.Name,
-    bm.DateCreated,
-    bm.DateModified,
-    us.ID
-    FROM bookmarks as bm
-    LEFT JOIN users as us
-        ON bm.UserID  = us.ID
-    GROUP BY bm.UserID;
+    SELECT ID,
+    UserID,
+    URL,
+    Name,
+    DateCreated,
+    DateModified from Bookmarks where UserID = UserID;
+    
+END $$
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS `sp_bookmarks_sel_all`;
+DELIMITER $$
+CREATE PROCEDURE `sp_bookmarks_sel_all`()
+BEGIN
+    SELECT ID,
+    UserID,
+    URL,
+    Name,
+    DateCreated,
+    DateModified from Bookmarks;
+    
 END $$
 DELIMITER ;
 
@@ -1554,20 +1573,67 @@ BEGIN
     END $$
     DELIMITER ;
 
-DROP PROCEDURE IF EXISTS `sp_ListOfReleaseNotes_sel`;
+DROP PROCEDURE IF EXISTS `sp_ReleaseNotes_sel`;
 DELIMITER $$
-CREATE PROCEDURE `sp_ListOfReleaseNotes_sel`()
+CREATE PROCEDURE `sp_ReleaseNotes_sel`()
 BEGIN
 SELECT ct.ID as id,
 ct.Title,
-lct.ID
+ct.Body
 FROM content as ct
 LEFT JOIN Applications as app
 ON ct.AppID = app.ID
-LEFT JOIN lookupcontenttypes as lct
-ON ct.ContentTypeID = lct.ID
-WHERE lct.ID = 1  
-GROUP BY ct.ID;
+WHERE ContentTypeID = 1; 
+END $$
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS `sp_auditlogs_sel`
+DELIMITER $$
+CREATE PROCEDURE `sp_auditlogs_sel_byuserid`()
+BEGIN
+    SELECT al.ID as id,
+    al.UserID,
+    al.ActionID,
+    al.DateCreated
+    FROM auditlogs as al;
+END $$
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS `sp_content_ins`;
+DELIMITER $$
+CREATE PROCEDURE `sp_content_ins` (
+	IN appid INT, userid INT, contenttypeid INT, statusid INT, 
+    isfeebackallowed BOOLEAN, isvisible BOOLEAN, title varchar(65), 
+    body varchar(10256), datecreated datetime, datemodified datetime
+)
+BEGIN 
+	INSERT INTO content (appid, userid, contenttypeid, statusid, isfeebackallowed,
+    isvisible, title, body, datecreated, datemodified)
+    VALUES (appid, userid, contenttypeid, statusid, isfeebackallowed,
+    isvisible, title, body, now(), now());
+    END $$
+    DELIMITER ;
+
+DROP PROCEDURE IF EXISTS `sp_fraudmanagement_sel`;
+DELIMITER $$
+CREATE PROCEDURE `sp_fraudmanagement_sel`()
+BEGIN
+    SELECT ID, Term
+    FROM fraudmanagement;
+END $$
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS `sp_users_sel`;
+DELIMITER $$
+CREATE PROCEDURE `sp_users_sel`()
+BEGIN
+    SELECT ID,
+    FirstName,
+    LastName,
+    Email,
+    DateCreated,
+    DateModified
+    FROM users;
 END $$
 DELIMITER ;
 
@@ -1576,7 +1642,17 @@ DELIMITER ;
 -- ************************************************* --
 CALL sp_applications_sel();
 CALL sp_contentdb_sel();
-CALL sp_bookmarks_sel();
+CALL sp_bookmarks_sel_all();
 CALL sp_template_ins(1,1,'Release Note 1','Here are some details on..', now(), now());
+CALL sp_auditlogs_sel_byuserid();
 
-CALL sp_ListOfReleaseNotes_sel();
+CALL sp_ReleaseNotes_sel();
+
+CALL sp_content_ins(1, 1, 1, 1, true, true, 'Release Note 5.0', 'This is a new Release Notes', now(), now());
+
+CALL sp_fraudmanagement_sel();
+
+call `sp_applications_del`(2);
+
+CALL sp_users_sel_byuserid() ;
+call sp_bookmarks_sel_user(2);

@@ -1602,15 +1602,15 @@ DELIMITER ;
 DROP PROCEDURE IF EXISTS `sp_content_ins`;
 DELIMITER $$
 CREATE PROCEDURE `sp_content_ins` (
-	IN appid INT, userid INT, contenttypeid INT, statusid INT, 
-    isfeebackallowed BOOLEAN, isvisible BOOLEAN, title varchar(65), 
-    body varchar(10256), datecreated datetime, datemodified datetime
+	IN appid int, userid int, contenttypeid int, statusid int, 
+    isfeebackallowed boolean, isvisible boolean, title varchar(65), 
+    body varchar(10256), datecreated datetime, datemodified datetime, datepublished datetime
 )
 BEGIN 
 	INSERT INTO content (appid, userid, contenttypeid, statusid, isfeebackallowed,
-    isvisible, title, body, datecreated, datemodified)
+    isvisible, title, body, datecreated, datemodified, datepublished)
     VALUES (appid, userid, contenttypeid, statusid, isfeebackallowed,
-    isvisible, title, body, now(), now());
+    isvisible, title, body, datecreated, datemodified, datepublished);
     END $$
     DELIMITER ;
 
@@ -1659,7 +1659,8 @@ CALL sp_auditlogs_sel_byuserid();
 
 CALL sp_ReleaseNotes_sel();
 
-CALL sp_content_ins(1, 1, 1, 1, true, true, 'Release Note 5.0', 'This is a new Release Notes', now(), now());
+CALL sp_content_ins(1, 1, 1, 1, true, true, 'Release Note 5.0', 'This is a new Release Notes', now(), now(), '2021-11-20 00:00:00');
+
 
 CALL sp_fraudmanagement_sel();
 

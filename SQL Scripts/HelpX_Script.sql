@@ -1654,5 +1654,5 @@ CALL sp_fraudmanagement_sel();
 
 call `sp_applications_del`(2);
 
-CALL sp_users_sel_byuserid() ;
+CALL sp_users_sel() ;
 call sp_bookmarks_sel_user(2);

@@ -1613,17 +1613,17 @@ BEGIN
 END $$
 DELIMITER ;
 
-DROP PROCEDURE IF EXISTS `sp_users_sel`
+DROP PROCEDURE IF EXISTS `sp_users_sel`;
 DELIMITER $$
-CREATE PROCEDURE `sp_users_sel_byuserid`()
+CREATE PROCEDURE `sp_users_sel`()
 BEGIN
-    SELECT u.ID as id,
-    u.FirstName,
-    u.LastName,
-    u.Email,
-    u.DateCreated,
-    u.DateModified
-    FROM users as u;
+    SELECT ID,
+    FirstName,
+    LastName,
+    Email,
+    DateCreated,
+    DateModified
+    FROM users;
 END $$
 DELIMITER ;
 
@@ -1644,4 +1644,4 @@ CALL sp_fraudmanagement_sel();
 
 call `sp_applications_del`(2);
 
-CALL sp_users_sel_byuserid() ;
+Call sp_users_sel() ;

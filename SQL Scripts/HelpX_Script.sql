@@ -1647,6 +1647,14 @@ VALUES (FirstName, LastName, Email, DateCreated, DateModified);
 END $$
 DELIMITER ; 
 
+DROP PROCEDURE IF EXISTS `sp_users_del`;
+DELIMITER $$
+CREATE PROCEDURE `sp_users_del`(IN id int)
+BEGIN
+DELETE FROM users AS u
+WHERE u.id = id;
+END $$
+DELIMITER ;
 
 -- ************************************************* --
 --              Call Stored Procedure                --
@@ -1669,3 +1677,5 @@ call `sp_applications_del`(2);
 CALL sp_users_sel() ;
 call sp_bookmarks_sel_user(2);
 call sp_users_ins('Roman', 'Kvaska', 'roman.kvaska@gmail.com', now(), now() ) ;
+CALL sp_users_del(3);
+

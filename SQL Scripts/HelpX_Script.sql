@@ -1620,7 +1620,7 @@ CALL sp_applications_sel();
 CALL sp_contentdb_sel();
 CALL sp_bookmarks_sel();
 CALL sp_template_ins(1,1,'Release Note 1','Here are some details on..', now(), now());
-CALL sp_auditlogs_sel_byuserid()
+CALL sp_auditlogs_sel_byuserid();
 
 CALL sp_ReleaseNotes_sel();
 

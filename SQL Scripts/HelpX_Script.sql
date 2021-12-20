@@ -1528,7 +1528,7 @@ BEGIN
     FROM content as ct
     LEFT JOIN feedback as fb
         ON ct.ID  = fb.contentID
-    RIGHT JOIN lookupstatuses as ls
+    LEFT JOIN lookupstatuses as ls
         ON ct.StatusID = ls.ID
     GROUP BY ct.ID;
 END $$

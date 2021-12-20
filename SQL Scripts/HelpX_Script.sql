@@ -1513,6 +1513,17 @@ WHERE ap.id = id;
 END $$
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `sp_applications_upd`;
+DELIMITER $$
+CREATE PROCEDURE `sp_applications_upd`(
+IN id int, name varchar(25), url varchar(25), datemodified datetime)
+BEGIN
+UPDATE applications as ap
+SET ap.name = name, ap.url = url, ap.datemodified = datemodified
+WHERE ap.id = id;
+END $$
+DELIMITER ;
+
 DROP PROCEDURE IF EXISTS `sp_contentdb_sel`;
 DELIMITER $$
 CREATE PROCEDURE `sp_contentdb_sel`()
@@ -1678,4 +1689,6 @@ CALL sp_users_sel() ;
 call sp_bookmarks_sel_user(2);
 call sp_users_ins('Roman', 'Kvaska', 'roman.kvaska@gmail.com', now(), now() ) ;
 CALL sp_users_del(3);
+
+call `sp_applications_upd`(1,'AlphaOil Petronas','alphaoil',now());
 

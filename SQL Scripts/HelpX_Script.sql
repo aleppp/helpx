@@ -1806,6 +1806,22 @@ BEGIN
     END $$
     DELIMITER ;
 
+  DROP PROCEDURE IF EXISTS `sp_usersappsroles_sel`;
+DELIMITER $$
+CREATE PROCEDURE `sp_usersappsroles_sel`()
+BEGIN
+    SELECT ar.ID,
+    ua.UserAppID,
+ur.UserRoleID,
+    ar.DateCreated,
+    ar.DateModified
+    FROM userappsroles as ar
+    LEFT JOIN userapplications as ua
+    LEFT JOIN lookupuserroles as ur
+        ON ar.ID  = ua.ID = ur.ID;
+END $$
+DELIMITER ;
+
 -- ************************************************* --
 --              Call Stored Procedure                --
 -- ************************************************* --
@@ -1854,3 +1870,5 @@ CALL sp_bookmarks_upd('Release Note 1.11 Extra', 2, now());
 CALL sp_bookmarks_del(2);
 
 CALL sp_contentfiles_ins(1, 'img/Notes2/22015.png', now(), now());
+
+CALL `sp_lookupuserroles_sel`();

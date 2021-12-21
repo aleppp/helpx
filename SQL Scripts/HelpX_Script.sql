@@ -117,7 +117,7 @@ SET
     ID int NOT NULL AUTO_INCREMENT,
     UserID int NOT NULL,
     URL varchar(50),
-    Name varchar(50),
+    BookmarkName varchar(50),
     DateCreated datetime,
     DateModified datetime,
     PRIMARY KEY(ID),
@@ -1344,7 +1344,7 @@ WHERE
   );
   -- Bookmark
 INSERT INTO
-  bookmarks(UserID, URL, Name, DateCreated, DateModified)
+  bookmarks(UserID, URL, BookmarkName, DateCreated, DateModified)
 SELECT
   '1',
   'helpx.petronas.com/releasenote1.1',
@@ -1552,21 +1552,31 @@ BEGIN
     SELECT ID,
     UserID,
     URL,
-    Name,
+    BookmarkName,
     DateCreated,
     DateModified from Bookmarks where UserID = UserID;
     
 END $$
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `sp_bookmarks_ins`;
+DELIMITER $$
+CREATE PROCEDURE `sp_bookmarks_ins`(IN UserID INT, URL varchar(50), BookmarkName varchar(50), DateCreated datetime, DateModified datetime)
+BEGIN
+    	INSERT INTO bookmarks (UserID, URL, BookmarkName, datecreated, datemodified)
+    VALUES (UserID, URL, BookmarkName, now(), now());
+    END $$
+    DELIMITER ;
+  
 DROP PROCEDURE IF EXISTS `sp_bookmarks_sel_all`;
 DELIMITER $$
+
 CREATE PROCEDURE `sp_bookmarks_sel_all`()
 BEGIN
     SELECT ID,
     UserID,
     URL,
-    Name,
+    BookmarkName,
     DateCreated,
     DateModified from Bookmarks;
     
@@ -1637,7 +1647,7 @@ BEGIN
     SET c.appid = appid, c.userid = userid, c.contenttypeid = contenttypeid, 
     c.statusid = contenttypeid, c.isfeebackallowed = isfeebackallowed, c.isvisible = isvisible, 
     c.title = title, c.body = body, c.datecreated = datecreated, 
-    c.datemodified = datemodified, c.datepublished = datepublished, 
+    c.datemodified = datemodified, c.datepublished = datepublished 
     WHERE c.id = id;
     END $$
     DELIMITER ;
@@ -1801,3 +1811,5 @@ CALL `sp_feedback_sel_user`();
 CALL sp_notifications_del(2);
 
 CALL sp_notifications_sel();
+
+CALL sp_bookmarks_ins(2, 'helpx.petronas.com/releasenote/1.11', 'Release Note 1.11', now(), now());

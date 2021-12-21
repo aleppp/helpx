@@ -1840,6 +1840,17 @@ VALUES (id, name, description, datecreated,datemodified) ;
 END $$
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `sp_lookupuserroles_upd`;
+DELIMITER $$
+CREATE PROCEDURE `sp_lookupuserroles_upd`(
+IN ID int, Name varchar(25), Description varchar(50), DateCreated datetime, DateModified datetime)
+BEGIN
+UPDATE lookupuserroles as lu
+SET lu.Name = Name, lu.Description = Description, lu.DateCreated = DateCreated, lu.DateModified = DateModified
+WHERE lu.ID = ID ;
+END $$
+DELIMITER ;
+
 DROP PROCEDURE IF EXISTS `sp_lookupuserroles_del`;
 DELIMITER $$
 CREATE PROCEDURE `sp_lookupuserroles_del`(IN id int)
@@ -1906,3 +1917,5 @@ CALL `sp_lookupuserroles_ins`(6, 'Admin App', 'have an eye for detail', now(), n
 CALL `sp_users_upd`(1, 'Nisha', 'Izzati', 'nisha@petronas.com', now(), now());
 
 CALL `sp_lookupuserroles_del`(6);
+
+CALL `sp_lookupuserroles_upd`(5, 'User Admin', 'User Admin', now(), now());

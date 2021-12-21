@@ -1795,6 +1795,17 @@ BEGIN
 END $$
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `sp_contentfiles_ins`;
+DELIMITER $$
+CREATE PROCEDURE `sp_contentfiles_ins` (
+	IN contentid int, filepath varchar(50), datecreated datetime, datemodified datetime
+)
+BEGIN 
+	INSERT INTO contentfiles (contentid, filepath, datecreated, datemodified)
+    VALUES (contentid, filepath, datecreated, datemodified);
+    END $$
+    DELIMITER ;
+
 -- ************************************************* --
 --              Call Stored Procedure                --
 -- ************************************************* --
@@ -1841,3 +1852,5 @@ CALL sp_bookmarks_ins(2, 'helpx.petronas.com/releasenote/1.11', 'Release Note 1.
 CALL sp_bookmarks_upd('Release Note 1.11 Extra', 2, now());
 
 CALL sp_bookmarks_del(2);
+
+CALL sp_contentfiles_ins(1, 'img/Notes2/22015.png', now(), now());

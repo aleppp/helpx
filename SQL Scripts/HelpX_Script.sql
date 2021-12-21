@@ -1585,13 +1585,23 @@ BEGIN
 END $$
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `sp_bookmarks_del`;
+DELIMITER $$
+CREATE PROCEDURE `sp_bookmarks_del`(IN ID INT)
+BEGIN
+    DELETE FROM bookmarks AS bm
+    WHERE bm.ID = ID;
+    
+END $$
+DELIMITER ;
+
 DROP PROCEDURE IF EXISTS `sp_bookmarks_upd`;
 DELIMITER $$
 
-CREATE PROCEDURE `sp_bookmarks_upd`(IN BookmarkName varchar(50), ID INT)
+CREATE PROCEDURE `sp_bookmarks_upd`(IN BookmarkName varchar(50), ID INT, DateModified datetime)
 BEGIN
     UPDATE bookmarks AS bm
-    SET bm.BookmarkName = BookmarkName
+    SET bm.BookmarkName = BookmarkName, bm.DateModified = DateModified
     WHERE bm.id = ID;
     
 END $$
@@ -1828,4 +1838,6 @@ CALL sp_notifications_sel();
 
 CALL sp_bookmarks_ins(2, 'helpx.petronas.com/releasenote/1.11', 'Release Note 1.11', now(), now());
 
-CALL sp_bookmarks_upd('Release Note 1.11 Extra',2)
+CALL sp_bookmarks_upd('Release Note 1.11 Extra', 2, now());
+
+CALL sp_bookmarks_del(2);

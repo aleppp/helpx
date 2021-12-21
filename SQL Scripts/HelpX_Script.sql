@@ -1744,6 +1744,23 @@ DELETE FROM Notifications AS na
 WHERE na.id = id;
 END $$
 DELIMITER ;
+
+DROP PROCEDURE IF EXISTS `sp_notifications_sel`;
+DELIMITER $$
+CREATE PROCEDURE `sp_notifications_sel`()
+BEGIN
+    SELECT 
+    ID,
+    TypeID,
+    UserAppID,
+    Body,
+    IsRead,
+    DateCreated,
+    DateModified
+    FROM Notifications;
+END $$
+DELIMITER ;
+
 -- ************************************************* --
 --              Call Stored Procedure                --
 -- ************************************************* --

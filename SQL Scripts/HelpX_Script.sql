@@ -1667,6 +1667,49 @@ WHERE u.id = id;
 END $$
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `sp_faq_ins`;
+DELIMITER $$
+CREATE PROCEDURE `sp_faq_ins`(
+IN appid int, question varchar(255), answer varchar(255), isvisible boolean, datecreated datetime, datemodified datetime)
+BEGIN
+INSERT INTO faq (appid,question,answer,datecreated,datemodified)
+VALUES (appid,question,answer,datecreated,datemodified);
+END $$
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS `sp_faq_sel`;
+DELIMITER $$
+CREATE PROCEDURE `sp_faq_sel`()
+BEGIN
+    SELECT ID,
+    AppID,
+    Question,
+    Answer,
+    IsFeedbackAllowed,
+    IsVisible,
+    DateCreated,
+    DateModified
+    FROM faq;
+END $$
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS `sp_feedback_sel_user`;
+DELIMITER $$
+CREATE PROCEDURE `sp_feedback_sel_user`()
+BEGIN
+    SELECT fb.ID,
+    fb.UserID,
+    fb.ContentID,
+    fb.Feedback,
+    fb.Rating,
+    fb.DateCreated,
+    ct.title
+    FROM feedback as fb
+    LEFT JOIN content as ct
+        ON fb.ContentID  = ct.ID;
+END $$
+DELIMITER ;
+
 -- ************************************************* --
 --              Call Stored Procedure                --
 -- ************************************************* --
@@ -1680,15 +1723,22 @@ CALL sp_ReleaseNotes_sel();
 
 CALL sp_content_ins(1, 1, 1, 1, true, true, 'Release Note 5.0', 'This is a new Release Notes', now(), now(), '2021-11-20 00:00:00');
 
-
 CALL sp_fraudmanagement_sel();
 
-call `sp_applications_del`(2);
+CALL `sp_applications_del`(2);
 
 CALL sp_users_sel() ;
-call sp_bookmarks_sel_user(2);
-call sp_users_ins('Roman', 'Kvaska', 'roman.kvaska@gmail.com', now(), now() ) ;
+
+CALL sp_bookmarks_sel_user(2);
+
+CALL sp_users_ins('Roman', 'Kvaska', 'roman.kvaska@gmail.com', now(), now() ) ;
+
 CALL sp_users_del(3);
 
-call `sp_applications_upd`(1,'AlphaOil Petronas','alphaoil',now());
+CALL `sp_applications_upd`(1,'AlphaOil Petronas','alphaoil',now());
 
+CALL `sp_faq_ins`(1, 'Question apa', 'Answer apa', true, now(), now());
+
+CALL `sp_faq_sel`();
+
+CALL `sp_feedback_sel_user`();

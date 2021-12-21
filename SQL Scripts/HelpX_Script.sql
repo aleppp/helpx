@@ -1829,6 +1829,17 @@ VALUES (id, name, description, datecreated,datemodified) ;
 END $$
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `sp_users_upd`;
+DELIMITER $$
+CREATE PROCEDURE `sp_users_upd`(
+IN ID int, FirstName varchar(20), LastName varchar(40), Email varchar(50), DateCreated datetime, datemodified datetime)
+BEGIN
+UPDATE users as us
+SET us.FirstName = FirstName ,us.LastName = LastName, us.Email = Email, us.DateCreated = DateCreated, us.DateModified = DateModified
+WHERE us.ID = ID ;
+END $$
+DELIMITER ;
+
 -- ************************************************* --
 --              Call Stored Procedure                --
 -- ************************************************* --
@@ -1881,3 +1892,5 @@ CALL sp_contentfiles_ins(1, 'img/Notes2/22015.png', now(), now());
 CALL `sp_lookupuserroles_sel`();
 
 CALL `sp_lookupuserroles_ins`(6, 'Admin App', 'have an eye for detail', now(), now()) ;
+
+CALL `sp_users_upd`(1, 'Nisha', 'Izzati', 'nisha@petronas.com', now(), now());

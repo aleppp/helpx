@@ -1819,6 +1819,16 @@ BEGIN
 END $$
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `sp_lookupuserroles_ins`;
+DELIMITER $$
+CREATE PROCEDURE `sp_lookupuserroles_ins`(
+IN id int, name varchar(25), description varchar(50), datecreated datetime, datemodified datetime)
+BEGIN
+INSERT INTO lookupuserroles (id,name,description,datecreated,datemodified)
+VALUES (id, name, description, datecreated,datemodified) ;
+END $$
+DELIMITER ;
+
 -- ************************************************* --
 --              Call Stored Procedure                --
 -- ************************************************* --
@@ -1869,3 +1879,5 @@ CALL sp_bookmarks_del(2);
 CALL sp_contentfiles_ins(1, 'img/Notes2/22015.png', now(), now());
 
 CALL `sp_lookupuserroles_sel`();
+
+CALL `sp_lookupuserroles_ins`(6, 'Admin App', 'have an eye for detail', now(), now()) ;

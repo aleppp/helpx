@@ -1549,12 +1549,12 @@ DROP PROCEDURE IF EXISTS `sp_bookmarks_sel_user`;
 DELIMITER $$
 CREATE PROCEDURE `sp_bookmarks_sel_user`(IN UserID INT)
 BEGIN
-    SELECT ID,
-    UserID,
-    URL,
-    BookmarkName,
-    DateCreated,
-    DateModified from Bookmarks where UserID = UserID;
+    SELECT bm.ID,
+    bm.UserID,
+    bm.URL,
+    bm.BookmarkName,
+    bm.DateCreated,
+    bm.DateModified from Bookmarks AS bm where bm.UserID = UserID;
     
 END $$
 DELIMITER ;
@@ -1567,6 +1567,8 @@ BEGIN
     VALUES (UserID, URL, BookmarkName, now(), now());
     END $$
     DELIMITER ;
+
+    
   
 DROP PROCEDURE IF EXISTS `sp_bookmarks_sel_all`;
 DELIMITER $$
@@ -1579,6 +1581,18 @@ BEGIN
     BookmarkName,
     DateCreated,
     DateModified from Bookmarks;
+    
+END $$
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS `sp_bookmarks_upd`;
+DELIMITER $$
+
+CREATE PROCEDURE `sp_bookmarks_upd`(IN BookmarkName varchar(50), ID INT)
+BEGIN
+    UPDATE bookmarks AS bm
+    SET bm.BookmarkName = BookmarkName
+    WHERE bm.id = ID;
     
 END $$
 DELIMITER ;
@@ -1813,3 +1827,5 @@ CALL sp_notifications_del(2);
 CALL sp_notifications_sel();
 
 CALL sp_bookmarks_ins(2, 'helpx.petronas.com/releasenote/1.11', 'Release Note 1.11', now(), now());
+
+CALL sp_bookmarks_upd('Release Note 1.11 Extra',2)

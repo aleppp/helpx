@@ -1799,3 +1799,5 @@ CALL `sp_faq_sel`();
 CALL `sp_feedback_sel_user`();
 
 CALL sp_notifications_del(2);
+
+CALL sp_notifications_sel();

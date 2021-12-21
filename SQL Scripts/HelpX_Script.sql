@@ -1736,9 +1736,9 @@ BEGIN
 END $$
 DELIMITER ;
 
-DROP PROCEDURE IF EXISTS `sp_notiadmin_del`;
+DROP PROCEDURE IF EXISTS `sp_notifications_del`;
 DELIMITER $$
-CREATE PROCEDURE `sp_notiadmin_del`(IN id int)
+CREATE PROCEDURE `sp_notifications_del`(IN id int)
 BEGIN
 DELETE FROM Notifications AS na
 WHERE na.id = id;
@@ -1781,4 +1781,4 @@ CALL `sp_faq_sel`();
 
 CALL `sp_feedback_sel_user`();
 
-CALL sp_notiadmin_del(2);
+CALL sp_notifications_del(2);

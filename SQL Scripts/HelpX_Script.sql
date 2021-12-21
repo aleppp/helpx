@@ -1710,6 +1710,14 @@ BEGIN
 END $$
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `sp_notiadmin_del`;
+DELIMITER $$
+CREATE PROCEDURE `sp_notiadmin_del`(IN id int)
+BEGIN
+DELETE FROM Notifications AS na
+WHERE na.id = id;
+END $$
+DELIMITER ;
 -- ************************************************* --
 --              Call Stored Procedure                --
 -- ************************************************* --
@@ -1742,3 +1750,5 @@ CALL `sp_faq_ins`(1, 'Question apa', 'Answer apa', true, now(), now());
 CALL `sp_faq_sel`();
 
 CALL `sp_feedback_sel_user`();
+
+CALL sp_notiadmin_del(2);

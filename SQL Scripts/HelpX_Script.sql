@@ -1625,6 +1625,32 @@ BEGIN
     END $$
     DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `sp_content_upd`;
+DELIMITER $$
+CREATE PROCEDURE `sp_content_upd` (
+	IN appid int, userid int, contenttypeid int, statusid int, 
+    isfeebackallowed boolean, isvisible boolean, title varchar(65), 
+    body varchar(10256), datecreated datetime, datemodified datetime, datepublished datetime
+)
+BEGIN 
+  UPDATE content as c
+    SET c.appid = appid, c.userid = userid, c.contenttypeid = contenttypeid, 
+    c.statusid = contenttypeid, c.isfeebackallowed = isfeebackallowed, c.isvisible = isvisible, 
+    c.title = title, c.body = body, c.datecreated = datecreated, 
+    c.datemodified = datemodified, c.datepublished = datepublished, 
+    WHERE c.id = id;
+    END $$
+    DELIMITER ;
+
+DROP PROCEDURE IF EXISTS `sp_content_del`;
+DELIMITER $$
+CREATE PROCEDURE `sp_content_del`(IN id int)
+BEGIN
+DELETE FROM content as c
+WHERE c.id = id;
+END $$
+DELIMITER ;
+
 DROP PROCEDURE IF EXISTS `sp_fraudmanagement_sel`;
 DELIMITER $$
 CREATE PROCEDURE `sp_fraudmanagement_sel`()
@@ -1730,6 +1756,10 @@ CALL sp_auditlogs_sel_byuserid();
 CALL sp_ReleaseNotes_sel();
 
 CALL sp_content_ins(1, 1, 1, 1, true, true, 'Release Note 5.0', 'This is a new Release Notes', now(), now(), '2021-11-20 00:00:00');
+
+CALL sp_content_upd(1, 1, 1, 1, true, false, 'Release Note 6.0', 'This is a new Release Notes', now(), now(), '2021-11-21 00:00:00');
+
+CALL sp_content_del(1);
 
 CALL sp_fraudmanagement_sel();
 

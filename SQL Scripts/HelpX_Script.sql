@@ -1718,6 +1718,17 @@ VALUES (FirstName, LastName, Email, DateCreated, DateModified);
 END $$
 DELIMITER ; 
 
+DROP PROCEDURE IF EXISTS `sp_users_upd`;
+DELIMITER $$
+CREATE PROCEDURE `sp_users_upd`(
+IN ID int, FirstName varchar(20), LastName varchar(40), Email varchar(50), DateCreated datetime, datemodified datetime)
+BEGIN
+UPDATE users as us
+SET us.FirstName = FirstName ,us.LastName = LastName, us.Email = Email, us.DateCreated = DateCreated, us.DateModified = DateModified
+WHERE us.ID = ID ;
+END $$
+DELIMITER ;
+
 DROP PROCEDURE IF EXISTS `sp_users_del`;
 DELIMITER $$
 CREATE PROCEDURE `sp_users_del`(IN id int)
@@ -1829,16 +1840,15 @@ VALUES (id, name, description, datecreated,datemodified) ;
 END $$
 DELIMITER ;
 
-DROP PROCEDURE IF EXISTS `sp_users_upd`;
+DROP PROCEDURE IF EXISTS `sp_lookupuserroles_del`;
 DELIMITER $$
-CREATE PROCEDURE `sp_users_upd`(
-IN ID int, FirstName varchar(20), LastName varchar(40), Email varchar(50), DateCreated datetime, datemodified datetime)
+CREATE PROCEDURE `sp_lookupuserroles_del`(IN id int)
 BEGIN
-UPDATE users as us
-SET us.FirstName = FirstName ,us.LastName = LastName, us.Email = Email, us.DateCreated = DateCreated, us.DateModified = DateModified
-WHERE us.ID = ID ;
+DELETE FROM lookupuserroles AS ur
+WHERE ur.id = id;
 END $$
 DELIMITER ;
+
 
 -- ************************************************* --
 --              Call Stored Procedure                --
@@ -1894,3 +1904,5 @@ CALL `sp_lookupuserroles_sel`();
 CALL `sp_lookupuserroles_ins`(6, 'Admin App', 'have an eye for detail', now(), now()) ;
 
 CALL `sp_users_upd`(1, 'Nisha', 'Izzati', 'nisha@petronas.com', now(), now());
+
+CALL `sp_lookupuserroles_del`(6);

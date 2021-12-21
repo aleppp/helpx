@@ -1806,19 +1806,16 @@ BEGIN
     END $$
     DELIMITER ;
 
-  DROP PROCEDURE IF EXISTS `sp_usersappsroles_sel`;
+DROP PROCEDURE IF EXISTS `sp_lookupuserroles_sel`;
 DELIMITER $$
-CREATE PROCEDURE `sp_usersappsroles_sel`()
+CREATE PROCEDURE `sp_lookupuserroles_sel`()
 BEGIN
-    SELECT ar.ID,
-    ua.UserAppID,
-ur.UserRoleID,
-    ar.DateCreated,
-    ar.DateModified
-    FROM userappsroles as ar
-    LEFT JOIN userapplications as ua
-    LEFT JOIN lookupuserroles as ur
-        ON ar.ID  = ua.ID = ur.ID;
+    SELECT ID,
+   Name,
+    Description,
+    DateCreated,
+    DateModified
+    FROM lookupuserroles;
 END $$
 DELIMITER ;
 

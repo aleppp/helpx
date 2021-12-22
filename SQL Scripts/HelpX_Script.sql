@@ -1880,6 +1880,17 @@ BEGIN
 END $$
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `sp_notifications_ins`;
+DELIMITER $$
+CREATE PROCEDURE `sp_notifications_ins` (
+	IN typeid INT, userappid INT, body varchar(500), isread boolean(10), datecreated datetime, datemodified datetime
+)
+BEGIN 
+	INSERT INTO templates (typeid, userappid, body, isread, datecreated, datemodified)
+    VALUES (typeid, userappid, body, isread, datecreated, datemodified);
+    END $$
+    DELIMITER ;
+
 
 -- ************************************************* --
 --              Call Stored Procedure                --
@@ -1941,3 +1952,5 @@ CALL `sp_lookupuserroles_del`(6);
 CALL `sp_lookupuserroles_upd`(5, 'User Admin', 'User Admin', now(), now());
 
 CALL sp_feedback_sel_byContentID();
+
+CALL sp_notifications_ins(1, 1, 'Notifications', true, now(), now()) ;

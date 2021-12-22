@@ -51,11 +51,6 @@ app.get("/apps/sel", (req, res) => {
   getQuery(db, getApplicationsList, res);
 });
 
-app.get("/ctdashboard", (req, res) => {
-  const getDashboardDetails = "CALL sp_contentdb_sel()";
-  getQuery(db, getDashboardDetails, res);
-});
-
 //insert new application
 app.post("/apps/ins", (req, res) => {
   const insApp = "CALL sp_applications_ins(?,?,?,?)";
@@ -66,4 +61,23 @@ app.post("/apps/ins", (req, res) => {
     [params.name, params.url, params.datecreated, params.datemodified],
     res
   );
+});
+
+//edit application info
+app.post("/apps/upd", (req, res) => {
+  const updApp = "CALL sp_applications_upd()";
+  const params = req.body.apps;
+  setQuery(db, updApp, [params.name, params.url, params.datemodified], res);
+});
+
+//delete application
+app.delete("/apps/del", (req, res) => {
+  const deleteApps = "CALL sp_applications_del(?)";
+  const params = req.body;
+  setQuery(db, deleteApps, params.id, res);
+});
+
+app.get("/ctdashboard", (req, res) => {
+  const getDashboardDetails = "CALL sp_contentdb_sel()";
+  getQuery(db, getDashboardDetails, res);
 });

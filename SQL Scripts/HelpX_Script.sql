@@ -1721,7 +1721,7 @@ DELIMITER ;
 DROP PROCEDURE IF EXISTS `sp_users_upd`;
 DELIMITER $$
 CREATE PROCEDURE `sp_users_upd`(
-IN ID int, FirstName varchar(20), LastName varchar(40), Email varchar(50), DateCreated datetime, datemodified datetime)
+IN ID int, FirstName varchar(20), LastName varchar(40), Email varchar(50), DateCreated datetime, DateModified datetime)
 BEGIN
 UPDATE users as us
 SET us.FirstName = FirstName ,us.LastName = LastName, us.Email = Email, us.DateCreated = DateCreated, us.DateModified = DateModified

@@ -1883,7 +1883,7 @@ DELIMITER ;
 DROP PROCEDURE IF EXISTS `sp_notifications_ins`;
 DELIMITER $$
 CREATE PROCEDURE `sp_notifications_ins` (
-	IN typeid INT, userappid INT, body varchar(500), isread boolean(10), datecreated datetime, datemodified datetime
+	IN typeid INT, userappid INT, body varchar(500), isread boolean, datecreated datetime, datemodified datetime
 )
 BEGIN 
 	INSERT INTO templates (typeid, userappid, body, isread, datecreated, datemodified)

@@ -1,4 +1,9 @@
 const mysql = require("mysql2");
+const express = require("express");
+const cors = require("cors");
+const app = express();
+app.use(express.json());
+app.use(cors());
 
 // establish connection to database
 const db = mysql.createConnection({
@@ -8,11 +13,10 @@ const db = mysql.createConnection({
   database: "helpx",
 });
 
-db.query(`call sp_applications_sel`, (err, result, fields) => {
-  if (err) {
-    return console.log(err);
-  }
-  return console.log(result);
+//function to test connection with db
+db.connect(function (err) {
+  if (err) throw err;
+  console.log("Connected!");
 });
 
 //function to call select SP

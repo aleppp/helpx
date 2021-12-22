@@ -1685,6 +1685,15 @@ WHERE c.id = id;
 END $$
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `sp_fraudmanagement_ins`;
+DELIMITER $$
+CREATE PROCEDURE `sp_fraudmanagement_ins`(IN Term varchar(25), DateCreated datetime, DateModified datetime)
+BEGIN
+	INSERT INTO fraudmanagement (Term, DateCreated, DateModified)
+	VALUES (Term, DateCreated, DateModified);
+END $$
+DELIMITER ;
+
 DROP PROCEDURE IF EXISTS `sp_fraudmanagement_sel`;
 DELIMITER $$
 CREATE PROCEDURE `sp_fraudmanagement_sel`()

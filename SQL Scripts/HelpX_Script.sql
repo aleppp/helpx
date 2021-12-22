@@ -1697,14 +1697,21 @@ DELIMITER ;
 DROP PROCEDURE IF EXISTS `sp_users_sel`;
 DELIMITER $$
 CREATE PROCEDURE `sp_users_sel`()
-BEGIN
-    SELECT ID,
-    FirstName,
-    LastName,
-    Email,
-    DateCreated,
-    DateModified
-    FROM users;
+BEGIN 
+SELECT us.ID as id, 
+us.FirstName,
+us.Email,
+ap.Name,
+lr.Name
+FROM users as us
+LEFT JOIN usersapplications as ua
+ON us.ID = ua.UserID
+LEFT JOIN usersappsroles as ur
+ON ua.ID = ur.UserAppID
+RIGHT JOIN applications as ap
+ON ua.AppID = ap.ID
+LEFT JOIN lookupuserroles as lr
+ON ur.UserRoleID = lr.ID;
 END $$
 DELIMITER ;
 

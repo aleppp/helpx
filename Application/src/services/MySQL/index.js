@@ -40,3 +40,9 @@ function setQuery(db, sqlQuery, par, res) {
     }
   });
 }
+
+//db hook for displaying applications in datatable for admin
+app.get("/apps/sel", (res) => {
+  const getApplicationsList = "CALL sp_applications_sel()";
+  getQuery(db, getApplicationsList, res);
+});

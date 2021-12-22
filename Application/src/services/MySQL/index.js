@@ -82,7 +82,7 @@ app.get("/ctdashboard", (req, res) => {
   getQuery(db, getDashboardDetails, res);
 });
 
-//db hook for list of release notes
+//db hook for list of release Notes
 
 app.get("/releasenotes/list", (req, res) => {
   const ReleaseNotes = "CALL sp_ReleaseNotes_sel()";

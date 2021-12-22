@@ -51,6 +51,11 @@ app.get("/apps/sel", (req, res) => {
   getQuery(db, getApplicationsList, res);
 });
 
+app.get("/ctdashboard", (req, res) => {
+  const getDashboardDetails = "CALL sp_contentdb_sel()";
+  getQuery(db, getDashboardDetails, res);
+});
+
 //insert new application
 app.post("/apps/ins", (req, res) => {
   const insApp = "CALL sp_applications_ins(?,?,?,?)";

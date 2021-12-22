@@ -1713,6 +1713,15 @@ BEGIN
 END $$
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `sp_fraudmanagement_del`;
+DELIMITER $$
+CREATE PROCEDURE `sp_fraudmanagement_del`(IN id int)
+BEGIN
+    DELETE FROM fraudmanagement AS fraud
+    WHERE fraud.id = id;
+END $$
+DELIMITER ;
+
 DROP PROCEDURE IF EXISTS `sp_users_sel`;
 DELIMITER $$
 CREATE PROCEDURE `sp_users_sel`()

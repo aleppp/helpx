@@ -1843,10 +1843,10 @@ DELIMITER ;
 DROP PROCEDURE IF EXISTS `sp_lookupuserroles_upd`;
 DELIMITER $$
 CREATE PROCEDURE `sp_lookupuserroles_upd`(
-IN ID int, Name varchar(25), Description varchar(50), DateCreated datetime, DateModified datetime)
+IN ID int, Name varchar(25), Description varchar(50), DateModified datetime)
 BEGIN
 UPDATE lookupuserroles as lu
-SET lu.Name = Name, lu.Description = Description, lu.DateCreated = DateCreated, lu.DateModified = DateModified
+SET lu.Name = Name, lu.Description = Description, lu.DateModified = DateModified
 WHERE lu.ID = ID ;
 END $$
 DELIMITER ;
@@ -1949,7 +1949,7 @@ CALL `sp_users_upd`(1, 'Nisha', 'Izzati', 'nisha@petronas.com', now(), now());
 
 CALL `sp_lookupuserroles_del`(6);
 
-CALL `sp_lookupuserroles_upd`(5, 'User Admin', 'User Admin', now(), now());
+CALL `sp_lookupuserroles_upd`(5, 'User Admin', 'User Admin', now());
 
 CALL sp_feedback_sel_byContentID();
 

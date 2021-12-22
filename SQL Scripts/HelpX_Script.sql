@@ -117,7 +117,7 @@ SET
     ID int NOT NULL AUTO_INCREMENT,
     UserID int NOT NULL,
     URL varchar(50),
-    Name varchar(50),
+    BookmarkName varchar(50),
     DateCreated datetime,
     DateModified datetime,
     PRIMARY KEY(ID),
@@ -1344,7 +1344,7 @@ WHERE
   );
   -- Bookmark
 INSERT INTO
-  bookmarks(UserID, URL, Name, DateCreated, DateModified)
+  bookmarks(UserID, URL, BookmarkName, DateCreated, DateModified)
 SELECT
   '1',
   'helpx.petronas.com/releasenote1.1',
@@ -1513,6 +1513,17 @@ WHERE ap.id = id;
 END $$
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `sp_applications_upd`;
+DELIMITER $$
+CREATE PROCEDURE `sp_applications_upd`(
+IN id int, name varchar(25), url varchar(25), datemodified datetime)
+BEGIN
+UPDATE applications as ap
+SET ap.name = name, ap.url = url, ap.datemodified = datemodified
+WHERE ap.id = id;
+END $$
+DELIMITER ;
+
 DROP PROCEDURE IF EXISTS `sp_contentdb_sel`;
 DELIMITER $$
 CREATE PROCEDURE `sp_contentdb_sel`()
@@ -1538,26 +1549,60 @@ DROP PROCEDURE IF EXISTS `sp_bookmarks_sel_user`;
 DELIMITER $$
 CREATE PROCEDURE `sp_bookmarks_sel_user`(IN UserID INT)
 BEGIN
-    SELECT ID,
-    UserID,
-    URL,
-    Name,
-    DateCreated,
-    DateModified from Bookmarks where UserID = UserID;
+    SELECT bm.ID,
+    bm.UserID,
+    bm.URL,
+    bm.BookmarkName,
+    bm.DateCreated,
+    bm.DateModified from Bookmarks AS bm where bm.UserID = UserID;
     
 END $$
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `sp_bookmarks_ins`;
+DELIMITER $$
+CREATE PROCEDURE `sp_bookmarks_ins`(IN UserID INT, URL varchar(50), BookmarkName varchar(50), DateCreated datetime, DateModified datetime)
+BEGIN
+    	INSERT INTO bookmarks (UserID, URL, BookmarkName, datecreated, datemodified)
+    VALUES (UserID, URL, BookmarkName, datecreated, datemodified);
+    END $$
+    DELIMITER ;
+
+    
+  
 DROP PROCEDURE IF EXISTS `sp_bookmarks_sel_all`;
 DELIMITER $$
+
 CREATE PROCEDURE `sp_bookmarks_sel_all`()
 BEGIN
     SELECT ID,
     UserID,
     URL,
-    Name,
+    BookmarkName,
     DateCreated,
     DateModified from Bookmarks;
+    
+END $$
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS `sp_bookmarks_del`;
+DELIMITER $$
+CREATE PROCEDURE `sp_bookmarks_del`(IN ID INT)
+BEGIN
+    DELETE FROM bookmarks AS bm
+    WHERE bm.ID = ID;
+    
+END $$
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS `sp_bookmarks_upd`;
+DELIMITER $$
+
+CREATE PROCEDURE `sp_bookmarks_upd`(IN BookmarkName varchar(50), ID INT, DateModified datetime)
+BEGIN
+    UPDATE bookmarks AS bm
+    SET bm.BookmarkName = BookmarkName, bm.DateModified = DateModified
+    WHERE bm.id = ID;
     
 END $$
 DELIMITER ;
@@ -1565,7 +1610,7 @@ DELIMITER ;
 DROP PROCEDURE IF EXISTS `sp_template_ins`;
 DELIMITER $$
 CREATE PROCEDURE `sp_template_ins` (
-	IN appid INT, userid INT, title varchar(65), body varchar(10256), datecreated datetime, datemodified datetime
+	IN appid int, userid int, title varchar(65), body varchar(10256), datecreated datetime, datemodified datetime
 )
 BEGIN 
 	INSERT INTO templates (appid, userid, title, body, datecreated, datemodified)
@@ -1614,6 +1659,41 @@ BEGIN
     END $$
     DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `sp_content_upd`;
+DELIMITER $$
+CREATE PROCEDURE `sp_content_upd` (
+	IN appid int, userid int, contenttypeid int, statusid int, 
+    isfeebackallowed boolean, isvisible boolean, title varchar(65), 
+    body varchar(10256), datecreated datetime, datemodified datetime, datepublished datetime
+)
+BEGIN 
+  UPDATE content as c
+    SET c.appid = appid, c.userid = userid, c.contenttypeid = contenttypeid, 
+    c.statusid = contenttypeid, c.isfeebackallowed = isfeebackallowed, c.isvisible = isvisible, 
+    c.title = title, c.body = body, c.datecreated = datecreated, 
+    c.datemodified = datemodified, c.datepublished = datepublished 
+    WHERE c.id = id;
+    END $$
+    DELIMITER ;
+
+DROP PROCEDURE IF EXISTS `sp_content_del`;
+DELIMITER $$
+CREATE PROCEDURE `sp_content_del`(IN id int)
+BEGIN
+DELETE FROM content as c
+WHERE c.id = id;
+END $$
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS `sp_fraudmanagement_ins`;
+DELIMITER $$
+CREATE PROCEDURE `sp_fraudmanagement_ins`(IN Term varchar(25), DateCreated datetime, DateModified datetime)
+BEGIN
+	INSERT INTO fraudmanagement (Term, DateCreated, DateModified)
+	VALUES (Term, DateCreated, DateModified);
+END $$
+DELIMITER ;
+
 DROP PROCEDURE IF EXISTS `sp_fraudmanagement_sel`;
 DELIMITER $$
 CREATE PROCEDURE `sp_fraudmanagement_sel`()
@@ -1623,17 +1703,43 @@ BEGIN
 END $$
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `sp_fraudmanagement_upd`;
+DELIMITER $$
+CREATE PROCEDURE `sp_fraudmanagement_upd`(IN ID int, Term varchar(25), DateModified datetime)
+BEGIN
+    UPDATE fraudmanagement as fraud
+    SET fraud.term = term, fraud.datemodified = datemodified
+    WHERE fraud.id = id;
+END $$
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS `sp_fraudmanagement_del`;
+DELIMITER $$
+CREATE PROCEDURE `sp_fraudmanagement_del`(IN id int)
+BEGIN
+    DELETE FROM fraudmanagement AS fraud
+    WHERE fraud.id = id;
+END $$
+DELIMITER ;
+
 DROP PROCEDURE IF EXISTS `sp_users_sel`;
 DELIMITER $$
 CREATE PROCEDURE `sp_users_sel`()
-BEGIN
-    SELECT ID,
-    FirstName,
-    LastName,
-    Email,
-    DateCreated,
-    DateModified
-    FROM users;
+BEGIN 
+SELECT us.ID as id, 
+us.FirstName,
+us.Email,
+ap.Name,
+lr.Name
+FROM users as us
+LEFT JOIN usersapplications as ua
+ON us.ID = ua.UserID
+LEFT JOIN usersappsroles as ur
+ON ua.ID = ur.UserAppID
+RIGHT JOIN applications as ap
+ON ua.AppID = ap.ID
+LEFT JOIN lookupuserroles as lr
+ON ur.UserRoleID = lr.ID;
 END $$
 DELIMITER ;
 
@@ -1647,6 +1753,17 @@ VALUES (FirstName, LastName, Email, DateCreated, DateModified);
 END $$
 DELIMITER ; 
 
+DROP PROCEDURE IF EXISTS `sp_users_upd`;
+DELIMITER $$
+CREATE PROCEDURE `sp_users_upd`(
+IN ID int, FirstName varchar(20), LastName varchar(40), Email varchar(50), DateCreated datetime, DateModified datetime)
+BEGIN
+UPDATE users as us
+SET us.FirstName = FirstName ,us.LastName = LastName, us.Email = Email, us.DateCreated = DateCreated, us.DateModified = DateModified
+WHERE us.ID = ID ;
+END $$
+DELIMITER ;
+
 DROP PROCEDURE IF EXISTS `sp_users_del`;
 DELIMITER $$
 CREATE PROCEDURE `sp_users_del`(IN id int)
@@ -1655,6 +1772,160 @@ DELETE FROM users AS u
 WHERE u.id = id;
 END $$
 DELIMITER ;
+
+DROP PROCEDURE IF EXISTS `sp_faq_ins`;
+DELIMITER $$
+CREATE PROCEDURE `sp_faq_ins`(
+IN appid int, question varchar(255), answer varchar(255), isvisible boolean, datecreated datetime, datemodified datetime)
+BEGIN
+INSERT INTO faq (appid,question,answer,datecreated,datemodified)
+VALUES (appid,question,answer,datecreated,datemodified);
+END $$
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS `sp_faq_sel`;
+DELIMITER $$
+CREATE PROCEDURE `sp_faq_sel`()
+BEGIN
+    SELECT ID,
+    AppID,
+    Question,
+    Answer,
+    IsFeedbackAllowed,
+    IsVisible,
+    DateCreated,
+    DateModified
+    FROM faq;
+END $$
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS `sp_feedback_sel_user`;
+DELIMITER $$
+CREATE PROCEDURE `sp_feedback_sel_user`()
+BEGIN
+    SELECT fb.ID,
+    fb.UserID,
+    fb.ContentID,
+    fb.Feedback,
+    fb.Rating,
+    fb.DateCreated,
+    ct.title
+    FROM feedback as fb
+    LEFT JOIN content as ct
+        ON fb.ContentID  = ct.ID;
+END $$
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS `sp_notifications_del`;
+DELIMITER $$
+CREATE PROCEDURE `sp_notifications_del`(IN id int)
+BEGIN
+DELETE FROM Notifications AS na
+WHERE na.id = id;
+END $$
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS `sp_notifications_sel`;
+DELIMITER $$
+CREATE PROCEDURE `sp_notifications_sel`()
+BEGIN
+    SELECT 
+    ID,
+    TypeID,
+    UserAppID,
+    Body,
+    IsRead,
+    DateCreated,
+    DateModified
+    FROM Notifications;
+END $$
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS `sp_contentfiles_ins`;
+DELIMITER $$
+CREATE PROCEDURE `sp_contentfiles_ins` (
+	IN contentid int, filepath varchar(50), datecreated datetime, datemodified datetime
+)
+BEGIN 
+	INSERT INTO contentfiles (contentid, filepath, datecreated, datemodified)
+    VALUES (contentid, filepath, datecreated, datemodified);
+    END $$
+    DELIMITER ;
+
+DROP PROCEDURE IF EXISTS `sp_lookupuserroles_sel`;
+DELIMITER $$
+CREATE PROCEDURE `sp_lookupuserroles_sel`()
+BEGIN
+    SELECT ID,
+   Name,
+    Description,
+    DateCreated,
+    DateModified
+    FROM lookupuserroles;
+END $$
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS `sp_lookupuserroles_ins`;
+DELIMITER $$
+CREATE PROCEDURE `sp_lookupuserroles_ins`(
+IN id int, name varchar(25), description varchar(50), datecreated datetime, datemodified datetime)
+BEGIN
+INSERT INTO lookupuserroles (id,name,description,datecreated,datemodified)
+VALUES (id, name, description, datecreated,datemodified) ;
+END $$
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS `sp_lookupuserroles_upd`;
+DELIMITER $$
+CREATE PROCEDURE `sp_lookupuserroles_upd`(
+IN ID int, Name varchar(25), Description varchar(50), DateModified datetime)
+BEGIN
+UPDATE lookupuserroles as lu
+SET lu.Name = Name, lu.Description = Description, lu.DateModified = DateModified
+WHERE lu.ID = ID ;
+END $$
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS `sp_lookupuserroles_del`;
+DELIMITER $$
+CREATE PROCEDURE `sp_lookupuserroles_del`(IN id int)
+BEGIN
+DELETE FROM lookupuserroles AS ur
+WHERE ur.id = id;
+END $$
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS sp_feedback_sel_byContentID;
+DELIMITER $$
+CREATE PROCEDURE sp_feedback_sel_byContentID()
+BEGIN
+    SELECT 
+    fb.ID,
+    fb.ContentID,
+    fb.UserID, 
+    (SELECT CONCAT(u.FirstName, ' ', u.LastName) 
+      FROM Users AS u
+      WHERE u.ID = fb.UserID
+    )AS UserName,
+    fb.Feedback,
+    fb.Rating,
+    fb.DateCreated
+    FROM feedback AS fb
+    GROUP BY ContentID;
+END $$
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS `sp_notifications_ins`;
+DELIMITER $$
+CREATE PROCEDURE `sp_notifications_ins` (
+	IN typeid INT, userappid INT, body varchar(500), isread boolean, datecreated datetime, datemodified datetime
+)
+BEGIN 
+	INSERT INTO templates (typeid, userappid, body, isread, datecreated, datemodified)
+    VALUES (typeid, userappid, body, isread, datecreated, datemodified);
+    END $$
+    DELIMITER ;
+
 
 -- ************************************************* --
 --              Call Stored Procedure                --
@@ -1669,13 +1940,58 @@ CALL sp_ReleaseNotes_sel();
 
 CALL sp_content_ins(1, 1, 1, 1, true, true, 'Release Note 5.0', 'This is a new Release Notes', now(), now(), '2021-11-20 00:00:00');
 
+CALL sp_content_upd(1, 1, 1, 1, true, false, 'Release Note 6.0', 'This is a new Release Notes', now(), now(), '2021-11-21 00:00:00');
+
+CALL sp_content_del(1);
 
 CALL sp_fraudmanagement_sel();
 
-call `sp_applications_del`(2);
+CALL `sp_fraudmanagement_ins`('park yoo', now(), now()) ;
+
+CALL `sp_fraudmanagement_upd`(1, 'crazy', now());
+
+CALL `sp_fraudmanagement_del`(3);
+
+CALL `sp_applications_del`(2);
 
 CALL sp_users_sel() ;
-call sp_bookmarks_sel_user(2);
-call sp_users_ins('Roman', 'Kvaska', 'roman.kvaska@gmail.com', now(), now() ) ;
+
+CALL sp_bookmarks_sel_user(2);
+
+CALL sp_users_ins('Roman', 'Kvaska', 'roman.kvaska@gmail.com', now(), now() ) ;
+
 CALL sp_users_del(3);
 
+CALL `sp_applications_upd`(1,'AlphaOil Petronas','alphaoil',now());
+
+CALL `sp_faq_ins`(1, 'Question apa', 'Answer apa', true, now(), now());
+
+CALL `sp_faq_sel`();
+
+CALL `sp_feedback_sel_user`();
+
+CALL sp_notifications_del(2);
+
+CALL sp_notifications_sel();
+
+CALL sp_bookmarks_ins(2, 'helpx.petronas.com/releasenote/1.11', 'Release Note 1.11', now(), now());
+
+CALL sp_bookmarks_upd('Release Note 1.11 Extra', 2, now());
+
+CALL sp_bookmarks_del(2);
+
+CALL sp_contentfiles_ins(1, 'img/Notes2/22015.png', now(), now());
+
+CALL `sp_lookupuserroles_sel`();
+
+CALL `sp_lookupuserroles_ins`(6, 'Admin App', 'have an eye for detail', now(), now()) ;
+
+CALL `sp_users_upd`(1, 'Nisha', 'Izzati', 'nisha@petronas.com', now(), now());
+
+CALL `sp_lookupuserroles_del`(6);
+
+CALL `sp_lookupuserroles_upd`(5, 'User Admin', 'User Admin', now());
+
+CALL sp_feedback_sel_byContentID();
+
+CALL sp_notifications_ins(1, 1, 'Notifications', true, now(), now()) ;

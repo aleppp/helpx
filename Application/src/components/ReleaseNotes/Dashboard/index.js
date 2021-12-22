@@ -21,8 +21,10 @@ export default function Dashboard() {
 
   useEffect(() => {
     axios
-      .get("./MOCKDATA.json")
-      .then((res) => setTableData(res.data))
+      .get("/ctdashboard")
+      .then((res) => {
+        if (res.status === 200)
+          setTableData(res.data)})
       .catch((err) => console.log(err));
   }, []);
 

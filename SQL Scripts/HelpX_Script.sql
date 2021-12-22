@@ -1860,6 +1860,26 @@ WHERE ur.id = id;
 END $$
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS sp_feedback_sel_byContentID;
+DELIMITER $$
+CREATE PROCEDURE sp_feedback_sel_byContentID()
+BEGIN
+    SELECT 
+    fb.ID,
+    fb.ContentID,
+    fb.UserID, 
+    (SELECT CONCAT(u.FirstName, ' ', u.LastName) 
+      FROM Users AS u
+      WHERE u.ID = fb.UserID
+    )AS UserName,
+    fb.Feedback,
+    fb.Rating,
+    fb.DateCreated
+    FROM feedback AS fb
+    GROUP BY ContentID;
+END $$
+DELIMITER ;
+
 
 -- ************************************************* --
 --              Call Stored Procedure                --
@@ -1919,3 +1939,5 @@ CALL `sp_users_upd`(1, 'Nisha', 'Izzati', 'nisha@petronas.com', now(), now());
 CALL `sp_lookupuserroles_del`(6);
 
 CALL `sp_lookupuserroles_upd`(5, 'User Admin', 'User Admin', now(), now());
+
+CALL sp_feedback_sel_byContentID();

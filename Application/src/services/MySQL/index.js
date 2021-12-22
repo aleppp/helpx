@@ -9,10 +9,10 @@ const PORT = 8080;
 //listener
 app.listen(PORT, () => console.log(`live http://localhost:${PORT}`));
 
-//connection db
-var con = mysql.createConnection({
-  host: "localhost",
+// establish connection to database
+const db = mysql.createConnection({
   user: "root",
+  host: "localhost",
   password: "helpx",
   database: "helpx",
 });
@@ -83,6 +83,7 @@ app.get("/ctdashboard", (req, res) => {
 });
 
 //db hook for list of release notes
+
 app.get("/releasenotes/list", (req, res) => {
   const ReleaseNotes = "CALL sp_ReleaseNotes_sel()";
   getQuery(db, ReleaseNotes, res);

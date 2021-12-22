@@ -1948,6 +1948,10 @@ CALL sp_fraudmanagement_sel();
 
 CALL `sp_fraudmanagement_ins`('park yoo', now(), now()) ;
 
+CALL `sp_fraudmanagement_upd`(1, 'crazy', now());
+
+CALL `sp_fraudmanagement_del`(3);
+
 CALL `sp_applications_del`(2);
 
 CALL sp_users_sel() ;

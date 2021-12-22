@@ -1564,7 +1564,7 @@ DELIMITER $$
 CREATE PROCEDURE `sp_bookmarks_ins`(IN UserID INT, URL varchar(50), BookmarkName varchar(50), DateCreated datetime, DateModified datetime)
 BEGIN
     	INSERT INTO bookmarks (UserID, URL, BookmarkName, datecreated, datemodified)
-    VALUES (UserID, URL, BookmarkName, now(), now());
+    VALUES (UserID, URL, BookmarkName, datecreated, datemodified);
     END $$
     DELIMITER ;
 

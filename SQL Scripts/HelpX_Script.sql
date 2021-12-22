@@ -1610,7 +1610,7 @@ DELIMITER ;
 DROP PROCEDURE IF EXISTS `sp_template_ins`;
 DELIMITER $$
 CREATE PROCEDURE `sp_template_ins` (
-	IN appid INT, userid INT, title varchar(65), body varchar(10256), datecreated datetime, datemodified datetime
+	IN appid int, userid int, title varchar(65), body varchar(10256), datecreated datetime, datemodified datetime
 )
 BEGIN 
 	INSERT INTO templates (appid, userid, title, body, datecreated, datemodified)

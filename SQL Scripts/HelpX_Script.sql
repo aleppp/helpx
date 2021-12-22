@@ -1703,6 +1703,16 @@ BEGIN
 END $$
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `sp_fraudmanagement_upd`;
+DELIMITER $$
+CREATE PROCEDURE `sp_fraudmanagement_upd`(IN ID int, Term varchar(25), DateModified datetime)
+BEGIN
+    UPDATE fraudmanagement as fraud
+    SET fraud.term = term, fraud.datemodified = datemodified
+    WHERE fraud.id = id;
+END $$
+DELIMITER ;
+
 DROP PROCEDURE IF EXISTS `sp_users_sel`;
 DELIMITER $$
 CREATE PROCEDURE `sp_users_sel`()

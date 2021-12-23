@@ -188,3 +188,9 @@ app.delete("/faq/del", (req, res) => {
   const params = req.body;
   setQuery(db, deleteFaq, params.id, res);
 });
+
+//db hook for displaying feedbacklist under release note for content creator
+app.get("/feedbackccrn/sel", (req, res) => {
+  const getFeedbackListCCRN = "CALL sp_feedback_sel_byContentID()";
+  getQuery(db, getFeedbackListCCRN, res);
+});

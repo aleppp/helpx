@@ -138,3 +138,20 @@ app.get("/faq/sel", (req, res) => {
   const getFAQList = "CALL sp_faq_sel()";
   getQuery(db, getFAQList, res);
 });
+
+//insert new content file
+app.post("/contentfiles/ins", (req, res) => {
+  const insContentFiles = "CALL sp_contentfiles_ins(?,?,?,?)";
+  const params = req.body.contentfiles;
+  setQuery(
+    db,
+    insContentFiles,
+    [
+      params.contentid,
+      params.filepath,
+      params.datecreated,
+      params.datemodified,
+    ],
+    res
+  );
+});

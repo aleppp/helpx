@@ -161,3 +161,23 @@ app.get("/feedback/sel", (req, res) => {
   const getFeedbackListEU = "CALL sp_feedback_sel_user()";
   getQuery(db, getFeedbackListEU, res);
 });
+
+//edit
+app.post("/faq/upd", (req, res) => {
+  const updFaq = "CALL sp_faq_upd(?,?,?,?,?,?,?)";
+  const params = req.body.faq;
+  setQuery(
+    db,
+    updFaq,
+    [
+      params.appid,
+      params.question,
+      params.answer,
+      params.isfeedbackallowed,
+      params.isvisible,
+      params.datecreated,
+      params.datemodified,
+    ],
+    res
+  );
+});

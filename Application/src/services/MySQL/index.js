@@ -213,3 +213,9 @@ app.post("/roles/ins", (req, res) => {
   );
 });
 
+// db hook for displaying users list
+app.get("/user/sel", (req, res) => {
+  const getUsers = "CALL sp_users_sel()";
+  getQuery(db, getUsers, res);
+});
+

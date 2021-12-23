@@ -162,7 +162,7 @@ app.get("/feedback/sel", (req, res) => {
   getQuery(db, getFeedbackListEU, res);
 });
 
-//edit
+//edit faq update
 app.post("/faq/upd", (req, res) => {
   const updFaq = "CALL sp_faq_upd(?,?,?,?,?,?,?)";
   const params = req.body.faq;
@@ -180,4 +180,11 @@ app.post("/faq/upd", (req, res) => {
     ],
     res
   );
+});
+
+//edit faq delete
+app.delete("/faq/del", (req, res) => {
+  const deleteFaq = "CALL sp_faq_del(?)";
+  const params = req.body;
+  setQuery(db, deleteFaq, params.id, res);
 });

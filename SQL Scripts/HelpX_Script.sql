@@ -1944,13 +1944,13 @@ DROP PROCEDURE IF EXISTS `sp_faq_upd`;
 DELIMITER $$
 CREATE PROCEDURE `sp_faq_upd` (
 	IN appid int, question varchar (255), answer varchar (1024),
-    isfeedbackallowed boolean, isvisible boolean, datecreated datetime, datemodified datetime
+    isfeedbackallowed boolean, isvisible boolean, datemodified datetime
 )
 BEGIN 
   UPDATE faq as f
     SET f.appid = appid, f.question = question, 
     f.answer = answer, f.isfeedbackallowed = isfeedbackallowed, f.isvisible = isvisible, 
-    f.datecreated = datecreated, f.datemodified = datemodified
+   f.datemodified = datemodified
     WHERE f.id = id;
 END $$
 DELIMITER ;
@@ -2035,7 +2035,7 @@ CALL sp_notifications_ins(1, 1, 'Notifications', true, now(), now()) ;
 
 CALL `sp_searchterm_sel`();
 
-CALL sp_faq_upd(1, 'What is a release note?','Release notes are documents that are distributed with software products', true, true, now(), now());
+CALL sp_faq_upd(1, 'What is a release note?','Release notes are documents that are distributed with software products', true, true, now());
   
 CALL sp_faq_del(2);
 

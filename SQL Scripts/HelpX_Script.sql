@@ -1787,15 +1787,16 @@ DROP PROCEDURE IF EXISTS `sp_faq_sel`;
 DELIMITER $$
 CREATE PROCEDURE `sp_faq_sel`()
 BEGIN
-    SELECT ID,
-    AppID,
-    Question,
-    Answer,
-    IsFeedbackAllowed,
-    IsVisible,
-    DateCreated,
-    DateModified
-    FROM faq;
+    SELECT fq.ID,
+    fq.Question,
+    fq.Answer,
+    fq.IsVisible,
+    fq.DateCreated,
+    fq.DateModified,
+    ap.Name
+    FROM faq AS fq
+    LEFT JOIN applications as ap
+    ON fq.AppID = ap.ID;
 END $$
 DELIMITER ;
 

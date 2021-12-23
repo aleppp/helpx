@@ -1926,6 +1926,18 @@ BEGIN
     END $$
     DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `sp_searchterm_sel`;
+DELIMITER $$
+    CREATE PROCEDURE `sp_searchterm_sel`()
+BEGIN
+    SELECT
+    AppID,
+    ContentTypeID,
+    Title,
+    Body
+	FROM content;
+END $$
+DELIMITER ;
 
 -- ************************************************* --
 --              Call Stored Procedure                --
@@ -1995,3 +2007,6 @@ CALL `sp_lookupuserroles_upd`(5, 'User Admin', 'User Admin', now());
 CALL sp_feedback_sel_byContentID();
 
 CALL sp_notifications_ins(1, 1, 'Notifications', true, now(), now()) ;
+
+CALL `sp_searchterm_sel`();
+

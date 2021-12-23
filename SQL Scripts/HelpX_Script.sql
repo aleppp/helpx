@@ -1776,10 +1776,10 @@ DELIMITER ;
 DROP PROCEDURE IF EXISTS `sp_faq_ins`;
 DELIMITER $$
 CREATE PROCEDURE `sp_faq_ins`(
-IN appid int, question varchar(255), answer varchar(255), isvisible boolean, datecreated datetime, datemodified datetime)
+IN appid int, question varchar(255), answer varchar(255), isfeedbackallowed boolean, isvisible boolean, datecreated datetime, datemodified datetime)
 BEGIN
-INSERT INTO faq (appid,question,answer,datecreated,datemodified)
-VALUES (appid,question,answer,datecreated,datemodified);
+INSERT INTO faq (appid,question,answer,isfeedbackallowed,isvisible,datecreated,datemodified)
+VALUES (appid,question,answer,isfeedbackallowed,isvisible,datecreated,datemodified);
 END $$
 DELIMITER ;
 
@@ -1977,7 +1977,7 @@ CALL sp_users_del(3);
 
 CALL `sp_applications_upd`(1,'AlphaOil Petronas','alphaoil',now());
 
-CALL `sp_faq_ins`(1, 'Question apa', 'Answer apa', true, now(), now());
+CALL `sp_faq_ins`(1, 'Question', 'Answer', true, true, now(), now());
 
 CALL `sp_faq_sel`();
 

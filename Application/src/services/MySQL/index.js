@@ -88,3 +88,27 @@ app.get("/releasenotes/list", (req, res) => {
   const ReleaseNotes = "CALL sp_ReleaseNotes_sel()";
   getQuery(db, ReleaseNotes, res);
 });
+
+//insert new content
+app.post("/content/ins", (req, res) => {
+  const insApp = "CALL sp_content_ins(?,?,?,?,?,?,?,?,?,?,?)";
+  const params = req.body.apps;
+  setQuery(
+    db,
+    insApp,
+    [
+      params.appid,
+      params.userid,
+      params.contenttypeid,
+      params.statusid,
+      params.isfeebackallowed,
+      params.isvisible,
+      params.title,
+      params.body,
+      params.datecreated,
+      params.datemodified,
+      params.datepublished,
+    ],
+    res
+  );
+});

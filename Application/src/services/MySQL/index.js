@@ -200,3 +200,16 @@ app.get("/roles/sel", (req, res) => {
   const getlookupuserroles = "CALL sp_lookupuserroles_sel()";
   getQuery(db, getlookupuserroles, res);
 });
+
+//insert new roles
+app.post("/roles/ins", (req, res) => {
+  const insRoles = "CALL sp_lookupuserroles_ins(?,?,?,?)";
+  const params = req.body.role;
+  setQuery(
+    db,
+    insRoles,
+    [params.name, params.description, params.datecreated, params.datemodified],
+    res
+  );
+});
+

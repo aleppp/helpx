@@ -91,11 +91,11 @@ app.get("/releasenotes/list", (req, res) => {
 
 //insert new content
 app.post("/content/ins", (req, res) => {
-  const insApp = "CALL sp_content_ins(?,?,?,?,?,?,?,?,?,?,?)";
+  const insContent = "CALL sp_content_ins(?,?,?,?,?,?,?,?,?,?,?)";
   const params = req.body.content;
   setQuery(
     db,
-    insApp,
+    insContent,
     [
       params.appid,
       params.userid,

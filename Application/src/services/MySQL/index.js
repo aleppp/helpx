@@ -194,3 +194,9 @@ app.get("/feedbackccrn/sel", (req, res) => {
   const getFeedbackListCCRN = "CALL sp_feedback_sel_byContentID()";
   getQuery(db, getFeedbackListCCRN, res);
 });
+
+//db hook for displaying lookupuserroles list
+app.get("/roles/sel", (req, res) => {
+  const getlookupuserroles = "CALL sp_lookupuserroles_sel()";
+  getQuery(db, getlookupuserroles, res);
+});

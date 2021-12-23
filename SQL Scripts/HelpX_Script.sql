@@ -1632,6 +1632,20 @@ WHERE ContentTypeID = 1;
 END $$
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `sp_ContentBodyReleaseNotes_sel`;
+DELIMITER $$
+CREATE PROCEDURE `sp_ContentBodyReleaseNotes_sel`()
+BEGIN
+	SELECT ct.ID as id,
+	ct.Title,
+	ct.Body
+	FROM content as ct
+	LEFT JOIN Applications as app
+	ON ct.AppID = app.ID
+	WHERE ContentTypeID = 1; 
+END $$
+DELIMITER ;
+
 DROP PROCEDURE IF EXISTS `sp_auditlogs_sel`
 DELIMITER $$
 CREATE PROCEDURE `sp_auditlogs_sel_byuserid`()
@@ -1974,6 +1988,7 @@ CALL sp_template_ins(1,1,'Release Note 1','Here are some details on..', now(), n
 CALL sp_auditlogs_sel_byuserid();
 
 CALL sp_ReleaseNotes_sel();
+CALL sp_ContentBodyReleaseNotes_sel();
 
 CALL sp_content_ins(1, 1, 1, 1, true, true, 'Release Note 5.0', 'This is a new Release Notes', now(), now(), '2021-11-20 00:00:00');
 

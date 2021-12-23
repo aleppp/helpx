@@ -112,3 +112,29 @@ app.post("/content/ins", (req, res) => {
     res
   );
 });
+
+//insert new faq
+app.post("/faq/ins", (req, res) => {
+  const insFaq = "CALL sp_faq_ins(?,?,?,?,?,?,?)";
+  const params = req.body.faq;
+  setQuery(
+    db,
+    insApp,
+    [
+      params.appid,
+      params.question,
+      params.answer,
+      params.isfeebackallowed,
+      params.isvisible,
+      params.datecreated,
+      params.datemodified,
+    ],
+    res
+  );
+});
+
+//db hook for displaying faq for admin and content creator
+app.get("/faq/sel", (req, res) => {
+  const getFAQList = "CALL sp_faq_sel()";
+  getQuery(db, getFAQList, res);
+});

@@ -155,3 +155,9 @@ app.post("/contentfiles/ins", (req, res) => {
     res
   );
 });
+
+//db hook for displaying feddback list for user view
+app.get("/feedback/sel", (req, res) => {
+  const getFeedbackListEU = "CALL sp_feedback_sel_user()";
+  getQuery(db, getFeedbackListEU, res);
+});

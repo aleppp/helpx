@@ -219,3 +219,8 @@ app.get("/user/sel", (req, res) => {
   getQuery(db, getUsers, res);
 });
 
+// db hook for displaying fraud list
+app.get("/fraudmanagement/sel", (req, res) => {
+  const getFraudManagement = "CALL sp_fraudmanagement_sel()";
+  getQuery(db, getFraudManagement, res);
+});

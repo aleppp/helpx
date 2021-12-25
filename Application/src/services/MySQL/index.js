@@ -224,3 +224,15 @@ app.get("/fraudmanagement/sel", (req, res) => {
   const getFraudManagement = "CALL sp_fraudmanagement_sel()";
   getQuery(db, getFraudManagement, res);
 });
+
+//insert new admin fraud
+app.post("/fraudmanagement/ins", (req, res) => {
+  const insFraudManagement = "CALL sp_fraudmanagement_ins(?,?,?)";
+  const params = req.body.fraudmanagement;
+  setQuery(
+    db,
+    insFraudManagement,
+    [params.term, params.datecreated, params.datemodified],
+    res
+  );
+});

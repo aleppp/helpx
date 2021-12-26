@@ -1638,6 +1638,17 @@ WHERE t.id = id;
 END $$
 DELIMITER ; 
 
+DROP PROCEDURE IF EXISTS `sp_template_del`;
+
+DELIMITER $$
+
+CREATE PROCEDURE `sp_template_del`(IN id int)
+BEGIN
+DELETE FROM templates AS te
+WHERE te.id = id;
+END $$
+DELIMITER ;
+
 DROP PROCEDURE IF EXISTS `sp_ReleaseNotes_sel`;
 DELIMITER $$
 CREATE PROCEDURE `sp_ReleaseNotes_sel`()
@@ -2007,6 +2018,8 @@ CALL sp_bookmarks_sel_all();
 CALL sp_template_ins(1,1,'Release Note 1','Here are some details on..', now(), now());
 CALL sp_template_sel();
 CALL sp_template_upd(2,1,1,'Release Note 3.4','Release Note are....',now(),now());
+CALL sp_template_del(1);
+
 CALL sp_auditlogs_sel_byuserid();
 
 CALL sp_ReleaseNotes_sel();

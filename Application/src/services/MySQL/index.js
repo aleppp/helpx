@@ -119,7 +119,7 @@ app.post("/faq/ins", (req, res) => {
   const params = req.body.faq;
   setQuery(
     db,
-    insApp,
+    insFaq,
     [
       params.appid,
       params.question,

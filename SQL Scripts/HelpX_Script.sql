@@ -1618,6 +1618,14 @@ BEGIN
     END $$
     DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `sp_template_sel`;
+DELIMITER $$
+CREATE PROCEDURE `sp_template_sel`()
+BEGIN
+select id, appid, userid, title, body, datecreated, datemodified from templates;
+END $$
+DELIMITER ;
+
 DROP PROCEDURE IF EXISTS `sp_ReleaseNotes_sel`;
 DELIMITER $$
 CREATE PROCEDURE `sp_ReleaseNotes_sel`()
@@ -1985,6 +1993,7 @@ CALL sp_applications_sel();
 CALL sp_contentdb_sel();
 CALL sp_bookmarks_sel_all();
 CALL sp_template_ins(1,1,'Release Note 1','Here are some details on..', now(), now());
+CALL sp_template_sel();
 CALL sp_auditlogs_sel_byuserid();
 
 CALL sp_ReleaseNotes_sel();

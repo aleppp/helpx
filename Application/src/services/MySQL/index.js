@@ -307,6 +307,7 @@ app.delete("/bookmarks/del", (req, res) => {
   setQuery(db, deleteBookmarks, params.id, res);
 });
 
+// db hook to update bookmark
 app.post("/bookmarks/upd", (req, res) => {
   const updBookmarks = "CALL sp_bookmarks_upd(?,?,?)";
   const params = req.body.book;

@@ -1626,6 +1626,18 @@ select id, appid, userid, title, body, datecreated, datemodified from templates;
 END $$
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `sp_template_upd`;
+DELIMITER $$
+CREATE PROCEDURE `sp_template_upd`(
+IN id int, appid int, userid int, title varchar(65), body varchar(10256), datecreated datetime, datemodified datetime
+)
+BEGIN
+UPDATE templates as t
+SET t.appid = appid, t.userid = userid, t.title = title, t.body = body, t.datecreated = datecreated, t.datemodified = datemodified
+WHERE t.id = id;
+END $$
+DELIMITER ; 
+
 DROP PROCEDURE IF EXISTS `sp_ReleaseNotes_sel`;
 DELIMITER $$
 CREATE PROCEDURE `sp_ReleaseNotes_sel`()
@@ -1994,6 +2006,7 @@ CALL sp_contentdb_sel();
 CALL sp_bookmarks_sel_all();
 CALL sp_template_ins(1,1,'Release Note 1','Here are some details on..', now(), now());
 CALL sp_template_sel();
+CALL sp_template_upd(2,1,1,'Release Note 3.4','Release Note are....',now(),now());
 CALL sp_auditlogs_sel_byuserid();
 
 CALL sp_ReleaseNotes_sel();

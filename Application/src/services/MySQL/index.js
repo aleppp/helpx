@@ -281,3 +281,39 @@ app.delete("/template/del", (req, res) => {
   const params = req.body;
   setQuery(db, deleteTemplate, params.id, res);
 });
+
+// db hook to insert bookmark
+app.post("/bookmarks/ins", (req, res) => {
+  const insBookmarks = "CALL sp_bookmarks_ins(?,?,?,?,?)";
+  const params = req.body.book;
+  setQuery(
+    db,
+    insBookmarks,
+    [
+      params.userid,
+      params.url,
+      params.bookmarkname,
+      params.datecreated,
+      params.datemodified,
+    ],
+    res
+  );
+});
+
+// db hook to delete bookmark
+app.delete("/bookmarks/del", (req, res) => {
+  const deleteBookmarks = "CALL sp_bookmarks_del(?)";
+  const params = req.body;
+  setQuery(db, deleteBookmarks, params.id, res);
+});
+
+app.post("/bookmarks/upd", (req, res) => {
+  const updBookmarks = "CALL sp_bookmarks_upd(?,?,?)";
+  const params = req.body.book;
+  setQuery(
+    db,
+    updBookmarks,
+    [params.bookmarkname, params.id, params.datemodified],
+    res
+  );
+});

@@ -1732,10 +1732,10 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `sp_fraudmanagement_ins`;
 DELIMITER $$
-CREATE PROCEDURE `sp_fraudmanagement_ins`(IN Term varchar(25), DateCreated datetime, DateModified datetime)
+CREATE PROCEDURE `sp_fraudmanagement_ins`(IN term varchar(25), datecreated datetime, datemodified datetime)
 BEGIN
-	INSERT INTO fraudmanagement (Term, DateCreated, DateModified)
-	VALUES (Term, DateCreated, DateModified);
+	INSERT INTO fraudmanagement (term, datecreated, datemodified)
+	VALUES (term, datecreated, datemodified);
 END $$
 DELIMITER ;
 

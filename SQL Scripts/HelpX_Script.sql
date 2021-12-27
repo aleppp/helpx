@@ -1526,6 +1526,16 @@ WHERE ap.id = id;
 END $$
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `sp_applicationsattributes_upd`;
+DELIMITER $$
+CREATE PROCEDURE `sp_applicationsattributes_upd`(IN id int, appid int, newvalue varchar(20))
+BEGIN
+UPDATE applicationsattributes as apt
+SET apt.appattributevalue = newvalue
+WHERE apt.id = id AND apt.appid = appid;
+END $$
+DELIMITER ;
+
 DROP PROCEDURE IF EXISTS `sp_contentdb_sel`;
 DELIMITER $$
 CREATE PROCEDURE `sp_contentdb_sel`()

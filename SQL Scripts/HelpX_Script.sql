@@ -1536,6 +1536,15 @@ WHERE apt.id = id AND apt.appid = appid;
 END $$
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `sp_lookupappattributes_ins`;
+DELIMITER $$
+CREATE PROCEDURE `sp_lookupappattributes_ins`(IN name varchar(25), description varchar(50),defaultvalue varchar(20),datecreated datetime, datemodified datetime)
+BEGIN
+INSERT INTO lookupappattributes(name,description,defaultvalue,datecreated,datemodified)
+VALUES (name, description,defaultvalue,datecreated,datemodified);
+END $$
+DELIMITER ;
+
 DROP PROCEDURE IF EXISTS `sp_contentdb_sel`;
 DELIMITER $$
 CREATE PROCEDURE `sp_contentdb_sel`()

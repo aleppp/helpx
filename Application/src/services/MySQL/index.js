@@ -218,6 +218,18 @@ app.post("/roles/ins", (req, res) => {
   );
 });
 
+//roles update
+app.post("/roles/upd", (req, res) => {
+  const updRole = "CALL sp_lookupuserroles_upd(?,?,?,?)";
+  const params = req.body.role;
+  setQuery(
+    db,
+    updRole,
+    [params.id, params.name, params.description, params.DateModified],
+    res
+  );
+});
+
 // db hook for displaying users list
 app.get("/user/sel", (req, res) => {
   const getUsers = "CALL sp_users_sel()";

@@ -1712,14 +1712,14 @@ DROP PROCEDURE IF EXISTS `sp_fraudmanagement_sel`;
 DELIMITER $$
 CREATE PROCEDURE `sp_fraudmanagement_sel`()
 BEGIN
-    SELECT ID, Term
+    SELECT id, term, datecreated, datemodified
     FROM fraudmanagement;
 END $$
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `sp_fraudmanagement_upd`;
 DELIMITER $$
-CREATE PROCEDURE `sp_fraudmanagement_upd`(IN ID int, Term varchar(25), DateModified datetime)
+CREATE PROCEDURE `sp_fraudmanagement_upd`(IN id int, term varchar(25), datemodified datetime)
 BEGIN
     UPDATE fraudmanagement as fraud
     SET fraud.term = term, fraud.datemodified = datemodified

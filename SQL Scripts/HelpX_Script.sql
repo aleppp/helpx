@@ -2071,8 +2071,6 @@ CALL sp_bookmarks_del(2);
 
 CALL sp_contentfiles_ins(1, 'img/Notes2/22015.png', now(), now());
 
-CALL `sp_lookupuserroles_sel`();
-
 CALL `sp_lookupuserroles_ins`(6, 'Admin App', 'have an eye for detail', now(), now()) ;
 
 CALL `sp_users_upd`(1, 'Nisha', 'Izzati', 'nisha@petronas.com', now(), now());

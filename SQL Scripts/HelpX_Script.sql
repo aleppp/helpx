@@ -1618,6 +1618,37 @@ BEGIN
     END $$
     DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `sp_template_sel`;
+DELIMITER $$
+CREATE PROCEDURE `sp_template_sel`()
+BEGIN
+select id, appid, userid, title, body, datecreated, datemodified from templates;
+END $$
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS `sp_template_upd`;
+DELIMITER $$
+CREATE PROCEDURE `sp_template_upd`(
+IN id int, appid int, userid int, title varchar(65), body varchar(10256), datecreated datetime, datemodified datetime
+)
+BEGIN
+UPDATE templates as t
+SET t.appid = appid, t.userid = userid, t.title = title, t.body = body, t.datecreated = datecreated, t.datemodified = datemodified
+WHERE t.id = id;
+END $$
+DELIMITER ; 
+
+DROP PROCEDURE IF EXISTS `sp_template_del`;
+
+DELIMITER $$
+
+CREATE PROCEDURE `sp_template_del`(IN id int)
+BEGIN
+DELETE FROM templates AS te
+WHERE te.id = id;
+END $$
+DELIMITER ;
+
 DROP PROCEDURE IF EXISTS `sp_ReleaseNotes_sel`;
 DELIMITER $$
 CREATE PROCEDURE `sp_ReleaseNotes_sel`()
@@ -1867,19 +1898,6 @@ BEGIN
     END $$
     DELIMITER ;
 
-DROP PROCEDURE IF EXISTS `sp_lookupuserroles_sel`;
-DELIMITER $$
-CREATE PROCEDURE `sp_lookupuserroles_sel`()
-BEGIN
-    SELECT ID,
-   Name,
-    Description,
-    DateCreated,
-    DateModified
-    FROM lookupuserroles;
-END $$
-DELIMITER ;
-
 DROP PROCEDURE IF EXISTS `sp_lookupuserroles_ins`;
 DELIMITER $$
 CREATE PROCEDURE `sp_lookupuserroles_ins`(
@@ -1907,6 +1925,21 @@ CREATE PROCEDURE `sp_lookupuserroles_del`(IN id int)
 BEGIN
 DELETE FROM lookupuserroles AS ur
 WHERE ur.id = id;
+END $$
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS `sp_userapproles_sel_numofusers` ;
+DELIMITER $$
+CREATE PROCEDURE sp_userapproles_sel_numofusers()
+BEGIN
+	SELECT ar.ID as ID,
+    lu.Name,
+    lu.Description,
+    COUNT(ar.ID) as 'Number of Users'
+    FROM usersappsroles as ar
+    LEFT JOIN lookupuserroles as lu
+    ON UserRoleID = lu.ID
+    GROUP BY ar.ID;
 END $$
 DELIMITER ;
 
@@ -1985,6 +2018,10 @@ CALL sp_applications_sel();
 CALL sp_contentdb_sel();
 CALL sp_bookmarks_sel_all();
 CALL sp_template_ins(1,1,'Release Note 1','Here are some details on..', now(), now());
+CALL sp_template_sel();
+CALL sp_template_upd(2,1,1,'Release Note 3.4','Release Note are....',now(),now());
+CALL sp_template_del(1);
+
 CALL sp_auditlogs_sel_byuserid();
 
 CALL sp_ReleaseNotes_sel();
@@ -2034,8 +2071,6 @@ CALL sp_bookmarks_del(2);
 
 CALL sp_contentfiles_ins(1, 'img/Notes2/22015.png', now(), now());
 
-CALL `sp_lookupuserroles_sel`();
-
 CALL `sp_lookupuserroles_ins`(6, 'Admin App', 'have an eye for detail', now(), now()) ;
 
 CALL `sp_users_upd`(1, 'Nisha', 'Izzati', 'nisha@petronas.com', now(), now());
@@ -2043,6 +2078,8 @@ CALL `sp_users_upd`(1, 'Nisha', 'Izzati', 'nisha@petronas.com', now(), now());
 CALL `sp_lookupuserroles_del`(6);
 
 CALL `sp_lookupuserroles_upd`(5, 'User Admin', 'User Admin', now());
+
+CALL sp_userapproles_sel_numofusers() ;
 
 CALL sp_feedback_sel_byContentID();
 

@@ -366,3 +366,9 @@ app.get("/userroles/sel", (req, res) => {
   getQuery(db, getnumuser, res);
 });
 
+// delete fraud term
+app.delete("/fraudmanagement/del", (req, res) => {
+  const deleteFraudManagement = "CALL sp_fraudmanagement_del(?)";
+  const params = req.body;
+  setQuery(db, deleteFraudManagement, params.id, res);
+});

@@ -1876,14 +1876,22 @@ DELIMITER $$
 CREATE PROCEDURE `sp_notifications_sel`()
 BEGIN
     SELECT 
-    ID,
-    TypeID,
-    UserAppID,
-    Body,
-    IsRead,
-    DateCreated,
-    DateModified
-    FROM Notifications;
+    na.ID,
+    na.TypeID,
+    na.UserAppID,
+    ua.UserID,
+    (SELECT CONCAT(u.FirstName, ' ', u.LastName)
+    FROM Users AS u
+    WHERE u.ID = ua.UserID) AS UserName,
+    ua.AppID,
+    (SELECT ap.Name FROM Applications AS ap WHERE ap.ID = ua.AppID) AS AppName,
+    na.Body,
+    na.IsRead,
+    na.DateCreated,
+    na.DateModified
+    FROM Notifications AS na 
+    LEFT JOIN UsersApplications AS ua
+    ON na.UserAppID = ua.ID;
 END $$
 DELIMITER ;
 

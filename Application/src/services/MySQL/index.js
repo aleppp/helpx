@@ -347,3 +347,10 @@ app.post("/fraudmanagement/upd", (req, res) => {
     res
   );
 });
+
+// db hook for displaying number of users for the roles
+app.get("/userroles/sel", (req, res) => {
+  const getnumuser = "CALL sp_userapproles_sel_numofusers()";
+  getQuery(db, getnumuser, res);
+});
+

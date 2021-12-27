@@ -67,7 +67,12 @@ app.post("/apps/ins", (req, res) => {
 app.post("/apps/upd", (req, res) => {
   const updApp = "CALL sp_applications_upd(?,?,?,?)";
   const params = req.body.apps;
-  setQuery(db, updApp, [params.name, params.url, params.datemodified], res);
+  setQuery(
+    db,
+    updApp,
+    [params.id, params.name, params.url, params.datemodified],
+    res
+  );
 });
 
 //delete application

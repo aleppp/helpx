@@ -323,3 +323,15 @@ app.post("/bookmarks/upd", (req, res) => {
     res
   );
 });
+
+// db hook to update feedback
+app.post("/feedback/upd", (req, res) => {
+  const updFeedback = "CALL sp_feedback_upd(?,?,?,?)";
+  const params = req.body.feedbacks;
+  setQuery(
+    db,
+    updFeedback,
+    [params.id, params.feedback, params.rating, params.datemodified],
+    res
+  );
+});

@@ -208,6 +208,7 @@ SET
     Feedback varchar(1024),
     Rating int,
     DateCreated datetime,
+    DateModified datetime,
     PRIMARY KEY(ID),
     CONSTRAINT FK_Feedback_ContentID FOREIGN KEY (ContentID) REFERENCES Content(ID),
     CONSTRAINT FK_Feedback_UserID FOREIGN KEY (UserID) REFERENCES UsersApplications(UserID)
@@ -1322,13 +1323,14 @@ WHERE
   );
   -- Feedback
 INSERT INTO
-  Feedback(ContentID, UserID, Feedback, Rating, DateCreated)
+  Feedback(ContentID, UserID, Feedback, Rating, DateCreated, DateModified)
 SELECT
   '1',
   '1',
   'This application is good for us to see changes applied on the system',
   '5',
-  '2021-11-06 11:11:11'
+  '2021-11-06 11:11:11',
+  '2021-11-07 11:11:11'
 FROM
   DUAL
 WHERE
@@ -2019,6 +2021,16 @@ WHERE f.id = id;
 END $$
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `sp_feedback_upd`;
+DELIMITER $$
+CREATE PROCEDURE `sp_feedback_upd`(IN id int, feedback varchar (1024), rating int, datemodified datetime)
+BEGIN
+    UPDATE feedback AS fb
+    SET fb.feedback = feedback, fb.rating = rating, fb.datemodified = datemodified
+    WHERE fb.id = ID;
+    END $$
+DELIMITER ;
+
 -- ************************************************* --
 --              Call Stored Procedure                --
 -- ************************************************* --
@@ -2099,3 +2111,4 @@ CALL sp_faq_upd(1, 'What is a release note?','Release notes are documents that a
   
 CALL sp_faq_del(2);
 
+CALL `sp_feedback_upd`(1,'Feedback upd', 4, now());

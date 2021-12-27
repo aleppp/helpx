@@ -1977,7 +1977,7 @@ CREATE PROCEDURE `sp_notifications_ins` (
 	IN typeid INT, userappid INT, body varchar(500), isread boolean, datecreated datetime, datemodified datetime
 )
 BEGIN 
-	INSERT INTO templates (typeid, userappid, body, isread, datecreated, datemodified)
+	INSERT INTO notifications (typeid, userappid, body, isread, datecreated, datemodified)
     VALUES (typeid, userappid, body, isread, datecreated, datemodified);
     END $$
     DELIMITER ;

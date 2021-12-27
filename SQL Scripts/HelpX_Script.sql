@@ -1898,19 +1898,6 @@ BEGIN
     END $$
     DELIMITER ;
 
-DROP PROCEDURE IF EXISTS `sp_lookupuserroles_sel`;
-DELIMITER $$
-CREATE PROCEDURE `sp_lookupuserroles_sel`()
-BEGIN
-    SELECT ID,
-   Name,
-    Description,
-    DateCreated,
-    DateModified
-    FROM lookupuserroles;
-END $$
-DELIMITER ;
-
 DROP PROCEDURE IF EXISTS `sp_lookupuserroles_ins`;
 DELIMITER $$
 CREATE PROCEDURE `sp_lookupuserroles_ins`(

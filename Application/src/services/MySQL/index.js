@@ -65,7 +65,7 @@ app.post("/apps/ins", (req, res) => {
 
 //edit application info
 app.post("/apps/upd", (req, res) => {
-  const updApp = "CALL sp_applications_upd()";
+  const updApp = "CALL sp_applications_upd(?,?,?,?)";
   const params = req.body.apps;
   setQuery(db, updApp, [params.name, params.url, params.datemodified], res);
 });

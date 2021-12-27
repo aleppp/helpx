@@ -1941,6 +1941,21 @@ WHERE ur.id = id;
 END $$
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `sp_userapproles_sel_numofusers` ;
+DELIMITER $$
+CREATE PROCEDURE sp_userapproles_sel_numofusers()
+BEGIN
+	SELECT ar.ID as ID,
+    lu.Name,
+    lu.Description,
+    COUNT(ar.ID) as 'Number of Users'
+    FROM usersappsroles as ar
+    LEFT JOIN lookupuserroles as lu
+    ON UserRoleID = lu.ID
+    GROUP BY ar.ID;
+END $$
+DELIMITER ;
+
 DROP PROCEDURE IF EXISTS sp_feedback_sel_byContentID;
 DELIMITER $$
 CREATE PROCEDURE sp_feedback_sel_byContentID()
@@ -2078,6 +2093,8 @@ CALL `sp_users_upd`(1, 'Nisha', 'Izzati', 'nisha@petronas.com', now(), now());
 CALL `sp_lookupuserroles_del`(6);
 
 CALL `sp_lookupuserroles_upd`(5, 'User Admin', 'User Admin', now());
+
+CALL sp_userapproles_sel_numofusers() ;
 
 CALL sp_feedback_sel_byContentID();
 

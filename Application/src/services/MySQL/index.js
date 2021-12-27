@@ -335,3 +335,15 @@ app.post("/feedback/upd", (req, res) => {
     res
   );
 });
+
+// db hook to update word in fraud management
+app.post("/fraudmanagement/upd", (req, res) => {
+  const updFraudManagement = "CALL sp_fraudmanagement_upd(?,?,?)";
+  const params = req.body.fraudmanagement;
+  setQuery(
+    db,
+    updFraudManagement,
+    [params.id, params.term, params.datemodified],
+    res
+  );
+});

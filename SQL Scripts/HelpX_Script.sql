@@ -1526,6 +1526,25 @@ WHERE ap.id = id;
 END $$
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `sp_appattributes_sel`;
+DELIMITER $$
+CREATE PROCEDURE `sp_appattributes_sel`()
+BEGIN
+SELECT (app.Name),
+	MAX(CASE WHEN lapt.Name = "Background Color" THEN apt.AppAttributeValue END) AS "Background Color",
+    MAX(CASE WHEN lapt.Name = "Font Size" THEN apt.AppAttributeValue END) AS "Font Size",
+    MAX(CASE WHEN lapt.Name = "Font Family" THEN apt.AppAttributeValue END) AS "Font Family",
+    MAX(CASE WHEN lapt.Name = "Theme" THEN apt.AppAttributeValue END) AS "Theme",
+    MAX(CASE WHEN lapt.Name = "Navigation Bar" THEN apt.AppAttributeValue END) AS "Navigation Bar"
+FROM applicationsattributes as apt
+LEFT JOIN applications as app
+ON app.ID = apt.AppID
+LEFT JOIN lookupappattributes as lapt
+ON lapt.ID = apt.AttributeID
+GROUP BY app.Name;
+END $$
+DELIMITER ;
+
 DROP PROCEDURE IF EXISTS `sp_applicationsattributes_upd`;
 DELIMITER $$
 CREATE PROCEDURE `sp_applicationsattributes_upd`(IN id int, appid int, newvalue varchar(20), datemodified datetime)

@@ -230,6 +230,13 @@ app.post("/roles/upd", (req, res) => {
   );
 });
 
+//roles delete
+app.delete("/roles/del", (req, res) => {
+  const deleteRole = "CALL sp_lookupuserroles_del(?)";
+  const params = req.body;
+  setQuery(db, deleteRole, params.id, res);
+});
+
 // db hook for displaying users list
 app.get("/user/sel", (req, res) => {
   const getUsers = "CALL sp_users_sel()";

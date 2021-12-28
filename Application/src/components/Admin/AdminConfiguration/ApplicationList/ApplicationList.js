@@ -1,24 +1,20 @@
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Button from "../../../Buttons/Buttons";
 import "./ApplicationList.css";
 
 function ApplicationList() {
-  const data = [
-    {
-      id: "APP01",
-      appName: "AlphaOil",
-      AppURL: "petronas.com/alphaoil",
-    },
-    {
-      id: "APP02",
-      appName: "Petronas Up",
-      AppURL: "petronas.com/petronasup",
-    },
-    {
-      id: "APP03",
-      appName: "Setel",
-      AppURL: "petronas.com/setel",
-    },
-  ];
+  const [appList, setAppList] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/apps/sel")
+      .then((res) => {
+        if (res.status === 200) setAppList(res.data[0]);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   const button = [
     {
       type: "button-green",
@@ -43,39 +39,25 @@ function ApplicationList() {
       </div>
       <div>
         <table id="applist">
-          <tr>
+          <thead>
             <th>Application ID</th>
             <th>Application Name</th>
             <th>Application URL</th>
             <th>Action</th>
-          </tr>
-          <tr>
-            <td>{data[0].id}</td>
-            <td>{data[0].appName}</td>
-            <td>{data[0].AppURL}</td>
-            <td className="action-column">
-              <Button button={button[0]}></Button>
-              <Button button={button[1]}></Button>
-            </td>
-          </tr>
-          <tr>
-            <td>{data[1].id}</td>
-            <td>{data[1].appName}</td>
-            <td>{data[1].AppURL}</td>
-            <td className="action-column">
-              <Button button={button[0]}></Button>
-              <Button button={button[1]}></Button>
-            </td>
-          </tr>
-          <tr>
-            <td>{data[2].id}</td>
-            <td>{data[2].appName}</td>
-            <td>{data[2].AppURL}</td>
-            <td className="action-column">
-              <Button button={button[0]}></Button>
-              <Button button={button[1]}></Button>
-            </td>
-          </tr>
+          </thead>
+          <tbody>
+            {appList.map((app, i) => (
+              <tr key={i}>
+                <td>{app.id}</td>
+                <td>{app.name}</td>
+                <td>{app.url}</td>
+                <td className="action-column">
+                  <Button button={button[0]}></Button>
+                  <Button button={button[1]}></Button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
         </table>
       </div>
     </div>

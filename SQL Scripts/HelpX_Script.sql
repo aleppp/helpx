@@ -1948,10 +1948,13 @@ WHERE lu.ID = ID ;
 END $$
 DELIMITER ;
 
+
 DROP PROCEDURE IF EXISTS `sp_lookupuserroles_del`;
 DELIMITER $$
 CREATE PROCEDURE `sp_lookupuserroles_del`(IN id int)
 BEGIN
+DELETE FROM usersappsroles as ua
+WHERE ua.UserRoleID = id;
 DELETE FROM lookupuserroles AS ur
 WHERE ur.id = id;
 END $$

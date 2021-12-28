@@ -1747,7 +1747,7 @@ BEGIN
 DROP PROCEDURE IF EXISTS `sp_content_upd`;
 DELIMITER $$
 CREATE PROCEDURE `sp_content_upd` (
-	IN appid int, userid int, contenttypeid int, statusid int, 
+	IN id int, appid int, userid int, contenttypeid int, statusid int, 
     isfeebackallowed boolean, isvisible boolean, title varchar(65), 
     body varchar(10256), datecreated datetime, datemodified datetime, datepublished datetime
 )
@@ -1765,6 +1765,10 @@ DROP PROCEDURE IF EXISTS `sp_content_del`;
 DELIMITER $$
 CREATE PROCEDURE `sp_content_del`(IN id int)
 BEGIN
+DELETE FROM feedback as fb
+WHERE fb.contentID = id;
+DELETE FROM contentfiles as cf 
+WHERE cf.contentid = id;
 DELETE FROM content as c
 WHERE c.id = id;
 END $$

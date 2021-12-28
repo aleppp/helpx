@@ -417,3 +417,36 @@ app.get("/feedbackcc/sel", (req, res) => {
   const getFeedbackListCC = "CALL sp_feedback_sel_cc()";
   getQuery(db, getFeedbackListCC, res);
 });
+
+//db hook for displaying notifications 
+app.get("/notifications/sel", (req, res) => {
+  const getnotsel = "CALL sp_notifications_sel()";
+  getQuery(db, getnotsel, res);
+});
+
+// db hook for delete notifications
+app.delete("/notifications/del", (req, res) => {
+  const deleteNotifications = "CALL sp_notifications_del(?)";
+  const params = req.body;
+  setQuery(db, deleteNotifications, params.id, res);
+});
+
+//db hook for insert new notifications
+app.post("/notifications/ins", (req, res) => {
+  const insContent = "CALL sp_notifications_ins(?,?,?,?,?,?)";
+  const params = req.body.notifications;
+  setQuery(
+    db,
+    insContent,
+    [
+      params.typeid,
+      params.userappid,
+      params.body,
+      params.isread,
+      params.datecreated,
+      params.datemodified,
+    ],
+    res
+  );
+
+});

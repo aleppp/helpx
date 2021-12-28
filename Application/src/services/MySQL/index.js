@@ -113,6 +113,12 @@ app.get("/releasenotes/list", (req, res) => {
   getQuery(db, ReleaseNotes, res);
 });
 
+// db hook for displaying contentBody of release notes
+app.get("/releasenotes/sel", (req, res) => {
+  const getContentBodyReleaseNotes = "CALL sp_ContentBodyReleaseNotes_sel()";
+  getQuery(db, getContentBodyReleaseNotes, res);
+});
+
 //insert new content
 app.post("/content/ins", (req, res) => {
   const insContent = "CALL sp_content_ins(?,?,?,?,?,?,?,?,?,?,?)";

@@ -411,3 +411,9 @@ app.delete("/fraudmanagement/del", (req, res) => {
   const params = req.body;
   setQuery(db, deleteFraudManagement, params.id, res);
 });
+
+// db for feedback list for content creator
+app.get("/feedbackcc/sel", (req, res) => {
+  const getFeedbackListCC = "CALL sp_feedback_sel_cc()";
+  getQuery(db, getFeedbackListCC, res);
+});

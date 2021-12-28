@@ -2053,6 +2053,25 @@ BEGIN
     END $$
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS sp_feedback_sel_cc;
+DELIMITER $$
+CREATE PROCEDURE sp_feedback_sel_cc()
+BEGIN
+    SELECT 
+    fb.ID,
+    fb.ContentID,
+    fb.UserID, 
+    (SELECT CONCAT(u.FirstName, ' ', u.LastName) 
+      FROM Users AS u
+      WHERE u.ID = fb.UserID
+    )AS UserName,
+    fb.Feedback,
+    fb.Rating,
+    fb.DateCreated
+    FROM feedback AS fb
+    GROUP BY ContentID;
+END $$
+DELIMITER ;
 -- ************************************************* --
 --              Call Stored Procedure                --
 -- ************************************************* --
@@ -2134,3 +2153,5 @@ CALL sp_faq_upd(1, 'What is a release note?','Release notes are documents that a
 CALL sp_faq_del(2);
 
 CALL `sp_feedback_upd`(1,'Feedback upd', 4, now());
+
+CALL sp_feedback_sel_cc();

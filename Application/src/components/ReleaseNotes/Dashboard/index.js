@@ -8,6 +8,17 @@ export default function Dashboard() {
   const [tableData, setTableData] = useState([])
   const [current, setCurrent] = useState("unsorted");
 
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/ctdashboard")
+      .then((response) => {
+        if (response.status === 200)
+          setTableData(response.data[0]);
+        }
+      )
+      .catch((err) => console.log(err));
+  }, []);
+
   let [page, setPage] = useState(1);
   const PER_PAGE = 4;
 
@@ -19,14 +30,7 @@ export default function Dashboard() {
     _DATA.jump(p);
   };
 
-  useEffect(() => {
-    axios
-      .get("/ctdashboard")
-      .then((res) => {
-        if (res.status === 200)
-          setTableData(res.data)})
-      .catch((err) => console.log(err));
-  }, []);
+  
 
   const initialState = {
     isSorted: false,
@@ -62,15 +66,15 @@ export default function Dashboard() {
     if (current === "unsorted") {
       setCurrent("asc");
       dispatch({ type: "unsorted" });
-      sortData = sortData.sort((a, b) => a.Date.localeCompare(b.Date));
+      sortData = sortData.sort((a, b) => a.DateCreated.localeCompare(b.Date));
     } else if (current === "asc") {
       setCurrent("desc");
       dispatch({ type: "asc" });
-      sortData = sortData.sort((a, b) => b.Date.localeCompare(a.Date));
+      sortData = sortData.sort((a, b) => b.DateCreated.localeCompare(a.Date));
     } else {
       setCurrent("asc");
       dispatch({ type: "unsorted" });
-      sortData = sortData.sort((a, b) => a.Date.localeCompare(b.Date));
+      sortData = sortData.sort((a, b) => a.DateCreated.localeCompare(b.Date));
     }
 
     setTableData(sortData);
@@ -134,16 +138,16 @@ export default function Dashboard() {
           </tr>
         </thead>
         <tbody>
-          {_DATA.currentData().map(item => {
+          {_DATA.currentData().map((item, index) => {
             return(
-              <tr>
-                <td>{item.Date}</td>
+              <tr key={index}>
+                <td>{item.DateCreated}</td>
                 <td>{item.Title}</td>
-                <td>{item.Schedule}</td>
-                <td>{item.FeedbackButton}</td>
-                <td>{item.Feedback}</td>
-                <td>{item.Visibility}</td>
-                <td>{item.Status}</td>
+                <td>{item.DatePublished}</td>
+                <td>{item.IsFeebackAllowed}</td>
+                <td>{item.feedback}</td>
+                <td>{item.IsVisible}</td>
+                <td>{item.status}</td>
               </tr>
             );
           })}

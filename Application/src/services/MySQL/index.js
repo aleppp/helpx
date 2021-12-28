@@ -82,6 +82,25 @@ app.delete("/apps/del", (req, res) => {
   setQuery(db, deleteApps, params.id, res);
 });
 
+//display app attributes under admin app configuration
+app.get("/appattributes/sel", (req, res) => {
+  const getAppAttributes = "CALL sp_appattributes_sel()";
+  getQuery(db, getAppAttributes, res);
+});
+
+//edit attributes value for admin app configurations
+app.post("/appattributes/upd", (req, res) => {
+  const updAppAttributes = "CALL sp_appattributes_upd(?,?,?,?)";
+  const params = req.body.attributes;
+  setQuery(
+    db,
+    updAppAttributes,
+    [params.id, params.appid, params.newvalue, params.datemodified],
+    res
+  );
+});
+
+//display content list on user dashboard
 app.get("/ctdashboard", (req, res) => {
   const getDashboardDetails = "CALL sp_contentdb_sel()";
   getQuery(db, getDashboardDetails, res);

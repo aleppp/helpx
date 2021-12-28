@@ -343,6 +343,19 @@ app.post("/bookmarks/upd", (req, res) => {
   );
 });
 
+// db hook to select all bookmarks from all users
+app.get("/bookmarks/sel_all", (req, res) => {
+  const getallbook = "CALL sp_bookmarks_sel_all()";
+  getQuery(db, getallbook, res);
+});
+
+// db hook to select all bookmarks for a user
+app.get("/bookmarks/sel_user", (req, res) => {
+  const getuserbook = "CALL sp_bookmarks_sel_user(?)";
+  const params = req.body.book;
+  setQuery(db, getuserbook, params.id, res);
+});
+
 // db hook to update feedback
 app.post("/feedback/upd", (req, res) => {
   const updFeedback = "CALL sp_feedback_upd(?,?,?,?)";

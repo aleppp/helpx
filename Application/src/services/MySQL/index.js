@@ -450,3 +450,29 @@ app.post("/notifications/ins", (req, res) => {
   );
 
 });
+
+app.post("/content/upd", (req, res) => {
+  const updContent = "CALL sp_content_upd(?,?,?,?,?,?,?)";
+  const params = req.body.content;
+  setQuery(
+    db,
+    updContent,
+    [
+      params.id,
+      params.statusid,
+      params.isfeebackallowed,
+      params.isvisible,
+      params.title,
+      params.body,
+      params.datemodified,
+    ],
+    res
+  );
+});
+
+// db hook for delete notifications
+app.delete("/content/del", (req, res) => {
+  const deleteContent = "CALL sp_content_del(?)";
+  const params = req.body;
+  setQuery(db, deleteContent, params.id, res);
+});

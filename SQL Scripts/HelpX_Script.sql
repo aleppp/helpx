@@ -1744,19 +1744,16 @@ BEGIN
     END $$
     DELIMITER ;
 
-DROP PROCEDURE IF EXISTS `sp_content_upd`;
+DROP PROCEDURE IF EXISTS sp_content_upd;
 DELIMITER $$
-CREATE PROCEDURE `sp_content_upd` (
-	IN id int, appid int, userid int, contenttypeid int, statusid int, 
-    isfeebackallowed boolean, isvisible boolean, title varchar(65), 
-    body varchar(10256), datecreated datetime, datemodified datetime, datepublished datetime
+CREATE PROCEDURE sp_content_upd (
+    IN id int, statusid int, isfeebackallowed boolean, isvisible boolean, title varchar(65), 
+    body varchar(10256), datemodified datetime
 )
 BEGIN 
   UPDATE content as c
-    SET c.appid = appid, c.userid = userid, c.contenttypeid = contenttypeid, 
-    c.statusid = contenttypeid, c.isfeebackallowed = isfeebackallowed, c.isvisible = isvisible, 
-    c.title = title, c.body = body, c.datecreated = datecreated, 
-    c.datemodified = datemodified, c.datepublished = datepublished 
+    SET c.statusid = statusid, c.isfeebackallowed = isfeebackallowed, c.isvisible = isvisible, 
+    c.title = title, c.body = body, c.datemodified = datemodified,
     WHERE c.id = id;
     END $$
     DELIMITER ;
@@ -2113,7 +2110,7 @@ CALL sp_ContentBodyReleaseNotes_sel();
 
 CALL sp_content_ins(1, 1, 1, 1, true, true, 'Release Note 5.0', 'This is a new Release Notes', now(), now(), '2021-11-20 00:00:00');
 
-CALL sp_content_upd(1, 1, 1, 1, true, false, 'Release Note 6.0', 'This is a new Release Notes', now(), now(), '2021-11-21 00:00:00');
+CALL sp_content_upd(1, 1, true, false, 'Release Note 6.0', 'This is a new Release Notes', now());
 
 CALL sp_content_del(1);
 

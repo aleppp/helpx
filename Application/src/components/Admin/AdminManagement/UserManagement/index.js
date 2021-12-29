@@ -1,18 +1,30 @@
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "./style.css";
 import Button from "../../../Buttons/Buttons";
-
-const button = [
-  {
-    type: "button-red",
-    text: "Delete",
-  },
-  {
-    type: "button-blue",
-    text: "Add New",
-  },
-];
-
 function UserManagement() {
+  const [UserManagement, setUserManagement] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/user/sel")
+      .then((res) => {
+        if (res.status === 200) setUserManagement(res.data[0]);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  const button = [
+    {
+      type: "button-red",
+      text: "Delete",
+    },
+    {
+      type: "button-blue",
+      text: "Add New",
+    },
+  ];
+
   return (
     <div>
       <div className="user-management-component">
@@ -57,114 +69,35 @@ function UserManagement() {
               <th> System Admin </th>
               <th> Action </th>
             </tr>
-            <tr>
-              <td> U001 </td>
-              <td> Aliff</td>
-              <td> aliff.a@petronas.com </td>
-              <td> Alpha Oil </td>
-              <td>
-                <img
-                  className="checkbox"
-                  src={process.env.PUBLIC_URL + "/images/checkboxBlank.png"}
-                />
-              </td>
-              <td>
-                <img
-                  className="checkbox"
-                  src={process.env.PUBLIC_URL + "/images/checkboxBlank.png"}
-                />
-              </td>
-              <td>
-                <img
-                  className="checkbox"
-                  src={process.env.PUBLIC_URL + "/images/checkboxBlank.png"}
-                />
-              </td>
-              <td>
-                <Button button={button[0]}></Button>
-              </td>
-            </tr>
-            <tr>
-              <td> U002 </td>
-              <td> Balqis</td>
-              <td> balqis.b@petronas.com </td>
-              <td> Alpha Oil </td>
-              <td>
-                <img
-                  className="checkbox"
-                  src={process.env.PUBLIC_URL + "/images/checkboxBlank.png"}
-                />
-              </td>
-              <td>
-                <img
-                  className="checkbox"
-                  src={process.env.PUBLIC_URL + "/images/checkboxBlank.png"}
-                />
-              </td>
-              <td>
-                <img
-                  className="checkbox"
-                  src={process.env.PUBLIC_URL + "/images/checkboxBlank.png"}
-                />
-              </td>
-              <td>
-                <Button button={button[0]}></Button>
-              </td>
-            </tr>
-            <tr>
-              <td> U003 </td>
-              <td> Elli</td>
-              <td> elli.e@petronas.com </td>
-              <td> Alpha Oil </td>
-              <td>
-                <img
-                  className="checkbox"
-                  src={process.env.PUBLIC_URL + "/images/checkboxBlank.png"}
-                />
-              </td>
-              <td>
-                <img
-                  className="checkbox"
-                  src={process.env.PUBLIC_URL + "/images/checkboxBlank.png"}
-                />
-              </td>
-              <td>
-                <img
-                  className="checkbox"
-                  src={process.env.PUBLIC_URL + "/images/checkboxBlank.png"}
-                />
-              </td>
-              <td>
-                <Button button={button[0]}></Button>
-              </td>
-            </tr>
-            <tr>
-              <td> U004 </td>
-              <td> Sahirah</td>
-              <td> asahirah@petronas.com </td>
-              <td> Alpha Oil </td>
-              <td>
-                <img
-                  className="checkbox"
-                  src={process.env.PUBLIC_URL + "/images/checkboxBlank.png"}
-                />
-              </td>
-              <td>
-                <img
-                  className="checkbox"
-                  src={process.env.PUBLIC_URL + "/images/checkboxBlank.png"}
-                />
-              </td>
-              <td>
-                <img
-                  className="checkbox"
-                  src={process.env.PUBLIC_URL + "/images/checkboxBlank.png"}
-                />
-              </td>
-              <td>
-                <Button button={button[0]}></Button>
-              </td>
-            </tr>
+            {UserManagement.map((user, i) => (
+              <tr key={i}>
+                <td> {user.id} </td>
+                <td> {user.FirstName}</td>
+                <td> {user.Email} </td>
+                <td> {user.Name} </td>
+                <td>
+                  <img
+                    className="checkbox"
+                    src={process.env.PUBLIC_URL + "/images/checkboxBlank.png"}
+                  />
+                </td>
+                <td>
+                  <img
+                    className="checkbox"
+                    src={process.env.PUBLIC_URL + "/images/checkboxBlank.png"}
+                  />
+                </td>
+                <td>
+                  <img
+                    className="checkbox"
+                    src={process.env.PUBLIC_URL + "/images/checkboxBlank.png"}
+                  />
+                </td>
+                <td>
+                  <Button button={button[0]}></Button>
+                </td>
+              </tr>
+            ))}
           </table>
         </div>
       </div>

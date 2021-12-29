@@ -1531,11 +1531,11 @@ DELIMITER $$
 CREATE PROCEDURE `sp_appattributes_sel`()
 BEGIN
 SELECT (app.Name),
-	MAX(CASE WHEN lapt.Name = "Background Color" THEN apt.AppAttributeValue END) AS "Background Color",
-    MAX(CASE WHEN lapt.Name = "Font Size" THEN apt.AppAttributeValue END) AS "Font Size",
-    MAX(CASE WHEN lapt.Name = "Font Family" THEN apt.AppAttributeValue END) AS "Font Family",
+	MAX(CASE WHEN lapt.Name = "Background Color" THEN apt.AppAttributeValue END) AS "BackgroundColor",
+    MAX(CASE WHEN lapt.Name = "Font Size" THEN apt.AppAttributeValue END) AS "FontSize",
+    MAX(CASE WHEN lapt.Name = "Font Family" THEN apt.AppAttributeValue END) AS "FontFamily",
     MAX(CASE WHEN lapt.Name = "Theme" THEN apt.AppAttributeValue END) AS "Theme",
-    MAX(CASE WHEN lapt.Name = "Navigation Bar" THEN apt.AppAttributeValue END) AS "Navigation Bar"
+    MAX(CASE WHEN lapt.Name = "Navigation Bar" THEN apt.AppAttributeValue END) AS "NavigationBar"
 FROM applicationsattributes as apt
 LEFT JOIN applications as app
 ON app.ID = apt.AppID

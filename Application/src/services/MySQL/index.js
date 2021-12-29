@@ -288,12 +288,19 @@ app.post("/fraudmanagement/ins", (req, res) => {
 
 // insert new template for content creator
 app.post("/template/ins", (req, res) => {
-  const insTemplate = "CALL sp_template_ins(?,?,?,?)";
+  const insTemplate = "CALL sp_template_ins(?,?,?,?,?,?)";
   const params = req.body.template;
   setQuery(
     db,
     insTemplate,
-    [params.appid, params.userid, params.title, params.body],
+    [
+      params.appid,
+      params.userid,
+      params.title,
+      params.body,
+      params.datecreated,
+      params.datemodified,
+    ],
     res
   );
 });

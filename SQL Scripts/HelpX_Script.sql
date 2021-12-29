@@ -1987,7 +1987,7 @@ BEGIN
 	SELECT ar.ID as ID,
     lu.Name,
     lu.Description,
-    COUNT(ar.ID) as 'Number of Users'
+    COUNT(ar.ID) as 'Number'
     FROM usersappsroles as ar
     LEFT JOIN lookupuserroles as lu
     ON UserRoleID = lu.ID

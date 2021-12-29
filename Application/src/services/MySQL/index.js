@@ -424,7 +424,7 @@ app.get("/feedbackcc/sel", (req, res) => {
   getQuery(db, getFeedbackListCC, res);
 });
 
-//db hook for displaying notifications 
+//db hook for displaying notifications
 app.get("/notifications/sel", (req, res) => {
   const getnotsel = "CALL sp_notifications_sel()";
   getQuery(db, getnotsel, res);
@@ -454,7 +454,6 @@ app.post("/notifications/ins", (req, res) => {
     ],
     res
   );
-
 });
 
 app.post("/content/upd", (req, res) => {
@@ -481,4 +480,23 @@ app.delete("/content/del", (req, res) => {
   const deleteContent = "CALL sp_content_del(?)";
   const params = req.body;
   setQuery(db, deleteContent, params.id, res);
+});
+
+//db hook for insert feedback
+app.post("/feedback/ins", (req, res) => {
+  const insFeedback = "CALL sp_feedback_ins(?,?,?,?,?,?)";
+  const params = req.body.feedback;
+  setQuery(
+    db,
+    insFeedback,
+    [
+      params.userid,
+      params.contentid,
+      params.feedback,
+      params.rating,
+      params.datecreated,
+      params.datemodified,
+    ],
+    res
+  );
 });

@@ -1,6 +1,7 @@
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "./TemplateEditor.css";
 import TemplatePopup from "./TemplatePopup.js";
 
@@ -13,6 +14,16 @@ const TEMPLATES = [
 function TemplateEditor() {
   const [name, setName] = useState("");
   const [isOpen, setIsOpen] = useState(false);
+  const [templateList, setTemplateList] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/template/sel")
+      .then((res) => {
+        if (res.status === 200) setTemplateList(res.data[0]);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   const togglePopup = () => {
     setIsOpen(!isOpen);
@@ -30,8 +41,8 @@ function TemplateEditor() {
         <div>
           <select className="template">
             {" "}
-            {TEMPLATES.map((item) => {
-              return <option> {item.name}</option>;
+            {templateList.map((template) => {
+              return <option> {template.title}</option>;
             })}
           </select>
         </div>

@@ -1753,7 +1753,7 @@ CREATE PROCEDURE sp_content_upd (
 BEGIN 
   UPDATE content as c
     SET c.statusid = statusid, c.isfeebackallowed = isfeebackallowed, c.isvisible = isvisible, 
-    c.title = title, c.body = body, c.datemodified = datemodified,
+    c.title = title, c.body = body, c.datemodified = datemodified
     WHERE c.id = id;
     END $$
     DELIMITER ;

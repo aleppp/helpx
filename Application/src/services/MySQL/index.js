@@ -385,7 +385,7 @@ app.get("/bookmarks/sel_all", (req, res) => {
 app.get("/bookmarks/sel_user", (req, res) => {
   const getuserbook = "CALL sp_bookmarks_sel_user(?)";
   const params = req.body.book;
-  setQuery(db, getuserbook, params.id, res);
+  setQuery(db, getuserbook, params.userid, res);
 });
 
 // db hook to update feedback

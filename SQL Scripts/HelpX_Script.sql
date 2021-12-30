@@ -1,4 +1,4 @@
-DROP DATABASE IF EXISTS HelpX;
+            DROP DATABASE IF EXISTS HelpX;
 CREATE DATABASE HelpX;
 USE HelpX;
 SET
@@ -13,8 +13,8 @@ SET
     DateModified datetime,
     PRIMARY KEY(ID)
   );
-  -- Applications Table
-  CREATE TABLE IF NOT EXISTS Applications (
+  -- Applications Table                  
+           CREATE TABLE IF NOT EXISTS Applications (
     ID INT NOT NULL AUTO_INCREMENT,
     Name VARCHAR(25),
     URL VARCHAR(25),
@@ -2042,14 +2042,11 @@ DELIMITER ;
 DROP PROCEDURE IF EXISTS `sp_faq_upd`;
 DELIMITER $$
 CREATE PROCEDURE `sp_faq_upd` (
-	IN appid int, question varchar (255), answer varchar (1024),
-    isfeedbackallowed boolean, isvisible boolean, datecreated datetime, datemodified datetime
+	IN id int, appid int, question varchar (255), answer varchar (1024), isfeedbackallowed boolean, isvisible boolean, datemodified datetime
 )
 BEGIN 
   UPDATE faq as f
-    SET f.appid = appid, f.question = question, 
-    f.answer = answer, f.isfeedbackallowed = isfeedbackallowed, f.isvisible = isvisible, 
-   f.datecreated = datecreated, f.datemodified = datemodified
+    SET f.appid = appid, f.question = question, f.answer = answer, f.isfeedbackallowed = isfeedbackallowed, f.isvisible = isvisible, f.datemodified = datemodified
     WHERE f.id = id;
 END $$
 DELIMITER ;
@@ -2155,7 +2152,7 @@ CALL sp_notifications_ins(1, 1, 'Notifications', true, now(), now()) ;
 
 CALL `sp_searchterm_sel`();
 
-CALL sp_faq_upd(1, 'What is a release note?','Release notes are documents that are distributed with software products', true, true, now());
+CALL sp_faq_upd(1, 1, 'What is a release note?','Release notes are documents that are distributed with software products', true, true, now());
   
 
 CALL `sp_feedback_upd`(1,'Feedback upd', 4, now());

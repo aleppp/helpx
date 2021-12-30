@@ -507,3 +507,10 @@ app.post("/feedback/ins", (req, res) => {
     res
   );
 });
+
+// db hook to select all feedback for a user under release note
+app.get("/feedbackrn/sel_user", (req, res) => {
+  const getuserfeedback = "CALL sp_feedbackrn_sel(?,?)";
+  const params = req.body.feedback;
+  setQuery(db, getuserfeedback, [params.contentid, params.userid], res);
+});

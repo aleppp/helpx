@@ -2108,6 +2108,17 @@ BEGIN
     AND fb.UserID = UserID;
 END $$
 DELIMITER ;
+
+DROP PROCEDURE IF EXISTS `sp_integratedapps_sel`;
+DELIMITER $$
+CREATE PROCEDURE `sp_integratedapps_sel`()
+BEGIN
+SELECT ID,
+    COUNT(ID) as 'IntegratedApp'
+  FROM applications;
+END $$
+DELIMITER ;
+
 -- ************************************************* --
 --              Call Stored Procedure                --
 -- ************************************************* --
@@ -2193,3 +2204,5 @@ CALL `sp_feedback_upd`(1,'Feedback upd', 4, now());
 CALL sp_feedback_sel_cc();
 
 CALL sp_feedbackrn_sel(1,1);
+
+CALL sp_integratedapps_sel();

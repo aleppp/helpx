@@ -514,3 +514,9 @@ app.get("/feedbackrn/sel_user", (req, res) => {
   const params = req.body.feedback;
   setQuery(db, getuserfeedback, [params.contentid, params.userid], res);
 });
+
+//db hook for number of integrated application
+app.get("/integratedapps/sel", (req, res) => {
+  const getIntApp = "CALL sp_integratedapps_sel()";
+  getQuery(db, getIntApp, res);
+});

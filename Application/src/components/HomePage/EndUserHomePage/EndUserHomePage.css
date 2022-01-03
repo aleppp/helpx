@@ -55,15 +55,22 @@
 }
 
 .list {
-  font-size: 20px;
+  font-size: 30px;
   font-family: mulish;
-  margin-left: 1em;
+  margin-left: 1.5em;
 }
 
 .list {
   list-style: none;
 }
 li {
-  font-size: 18px;
+  font-size: 25px;
   font-family: mulish;
+}
+ul {
+  list-style: disc;
+  color: #38b09d;
+  font-size: 2em;
+  font-weight: bold;
+  margin-left: 1em;
 }

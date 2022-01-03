@@ -520,3 +520,9 @@ app.get("/integratedapps/sel", (req, res) => {
   const getIntApp = "CALL sp_integratedapps_sel()";
   getQuery(db, getIntApp, res);
 });
+
+//db hook for displaying search term
+app.get("/searchterm/sel", (req, res) => {
+  const getSearchTerm = "CALL sp_searchterm_sel()";
+  getQuery(db, getSearchTerm, res);
+});

@@ -31,7 +31,7 @@ function FeedbackListCCRN() {
 
         </div>
 
-        {FeedbackCCRNList.map((fb,i) => {
+        {FeedbackCCRNList.map((fb,i) => (
         <div class = 'feedbackList'>
         
           <><table>
@@ -54,14 +54,14 @@ function FeedbackListCCRN() {
                     <tbody>
                     <tr>
                       <td class = "readdata"><button>{fb.Read}</button></td>
-                      <td><p>{fb.Date}</p></td>
+                      <td><p>{fb.DateCreated}</p></td>
                       <td><img src={process.env.PUBLIC_URL + "/images/read_icon.png"}></img></td>
                     </tr>
                     </tbody>
                   </table>
                 </div></>
         </div> 
-          }
+        )
         )
         }      
         </div>

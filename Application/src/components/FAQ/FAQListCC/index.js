@@ -1,46 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "./style.css";
 //import {Pagination} from "@material-ui/lab";
 import Button from "../../Buttons/Buttons";
 
-export default function FAQListCC(props) {
-  const data = [
-    {
-      FAQID: "F001",
-      FAQSection: "Petronas Digital",
-      Question: "Question 1",
-      Answer: "Answer 1",
-      Visibility: "On",
-    },
-    {
-      FAQID: "F002",
-      FAQSection: "Alpha Oil",
-      Question: "Question 2",
-      Answer: "Answer 2",
-      Visibility: "On",
-    },
-    {
-      FAQID: "F003",
-      FAQSection: "Setel",
-      Question: "Question 3",
-      Answer: "Answer 3",
-      Visibility: "On",
-    },
-    {
-      FAQID: "F004",
-      FAQSection: "Petronas Oil",
-      Question: "Question 4",
-      Answer: "Answer 4",
-      Visibility: "On",
-    },
-    {
-      FAQID: "F005",
-      FAQSection: "Petronas Digital",
-      Question: "Question 5",
-      Answer: "Answer 5",
-      Visibility: "On",
-    },
-  ];
+export default function FAQListCC() {
+  const [FAQList, setFAQList] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/faq/sel")
+      .then((res) => {
+        if (res.status === 200) setFAQList(res.data[0]);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   const button = [
     {
@@ -54,6 +28,10 @@ export default function FAQListCC(props) {
     {
       type: "button-red",
       text: "Delete",
+    },
+    {
+      type: "button-addnew",
+      text: "Add New",
     },
   ];
 
@@ -79,66 +57,20 @@ export default function FAQListCC(props) {
           </thead>
 
           <tbody>
-            <tr>
-              <td>{data[0].FAQID}</td>
-              <td>{data[0].FAQSection}</td>
-              <td>{data[0].Question}</td>
-              <td>{data[0].Answer}</td>
-              <td>{data[0].Visibility}</td>
-              <td>
-                <Button button={button[0]}></Button>
-                <Button button={button[1]}></Button>
-                <Button button={button[2]}></Button>
-              </td>
-            </tr>
-            <tr>
-              <td>{data[1].FAQID}</td>
-              <td>{data[1].FAQSection}</td>
-              <td>{data[1].Question}</td>
-              <td>{data[1].Answer}</td>
-              <td>{data[1].Visibility}</td>
-              <td>
-                <Button button={button[0]}></Button>
-                <Button button={button[1]}></Button>
-                <Button button={button[2]}></Button>
-              </td>
-            </tr>
-            <tr>
-              <td>{data[2].FAQID}</td>
-              <td>{data[2].FAQSection}</td>
-              <td>{data[2].Question}</td>
-              <td>{data[2].Answer}</td>
-              <td>{data[2].Visibility}</td>
-              <td>
-                <Button button={button[0]}></Button>
-                <Button button={button[1]}></Button>
-                <Button button={button[2]}></Button>
-              </td>
-            </tr>
-            <tr>
-              <td>{data[3].FAQID}</td>
-              <td>{data[3].FAQSection}</td>
-              <td>{data[3].Question}</td>
-              <td>{data[3].Answer}</td>
-              <td>{data[3].Visibility}</td>
-              <td>
-                <Button button={button[0]}></Button>
-                <Button button={button[1]}></Button>
-                <Button button={button[2]}></Button>
-              </td>
-            </tr>
-            <tr>
-              <td>{data[4].FAQID}</td>
-              <td>{data[4].FAQSection}</td>
-              <td>{data[4].Question}</td>
-              <td>{data[4].Answer}</td>
-              <td>{data[4].Visibility}</td>
-              <td>
-                <Button button={button[0]}></Button>
-                <Button button={button[1]}></Button>
-                <Button button={button[2]}></Button>
-              </td>
-            </tr>
+            {FAQList.map((fql, i) => (
+              <tr key={i}>
+                <td>{fql.ID}</td>
+                <td>{fql.Name}</td>
+                <td>{fql.Question}</td>
+                <td>{fql.Answer}</td>
+                <td>{fql.IsVisible}</td>
+                <td>
+                  <Button button={button[0]}></Button>
+                  <Button button={button[1]}></Button>
+                  <Button button={button[2]}></Button>
+                </td>
+              </tr>
+            ))}
           </tbody>
 
           <tfoot>
@@ -153,4 +85,3 @@ export default function FAQListCC(props) {
     </>
   );
 }
-

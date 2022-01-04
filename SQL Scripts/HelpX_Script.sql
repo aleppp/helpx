@@ -1832,12 +1832,21 @@ DELIMITER ;
 DROP PROCEDURE IF EXISTS `sp_users_ins`;
 DELIMITER $$
 CREATE PROCEDURE `sp_users_ins`(
-IN FirstName varchar(20), LastName varchar(40), Email varchar(50), DateCreated datetime, datemodified datetime)
+IN FirstName varchar(20), LastName varchar(20), email varchar(50), DateCreated datetime, DateModified datetime, UserAppID int, UserRoleID int, UserID int,  AppID int)
 BEGIN
-INSERT INTO users (FirstName, LastName, Email, DateCreated, DateModified)
-VALUES (FirstName, LastName, Email, DateCreated, DateModified);
+DECLARE newuserid INT DEFAULT (SELECT us.id FROM users AS us WHERE us.id = userid);
+DECLARE newuserappid INT DEFAULT (SELECT ua.id FROM usersapplications AS ua WHERE ua.id = UserAppID);
+
+INSERT INTO users(FirstName, Lastname, email, DateCreated, DateModified)
+VALUES(FirstName,LastName, email,DateCreated, DateModified);
+
+INSERT INTO usersappsroles(UserAppID, UserRoleID, DateCreated, DateModified)
+VALUES(newuserappID, UserRoleID, DateCreated, DateModified);
+
+INSERT INTO usersapplications(UserID, AppID, DateCreated, DateModified)
+VALUES(newuserID, AppID, DateCreated, DateModified);
 END $$
-DELIMITER ; 
+DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `sp_users_upd`;
 DELIMITER $$
@@ -2206,3 +2215,5 @@ CALL sp_feedback_sel_cc();
 CALL sp_feedbackrn_sel(1,1);
 
 CALL sp_integratedapps_sel();
+
+CALL sp_users_ins('User1', 'UserL1', 'user2@petronas.com', now(), now(), 1,1,1,1);

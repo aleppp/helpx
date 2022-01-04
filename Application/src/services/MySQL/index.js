@@ -82,6 +82,11 @@ app.delete("/api/apps/deleteapplication", (req, res) => {
   setQuery(db, deleteApps, params.id, res);
 });
 
+app.get("/api/configuredapps/2", (req, res) => {
+  const getRecentConfiguredApps = "CALL sp_applications_sel_recentchanges()";
+  getQuery(db, getRecentConfiguredApps, res);
+});
+
 //display app attributes under admin app configuration
 app.get("/api/appattributes/listappattributes", (req, res) => {
   const getAppAttributes = "CALL sp_appattributes_sel()";

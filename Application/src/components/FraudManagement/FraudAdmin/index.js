@@ -1,33 +1,36 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "./style.css";
-import Button from "./button";
-import Pagination from "../Pagination/pagination";
-
-const Buttons = [
-  {
-    type: "button-blue",
-    text: "Add New",
-  },
-  {
-    type: "button-green",
-    text: "Edit",
-  },
-  {
-    type: "button-red",
-    text: "Delete",
-  },
-];
-
-const fraud = [
-  { ID: "001", Term: "Petronas Digital" },
-  { ID: "002", Term: "Alpha Oil" },
-  { ID: "003", Term: "Petronas Up" },
-  { ID: "004", Term: "Petronas Digital" },
-  { ID: "005", Term: "Petronas Up" },
-  { ID: "006", Term: "Alpha Oil" },
-];
+import Button from "../../Buttons/Buttons";
+//import Pagination from "../Pagination/pagination";
 
 function FraudConfig() {
+  const [fraudManagement, setFraudManagement] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/fraudmanagement/sel")
+      .then((res) => {
+        if (res.status === 200) setFraudManagement(res.data[0]);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  const Buttons = [
+    {
+      type: "button-blue",
+      text: "Add New",
+    },
+    {
+      type: "button-green",
+      text: "Edit",
+    },
+    {
+      type: "button-red",
+      text: "Delete",
+    },
+  ];
+
   return (
     <div>
       <div className="fraud-config-component">
@@ -37,36 +40,26 @@ function FraudConfig() {
 
       <table>
         <tr>
-          <th>
-            ID
-            {/*<img
-              className="dropdown"
-              alt="dropdown arrow"
-              src={process.env.PUBLIC_URL + "/images/expandMore.png"}
-            />*/}
-          </th>
+          <th>ID</th>
           <th>Term</th>
           <th>Action</th>
         </tr>
 
         <tbody>
-          {fraud.map((item) => {
-            return (
-              <tr>
-                <td>{item.ID}</td>
-                <td>{item.Term}</td>
-                <td>
-                  <center>
-                    <Button button={Buttons[1]}></Button>{" "}
-                    <Button button={Buttons[2]}></Button>
-                  </center>
-                </td>
-              </tr>
-            );
-          })}
+          {fraudManagement.map((fr, a) => (
+            <tr key={a}>
+              <td>{fr.id}</td>
+              <td>{fr.term}</td>
+              <td>
+                <center>
+                  <Button button={Buttons[1]}></Button>{" "}
+                  <Button button={Buttons[2]}></Button>
+                </center>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
-      <Pagination />
     </div>
   );
 }

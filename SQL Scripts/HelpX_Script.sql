@@ -2216,4 +2216,4 @@ CALL sp_feedbackrn_sel(1,1);
 
 CALL sp_integratedapps_sel();
 
-CALL sp_users_ins('User1', 'UserL1', 'user2@petronas.com', now(), now(), 1,1,1,1);
+CALL sp_users_ins('User1', 'UserL1', 'user2@petronas.com', now(), now(), 2,2,2,2); 

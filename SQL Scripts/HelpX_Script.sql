@@ -1928,6 +1928,7 @@ BEGIN
     SELECT 
     na.ID,
     na.TypeID,
+    (SELECT ln.Name FROM lookupnotificationtypes AS ln WHERE ln.ID = na.TypeID) AS TypeName,
     na.UserAppID,
     ua.UserID,
     (SELECT CONCAT(u.FirstName, ' ', u.LastName)

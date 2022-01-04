@@ -526,3 +526,9 @@ app.get("/searchterm/sel", (req, res) => {
   const getSearchTerm = "CALL sp_searchterm_sel()";
   getQuery(db, getSearchTerm, res);
 });
+
+// db hook for displaying auditlogs
+app.get("/auditlogs/datatable", (req, res) => {
+  const getAuditLogs = "CALL sp_auditlogs_sel()";
+  getQuery(db, getAuditLogs, res);
+});

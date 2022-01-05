@@ -1545,6 +1545,19 @@ LIMIT 3;
 END $$
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `sp_applications_sel_unconfigured`;
+DELIMITER $$
+CREATE PROCEDURE `sp_applications_sel_unconfigured`()
+BEGIN
+SELECT (app.name) AS 'Application',
+(SELECT IF(app.url is NULL,'URL is not defined',CONCAT(lapt.name,' ','not defined!'))) AS 'Description'
+FROM applications as app
+LEFT JOIN applicationsattributes AS appt ON appt.appid = app.id
+LEFT JOIN lookupappattributes as lapt ON lapt.id = appt.attributeid
+WHERE appt.appattributevalue is NULL or app.url is NULL; 
+END $$
+DELIMITER ;
+
 DROP PROCEDURE IF EXISTS `sp_appattributes_sel`;
 DELIMITER $$
 CREATE PROCEDURE `sp_appattributes_sel`()
@@ -1571,6 +1584,16 @@ BEGIN
 UPDATE applicationsattributes as apt
 SET apt.appattributevalue = newvalue, apt.datemodified = datemodified
 WHERE apt.id = id AND apt.appid = appid;
+END $$
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS `sp_applicationsattributes_ins`;
+DELIMITER $$
+CREATE PROCEDURE `sp_applicationsattributes_ins`(
+IN appid INT, attributeid INT, appattributevalue VARCHAR(20),datecreated datetime,datemodified datetime)
+BEGIN
+INSERT INTO applicationsattributes(appid,attributeid,appattributevalue,datecreated,datemodified)
+VALUES (appid,attributeid,appattributevalue,datecreated,datemodified);
 END $$
 DELIMITER ;
 
@@ -1763,9 +1786,9 @@ BEGIN
     END $$
     DELIMITER ;
 
-DROP PROCEDURE IF EXISTS sp_content_upd;
+DROP PROCEDURE IF EXISTS `sp_content_upd`;
 DELIMITER $$
-CREATE PROCEDURE sp_content_upd (
+CREATE PROCEDURE `sp_content_upd` (
     IN id int, statusid int, isfeebackallowed boolean, isvisible boolean, title varchar(65), 
     body varchar(10256), datemodified datetime
 )
@@ -2237,3 +2260,7 @@ CALL sp_feedbackrn_sel(1,1);
 CALL sp_integratedapps_sel();
 
 CALL sp_users_ins('User1', 'UserL1', 'user2@petronas.com', now(), now(), 2,2,2,2); 
+
+call `sp_applications_ins`('Setel',null,now(),now());
+
+call `sp_applicationsattributes_ins`(1,1,null,now(),now());

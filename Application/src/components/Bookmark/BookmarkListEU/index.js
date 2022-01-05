@@ -7,7 +7,11 @@ export default function BookmarkListEU() {
   const [BookmarkEUList, setBookmarkListEU] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:8080/bookmarks/sel_all")
+      .post("http://localhost:8080/bookmarks/sel_user", {
+        book: {
+          userid: 2,
+        },
+      })
       .then((res) => {
         if (res.status === 200) setBookmarkListEU(res.data[0]);
       })

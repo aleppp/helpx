@@ -387,7 +387,7 @@ app.get("/bookmarks/sel_all", (req, res) => {
 });
 
 // db hook to select all bookmarks for a user
-app.get("/bookmarks/sel_user", (req, res) => {
+app.post("/bookmarks/sel_user", (req, res) => {
   const getuserbook = "CALL sp_bookmarks_sel_user(?)";
   const params = req.body.book;
   setQuery(db, getuserbook, params.userid, res);
@@ -514,7 +514,7 @@ app.post("/feedback/ins", (req, res) => {
 });
 
 // db hook to select all feedback for a user under release note
-app.get("/feedbackrn/sel_user", (req, res) => {
+app.post("/feedbackrn/sel_user", (req, res) => {
   const getuserfeedback = "CALL sp_feedbackrn_sel(?,?)";
   const params = req.body.feedback;
   setQuery(db, getuserfeedback, [params.contentid, params.userid], res);

@@ -6,11 +6,12 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.min.css";
+import AuditLogHistory from "./components/Admin/AdminDashboard/AuditLogHistory";
 
 ReactDOM.render(
   <>
     <Router>
-      <Route component={App} />
+      <Route component={AuditLogHistory} />
     </Router>
   </>,
   document.getElementById("root")

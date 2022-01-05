@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./TemplateEditor.css";
 import TemplatePopup from "./TemplatePopup.js";
+import Button from "../../Buttons/Buttons";
 
 const TEMPLATES = [
   { name: "Template 1.0" },
@@ -64,7 +65,11 @@ function TemplateEditor() {
                 "
           />
           <div />
+          <button className="button-delete">Delete</button>
+          <button className="button-update">Update</button>
+          <button className="button-draft">Save as Draft</button>
         </div>
+
         {isOpen && (
           <TemplatePopup
             content={

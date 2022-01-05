@@ -87,6 +87,12 @@ app.get("/api/configuredapps/2", (req, res) => {
   getQuery(db, getRecentConfiguredApps, res);
 });
 
+//display unconfigured apps
+app.get("/api/configuredapps/1", (req, res) => {
+  const getUnconfiguredApps = "CALL sp_applications_sel_unconfigured()";
+  getQuery(db, getUnconfiguredApps, res);
+});
+
 //display app attributes under admin app configuration
 app.get("/api/appattributes/listappattributes", (req, res) => {
   const getAppAttributes = "CALL sp_appattributes_sel()";

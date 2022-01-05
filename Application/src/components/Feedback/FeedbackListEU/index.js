@@ -6,29 +6,27 @@ import { Pagination } from "@mui/material";
 import UserHeader from "../../ReleaseNotes/Navigation/UserHeader";
 import UserNavigation from "../../ReleaseNotes/Navigation/UserNavigation";
 
-export default function FeedbackList() {
-  const [FeedbackEUList, setFeedbackEUList] = useState([]);
+export default function FeedbackListEU() {
+  const [FeedbackListEU, setFeedbackListEU] = useState([]);
 
-  //fetch data from api
   useEffect(() => {
     axios
       .get("http://localhost:8080/feedback/sel")
       .then((res) => {
-        if (res.status === 200) setFeedbackEUList(res.data[0]);
+        if (res.status === 200) setFeedbackListEU(res.data[0]);
       })
       .catch((err) => console.log(err));
   }, []);
 
-  //pagination
   let [page, setPage] = useState(1);
   const PER_PAGE = 4;
 
-  const count = Math.ceil(FeedbackEUList.length / PER_PAGE);
-  const _DATA = usePagination(FeedbackEUList, PER_PAGE);
+  const count = Math.ceil(FeedbackListEU.length / PER_PAGE);
+  const FeedbackDataEU = usePagination(FeedbackListEU, PER_PAGE);
 
   const handleChange = (e, p) => {
     setPage(p);
-    _DATA.jump(p);
+    FeedbackDataEU.jump(p);
   };
 
   function usePagination(data, itemsPerPage) {
@@ -50,7 +48,6 @@ export default function FeedbackList() {
     return { jump, currentData, currentPage, maxPage };
   }
 
-  //button
   const button = [
     {
       type: "button-green-center",
@@ -75,7 +72,6 @@ export default function FeedbackList() {
                   <div className="title">Feedback List</div>
                 </td>
               </tr>
-
               <tr>
                 <th>Content</th>
                 <th>Date</th>
@@ -84,11 +80,8 @@ export default function FeedbackList() {
                 <th>Action</th>
               </tr>
             </thead>
-
             <tbody>
-              {/* {FeedbackEUList.map((fb, i) => (
-              <tr key={i}> */}
-              {_DATA.currentData().map((item, index) => {
+              {FeedbackDataEU.currentData().map((item, index) => {
                 return (
                   <tr key={index}>
                     <td>

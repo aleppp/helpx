@@ -2139,9 +2139,11 @@ BEGIN
     )AS UserName,
     fb.Feedback,
     fb.Rating,
-    fb.DateCreated
+    fb.DateCreated,
+    ct.title
     FROM feedback AS fb
-    GROUP BY ContentID;
+     LEFT JOIN content as ct
+        ON fb.ContentID  = ct.ID;
 END $$
 DELIMITER ;
 

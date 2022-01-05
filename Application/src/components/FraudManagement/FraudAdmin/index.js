@@ -9,7 +9,7 @@ function FraudConfig() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/fraudmanagement/sel")
+      .get("/fraudmanagement/sel")
       .then((res) => {
         if (res.status === 200) setFraudManagement(res.data[0]);
       })
@@ -46,10 +46,10 @@ function FraudConfig() {
         </tr>
 
         <tbody>
-          {fraudManagement.map((fr, a) => (
-            <tr key={a}>
-              <td>{fr.id}</td>
-              <td>{fr.term}</td>
+          {fraudManagement.map((fraud, index) => (
+            <tr key={index}>
+              <td>{fraud.id}</td>
+              <td>{fraud.term}</td>
               <td>
                 <center>
                   <Button button={Buttons[1]}></Button>{" "}

@@ -1,6 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./style.css";
-import React from 'react';
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -38,7 +37,27 @@ function FeedbackListCCRN() {
             <tbody>
                 <tr key={i}>
 
-                  <th>{fb.Rating}</th>
+                  <th>{(function(){
+                      if (fb.Rating == '1')	{
+                        return <img src = {process.env.PUBLIC_URL + "/images/rate_1.png"} alt = "Very Dissatisfied"/>;
+                      }
+                      
+                      else if (fb.Rating == '2')	{
+                        return <img src = {process.env.PUBLIC_URL + "/images/rate_2.png"} alt = "Dissatisfied"/>;
+                      }
+                      
+                      else if (fb.Rating == '3')	{
+                        return <img src = {process.env.PUBLIC_URL + "/images/rate_3.png"} alt = "Neutral"/>;
+                      }
+                      
+                      else if (fb.Rating == '4')	{
+                        return <img src = {process.env.PUBLIC_URL + "/images/rate_4.png"} alt = "Satisfied"/>;
+                      }
+                      
+                      else  {
+                        return <img src = {process.env.PUBLIC_URL + "/images/rate_5.png"} alt = "Very Satisfied"/>;
+                      }
+                    })()}</th>
                   <div class="HeaderName">
                     <th>{fb.UserName}</th>
                   </div>

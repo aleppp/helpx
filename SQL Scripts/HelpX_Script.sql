@@ -1526,6 +1526,25 @@ WHERE ap.id = id;
 END $$
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `sp_applications_sel_recentchanges`;
+DELIMITER $$
+CREATE PROCEDURE `sp_applications_sel_recentchanges`()
+BEGIN
+SELECT (al.datecreated) as 'Datetime',
+MAX(CASE WHEN lao.id = 8 THEN alo.objectvalue END) AS 'ApplicationName', 
+CONCAT(laa.name,' ',(SELECT lapt.name FROM lookupappattributes as lapt WHERE lapt.id = MAX(CASE WHEN lao.id=9 THEN alo.objectvalue END))) AS Changes,
+CONCAT (u.firstname," ",u.lastname) as User
+FROM auditlogs AS al
+LEFT JOIN users AS u ON u.id = al.userid
+LEFT JOIN auditlogobjects AS alo ON alo.auditlogid = al.id
+LEFT JOIN lookupauditlogobjects as lao ON lao.id = alo.objectid
+LEFT JOIN lookupauditlogactions as laa ON laa.id = al.actionid
+GROUP BY al.id
+ORDER BY al.datecreated DESC
+LIMIT 3;
+END $$
+DELIMITER ;
+
 DROP PROCEDURE IF EXISTS `sp_appattributes_sel`;
 DELIMITER $$
 CREATE PROCEDURE `sp_appattributes_sel`()

@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "./style.css";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
@@ -43,9 +44,9 @@ function AuditLogHistory() {
           </th>
           <th> Action </th>
         </tr>
-        {AuditLog.map((auditlog, i) => (
+        {AuditLogHistory.map((auditlog, i) => (
           <tr key={i}>
-            <td> {auditlog.Date & Time} </td>
+            <td> {auditlog.DateTime} </td>
             <td> {auditlog.User} </td>
             <td> {auditlog.Category} </td>
             <td> {auditlog.Changes} </td>

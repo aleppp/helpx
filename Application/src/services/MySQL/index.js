@@ -15,6 +15,7 @@ const db = mysql.createConnection({
   host: "localhost",
   password: "helpx",
   database: "helpx",
+  dateStrings: true,
 });
 
 //function to test connection with db

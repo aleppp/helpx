@@ -1736,15 +1736,30 @@ BEGIN
 END $$
 DELIMITER ;
 
-DROP PROCEDURE IF EXISTS `sp_auditlogs_sel`
+DROP PROCEDURE IF EXISTS sp_auditlogs_sel;
 DELIMITER $$
-CREATE PROCEDURE `sp_auditlogs_sel_byuserid`()
+CREATE PROCEDURE sp_auditlogs_sel()
 BEGIN
-    SELECT al.ID as id,
-    al.UserID,
-    al.ActionID,
-    al.DateCreated
-    FROM auditlogs as al;
+    SELECT al.datecreated as 'DateTime' , u.firstname as User, luo.name as Category, lua.name as Changes, alo.objectvalue as ChangedObject
+    FROM auditlogs as al
+    LEFT JOIN users u ON al.userid = u.id
+    LEFT JOIN auditlogobjects alo ON al.id = alo.auditlogid
+    LEFT JOIN lookupauditlogactions lua ON al.actionid = lua.id
+    LEFT JOIN lookupauditlogobjects luo ON alo.objectid = luo.id;
+END $$
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS sp_auditlogs_ins;
+DELIMITER $$
+CREATE PROCEDURE sp_auditlogs_ins(IN userid int, actionid int, auditlogid int,objectid int,objectvalue varchar(25), datecreated datetime)
+BEGIN
+  DECLARE newauditlogid INT DEFAULT (SELECT al.id FROM auditlogs AS al WHERE al.id = auditlogid);
+ 
+INSERT INTO auditlogs(userid,actionid,datecreated)
+VALUES(userid,actionid,datecreated);
+ 
+INSERT INTO auditlogobjects(auditlogid,objectid,objectvalue,datecreated)
+VALUES(newauditlogid, objectid, objectvalue,datecreated);
 END $$
 DELIMITER ;
 
@@ -2158,8 +2173,6 @@ CALL sp_template_ins(1,1,'Release Note 1','Here are some details on..', now(), n
 CALL sp_template_sel();
 CALL sp_template_upd(2,1,1,'Release Note 3.4','Release Note are....',now(),now());
 CALL sp_template_del(1);
-
-CALL sp_auditlogs_sel_byuserid();
 
 CALL sp_ReleaseNotes_sel();
 CALL sp_ContentBodyReleaseNotes_sel();

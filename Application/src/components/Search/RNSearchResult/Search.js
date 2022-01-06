@@ -11,8 +11,7 @@ export default function Search() {
     const fetchData = async () => {
       try {
         const res = await axios.get("http://localhost:8080/searchterm/sel");
-        //let filteredData = result.data[0].filter();
-        //setData(filteredData);
+
         setData(res.data[0]);
         setFiltered(res.data[0]);
       } catch (err) {
@@ -22,7 +21,6 @@ export default function Search() {
     fetchData();
   }, []);
 
-  // students.filter((student) => student.id === 3);
   useEffect(() => {
     const results = filtered.filter((res) =>
       res.Title.toLowerCase().includes(result)

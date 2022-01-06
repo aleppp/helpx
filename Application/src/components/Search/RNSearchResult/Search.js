@@ -27,7 +27,6 @@ export default function Search() {
     );
     setData(results);
   }, [result]);
-  //console.log(data)
 
   const onChange = (e) => {
     setResult(e.target.value);

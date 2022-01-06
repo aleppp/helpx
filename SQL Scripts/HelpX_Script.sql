@@ -2196,8 +2196,6 @@ CALL sp_bookmarks_sel_user(2);
 
 CALL sp_users_ins('Roman', 'Kvaska', 'roman.kvaska@gmail.com', now(), now() ) ;
 
-CALL sp_users_del(3);
-
 CALL `sp_applications_upd`(1,'AlphaOil Petronas','alphaoil',now());
 
 CALL `sp_faq_ins`(1, 'Question', 'Answer', true, true, now(), now());

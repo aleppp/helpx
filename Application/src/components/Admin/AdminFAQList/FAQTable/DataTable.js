@@ -57,8 +57,8 @@ function DataTable() {
               <td>{fq.Name}</td>
               <td>{fq.Question}</td>
               <td>{fq.Answer}</td>
-              <td>{fq.IsVisible}</td>
-              <td>{fq.IsFeedbackAllowed}</td>
+              <td>{`${fq.IsVisible ? "Yes" : "No"}`}</td>
+              <td>{`${fq.IsFeedbackAllowed ? "Yes" : "No"}`}</td>
               <td>{fq.QuestionOrder}</td>
               <td className="action-column">
                 <Button button={button[0]}></Button>

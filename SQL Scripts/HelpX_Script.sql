@@ -182,8 +182,9 @@ SET
     AppID int NOT NULL,
     Question varchar(255),
     Answer varchar(255),
+    QuestionOrder int,
     IsFeedbackAllowed boolean,
-    IsVisible boolean,
+    IsVisible boolean, 
     DateCreated datetime,
     DateModified datetime,
     PRIMARY KEY(ID),
@@ -1230,6 +1231,7 @@ INSERT INTO
     AppID,
     Question,
     Answer,
+    QuestionOrder,
     IsFeedbackAllowed,
     IsVisible,
     DateCreated,
@@ -1237,8 +1239,9 @@ INSERT INTO
   )
 SELECT
   1,
-  'What is a release note?',
+  'What is a release notes?',
   'Release notes are documents that are distributed with software products',
+  1,
   1,
   1,
   '2021-02-22 08:30:45',
@@ -1254,7 +1257,7 @@ WHERE
       faq
     WHERE
       AppID = '1'
-      AND question = 'What is a release note?'
+      AND question = 'What is a release notes?'
   );
   -- FAQHistory
 INSERT INTO
@@ -1928,10 +1931,10 @@ DELIMITER ;
 DROP PROCEDURE IF EXISTS `sp_faq_ins`;
 DELIMITER $$
 CREATE PROCEDURE `sp_faq_ins`(
-IN appid int, question varchar(255), answer varchar(255), isfeedbackallowed boolean, isvisible boolean, datecreated datetime, datemodified datetime)
+IN appid int, question varchar(255), answer varchar(255), questionorder int, isfeedbackallowed boolean, isvisible boolean, datecreated datetime, datemodified datetime)
 BEGIN
-INSERT INTO faq (appid,question,answer,isfeedbackallowed,isvisible,datecreated,datemodified)
-VALUES (appid,question,answer,isfeedbackallowed,isvisible,datecreated,datemodified);
+INSERT INTO faq (appid,question,answer,questionorder,isfeedbackallowed,isvisible,datecreated,datemodified)
+VALUES (appid,question,answer,questionorder,isfeedbackallowed,isvisible,datecreated,datemodified);
 END $$
 DELIMITER ;
 
@@ -1942,6 +1945,8 @@ BEGIN
     SELECT fq.ID,
     fq.Question,
     fq.Answer,
+    fq.QuestionOrder,
+    fq.isFeedbackAllowed,
     fq.IsVisible,
     fq.DateCreated,
     fq.DateModified,
@@ -2109,14 +2114,14 @@ DELIMITER ;
 DROP PROCEDURE IF EXISTS `sp_faq_upd`;
 DELIMITER $$
 CREATE PROCEDURE `sp_faq_upd` (
-	IN ID INT, appid int, question varchar (255), answer varchar (1024),
-    isfeedbackallowed boolean, isvisible boolean,  datemodified datetime
+	IN appid int, question varchar (255), answer varchar (1024),questionorder int,
+    isfeedbackallowed boolean, isvisible boolean, datecreated datetime, datemodified datetime
 )
 BEGIN 
   UPDATE faq as f
     SET f.appid = appid, f.question = question, 
-    f.answer = answer, f.isfeedbackallowed = isfeedbackallowed, f.isvisible = isvisible, 
-   f.datemodified = datemodified
+    f.answer = answer, f.questionorder=questionorder,f.isfeedbackallowed = isfeedbackallowed, f.isvisible = isvisible, 
+   f.datecreated = datecreated, f.datemodified = datemodified
     WHERE f.id = id;
 END $$
 DELIMITER ;

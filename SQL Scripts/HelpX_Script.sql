@@ -2183,6 +2183,16 @@ BEGIN
 END $$
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `sp_countUser_sel`;
+DELIMITER $$
+CREATE PROCEDURE `sp_countUser_sel`()
+BEGIN
+select 
+COUNT(ID) as 'ActiveUser'
+FROM users;
+END $$
+DELIMITER ;
+
 DROP PROCEDURE IF EXISTS `sp_integratedapps_sel`;
 DELIMITER $$
 CREATE PROCEDURE `sp_integratedapps_sel`()

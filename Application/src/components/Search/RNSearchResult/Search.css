@@ -1,12 +1,13 @@
-.App {
+.Search {
   display: flex;
+  text-align: center;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.App input {
+.Search input {
   margin-top: 20px;
   width: 300px;
   height: 40px;
@@ -18,4 +19,3 @@ p {
   margin: 10px;
   font-size: 18px;
 }
-

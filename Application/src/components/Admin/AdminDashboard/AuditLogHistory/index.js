@@ -3,6 +3,17 @@ import "./style.css";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 function AuditLogHistory() {
+  const [AuditLogHistory, setAuditLogHistory] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/auditlogs/datatable")
+      .then((res) => {
+        if (res.status === 200) setAuditLogHistory(res.data[0]);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <div>
       <div className="audit-1">
@@ -32,40 +43,15 @@ function AuditLogHistory() {
           </th>
           <th> Action </th>
         </tr>
-        <tr>
-          <td> 1/11/2021 9:00PM </td>
-          <td> Admin 1 </td>
-          <td> User </td>
-          <td> Assign Role </td>
-          <td> Balqis </td>
-          <a href="a">Show More</a>
-        </tr>
-        <tr>
-          <td> 1/11/2021 9:20PM </td>
-          <td> Admin 2 </td>
-          <td> Application </td>
-          <td> Change Database </td>
-          <td> Amir </td>
-          <a href="a">Show More</a>
-        </tr>
-
-        <tr>
-          <td> 1/11/2021 9:420PM </td>
-          <td> Admin 3 </td>
-          <td> User </td>
-          <td> Delete User </td>
-          <td> Nisa </td>
-          <a href="a">Show More</a>
-        </tr>
-
-        <tr>
-          <td> 2/11/2021 10:01AM </td>
-          <td> Admin 3 </td>
-          <td> Application </td>
-          <td> Add New Application </td>
-          <td> Setel </td>
-          <a href="a">Show More</a>
-        </tr>
+        {AuditLog.map((auditlog, i) => (
+          <tr key={i}>
+            <td> {auditlog.Date & Time} </td>
+            <td> {auditlog.User} </td>
+            <td> {auditlog.Category} </td>
+            <td> {auditlog.Changes} </td>
+            <td> {auditlog.ChangedObject} </td>
+          </tr>
+        ))}
       </table>
       <div className="pagination">
         <a href="#">&laquo;</a>

@@ -3,10 +3,11 @@ import {Pagination} from "@mui/material";
 import './index.css';
 import axios from 'axios'
 
-
 export default function Dashboard() {
   const [tableData, setTableData] = useState([])
-  const [current, setCurrent] = useState("unsorted");
+  const [currentCreated, setCurrentCreated] = useState("createdUnsort");
+  const [currentSchedule, setCurrentSchedule] = useState("scheduleUnsort");
+  const [dateClicked, setDateClicked] = useState("")
 
   useEffect(() => {
     axios
@@ -30,51 +31,100 @@ export default function Dashboard() {
     _DATA.jump(p);
   };
 
-  
-
   const initialState = {
-    isSorted: false,
-    isDesc: false
+    isCreatedSorted: false,
+    isScheduleSorted: false,
+    isCreatedDesc: false,
+    isScheduleDesc: false,
   };
 
   const [state, dispatch] = useReducer(sortReducer, initialState);
 
   function sortReducer(state, action) {
-    switch (action.type) {
-      case "unsorted":
-        return {
-          isSorted: true,
-          isDesc: false
-        };
-      case "asc":
-        return {
-          isSorted: true,
-          isDesc: true
-        };
-      case "desc":
-        return {
-          isSorted: true,
-          isDesc: false
-        };
-      default:
-        return { isSorted: state.isSorted, isDesc: state.isDesc };
+    if(dateClicked === "DateCreated") {
+      switch (action.type) {
+        case "createdUnsort":
+          return {
+            isCreatedSorted: true,
+            isCreatedDesc: false
+          };
+        case "createdAsc":
+          return {
+            isCreatedSorted: true,
+            isCreatedDesc: true
+          };
+        case "createdDesc":
+          return {
+            isCreatedSorted: true,
+            isCreatedDesc: false
+          };
+          default:
+            return { 
+              isCreatedSorted: state.isCreatedSorted,
+              isCreatedDesc: state.isCreatedDesc,
+            };
+      }
+    }
+    else if (dateClicked === "DatePublished") {
+      switch (action.type) {
+        case "scheduleUnsort":
+          return {
+            isScheduleSorted: true,
+            isScheduleDesc: false
+          };
+        case "scheduleAsc":
+          return {
+            isScheduleSorted: true,
+            isScheduleDesc: true
+          };
+        case "scheduleDesc":
+          return {
+            isScheduleSorted: true,
+            isScheduleDesc: false
+          }; 
+        default:
+          return { 
+            isScheduleSorted: state.isScheduleSorted,
+            isScheduleDesc: state.isScheduleDesc
+          };
+      }
     }
   }
 
-  function dispatchSort() {
+  function dispatchSort(e) {
     let sortData = [...tableData]
-    if (current === "unsorted") {
-      setCurrent("asc");
-      dispatch({ type: "unsorted" });
-      sortData = sortData.sort((a, b) => a.DateCreated.localeCompare(b.Date));
-    } else if (current === "asc") {
-      setCurrent("desc");
-      dispatch({ type: "asc" });
-      sortData = sortData.sort((a, b) => b.DateCreated.localeCompare(a.Date));
-    } else {
-      setCurrent("asc");
-      dispatch({ type: "unsorted" });
-      sortData = sortData.sort((a, b) => a.DateCreated.localeCompare(b.Date));
+    setDateClicked(e.currentTarget.id)
+    let targetDate = e.currentTarget.id
+
+    if (targetDate === "DateCreated") {
+      if (currentCreated === "createdUnsort") {
+        setCurrentCreated("createdAsc");
+        dispatch({ type: "createdUnsort" });
+        sortData = sortData.sort((a, b) => a.DateCreated.localeCompare(b.DateCreated));
+      } else if (currentCreated === "createdAsc") {
+        setCurrentCreated("createdDesc");
+        dispatch({ type: "createdAsc" });
+        sortData = sortData.sort((a, b) => b.DateCreated.localeCompare(a.DateCreated));
+      } else {
+        setCurrentCreated("createdAsc");
+        dispatch({ type: "createdUnsort" });
+        sortData = sortData.sort((a, b) => a.DateCreated.localeCompare(b.DateCreated));
+      }
+    }
+    else if (targetDate === "DatePublished") {
+      if (currentSchedule === "scheduleUnsort") {
+        setCurrentSchedule("scheduleAsc");
+        dispatch({ type: "scheduleUnsort" });
+        sortData = sortData.sort((a, b) => a.DatePublished.localeCompare(b.DatePublished));
+      } else if (currentSchedule === "scheduleAsc") {
+        setCurrentSchedule("scheduleDesc");
+        dispatch({ type: "scheduleAsc" });
+        sortData = sortData.sort((a, b) => b.DatePublished.localeCompare(a.DatePublished));
+      } else {
+        setCurrentSchedule("scheduleAsc");
+        dispatch({ type: "scheduleUnsort" });
+        sortData = sortData.sort((a, b) => a.DatePublished.localeCompare(b.DatePublished));
+      }
     }
 
     setTableData(sortData);
@@ -114,11 +164,10 @@ export default function Dashboard() {
           </tr>
           <tr>
             <th className="tableHeader">
-              <button onClick={() => dispatchSort()}>
-                Date
-                <span>
-                  {state.isSorted ? (
-                    state.isDesc ? (
+              <button id='DateCreated' onClick={(e) => dispatchSort(e)}>
+                  Date
+                  {state.isCreatedSorted ? (
+                    state.isCreatedDesc ? (
                       <img  src={process.env.PUBLIC_URL + '/icons/descend.svg'} />
                     ) : (
                       <img src={process.env.PUBLIC_URL + '/icons/ascend.svg'} />
@@ -126,11 +175,24 @@ export default function Dashboard() {
                   ) : (
                     <img src={process.env.PUBLIC_URL + '/icons/unsort.svg'} />
                   )}
-                </span>
-              </button>
+              </button>  
             </th>
             <th>Title <img  src={process.env.PUBLIC_URL + '/icons/descend.svg'} /></th>
-            <th>Schedule <img  src={process.env.PUBLIC_URL + '/icons/descend.svg'} /></th>
+            <th className='tableHeader'>
+              <button id='DatePublished' onClick={(e) => dispatchSort(e)}>
+                  Schedule
+                  {state.isScheduleSorted ? (
+                    state.isScheduleDesc ? (
+                      <img  src={process.env.PUBLIC_URL + '/icons/descend.svg'} alt='descending' />
+                    ) : (
+                      <img  src={process.env.PUBLIC_URL + '/icons/ascend.svg'} alt='ascending'/>
+                    )
+                  ) : (
+                    <img src={process.env.PUBLIC_URL + '/icons/unsort.svg'} alt='unsort'/>
+                  )}
+              </button>
+              
+            </th>
             <th><div className="fbHead">Feedback Button <img  src={process.env.PUBLIC_URL + '/icons/descend.svg'} /></div></th>
             <th>Feedback <img  src={process.env.PUBLIC_URL + '/icons/descend.svg'} /></th>
             <th>Visibility <img  src={process.env.PUBLIC_URL + '/icons/descend.svg'} /></th>
@@ -168,8 +230,6 @@ export default function Dashboard() {
       onChange = {handleChange} 
     />
     </div>
-    
-    
     </>
   );
 }

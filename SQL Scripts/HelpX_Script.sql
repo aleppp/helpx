@@ -182,8 +182,9 @@ SET
     AppID int NOT NULL,
     Question varchar(255),
     Answer varchar(255),
+    QuestionOrder int,
     IsFeedbackAllowed boolean,
-    IsVisible boolean,
+    IsVisible boolean, 
     DateCreated datetime,
     DateModified datetime,
     PRIMARY KEY(ID),
@@ -1230,6 +1231,7 @@ INSERT INTO
     AppID,
     Question,
     Answer,
+    QuestionOrder,
     IsFeedbackAllowed,
     IsVisible,
     DateCreated,
@@ -1237,8 +1239,9 @@ INSERT INTO
   )
 SELECT
   1,
-  'What is a release note?',
+  'What is a release notes?',
   'Release notes are documents that are distributed with software products',
+  1,
   1,
   1,
   '2021-02-22 08:30:45',
@@ -1254,7 +1257,7 @@ WHERE
       faq
     WHERE
       AppID = '1'
-      AND question = 'What is a release note?'
+      AND question = 'What is a release notes?'
   );
   -- FAQHistory
 INSERT INTO
@@ -1526,6 +1529,38 @@ WHERE ap.id = id;
 END $$
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `sp_applications_sel_recentchanges`;
+DELIMITER $$
+CREATE PROCEDURE `sp_applications_sel_recentchanges`()
+BEGIN
+SELECT (al.datecreated) as 'Datetime',
+MAX(CASE WHEN lao.id = 8 THEN alo.objectvalue END) AS 'ApplicationName', 
+CONCAT(laa.name,' ',(SELECT lapt.name FROM lookupappattributes as lapt WHERE lapt.id = MAX(CASE WHEN lao.id=9 THEN alo.objectvalue END))) AS Changes,
+CONCAT (u.firstname," ",u.lastname) as User
+FROM auditlogs AS al
+LEFT JOIN users AS u ON u.id = al.userid
+LEFT JOIN auditlogobjects AS alo ON alo.auditlogid = al.id
+LEFT JOIN lookupauditlogobjects as lao ON lao.id = alo.objectid
+LEFT JOIN lookupauditlogactions as laa ON laa.id = al.actionid
+GROUP BY al.id
+ORDER BY al.datecreated DESC
+LIMIT 3;
+END $$
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS `sp_applications_sel_unconfigured`;
+DELIMITER $$
+CREATE PROCEDURE `sp_applications_sel_unconfigured`()
+BEGIN
+SELECT (app.name) AS 'Application',
+(SELECT IF(app.url is NULL,'URL is not defined',CONCAT(lapt.name,' ','not defined!'))) AS 'Description'
+FROM applications as app
+LEFT JOIN applicationsattributes AS appt ON appt.appid = app.id
+LEFT JOIN lookupappattributes as lapt ON lapt.id = appt.attributeid
+WHERE appt.appattributevalue is NULL or app.url is NULL; 
+END $$
+DELIMITER ;
+
 DROP PROCEDURE IF EXISTS `sp_appattributes_sel`;
 DELIMITER $$
 CREATE PROCEDURE `sp_appattributes_sel`()
@@ -1552,6 +1587,16 @@ BEGIN
 UPDATE applicationsattributes as apt
 SET apt.appattributevalue = newvalue, apt.datemodified = datemodified
 WHERE apt.id = id AND apt.appid = appid;
+END $$
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS `sp_applicationsattributes_ins`;
+DELIMITER $$
+CREATE PROCEDURE `sp_applicationsattributes_ins`(
+IN appid INT, attributeid INT, appattributevalue VARCHAR(20),datecreated datetime,datemodified datetime)
+BEGIN
+INSERT INTO applicationsattributes(appid,attributeid,appattributevalue,datecreated,datemodified)
+VALUES (appid,attributeid,appattributevalue,datecreated,datemodified);
 END $$
 DELIMITER ;
 
@@ -1716,15 +1761,30 @@ BEGIN
 END $$
 DELIMITER ;
 
-DROP PROCEDURE IF EXISTS `sp_auditlogs_sel`
+DROP PROCEDURE IF EXISTS sp_auditlogs_sel;
 DELIMITER $$
-CREATE PROCEDURE `sp_auditlogs_sel_byuserid`()
+CREATE PROCEDURE sp_auditlogs_sel()
 BEGIN
-    SELECT al.ID as id,
-    al.UserID,
-    al.ActionID,
-    al.DateCreated
-    FROM auditlogs as al;
+    SELECT al.datecreated as 'DateTime' , u.firstname as User, luo.name as Category, lua.name as Changes, alo.objectvalue as ChangedObject
+    FROM auditlogs as al
+    LEFT JOIN users u ON al.userid = u.id
+    LEFT JOIN auditlogobjects alo ON al.id = alo.auditlogid
+    LEFT JOIN lookupauditlogactions lua ON al.actionid = lua.id
+    LEFT JOIN lookupauditlogobjects luo ON alo.objectid = luo.id;
+END $$
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS sp_auditlogs_ins;
+DELIMITER $$
+CREATE PROCEDURE sp_auditlogs_ins(IN userid int, actionid int, auditlogid int,objectid int,objectvalue varchar(25), datecreated datetime)
+BEGIN
+  DECLARE newauditlogid INT DEFAULT (SELECT al.id FROM auditlogs AS al WHERE al.id = auditlogid);
+ 
+INSERT INTO auditlogs(userid,actionid,datecreated)
+VALUES(userid,actionid,datecreated);
+ 
+INSERT INTO auditlogobjects(auditlogid,objectid,objectvalue,datecreated)
+VALUES(newauditlogid, objectid, objectvalue,datecreated);
 END $$
 DELIMITER ;
 
@@ -1743,9 +1803,9 @@ BEGIN
     END $$
     DELIMITER ;
 
-DROP PROCEDURE IF EXISTS sp_content_upd;
+DROP PROCEDURE IF EXISTS `sp_content_upd`;
 DELIMITER $$
-CREATE PROCEDURE sp_content_upd (
+CREATE PROCEDURE `sp_content_upd` (
     IN id int, statusid int, isfeebackallowed boolean, isvisible boolean, title varchar(65), 
     body varchar(10256), datemodified datetime
 )
@@ -1831,12 +1891,21 @@ DELIMITER ;
 DROP PROCEDURE IF EXISTS `sp_users_ins`;
 DELIMITER $$
 CREATE PROCEDURE `sp_users_ins`(
-IN FirstName varchar(20), LastName varchar(40), Email varchar(50), DateCreated datetime, datemodified datetime)
+IN FirstName varchar(20), LastName varchar(20), email varchar(50), DateCreated datetime, DateModified datetime, UserAppID int, UserRoleID int, UserID int,  AppID int)
 BEGIN
-INSERT INTO users (FirstName, LastName, Email, DateCreated, DateModified)
-VALUES (FirstName, LastName, Email, DateCreated, DateModified);
+DECLARE newuserid INT DEFAULT (SELECT us.id FROM users AS us WHERE us.id = userid);
+DECLARE newuserappid INT DEFAULT (SELECT ua.id FROM usersapplications AS ua WHERE ua.id = UserAppID);
+
+INSERT INTO users(FirstName, Lastname, email, DateCreated, DateModified)
+VALUES(FirstName,LastName, email,DateCreated, DateModified);
+
+INSERT INTO usersappsroles(UserAppID, UserRoleID, DateCreated, DateModified)
+VALUES(newuserappID, UserRoleID, DateCreated, DateModified);
+
+INSERT INTO usersapplications(UserID, AppID, DateCreated, DateModified)
+VALUES(newuserID, AppID, DateCreated, DateModified);
 END $$
-DELIMITER ; 
+DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `sp_users_upd`;
 DELIMITER $$
@@ -1861,10 +1930,10 @@ DELIMITER ;
 DROP PROCEDURE IF EXISTS `sp_faq_ins`;
 DELIMITER $$
 CREATE PROCEDURE `sp_faq_ins`(
-IN appid int, question varchar(255), answer varchar(255), isfeedbackallowed boolean, isvisible boolean, datecreated datetime, datemodified datetime)
+IN appid int, question varchar(255), answer varchar(255), questionorder int, isfeedbackallowed boolean, isvisible boolean, datecreated datetime, datemodified datetime)
 BEGIN
-INSERT INTO faq (appid,question,answer,isfeedbackallowed,isvisible,datecreated,datemodified)
-VALUES (appid,question,answer,isfeedbackallowed,isvisible,datecreated,datemodified);
+INSERT INTO faq (appid,question,answer,questionorder,isfeedbackallowed,isvisible,datecreated,datemodified)
+VALUES (appid,question,answer,questionorder,isfeedbackallowed,isvisible,datecreated,datemodified);
 END $$
 DELIMITER ;
 
@@ -1875,6 +1944,8 @@ BEGIN
     SELECT fq.ID,
     fq.Question,
     fq.Answer,
+    fq.QuestionOrder,
+    fq.isFeedbackAllowed,
     fq.IsVisible,
     fq.DateCreated,
     fq.DateModified,
@@ -1918,6 +1989,7 @@ BEGIN
     SELECT 
     na.ID,
     na.TypeID,
+    (SELECT ln.Name FROM lookupnotificationtypes AS ln WHERE ln.ID = na.TypeID) AS TypeName,
     na.UserAppID,
     ua.UserID,
     (SELECT CONCAT(u.FirstName, ' ', u.LastName)
@@ -2041,14 +2113,14 @@ DELIMITER ;
 DROP PROCEDURE IF EXISTS `sp_faq_upd`;
 DELIMITER $$
 CREATE PROCEDURE `sp_faq_upd` (
-	IN ID INT, appid int, question varchar (255), answer varchar (1024),
-    isfeedbackallowed boolean, isvisible boolean,  datemodified datetime
+	IN appid int, question varchar (255), answer varchar (1024),questionorder int,
+    isfeedbackallowed boolean, isvisible boolean, datecreated datetime, datemodified datetime
 )
 BEGIN 
   UPDATE faq as f
     SET f.appid = appid, f.question = question, 
-    f.answer = answer, f.isfeedbackallowed = isfeedbackallowed, f.isvisible = isvisible, 
-   f.datemodified = datemodified
+    f.answer = answer, f.questionorder=questionorder,f.isfeedbackallowed = isfeedbackallowed, f.isvisible = isvisible, 
+   f.datecreated = datecreated, f.datemodified = datemodified
     WHERE f.id = id;
 END $$
 DELIMITER ;
@@ -2086,9 +2158,11 @@ BEGIN
     )AS UserName,
     fb.Feedback,
     fb.Rating,
-    fb.DateCreated
+    fb.DateCreated,
+    ct.title
     FROM feedback AS fb
-    GROUP BY ContentID;
+     LEFT JOIN content as ct
+        ON fb.ContentID  = ct.ID;
 END $$
 DELIMITER ;
 
@@ -2107,6 +2181,17 @@ BEGIN
     AND fb.UserID = UserID;
 END $$
 DELIMITER ;
+
+DROP PROCEDURE IF EXISTS `sp_integratedapps_sel`;
+DELIMITER $$
+CREATE PROCEDURE `sp_integratedapps_sel`()
+BEGIN
+SELECT ID,
+    COUNT(ID) as 'IntegratedApp'
+  FROM applications;
+END $$
+DELIMITER ;
+
 -- ************************************************* --
 --              Call Stored Procedure                --
 -- ************************************************* --
@@ -2117,8 +2202,6 @@ CALL sp_template_ins(1,1,'Release Note 1','Here are some details on..', now(), n
 CALL sp_template_sel();
 CALL sp_template_upd(2,1,1,'Release Note 3.4','Release Note are....',now(),now());
 CALL sp_template_del(1);
-
-CALL sp_auditlogs_sel_byuserid();
 
 CALL sp_ReleaseNotes_sel();
 CALL sp_ContentBodyReleaseNotes_sel();
@@ -2192,3 +2275,11 @@ CALL `sp_feedback_upd`(1,'Feedback upd', 4, now());
 CALL sp_feedback_sel_cc();
 
 CALL sp_feedbackrn_sel(1,1);
+
+CALL sp_integratedapps_sel();
+
+CALL sp_users_ins('User1', 'UserL1', 'user2@petronas.com', now(), now(), 2,2,2,2); 
+
+call `sp_applications_ins`('Setel',null,now(),now());
+
+call `sp_applicationsattributes_ins`(1,1,null,now(),now());

@@ -1,12 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./style.css";
-import Button from "../../Buttons/Buttons";
-import emoji_1 from "./emoji/emoji_1.png";
-import emoji_2 from "./emoji/emoji_2.png";
-import emoji_3 from "./emoji/emoji_3.png";
-import emoji_4 from "./emoji/emoji_4.png";
-import emoji_5 from "./emoji/emoji_5.png";
 
 export default function FeedbackListCCA() {
   const [FeedbackCCAList, setFeedbackCCAList] = useState([]);
@@ -34,24 +28,61 @@ export default function FeedbackListCCA() {
               <th>User Name</th>
               <th>Rating</th>
               <th>Feedback</th>
-              <th>Content</th>
+              <th>Title</th>
               <th>Time</th>
             </tr>
           </thead>
 
           <tbody>
-            {FeedbackCCAList.map((fb, i) => {
+            {FeedbackCCAList.map((fb, i) => (
               <tr key={i}>
                 <td>{fb.ID}</td>
                 <td>{fb.UserName}</td>
-                <td>{fb.Rating}</td>
-                <td>{fb.Feedback}</td>
                 <td>
-                  <a href={fb.Content}>{fb.Content}</a>
+                  {(function () {
+                    if (fb.Rating == "1") {
+                      return (
+                        <img
+                          src={process.env.PUBLIC_URL + "/images/rate_1.png"}
+                          alt="Very Dissatisfied"
+                        />
+                      );
+                    } else if (fb.Rating == "2") {
+                      return (
+                        <img
+                          src={process.env.PUBLIC_URL + "/images/rate_2.png"}
+                          alt="Dissatisfied"
+                        />
+                      );
+                    } else if (fb.Rating == "3") {
+                      return (
+                        <img
+                          src={process.env.PUBLIC_URL + "/images/rate_3.png"}
+                          alt="Neutral"
+                        />
+                      );
+                    } else if (fb.Rating == "4") {
+                      return (
+                        <img
+                          src={process.env.PUBLIC_URL + "/images/rate_4.png"}
+                          alt="Satisfied"
+                        />
+                      );
+                    } else {
+                      return (
+                        <img
+                          src={process.env.PUBLIC_URL + "/images/rate_5.png"}
+                          alt="Very Satisfied"
+                        />
+                      );
+                    }
+                  })()}
                 </td>
-                <td>{fb.Time}</td>
-              </tr>;
-            })}
+                <td>{fb.Feedback}</td>
+                <td>{fb.title}</td>
+                <td>{fb.DateCreated}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

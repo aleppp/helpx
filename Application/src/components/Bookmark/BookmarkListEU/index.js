@@ -1,7 +1,23 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
-export default function App() {
+export default function BookmarkListEU() {
+  const [BookmarkEUList, setBookmarkListEU] = useState([]);
+  useEffect(() => {
+    axios
+      .post("http://localhost:8080/bookmarks/sel_user", {
+        book: {
+          userid: 2,
+        },
+      })
+      .then((res) => {
+        if (res.status === 200) setBookmarkListEU(res.data[0]);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <div
       id="container"
@@ -32,106 +48,25 @@ export default function App() {
         </thead>
 
         <tbody>
-          {data.map((item) => {
-            return (
-              <tr>
-                <td>{item.Date}</td>
-                <td>{item.Title}</td>
-                <td>
-                  <a href={item.Link}>{item.Link}</a>
-                </td>
-                <td>
-                  <button1 type="button" class="btn btn-info">
-                    Save
-                  </button1>{" "}
-                  <button2 type="button" class="btn btn-danger">
-                    Delete
-                  </button2>
-                </td>
-              </tr>
-            );
-          })}
+          {BookmarkEUList.map((bm, i) => (
+            <tr key={i}>
+              <td>{bm.DateCreated}</td>
+              <td>{bm.BookmarkName}</td>
+              <td>
+                <a href={bm.URL}>{bm.URL}</a>
+              </td>
+              <td>
+                <button1 type="button" class="btn btn-info">
+                  Save
+                </button1>{" "}
+                <button2 type="button" class="btn btn-danger">
+                  Delete
+                </button2>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
   );
 }
-
-const data = [
-  {
-    Date: "21/2/2021",
-    Title: "Release Note 1",
-    Link: "https://confluence.atlassian.com/jirasoftware/jira-software-8-10-x-upgrade-notes-1004945639.html",
-    Action: "",
-  },
-  {
-    Date: "22/2/2021",
-    Title: "Release Note 2",
-
-    Link: "https://confluence.atlassian.com/jirasoftware/jira-software-8-20-x-release-notes-1086411771.html",
-    Action: "Draft",
-  },
-  {
-    Date: "23/2/2021",
-    Title: "Release Note 3",
-    Link: "https://confluence.atlassian.com/jirasoftware/jira-software-8-20-x-release-notes-1086411771.html",
-    Action: "Approved",
-  },
-  {
-    Date: "24/2/2021",
-    Title: "Release Note 4",
-
-    Link: "https://confluence.atlassian.com/jirasoftware/jira-software-8-20-x-release-notes-1086411771.html",
-    Action: "Pending",
-  },
-  {
-    Date: "25/2/2021",
-    Title: "Release Note 5",
-    Link: "https://confluence.atlassian.com/jirasoftware/jira-software-8-20-x-release-notes-1086411771.html",
-    Action: "Pending",
-  },
-  {
-    Date: "26/2/2021",
-    Title: "Release Note 6",
-    Link: "https://confluence.atlassian.com/jirasoftware/jira-software-8-20-x-release-notes-1086411771.html",
-    Action: "Draft",
-  },
-  {
-    Date: "27/2/2021",
-    Title: "Release Note 7",
-    Link: "https://confluence.atlassian.com/jirasoftware/jira-software-8-20-x-release-notes-1086411771.html",
-    Action: "Pending",
-  },
-  {
-    Date: "28/2/2021",
-    Title: "Release Note 8",
-    Link: "https://confluence.atlassian.com/jirasoftware/jira-software-8-20-x-release-notes-1086411771.html",
-    Action: "Draft",
-  },
-  {
-    Date: "29/2/2021",
-    Title: "Release Note 9",
-    Link: "https://confluence.atlassian.com/jirasoftware/jira-software-8-20-x-release-notes-1086411771.html",
-    Action: "Pending",
-  },
-  {
-    Date: "30/2/2021",
-    Title: "Release Note 10",
-    Link: "https://confluence.atlassian.com/jirasoftware/jira-software-8-20-x-release-notes-1086411771.html",
-    Action: "Draft",
-  },
-  {
-    Date: "31/2/2021",
-    Title: "Release Note 11",
-    Link: "https://confluence.atlassian.com/jirasoftware/jira-software-8-20-x-release-notes-1086411771.html",
-    Action: "Approved",
-  },
-  {
-    Date: "1/2/2021",
-    Title: "Release Note 12",
-    Link: "https://confluence.atlassian.com/jirasoftware/jira-software-8-20-x-release-notes-1086411771.html",
-    Action: "Approved",
-  },
-];
-
-

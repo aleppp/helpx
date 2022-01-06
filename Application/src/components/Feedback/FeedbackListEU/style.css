@@ -1,8 +1,8 @@
 /* overall */
 .overall {
   display: inline-block;
-  width: 1500px;
-  height: 648px;
+  width: 85%;
+  height: 20%;
   margin-top: 5%;
 }
 
@@ -22,7 +22,7 @@ table {
 thead {
   text-align: center;
   background-color: #38b09d;
-  font-size: 24px;
+  font-size: 18px;
   color: white;
 }
 
@@ -36,7 +36,7 @@ thead {
 .title {
   display: inline;
   float: left;
-  font-size: 48px;
+  font-size: 40px;
   padding: 20px;
 }
 
@@ -60,4 +60,47 @@ tfoot {
   font-weight: normal;
   font-size: 18px;
   color: white;
+}
+
+/* pagination */
+.pageBar {
+  float: right;
+}
+
+/* link */
+a {
+  color: #2636c9;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:active {
+  text-decoration: underline;
+}
+
+/* User header/navigation */
+
+.Content-Nav {
+  display: inline;
+  float: left;
+}
+
+.Content-Header {
+  display: inline;
+  float: top;
+}
+
+.FeedbackList-EU {
+  display: inline;
+  padding: 2%;
 }

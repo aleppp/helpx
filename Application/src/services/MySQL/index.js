@@ -46,13 +46,13 @@ function setQuery(db, sqlQuery, par, res) {
 }
 
 //db hook for displaying applications in datatable for admin
-app.get("/apps/sel", (req, res) => {
+app.get("/api/apps/listapplications", (req, res) => {
   const getApplicationsList = "CALL sp_applications_sel()";
   getQuery(db, getApplicationsList, res);
 });
 
 //insert new application
-app.post("/apps/ins", (req, res) => {
+app.post("/api/apps/addapplications", (req, res) => {
   const insApp = "CALL sp_applications_ins(?,?,?,?)";
   const params = req.body.apps;
   setQuery(
@@ -64,7 +64,7 @@ app.post("/apps/ins", (req, res) => {
 });
 
 //edit application info
-app.post("/apps/upd", (req, res) => {
+app.post("/api/apps/editapplications", (req, res) => {
   const updApp = "CALL sp_applications_upd(?,?,?,?)";
   const params = req.body.apps;
   setQuery(
@@ -76,20 +76,31 @@ app.post("/apps/upd", (req, res) => {
 });
 
 //delete application
-app.delete("/apps/del", (req, res) => {
+app.delete("/api/apps/deleteapplication", (req, res) => {
   const deleteApps = "CALL sp_applications_del(?)";
   const params = req.body;
   setQuery(db, deleteApps, params.id, res);
 });
 
+app.get("/api/configuredapps/2", (req, res) => {
+  const getRecentConfiguredApps = "CALL sp_applications_sel_recentchanges()";
+  getQuery(db, getRecentConfiguredApps, res);
+});
+
+//display unconfigured apps
+app.get("/api/configuredapps/1", (req, res) => {
+  const getUnconfiguredApps = "CALL sp_applications_sel_unconfigured()";
+  getQuery(db, getUnconfiguredApps, res);
+});
+
 //display app attributes under admin app configuration
-app.get("/appattributes/sel", (req, res) => {
+app.get("/api/appattributes/listappattributes", (req, res) => {
   const getAppAttributes = "CALL sp_appattributes_sel()";
   getQuery(db, getAppAttributes, res);
 });
 
 //edit attributes value for admin app configurations
-app.post("/appattributes/upd", (req, res) => {
+app.post("/api/appattributes/editattribute", (req, res) => {
   const updAppAttributes = "CALL sp_appattributes_upd(?,?,?,?)";
   const params = req.body.attributes;
   setQuery(
@@ -382,7 +393,7 @@ app.get("/bookmarks/sel_all", (req, res) => {
 });
 
 // db hook to select all bookmarks for a user
-app.get("/bookmarks/sel_user", (req, res) => {
+app.post("/bookmarks/sel_user", (req, res) => {
   const getuserbook = "CALL sp_bookmarks_sel_user(?)";
   const params = req.body.book;
   setQuery(db, getuserbook, params.userid, res);
@@ -509,8 +520,26 @@ app.post("/feedback/ins", (req, res) => {
 });
 
 // db hook to select all feedback for a user under release note
-app.get("/feedbackrn/sel_user", (req, res) => {
+app.post("/feedbackrn/sel_user", (req, res) => {
   const getuserfeedback = "CALL sp_feedbackrn_sel(?,?)";
   const params = req.body.feedback;
   setQuery(db, getuserfeedback, [params.contentid, params.userid], res);
+});
+
+//db hook for number of integrated application
+app.get("/integratedapps/sel", (req, res) => {
+  const getIntApp = "CALL sp_integratedapps_sel()";
+  getQuery(db, getIntApp, res);
+});
+
+//db hook for displaying search term
+app.get("/searchterm/sel", (req, res) => {
+  const getSearchTerm = "CALL sp_searchterm_sel()";
+  getQuery(db, getSearchTerm, res);
+});
+
+// db hook for displaying auditlogs
+app.get("/auditlogs/datatable", (req, res) => {
+  const getAuditLogs = "CALL sp_auditlogs_sel()";
+  getQuery(db, getAuditLogs, res);
 });

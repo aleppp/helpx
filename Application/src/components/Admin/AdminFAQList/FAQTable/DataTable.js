@@ -47,6 +47,8 @@ function DataTable() {
             <th>Question</th>
             <th>Answer</th>
             <th>Visibility</th>
+            <th>Feedback Allowed</th>
+            <th>Order</th>
             <th>Action</th>
           </tr>
           {FAQAdminList.map((fq, i) => (
@@ -56,6 +58,8 @@ function DataTable() {
               <td>{fq.Question}</td>
               <td>{fq.Answer}</td>
               <td>{fq.IsVisible}</td>
+              <td>{fq.IsFeedbackAllowed}</td>
+              <td>{fq.QuestionOrder}</td>
               <td className="action-column">
                 <Button button={button[0]}></Button>
                 <Button button={button[1]}></Button>

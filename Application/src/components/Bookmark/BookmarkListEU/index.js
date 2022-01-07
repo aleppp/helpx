@@ -8,7 +8,7 @@ import { Pagination } from "@mui/material";
 import TextField from "@mui/material/TextField";
 
 export default function BookmarkListEU() {
-  const [BookmarkEUList, setBookmarkListEU] = useState([]);
+  const [bookmarkEUList, setBookmarkListEU] = useState([]);
   useEffect(() => {
     axios
       .post("http://localhost:8080/bookmarks/sel_user", {
@@ -24,8 +24,8 @@ export default function BookmarkListEU() {
 
   let [page, setPage] = useState(1);
   const PER_PAGE = 4;
-  const count = Math.ceil(BookmarkEUList.length / PER_PAGE);
-  const BookmarkDataEU = usePagination(BookmarkEUList, PER_PAGE);
+  const count = Math.ceil(bookmarkEUList.length / PER_PAGE);
+  const BookmarkDataEU = usePagination(bookmarkEUList, PER_PAGE);
   const handleChange = (e, p) => {
     setPage(p);
     BookmarkDataEU.jump(p);
@@ -48,10 +48,10 @@ export default function BookmarkListEU() {
   return (
     <>
       <div className="Content-Nav">
-        <UserNavigation></UserNavigation>
+        <UserNavigation />
       </div>
       <div className="Content-Header">
-        <UserHeader></UserHeader>
+        <UserHeader />
       </div>
       <div className="BookmarkList-EU">
         <div className="overall">
@@ -73,7 +73,7 @@ export default function BookmarkListEU() {
             </thead>
 
             <tbody>
-              {BookmarkEUList.map((bm, i) => (
+              {bookmarkEUList.map((bm, i) => (
                 <tr key={i}>
                   <td>{bm.DateCreated}</td>
                   <td>

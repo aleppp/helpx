@@ -12,9 +12,6 @@ table {
   table-layout: auto;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.027);
 }
-.container {
-  margin: 30px;
-}
 
 .overall {
   display: inline-block;
@@ -38,12 +35,10 @@ table {
   padding: 2%;
 }
 
-/* pagination */
 .pageBar {
   float: right;
 }
 
-/* link */
 a {
   color: #2636c9;
 }
@@ -76,13 +71,11 @@ tbody tr td {
   vertical-align: middle;
 }
 
-/* table footer */
 tfoot {
   background-color: #38b09d;
   height: 68px;
 }
 
-/* description on table footer */
 .foot {
   float: left;
   margin-top: 10px;

@@ -4,7 +4,7 @@ import "./UsersPanel.css";
 function UsersPanel() {
   return (
     <div className="user-panel">
-      <h2>Users Role</h2>
+      <h2>Users without roles</h2>
       <div class="green-circle"></div>
       <span>User123</span>
       <br />

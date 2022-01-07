@@ -6,7 +6,7 @@ import { Pagination, TextField } from "@mui/material";
 import UserHeader from "../../ReleaseNotes/Navigation/UserHeader";
 import UserNavigation from "../../ReleaseNotes/Navigation/UserNavigation";
 
-export default function FeedbackListEU() {
+export default function FeedbackEUList() {
   const [FeedbackListEU, setFeedbackListEU] = useState([]);
 
   useEffect(() => {
@@ -58,10 +58,10 @@ export default function FeedbackListEU() {
   return (
     <>
       <div className="Content-Nav">
-        <UserNavigation></UserNavigation>
+        <UserNavigation />
       </div>
       <div className="Content-Header">
-        <UserHeader></UserHeader>
+        <UserHeader />
       </div>
       <div className="FeedbackList-EU">
         <div className="overall">

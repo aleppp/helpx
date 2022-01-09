@@ -182,8 +182,9 @@ SET
     AppID int NOT NULL,
     Question varchar(255),
     Answer varchar(255),
+    QuestionOrder int,
     IsFeedbackAllowed boolean,
-    IsVisible boolean,
+    IsVisible boolean, 
     DateCreated datetime,
     DateModified datetime,
     PRIMARY KEY(ID),
@@ -1230,6 +1231,7 @@ INSERT INTO
     AppID,
     Question,
     Answer,
+    QuestionOrder,
     IsFeedbackAllowed,
     IsVisible,
     DateCreated,
@@ -1237,8 +1239,9 @@ INSERT INTO
   )
 SELECT
   1,
-  'What is a release note?',
+  'What is a release notes?',
   'Release notes are documents that are distributed with software products',
+  1,
   1,
   1,
   '2021-02-22 08:30:45',
@@ -1254,7 +1257,7 @@ WHERE
       faq
     WHERE
       AppID = '1'
-      AND question = 'What is a release note?'
+      AND question = 'What is a release notes?'
   );
   -- FAQHistory
 INSERT INTO
@@ -1759,15 +1762,30 @@ BEGIN
 END $$
 DELIMITER ;
 
-DROP PROCEDURE IF EXISTS `sp_auditlogs_sel`
+DROP PROCEDURE IF EXISTS sp_auditlogs_sel;
 DELIMITER $$
-CREATE PROCEDURE `sp_auditlogs_sel_byuserid`()
+CREATE PROCEDURE sp_auditlogs_sel()
 BEGIN
-    SELECT al.ID as id,
-    al.UserID,
-    al.ActionID,
-    al.DateCreated
-    FROM auditlogs as al;
+    SELECT al.datecreated as 'DateTime' , u.firstname as User, luo.name as Category, lua.name as Changes, alo.objectvalue as ChangedObject
+    FROM auditlogs as al
+    LEFT JOIN users u ON al.userid = u.id
+    LEFT JOIN auditlogobjects alo ON al.id = alo.auditlogid
+    LEFT JOIN lookupauditlogactions lua ON al.actionid = lua.id
+    LEFT JOIN lookupauditlogobjects luo ON alo.objectid = luo.id;
+END $$
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS sp_auditlogs_ins;
+DELIMITER $$
+CREATE PROCEDURE sp_auditlogs_ins(IN userid int, actionid int, auditlogid int,objectid int,objectvalue varchar(25), datecreated datetime)
+BEGIN
+  DECLARE newauditlogid INT DEFAULT (SELECT al.id FROM auditlogs AS al WHERE al.id = auditlogid);
+ 
+INSERT INTO auditlogs(userid,actionid,datecreated)
+VALUES(userid,actionid,datecreated);
+ 
+INSERT INTO auditlogobjects(auditlogid,objectid,objectvalue,datecreated)
+VALUES(newauditlogid, objectid, objectvalue,datecreated);
 END $$
 DELIMITER ;
 
@@ -1913,10 +1931,10 @@ DELIMITER ;
 DROP PROCEDURE IF EXISTS `sp_faq_ins`;
 DELIMITER $$
 CREATE PROCEDURE `sp_faq_ins`(
-IN appid int, question varchar(255), answer varchar(255), isfeedbackallowed boolean, isvisible boolean, datecreated datetime, datemodified datetime)
+IN appid int, question varchar(255), answer varchar(255), questionorder int, isfeedbackallowed boolean, isvisible boolean, datecreated datetime, datemodified datetime)
 BEGIN
-INSERT INTO faq (appid,question,answer,isfeedbackallowed,isvisible,datecreated,datemodified)
-VALUES (appid,question,answer,isfeedbackallowed,isvisible,datecreated,datemodified);
+INSERT INTO faq (appid,question,answer,questionorder,isfeedbackallowed,isvisible,datecreated,datemodified)
+VALUES (appid,question,answer,questionorder,isfeedbackallowed,isvisible,datecreated,datemodified);
 END $$
 DELIMITER ;
 
@@ -1927,6 +1945,8 @@ BEGIN
     SELECT fq.ID,
     fq.Question,
     fq.Answer,
+    fq.QuestionOrder,
+    fq.isFeedbackAllowed,
     fq.IsVisible,
     fq.DateCreated,
     fq.DateModified,
@@ -2094,14 +2114,14 @@ DELIMITER ;
 DROP PROCEDURE IF EXISTS `sp_faq_upd`;
 DELIMITER $$
 CREATE PROCEDURE `sp_faq_upd` (
-	IN ID INT, appid int, question varchar (255), answer varchar (1024),
-    isfeedbackallowed boolean, isvisible boolean,  datemodified datetime
+	IN appid int, question varchar (255), answer varchar (1024),questionorder int,
+    isfeedbackallowed boolean, isvisible boolean, datecreated datetime, datemodified datetime
 )
 BEGIN 
   UPDATE faq as f
     SET f.appid = appid, f.question = question, 
-    f.answer = answer, f.isfeedbackallowed = isfeedbackallowed, f.isvisible = isvisible, 
-   f.datemodified = datemodified
+    f.answer = answer, f.questionorder=questionorder,f.isfeedbackallowed = isfeedbackallowed, f.isvisible = isvisible, 
+   f.datecreated = datecreated, f.datemodified = datemodified
     WHERE f.id = id;
 END $$
 DELIMITER ;
@@ -2163,6 +2183,16 @@ BEGIN
 END $$
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `sp_countUser_sel`;
+DELIMITER $$
+CREATE PROCEDURE `sp_countUser_sel`()
+BEGIN
+select 
+COUNT(ID) as 'ActiveUser'
+FROM users;
+END $$
+DELIMITER ;
+
 DROP PROCEDURE IF EXISTS `sp_integratedapps_sel`;
 DELIMITER $$
 CREATE PROCEDURE `sp_integratedapps_sel`()
@@ -2183,8 +2213,6 @@ CALL sp_template_ins(1,1,'Release Note 1','Here are some details on..', now(), n
 CALL sp_template_sel();
 CALL sp_template_upd(2,1,1,'Release Note 3.4','Release Note are....',now(),now());
 CALL sp_template_del(1);
-
-CALL sp_auditlogs_sel_byuserid();
 
 CALL sp_ReleaseNotes_sel();
 CALL sp_ContentBodyReleaseNotes_sel();

@@ -1,8 +1,7 @@
-import './index.css';
-import * as React from 'react';
-import MockData from './mockdata.json';
-import {useState} from 'react';
-
+import "./style.css";
+import * as React from "react";
+import MockData from "./mockdata.json";
+import { useState } from "react";
 
 function RNSearchVertical() {
   const [filteredData, setFilteredData] = useState([]);
@@ -23,40 +22,48 @@ function RNSearchVertical() {
     }
   };
 
-
   return (
-     <div className = "content" id = "content">
-    <div className="BodySearchVertical">
-      <div className="VerticalLine"></div>
-      <div className="Search">
-        <form className="SearchBar">
-          <button type="submit" className="searchIcon"><img src={process.env.PUBLIC_URL + "/images/search.png"}></img></button>
-          <input type="text" placeholder="Search.." value = {wordEntered} name="search" onChange={handleChange}/>
-          {filteredData.length != 0 && (
-            <div className="dataResult">
-            {filteredData.slice(0, 15).map((value, key) => {
-              return (
-                <a className="dataItem" href={value.Link} target="_blank">
-                  <p>{value.ReleaseNote} </p>
-                </a>
-              );
-            })}
-          </div>
-          )}
-        </form>
+    <div className="content" id="content">
+      <div className="BodySearchVertical">
+        <div className="VerticalLine"></div>
+        <div className="Search">
+          <form className="SearchBar">
+            <button type="submit" className="searchIcon">
+              <img src={process.env.PUBLIC_URL + "/images/search.png"}></img>
+            </button>
+            <input
+              type="text"
+              placeholder="Search.."
+              value={wordEntered}
+              name="search"
+              onChange={handleChange}
+            />
+            {filteredData.length != 0 && (
+              <div className="dataResult">
+                {filteredData.slice(0, 15).map((value, key) => {
+                  return (
+                    <a className="dataItem" href={value.Link} target="_blank">
+                      <p>{value.ReleaseNote} </p>
+                    </a>
+                  );
+                })}
+              </div>
+            )}
+          </form>
+        </div>
+        <div className="releaseNoteList">
+          {MockData.map((MockData) => {
+            return (
+              <ul key={MockData.ReleaseNoteID}>
+                <li>
+                  <a href={MockData.Link}>{MockData.ReleaseNote}</a>
+                </li>
+              </ul>
+            );
+          })}
+        </div>
       </div>
-      <div className="releaseNoteList">
-        {MockData.map(MockData => {
-          return (
-            <ul key ={MockData.ReleaseNoteID}>
-              <li><a href = {MockData.Link} >{MockData.ReleaseNote}</a></li>
-            </ul>
-
-          );
-        }
-        )}
-      </div>
-    </div></div>
+    </div>
   );
 }
 

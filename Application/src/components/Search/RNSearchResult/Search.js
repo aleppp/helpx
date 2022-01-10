@@ -3,48 +3,45 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 export default function Search() {
-  const [data, setData] = useState([]);
-  const [filtered, setFiltered] = useState([]);
-  const [result, setResult] = useState([]);
+  const [releaseNotes, setReleaseNotes] = useState([]);
+  const [filteredNotes, setFilteredNotes] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await axios.get("http://localhost:8080/searchterm/sel");
-
-        setData(res.data[0]);
-        setFiltered(res.data[0]);
-      } catch (err) {
-        throw new Error(err);
-      }
-    };
-    fetchData();
+    axios
+      .get("http://localhost:8080/searchterm/sel")
+      .then((res) => {
+        if (res.status === 200) setFilteredNotes(res.data[0]);
+      })
+      .catch((err) => console.log(err));
   }, []);
 
-  useEffect(() => {
-    const results = filtered.filter((res) =>
-      res.Title.toLowerCase().includes(result)
-    );
-    setData(results);
-  }, [result]);
-
-  const onChange = (e) => {
-    setResult(e.target.value);
-  };
-
   return (
-    <div>
+    <div className="Search">
       <input
         type="text"
-        placeholder="Search Here .."
-        value={result}
-        onChange={onChange}
+        placeholder="Search Here....."
+        onChange={(searchString) => {
+          setReleaseNotes(searchString.target.value);
+        }}
       />
-      {data.map((content, index) => (
-        <ul key={index}>
-          <li>{content.Title}</li>
-        </ul>
-      ))}
+      <br />
+      {filteredNotes
+        .filter((content) => {
+          if (releaseNotes == "") {
+            return content;
+          } else if (
+            content.Title.toLowerCase().includes(releaseNotes.toLowerCase())
+          ) {
+            return content;
+          }
+        })
+        .map((content, index) => {
+          return (
+            <ul key={index}>
+              <li>{content.Title}</li>
+            </ul>
+          );
+        })}
     </div>
   );
 }

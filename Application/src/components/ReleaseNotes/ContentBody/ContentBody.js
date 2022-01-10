@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./ContentBody.css";
+import parse from "html-react-parser";
+// use State to get the seelected topic's id
+//
 
 function ContentBody() {
   /*const data = [
@@ -26,30 +29,33 @@ function ContentBody() {
     },
   ];*/
 
-  const [contentBodyRN, setContentBodyRN] = useState([]);
+  const [ContentBodyReleaseNotes, setContentBodyReleaseNotes] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:8080/api/configuredapps/2")
+      .get("http://localhost:8080/releasenotes/sel")
       .then((res) => {
-        if (res.status === 200) setContentBodyRN(res.data[0]);
+        if (res.status === 200) setContentBodyReleaseNotes(res.data[0]);
       })
       .catch((err) => console.log(err));
   }, []);
   return (
     <>
-      {/*<div className="center">
+      <div className="center">
         <div className="scroll">
-          <div className="page-header">
-            <h1>
-              <strong>Release Note 6.0</strong>
-            </h1>
+          <div className="title-content">
+            {ContentBodyReleaseNotes.map((ContentBodyReleaseNotes) => (
+              <h2>
+                <b>{ContentBodyReleaseNotes.Title}</b>
+              </h2>
+            ))}
           </div>
-          <div className="list-content">
+          {ContentBodyReleaseNotes.map((ContentBodyReleaseNotes) => (
             <ul>
               <li className="contents-h2">
-                <a href="#content1">What is New</a>
+                <a href="#content1">{ContentBodyReleaseNotes.Body}</a>
               </li>
-              <li className="contents-h2">
+
+              {/*<li className="contents-h2">
                 <a href="#content2">Purpose of the Change</a>
               </li>
               <li className="contents-h2">
@@ -60,29 +66,35 @@ function ContentBody() {
               </li>
               <li className="contents-h2">
                 <a href="#content5">History</a>
-              </li>
+  </li>*/}
             </ul>
-          </div>
-          <div className="note">
-            <h2>What is New</h2>
-            <p id="content1">{data[0].body}</p>
-            <h2>Purpose of the Change</h2>
+          ))}
+
+          {ContentBodyReleaseNotes.map((ContentBodyReleaseNotes) => (
+            <div className="note">
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: ContentBodyReleaseNotes.Body,
+                }}
+              />
+              {/*<h2>Purpose of the Change</h2>
             <p id="content2">{data[1].body}</p>
             <h2>How are you Affected</h2>
             <p id="content3">{data[2].body}</p>
             <h2>Action needed</h2>
             <p id="content4">{data[3].body}</p>
             <h2>History</h2>
-            <p id="content5">{data[4].body}</p>
-          </div>
+            <p id="content5">{data[4].body}</p>*/}
+            </div>
+          ))}
         </div>
-  </div>*/}
+      </div>
       <div className="page-header">
         <h1>
-          <strong>Release Note 6.0</strong>
+          <strong></strong>
         </h1>
       </div>
-      {contentBodyRN.map((post, index) => (
+      {/*{contentBodyRN.map((post, index) => (
         <>
           <ul>
             <li key={index}>
@@ -96,12 +108,12 @@ function ContentBody() {
             </div>
           </div>
         </>
-      ))}
+      ))}*/}
     </>
   );
 }
-
-const posts = [
+{
+  /*const posts = [
   {
     id: 1,
     title: "What is new",
@@ -121,5 +133,6 @@ const posts = [
   },
   { id: 4, title: "Action needed", content: "Welcome to learning React!" },
   { id: 5, title: "Installation", content: "You can install React from npm." },
-];
-//ReactDOM.render(<Blog posts={posts} />, document.getElementById("root"));
+];*/
+}
+export default ContentBody;

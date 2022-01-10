@@ -10,12 +10,14 @@
 .h2 {
   font-size: 18px;
 }
+.title-content {
+  text-align: center;
+  font-size: 20px;
+}
 .App-link {
   color: #61dafb;
 }
-.page-header {
-  font-size: 20px;
-}
+
 .center {
   position: absolute;
   left: 41%;

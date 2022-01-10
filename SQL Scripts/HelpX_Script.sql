@@ -1937,6 +1937,18 @@ WHERE u.id = id;
 END $$
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `sp_users_sel_withoutRoles`;
+DELIMITER $$
+CREATE PROCEDURE `sp_users_sel_withoutRoles`()
+BEGIN
+SELECT CONCAT(u.firstname,' ',u.lastname) as Name
+FROM users as u
+LEFT JOIN usersapplications AS ua ON ua.userid = u.id
+LEFT JOIN usersappsroles AS uar ON uar.userappid = ua.id
+WHERE uar.userroleid IS NULL;
+END $$
+DELIMITER ;
+
 DROP PROCEDURE IF EXISTS `sp_faq_ins`;
 DELIMITER $$
 CREATE PROCEDURE `sp_faq_ins`(
@@ -2281,3 +2293,5 @@ call `sp_applications_ins`('Setel',null,now(),now());
 call `sp_applicationsattributes_ins`(1,1,null,now(),now());
 
 call `sp_userslogin_ins`('alifmuqri.hazmi@petronas.com');
+
+call sp_users_ins('Amirul', 'Luqman Shamshi', 'mirul@petronas.com',now(),now(),3,null,2,1);

@@ -2289,4 +2289,4 @@ call `sp_applications_ins`('Setel',null,now(),now());
 
 call `sp_applicationsattributes_ins`(1,1,null,now(),now());
 
-call `sp_userslogin_ins`('mirul@petronas.com');
+call `sp_userslogin_ins`('alifmuqri.hazmi@petronas.com');

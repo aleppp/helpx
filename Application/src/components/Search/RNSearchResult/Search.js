@@ -15,8 +15,8 @@ export default function Search() {
       .catch((err) => console.log(err));
   }, []);
 
-  const searchString = (e) => {
-    setReleaseNotes(e.target.value);
+  const searchStringHandler = (e) => {
+    setReleaseNotes(e);
   };
 
   return (
@@ -24,7 +24,7 @@ export default function Search() {
       <input
         type="text"
         placeholder="Search Here....."
-        onChange={searchString}
+        onChange={(e) => searchStringHandler(e.target.value)}
       />
       <br />
       {filteredNotes

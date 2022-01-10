@@ -15,14 +15,16 @@ export default function Search() {
       .catch((err) => console.log(err));
   }, []);
 
+  const searchString = (e) => {
+    setReleaseNotes(e.target.value);
+  };
+
   return (
     <div className="Search">
       <input
         type="text"
         placeholder="Search Here....."
-        onChange={(searchString) => {
-          setReleaseNotes(searchString.target.value);
-        }}
+        onChange={searchString}
       />
       <br />
       {filteredNotes

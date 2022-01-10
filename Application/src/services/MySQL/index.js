@@ -544,3 +544,9 @@ app.get("/auditlogs/datatable", (req, res) => {
   const getAuditLogs = "CALL sp_auditlogs_sel()";
   getQuery(db, getAuditLogs, res);
 });
+
+//db hook for number of active users
+app.get("/countUser/sel", (req, res) => {
+  const getIntApp = "CALL sp_countUser_sel()";
+  getQuery(db, getIntApp, res);
+});

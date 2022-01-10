@@ -550,3 +550,9 @@ app.get("/countUser/sel", (req, res) => {
   const getIntApp = "CALL sp_countUser_sel()";
   getQuery(db, getIntApp, res);
 });
+
+//db hook for users without roles
+app.get("/api/users/1", (req, res) => {
+  const getUsersWithoutRoles = "CALL sp_users_sel_withoutRoles()";
+  getQuery(db, getUsersWithoutRoles, res);
+});

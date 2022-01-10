@@ -2196,7 +2196,7 @@ DROP PROCEDURE IF EXISTS `sp_countUser_sel`;
 DELIMITER $$
 CREATE PROCEDURE `sp_countUser_sel`()
 BEGIN
-select 
+SELECT 
 COUNT(ID) as 'ActiveUser'
 FROM users;
 END $$
@@ -2212,15 +2212,6 @@ SELECT ID,
 END $$
 DELIMITER ;
 
-DROP PROCEDURE IF EXISTS `sp_countUser_sel`;
-DELIMITER $$
-CREATE PROCEDURE `sp_countUser_sel`()
-BEGIN
-select 
-COUNT(ID) as 'ActiveUser'
-FROM users;
-END $$
-DELIMITER ;
 -- insert data for user login date to check inactive user
 DROP PROCEDURE IF EXISTS `sp_userslogin_ins`;
 DELIMITER $$

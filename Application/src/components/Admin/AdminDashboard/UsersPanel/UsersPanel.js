@@ -4,7 +4,7 @@ import "./UsersPanel.css";
 
 function UsersPanel() {
   const [listUsersWithoutRoles, setListUsersWithoutRoles] = useState([]);
-  const [lisNotActiveUsers, setListNotActiveUsers] = useState([]);
+  const [listNotActiveUsers, setListNotActiveUsers] = useState([]);
 
   useEffect(() => {
     axios

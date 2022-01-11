@@ -15,22 +15,28 @@ function RecentAuditLog() {
   }, []);
 
   return (
-    <table>
-      <tr>
-        <th>Date & Time</th>
-        <th>Category</th>
-        <th>Changed Object</th>
-        <th>User</th>
-      </tr>
-      {RecentAuditLog.map((recentlog, i) => (
-        <tr key={i}>
-          <td> {recentlog.DateTime} </td>
-          <td> {recentlog.Category} </td>
-          <td> {recentlog.ChangedObject} </td>
-          <td> {recentlog.User} </td>
+    <div>
+      <div id="recent-1">
+        <h1>Latest Audit Log History</h1>
+      </div>
+
+      <table id="recent-audit-log">
+        <tr>
+          <th>Date & Time</th>
+          <th>Category</th>
+          <th>Changed Object</th>
+          <th>User</th>
         </tr>
-      ))}
-    </table>
+        {RecentAuditLog.map((recentlog, i) => (
+          <tr key={i}>
+            <td> {recentlog.DateTime} </td>
+            <td> {recentlog.Category} </td>
+            <td> {recentlog.ChangedObject} </td>
+            <td> {recentlog.User} </td>
+          </tr>
+        ))}
+      </table>
+    </div>
   );
 }
 

@@ -8,11 +8,14 @@
   vertical-align: middle;
 }
 
-table {
+#recent-1 {
+  text-align: center;
+}
+
+#recent-audit-log {
   font-family: "Mulish", sans-serif;
   border-collapse: collapse;
   width: 95%;
-  border: 1px solid black;
   background-color: white;
   margin: 50px;
 }

@@ -1,0 +1,49 @@
+//style.css
+
+@import url("https://fonts.googleapis.com/css2?family=Mulish:wght@200&display=swap");
+
+.export {
+  display: flex;
+  flex-direction: column;
+  float: right;
+  margin-right: 70px;
+  vertical-align: middle;
+}
+
+table {
+  font-family: "Mulish", sans-serif;
+  border-collapse: collapse;
+  width: 95%;
+  border: 1px solid black;
+  background-color: white;
+  margin: 50px;
+}
+
+th {
+  border-bottom: 1px solid black;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: white;
+  color: black;
+}
+
+td,
+th {
+  padding: 15px;
+  text-align: left;
+}
+
+tr:hover {
+  background-color: #ddd;
+}
+
+.action-column td {
+  width: max-content;
+}
+
+.audit-1 {
+  background-color: white;
+  margin: 15px 15px;
+  float: center;
+}

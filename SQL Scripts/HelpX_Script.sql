@@ -2236,6 +2236,17 @@ VALUES (userid,email,now());
 END $$
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS sp_users_sel_notActive;
+DELIMITER $$
+CREATE PROCEDURE sp_users_sel_notActive()
+BEGIN
+SELECT CONCAT(u.firstname,' ',u.lastname) as Name
+FROM users AS u
+LEFT JOIN userslogin AS ul ON ul.userid = u.id
+WHERE DATEDIFF(now(),ul.datelogin) > 90;
+END $$
+DELIMITER ;
+
 -- ************************************************* --
 --              Call Stored Procedure                --
 -- ************************************************* --

@@ -4,8 +4,8 @@ import axios from "axios";
 
 function RNSearchVertical() {
   const [filteredData, setFilteredData] = useState([]);
-  const [SearchRNVertical, setSearchRNVertical] = useState([]);
-  const [ListReleaseNotes, setListReleaseNotes] = useState([]);
+  const [searchRNVertical, setSearchRNVertical] = useState([]);
+  const [listReleaseNotes, setListReleaseNotes] = useState([]);
   const [wordEntered, setWordEntered] = useState("");
 
   useEffect(() => {
@@ -30,7 +30,7 @@ function RNSearchVertical() {
   const handleChange = (event) => {
     const searchWord = event.target.value;
     setWordEntered(searchWord);
-    const newFilter = SearchRNVertical.filter((content) => {
+    const newFilter = searchRNVertical.filter((content) => {
       return content.Body.toLowerCase().includes(searchWord.toLowerCase());
     });
 
@@ -59,10 +59,10 @@ function RNSearchVertical() {
             />
             {filteredData.length != 0 && (
               <div className="dataResult">
-                {filteredData.slice(0, 15).map((SearchRNVertical) => {
+                {filteredData.slice(0, 15).map((searchRNVertical) => {
                   return (
                     <a className="dataItem" href="#" target="_blank">
-                      <p>{SearchRNVertical.Title} </p>
+                      <p>{searchRNVertical.Title} </p>
                     </a>
                   );
                 })}
@@ -71,11 +71,11 @@ function RNSearchVertical() {
           </form>
         </div>
         <div className="releaseNoteList">
-          {ListReleaseNotes.map((ListReleaseNotes) => {
+          {listReleaseNotes.map((listReleaseNotes) => {
             return (
               <ul>
                 <li>
-                  <a href="#">{ListReleaseNotes.Title}</a>
+                  <a href="#">{listReleaseNotes.Title}</a>
                 </li>
               </ul>
             );

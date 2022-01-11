@@ -561,3 +561,4 @@ app.get("/api/users/1", (req, res) => {
 app.get("/recentauditlog/history", (req, res) => {
   const getRecentAuditLog = "CALL sp_auditlogs_sel()";
   getQuery(db, getRecentAuditLog, res);
+});

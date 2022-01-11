@@ -17,7 +17,7 @@ function UsersPanel() {
   return (
     <div className="user-panel">
       <h2 className="users-without-roles">Users without roles</h2>
-      {listUsersWithoutRoles.map((user, i) => {
+      {listUsersWithoutRoles.slice(0, 3).map((user, i) => {
         return (
           <div key={i}>
             <div class="green-circle"></div>

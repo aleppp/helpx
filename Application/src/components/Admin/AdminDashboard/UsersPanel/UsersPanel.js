@@ -4,12 +4,19 @@ import "./UsersPanel.css";
 
 function UsersPanel() {
   const [listUsersWithoutRoles, setListUsersWithoutRoles] = useState([]);
+  const [listNotActiveUsers, setListNotActiveUsers] = useState([]);
 
   useEffect(() => {
     axios
       .get("http://localhost:8080/api/users/1")
       .then((res) => {
         if (res.status === 200) setListUsersWithoutRoles(res.data[0]);
+      })
+      .catch((err) => console.log(err));
+    axios
+      .get("http://localhost:8080/api/users/2")
+      .then((res) => {
+        if (res.status === 200) setListNotActiveUsers(res.data[0]);
       })
       .catch((err) => console.log(err));
   });
@@ -26,8 +33,14 @@ function UsersPanel() {
         );
       })}
       <h2 className="not-active-users">Not active user</h2>
-      <div class="gray-circle"></div>
-      <span>User216</span>
+      {listNotActiveUsers.slice(0, 3).map((user, i) => {
+        return (
+          <div key={i}>
+            <div class="gray-circle"></div>
+            <span>{user.Name}</span>
+          </div>
+        );
+      })}
     </div>
   );
 }

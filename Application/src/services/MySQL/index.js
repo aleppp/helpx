@@ -556,3 +556,9 @@ app.get("/api/users/1", (req, res) => {
   const getUsersWithoutRoles = "CALL sp_users_sel_withoutRoles()";
   getQuery(db, getUsersWithoutRoles, res);
 });
+
+//db hook for not active users
+app.get("/api/users/2", (req, res) => {
+  const getNotActiveUsers = "CALL sp_users_sel_notActive()";
+  getQuery(db, getNotActiveUsers, res);
+});

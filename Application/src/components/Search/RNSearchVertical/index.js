@@ -1,18 +1,37 @@
 import "./style.css";
-import * as React from "react";
-import MockData from "./mockdata.json";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 function RNSearchVertical() {
   const [filteredData, setFilteredData] = useState([]);
+  const [searchRNVertical, setSearchRNVertical] = useState([]);
+  const [listReleaseNotes, setListReleaseNotes] = useState([]);
   const [wordEntered, setWordEntered] = useState("");
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/searchterm/sel")
+      .then((res) => {
+        if (res.status === 200) setSearchRNVertical(res.data[0]);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/releasenotes/list")
+      .then((res) => {
+        if (res.status === 200) setListReleaseNotes(res.data[0]);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   //filtering keywords
   const handleChange = (event) => {
     const searchWord = event.target.value;
     setWordEntered(searchWord);
-    const newFilter = MockData.filter((value) => {
-      return value.Description.toLowerCase().includes(searchWord.toLowerCase());
+    const newFilter = searchRNVertical.filter((content) => {
+      return content.Body.toLowerCase().includes(searchWord.toLowerCase());
     });
 
     if (searchWord === "") {
@@ -40,10 +59,10 @@ function RNSearchVertical() {
             />
             {filteredData.length != 0 && (
               <div className="dataResult">
-                {filteredData.slice(0, 15).map((value, key) => {
+                {filteredData.slice(0, 15).map((searchRNVertical) => {
                   return (
-                    <a className="dataItem" href={value.Link} target="_blank">
-                      <p>{value.ReleaseNote} </p>
+                    <a className="dataItem" href="#" target="_blank">
+                      <p>{searchRNVertical.Title} </p>
                     </a>
                   );
                 })}
@@ -52,11 +71,11 @@ function RNSearchVertical() {
           </form>
         </div>
         <div className="releaseNoteList">
-          {MockData.map((MockData) => {
+          {listReleaseNotes.map((listReleaseNotes) => {
             return (
-              <ul key={MockData.ReleaseNoteID}>
+              <ul>
                 <li>
-                  <a href={MockData.Link}>{MockData.ReleaseNote}</a>
+                  <a href="#">{listReleaseNotes.Title}</a>
                 </li>
               </ul>
             );

@@ -2,7 +2,7 @@
 
 .user-panel {
   background-color: #f8f8f8;
-  width: 150px;
+  width: 250px;
   padding-left: 15pt;
   padding-right: 15pt;
   padding-top: 10pt;
@@ -13,8 +13,8 @@
 }
 
 .green-circle {
-  width: 10px;
-  height: 10px;
+  width: 30px;
+  height: 30px;
   border-radius: 50px;
   font-size: 20px;
   color: #fff;
@@ -23,8 +23,8 @@
   display: inline-block;
 }
 .gray-circle {
-  width: 10px;
-  height: 10px;
+  width: 30px;
+  height: 30px;
   border-radius: 50px;
   font-size: 20px;
   color: #fff;
@@ -44,4 +44,10 @@ span {
   text-align: center;
   margin: 20px;
   font-weight: bold;
+  color: black;
+}
+
+.users-without-roles,
+.not-active-users {
+  padding-top: 30px;
 }

@@ -2,8 +2,8 @@
 
 .content {
   position: absolute;
-  top: 14%;
-  left: 72%;
+  top: 5%;
+  left: 79%;
 }
 
 .BodySearchVertical {
@@ -40,7 +40,7 @@ form.SearchBar input[type="text"] {
   float: right;
   width: auto;
   background: #eeeeee;
-  height: 20px;
+  height: 35px;
   margin-left: 0px;
   position: absolute;
   box-shadow: 1px 1px 2px rgb(134, 133, 133);

@@ -155,8 +155,9 @@ main {
 /* Position part for sub menu */
 .admin-nav.close .links li .sub-menu {
   position: fixed;
-  left: 19%;
+  left: 7%;
   top: -10px; /* animated sub menu */
+  width: 10%;
   margin-top: 0;
   padding: 10px 20px;
   border-radius: 0 6px 6px 0;
@@ -167,7 +168,7 @@ main {
 
 /* effect when hovering sub menu */
 .admin-nav.close .links li:hover .sub-menu {
-  top: 32%;
+  top: 42%;
   opacity: 1;
   pointer-events: auto;
 }
@@ -202,11 +203,16 @@ main {
   transition: all 0.3 ease;
 }
 
+.admin-nav .links li .sub-menu-2 a:hover {
+  opacity: 1;
+}
+
 /* Position part for sub menu - configuration */
 .admin-nav.close .links li .sub-menu-2 {
   position: fixed;
-  left: 19%;
+  left: 7%;
   top: -10px; /* animated sub menu */
+  width: 10%;
   margin-top: 0;
   padding: 10px 20px;
   border-radius: 0 6px 6px 0;
@@ -217,7 +223,7 @@ main {
 
 /* effect when hovering sub menu - configuration */
 .admin-nav.close .links li:hover .sub-menu-2 {
-  top: 54%;
+  top: 65%;
   opacity: 1;
   pointer-events: auto;
 }

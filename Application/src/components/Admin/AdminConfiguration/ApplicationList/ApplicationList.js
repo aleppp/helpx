@@ -8,7 +8,7 @@ function ApplicationList() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/apps/sel")
+      .get("http://localhost:8080/api/apps/listapplications")
       .then((res) => {
         if (res.status === 200) setAppList(res.data[0]);
       })

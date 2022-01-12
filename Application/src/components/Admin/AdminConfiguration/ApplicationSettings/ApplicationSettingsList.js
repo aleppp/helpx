@@ -8,7 +8,7 @@ function ApplicationSettingsList() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/appattributes/sel")
+      .get("http://localhost:8080/api/appattributes/listappattributes")
       .then((res) => {
         if (res.status === 200) setAppSettingsList(res.data[0]);
       })

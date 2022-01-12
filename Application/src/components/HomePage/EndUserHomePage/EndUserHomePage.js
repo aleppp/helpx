@@ -1,9 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./EndUserHomePage.css";
 import UserHeader from "../../ReleaseNotes/Navigation/UserHeader";
 import UserNavigation from "../../ReleaseNotes/Navigation/UserNavigation";
 
+import axios from "axios";
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>;
+
 function EndUserHomePage() {
+  const [releaseNotes, setreleaseNotes] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/releasenotes/list")
+      .then((res) => {
+        if (res.status === 200) setreleaseNotes(res.data[0]);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <div>
       <UserNavigation />
@@ -13,8 +28,9 @@ function EndUserHomePage() {
           <div className="TopLeft">
             <b> RELEASE NOTES</b>
           </div>
-          <div className="row">
-            <div className="column">
+
+          <div className="row row-1">
+            <div className="col-md-6 col-6 col-s-6" padding-0>
               <input
                 type="text"
                 id="myInput"
@@ -22,13 +38,11 @@ function EndUserHomePage() {
                 title="Type in a name"
                 src="../../../../public/images/search-icon.png"
               ></input>
-
               <p>Sort by: Date</p>
             </div>
-            <div className="row">
-              <div className="vl"></div>
+            <div className="vl"></div>{" "}
+            <div className="col-md-6 col-6 col-s-6" padding-0>
               <p className="desc">
-                {" "}
                 Release notes provide information on the features and
                 improvements in each release. This page includes release notes
                 for platform releases and feature releases (you'll find bug fix
@@ -37,29 +51,19 @@ function EndUserHomePage() {
             </div>
           </div>
         </div>
-
-        <ul className="list">
-          {" "}
-          <b>List of Release Notes</b>
-          <li>
-            <a href="#">Release Note 7.5 </a>
-          </li>
-          <li>
-            <a href="#">Release Note 7.4 </a>
-          </li>
-          <li>
-            <a href="#">Release Note 7.3 </a>
-          </li>
-          <li>
-            <a href="#">Release Note 7.2 </a>
-          </li>
-          <li>
-            <a href="#">Release Note 7.1 </a>
-          </li>
-          <li>
-            <a href="#">Release Note 7.0 </a>
-          </li>
-        </ul>
+        <div className="Row">
+          <div className="col-12 col-s-12">
+            <b className="list">List of Release Notes</b>
+            <br />
+            {releaseNotes.map((releaseNotes) => (
+              <ul>
+                <li>
+                  <a href="#">{releaseNotes.Title}</a>
+                </li>
+              </ul>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );

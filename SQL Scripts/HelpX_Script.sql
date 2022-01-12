@@ -1748,8 +1748,7 @@ DELIMITER $$
 CREATE PROCEDURE `sp_ReleaseNotes_sel`()
 BEGIN
 SELECT ct.ID as id,
-ct.Title,
-ct.Body
+ct.Title
 FROM content as ct
 LEFT JOIN Applications as app
 ON ct.AppID = app.ID

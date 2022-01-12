@@ -249,6 +249,15 @@ CREATE TABLE IF NOT EXISTS ContentFiles (
     PRIMARY KEY (ID),
     CONSTRAINT FK_ContentFiles_contentid FOREIGN KEY (contentid) REFERENCES content(ID)
   );
+
+CREATE TABLE IF NOT EXISTS userslogin(
+  ID INT NOT NULL AUTO_INCREMENT,
+  UserID INT NOT NULL,
+  email VARCHAR(50),
+  datelogin DATETIME,
+  PRIMARY KEY (ID),
+  CONSTRAINT FK_userslogin_userid FOREIGN KEY (UserID) REFERENCES users(ID) 
+  );
 -- ************************** -- 
 --     DUMMY DATA SCRIPTS     --
 -- ************************** --
@@ -1927,6 +1936,18 @@ WHERE u.id = id;
 END $$
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `sp_users_sel_withoutRoles`;
+DELIMITER $$
+CREATE PROCEDURE `sp_users_sel_withoutRoles`()
+BEGIN
+SELECT CONCAT(u.firstname,' ',u.lastname) as Name
+FROM users as u
+LEFT JOIN usersapplications AS ua ON ua.userid = u.id
+LEFT JOIN usersappsroles AS uar ON uar.userappid = ua.id
+WHERE uar.userroleid IS NULL;
+END $$
+DELIMITER ;
+
 DROP PROCEDURE IF EXISTS `sp_faq_ins`;
 DELIMITER $$
 CREATE PROCEDURE `sp_faq_ins`(
@@ -2182,6 +2203,16 @@ BEGIN
 END $$
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `sp_countUser_sel`;
+DELIMITER $$
+CREATE PROCEDURE `sp_countUser_sel`()
+BEGIN
+SELECT 
+COUNT(ID) as 'ActiveUser'
+FROM users;
+END $$
+DELIMITER ;
+
 DROP PROCEDURE IF EXISTS `sp_integratedapps_sel`;
 DELIMITER $$
 CREATE PROCEDURE `sp_integratedapps_sel`()
@@ -2189,6 +2220,29 @@ BEGIN
 SELECT ID,
     COUNT(ID) as 'IntegratedApp'
   FROM applications;
+END $$
+DELIMITER ;
+
+-- insert data for user login date to check inactive user
+DROP PROCEDURE IF EXISTS `sp_userslogin_ins`;
+DELIMITER $$
+CREATE PROCEDURE `sp_userslogin_ins`(email VARCHAR(50))
+BEGIN
+DECLARE userid INT DEFAULT (SELECT u.id FROM users AS u WHERE u.email = email);
+
+INSERT INTO userslogin(userid,email,datelogin)
+VALUES (userid,email,now());
+END $$
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS sp_users_sel_notActive;
+DELIMITER $$
+CREATE PROCEDURE sp_users_sel_notActive()
+BEGIN
+SELECT CONCAT(u.firstname,' ',u.lastname) as Name
+FROM users AS u
+LEFT JOIN userslogin AS ul ON ul.userid = u.id
+WHERE DATEDIFF(now(),ul.datelogin) > 90;
 END $$
 DELIMITER ;
 
@@ -2200,27 +2254,15 @@ CALL sp_contentdb_sel();
 CALL sp_bookmarks_sel_all();
 CALL sp_template_ins(1,1,'Release Note 1','Here are some details on..', now(), now());
 CALL sp_template_sel();
-CALL sp_template_upd(2,1,1,'Release Note 3.4','Release Note are....',now(),now());
-CALL sp_template_del(1);
 
 CALL sp_ReleaseNotes_sel();
 CALL sp_ContentBodyReleaseNotes_sel();
 
 CALL sp_content_ins(1, 1, 1, 1, true, true, 'Release Note 5.0', 'This is a new Release Notes', now(), now(), '2021-11-20 00:00:00');
 
-CALL sp_content_upd(1, 1, true, false, 'Release Note 6.0', 'This is a new Release Notes', now());
-
-CALL sp_content_del(1);
-
 CALL sp_fraudmanagement_sel();
 
 CALL `sp_fraudmanagement_ins`('park yoo', now(), now()) ;
-
-CALL `sp_fraudmanagement_upd`(1, 'crazy', now());
-
-CALL `sp_fraudmanagement_del`(3);
-
-CALL `sp_applications_del`(2);
 
 CALL sp_users_sel() ;
 
@@ -2228,35 +2270,17 @@ CALL sp_bookmarks_sel_user(2);
 
 CALL sp_users_ins('Roman', 'Kvaska', 'roman.kvaska@gmail.com', now(), now() ) ;
 
-CALL sp_users_del(3);
-
-CALL `sp_applications_upd`(1,'AlphaOil Petronas','alphaoil',now());
-
 CALL `sp_faq_ins`(1, 'Question', 'Answer', true, true, now(), now());
 
 CALL `sp_faq_sel`();
 
 CALL `sp_feedback_sel_user`();
 
-CALL sp_notifications_del(2);
-
 CALL sp_notifications_sel();
 
 CALL sp_bookmarks_ins(2, 'helpx.petronas.com/releasenote/1.11', 'Release Note 1.11', now(), now());
 
-CALL sp_bookmarks_upd('Release Note 1.11 Extra', 2, now());
-
-CALL sp_bookmarks_del(2);
-
--- CALL sp_contentfiles_ins(1, 'img/Notes2/22015.png', now(), now());
-
 CALL `sp_lookupuserroles_ins`(6, 'Admin App', 'have an eye for detail', now(), now()) ;
-
-CALL `sp_users_upd`(1, 'Nisha', 'Izzati', 'nisha@petronas.com', now(), now());
-
-CALL `sp_lookupuserroles_del`(6);
-
-CALL `sp_lookupuserroles_upd`(5, 'User Admin', 'User Admin', now());
 
 CALL sp_userapproles_sel_numofusers() ;
 
@@ -2265,12 +2289,6 @@ CALL sp_feedback_sel_byContentID();
 CALL sp_notifications_ins(1, 1, 'Notifications', true, now(), now()) ;
 
 CALL `sp_searchterm_sel`();
-
-CALL sp_faq_upd(1, 1, 'What is a release note?','Release notes are documents that are distributed with software products', true, true, now());
-  
-CALL sp_faq_del(2);
-
-CALL `sp_feedback_upd`(1,'Feedback upd', 4, now());
 
 CALL sp_feedback_sel_cc();
 
@@ -2283,3 +2301,11 @@ CALL sp_users_ins('User1', 'UserL1', 'user2@petronas.com', now(), now(), 2,2,2,2
 call `sp_applications_ins`('Setel',null,now(),now());
 
 call `sp_applicationsattributes_ins`(1,1,null,now(),now());
+
+call `sp_userslogin_ins`('alifmuqri.hazmi@petronas.com');
+
+call sp_users_ins('Amirul', 'Luqman Shamshi', 'mirul@petronas.com',now(),now(),3,null,2,1);
+
+CALL sp_auditlogs_sel();
+
+CALL sp_auditlogs_ins(1,1,1,1,1,now());

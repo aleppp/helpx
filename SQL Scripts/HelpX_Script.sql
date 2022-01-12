@@ -2306,3 +2306,7 @@ call `sp_applicationsattributes_ins`(1,1,null,now(),now());
 call `sp_userslogin_ins`('alifmuqri.hazmi@petronas.com');
 
 call sp_users_ins('Amirul', 'Luqman Shamshi', 'mirul@petronas.com',now(),now(),3,null,2,1);
+
+CALL sp_auditlogs_sel();
+
+CALL sp_auditlogs_ins(1,1,1,1,1,now());

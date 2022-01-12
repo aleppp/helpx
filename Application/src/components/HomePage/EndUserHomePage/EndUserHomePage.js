@@ -62,25 +62,6 @@ function EndUserHomePage() {
                 </li>
               </ul>
             ))}
-
-            {/* <li>
-            
-            <a href={releaseNotes.Title}> </a>
-          </li>
-          <li>
-            <a href="#">Release Note 7.3 </a>
-          </li>
-          <li>
-            <a href="#">Release Note 7.2 </a>
-          </li>
-          <li>
-            <a href="#">Release Note 7.1 </a>
-          </li>
-          <li>
-            <a href="#">Release Note 77.0 </a>
-       
-          </li> 
-        </ul>*/}
           </div>
         </div>
       </div>

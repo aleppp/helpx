@@ -5,6 +5,7 @@ import LandingPage from "./components/LandingPage/LandingPage";
 import Auth from "./services/Auth/Auth";
 import Callback from "./services/Auth/Callback";
 import EndUserHomePage from "./components/HomePage/EndUserHomePage/EndUserHomePage";
+import AuditLogDatatable from "./components/Admin/AdminAuditLog/AuditLogDatatable";
 
 class App extends Component {
   constructor(props) {
@@ -34,6 +35,13 @@ class App extends Component {
               exact
               render={(props) => (
                 <EndUserHomePage auth={this.auth} {...props} />
+              )}
+            />
+            <Route
+              path="/audit-logs"
+              exact
+              render={(props) => (
+                <AuditLogDatatable auth={this.auth} {...props} />
               )}
             />
           </div>

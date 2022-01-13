@@ -1,50 +1,12 @@
-.dashboard {
-  background-color: #f8f8f8;
-  color: white;
-  border-radius: 5px;
-  width: 80%;
-  padding-left: 10pt;
-  padding-right: 10pt;
-  padding-top: 20pt;
-  padding-bottom: 20pt;
-  margin: 20pt;
-  font-family: "Mulish", sans-serif;
-  font-size: 15pt;
+.container-lg {
   text-align: center;
   display: flex;
-  flex-direction: row;
 }
 
-.IntegratedApp {
-  background-color: #00a19c;
-  color: white;
-  border-radius: 5px;
-  width: 250px;
-  padding-left: 10pt;
-  padding-right: 10pt;
-  padding-top: 20pt;
-  padding-bottom: 20pt;
-  margin: 20pt;
-  font-family: "Mulish", sans-serif;
-  font-size: 15pt;
-  text-align: center;
-  display: flex;
-  flex-direction: row;
-}
-
+.IntegratedApp,
 .ActiveUser {
   background-color: #00a19c;
   color: white;
-  border-radius: 5px;
-  width: 250px;
-  padding-left: 10pt;
-  padding-right: 10pt;
-  padding-top: 20pt;
-  padding-bottom: 20pt;
-  margin: 20pt;
   font-family: "Mulish", sans-serif;
   font-size: 15pt;
-  text-align: center;
-  display: flex;
-  flex-direction: row;
 }

@@ -36,7 +36,7 @@ function Dashboard() {
             count={countUser.map((user) => user.ActiveUser)}
           />
         </div>
-        <div className="d-flex m-4" id="IntegratedApp">
+        <div className="d-sm-flex m-4" id="IntegratedApp">
           <CounterWidget
             title={arrayTitle[1].title}
             count={countApp.map((app) => app.IntegratedApp)}

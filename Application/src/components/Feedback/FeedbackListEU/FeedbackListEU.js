@@ -139,7 +139,7 @@ export default function FeedbackEUList() {
                             );
                           }
                         })()}
-                        <SelectRating></SelectRating>
+                        <SelectRating />
                       </div>
                     </td>
 

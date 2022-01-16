@@ -1,12 +1,4 @@
-.container-lg {
+#dashboard-counter {
   text-align: center;
   display: flex;
-}
-
-.IntegratedApp,
-.ActiveUser {
-  background-color: #00a19c;
-  color: white;
-  font-family: "Mulish", sans-serif;
-  font-size: 15pt;
 }

@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Mulish:wght@200&display=swap");
 
-.user-panel {
+#user-panel {
   background-color: #f8f8f8;
   width: 250px;
   padding-left: 15pt;
@@ -12,7 +12,7 @@
   font-size: 15pt;
 }
 
-.green-circle {
+#green-circle {
   width: 30px;
   height: 30px;
   border-radius: 50px;
@@ -21,8 +21,9 @@
   line-height: 100px;
   background: #38b09d;
   display: inline-block;
+  vertical-align: baseline;
 }
-.gray-circle {
+#gray-circle {
   width: 30px;
   height: 30px;
   border-radius: 50px;
@@ -31,23 +32,22 @@
   line-height: 100px;
   display: inline-block;
   background: #7b807f;
+  vertical-align: text-bottom;
 }
 
 h2 {
-  font-size: 12px;
   text-align: center;
   font-weight: bolder;
 }
 
 span {
-  font-size: 8px;
+  font-size: 15px;
   text-align: center;
   margin: 20px;
-  font-weight: bold;
   color: black;
 }
 
-.users-without-roles,
-.not-active-users {
+#users-without-roles,
+#not-active-users {
   padding-top: 30px;
 }

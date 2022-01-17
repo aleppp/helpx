@@ -14,30 +14,36 @@ function RecentAppConfigList() {
       .catch((err) => console.log(err));
   }, []);
   return (
-    <div className="RecentAppConfigList" data-testid="divShows">
-      <h2>
-        Recent Configuration <br />
-        Application
-      </h2>
-      <div>
-        <table id="recent-app">
-          <thead>
-            <th>Date & Time</th>
-            <th>Application Name</th>
-            <th>Changes</th>
-            <th>User</th>
-          </thead>
-          <tbody>
-            {recentApp.map((app, i) => (
-              <tr key={i}>
-                <td>{app.Datetime}</td>
-                <td>{app.ApplicationName}</td>
-                <td>{app.Changes}</td>
-                <td>{app.User}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+    <div className="container-lg m-3">
+      <div
+        className="d-flex flex-column"
+        id="RecentAppConfigList"
+        data-testid="divShows"
+      >
+        <h2>
+          Recent Configuration <br />
+          Application
+        </h2>
+        <div>
+          <table id="recent-app">
+            <thead>
+              <th>Date & Time</th>
+              <th>Application Name</th>
+              <th>Changes</th>
+              <th>User</th>
+            </thead>
+            <tbody>
+              {recentApp.slice(0, 3).map((app, i) => (
+                <tr key={i}>
+                  <td>{app.Datetime}</td>
+                  <td>{app.ApplicationName}</td>
+                  <td>{app.Changes}</td>
+                  <td>{app.User}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

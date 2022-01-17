@@ -22,9 +22,9 @@ export default function WordFilterList() {
   const count = Math.ceil(FraudCCList.length / PER_PAGE);
   const FraudDataCC = usePagination(FraudCCList, PER_PAGE);
 
-  const handleChange = (e, p) => {
-    setPage(p);
-    FraudDataCC.jump(p);
+  const handleChange = (event, page) => {
+    setPage(page);
+    FraudDataCC.jump(page);
   };
 
   function usePagination(data, itemsPerPage) {

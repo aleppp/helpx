@@ -8,25 +8,19 @@ import axios from "axios";
 <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>;
 
 function EndUserHomePage() {
-  const [releaseNotes, setReleaseNotes] = useState([]);
-  const [filteredNotes, setFilteredNotes] = useState([]);
+  const [releaseNotes, setreleaseNotes] = useState([]);
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/searchterm/sel")
+      .get("http://localhost:8080/releasenotes/list")
       .then((res) => {
-        if (res.status === 200) setFilteredNotes(res.data[0]);
+        if (res.status === 200) setreleaseNotes(res.data[0]);
       })
       .catch((err) => console.log(err));
   }, []);
 
-  const searchStringHandler = (e) => {
-    setReleaseNotes(e);
-  };
-
   return (
     <div>
-      {" "}
       <UserNavigation />
       <UserHeader />
       <div className="LandingPage">
@@ -41,7 +35,6 @@ function EndUserHomePage() {
                 type="text"
                 id="myInput"
                 placeholder="Search.."
-                onChange={(e) => searchStringHandler(e.target.value)}
                 title="Type in a name"
                 src="../../../../public/images/search-icon.png"
               ></input>
@@ -62,27 +55,13 @@ function EndUserHomePage() {
           <div className="col-12 col-s-12">
             <b className="list">List of Release Notes</b>
             <br />
-            {filteredNotes
-              .filter((content) => {
-                if (releaseNotes == "") {
-                  return content;
-                } else if (
-                  content.Title.toLowerCase().includes(
-                    releaseNotes.toLowerCase()
-                  )
-                ) {
-                  return content;
-                }
-              })
-              .map((content, index) => {
-                return (
-                  <ul key={index}>
-                    <li>
-                      <a href="#">{content.Title}</a>
-                    </li>
-                  </ul>
-                );
-              })}
+            {releaseNotes.map((releaseNotes) => (
+              <ul>
+                <li>
+                  <a href="#">{releaseNotes.Title}</a>
+                </li>
+              </ul>
+            ))}
           </div>
         </div>
       </div>

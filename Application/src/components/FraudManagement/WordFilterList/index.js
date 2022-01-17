@@ -39,6 +39,7 @@ export default function WordFilterList() {
                     cannot be submit for approval until the highlighted words
                     are removed.
                   </p>
+                  <Button button={button[0]}></Button>
                 </div>
               </td>
             </tr>

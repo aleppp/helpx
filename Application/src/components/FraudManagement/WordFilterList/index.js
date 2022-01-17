@@ -24,7 +24,7 @@ export default function WordFilterList() {
 
   return (
     <>
-      <div className="overall">
+      <div className="WordFilterListCC">
         <table className="table table-borderless">
           <thead>
             <tr className="tdashboard">

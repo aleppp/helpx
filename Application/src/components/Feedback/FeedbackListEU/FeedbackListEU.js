@@ -5,6 +5,7 @@ import Button from "../../Buttons/Buttons";
 import { Pagination, TextField } from "@mui/material";
 import UserHeader from "../../ReleaseNotes/Navigation/UserHeader";
 import UserNavigation from "../../ReleaseNotes/Navigation/UserNavigation";
+import SelectRating from "./SelectRating";
 
 export default function FeedbackEUList() {
   const [FeedbackListEU, setFeedbackListEU] = useState([]);
@@ -89,56 +90,71 @@ export default function FeedbackEUList() {
                     </td>
                     <td>{fb.DateCreated}</td>
                     <td>
-                      {(function () {
-                        if (fb.Rating == "1") {
-                          return (
-                            <img
-                              src={
-                                process.env.PUBLIC_URL + "/images/rate_1.png"
-                              }
-                              alt="Very Dissatisfied"
-                            />
-                          );
-                        } else if (fb.Rating == "2") {
-                          return (
-                            <img
-                              src={
-                                process.env.PUBLIC_URL + "/images/rate_2.png"
-                              }
-                              alt="Very Dissatisfied"
-                            />
-                          );
-                        } else if (fb.Rating == "3") {
-                          return (
-                            <img
-                              src={
-                                process.env.PUBLIC_URL + "/images/rate_3.png"
-                              }
-                              alt="Neutral"
-                            />
-                          );
-                        } else if (fb.Rating == "4") {
-                          return (
-                            <img
-                              src={
-                                process.env.PUBLIC_URL + "/images/rate_4.png"
-                              }
-                              alt="Satisfied"
-                            />
-                          );
-                        } else {
-                          return (
-                            <img
-                              src={
-                                process.env.PUBLIC_URL + "/images/rate_5.png"
-                              }
-                              alt="Very Satisfied"
-                            />
-                          );
-                        }
-                      })()}
+                      <div class="dropdown">
+                        {(function () {
+                          if (fb.Rating == "1") {
+                            return (
+                              <img
+                                src={
+                                  process.env.PUBLIC_URL + "/images/rate_1.png"
+                                }
+                                alt="Very Dissatisfied"
+                              />
+                            );
+                          } else if (fb.Rating == "2") {
+                            return (
+                              <img
+                                src={
+                                  process.env.PUBLIC_URL + "/images/rate_2.png"
+                                }
+                                alt="Very Dissatisfied"
+                              />
+                            );
+                          } else if (fb.Rating == "3") {
+                            return (
+                              <img
+                                src={
+                                  process.env.PUBLIC_URL + "/images/rate_3.png"
+                                }
+                                alt="Neutral"
+                              />
+                            );
+                          } else if (fb.Rating == "4") {
+                            return (
+                              <img
+                                src={
+                                  process.env.PUBLIC_URL + "/images/rate_4.png"
+                                }
+                                alt="Satisfied"
+                              />
+                            );
+                          } else {
+                            return (
+                              <img
+                                src={
+                                  process.env.PUBLIC_URL + "/images/rate_5.png"
+                                }
+                                alt="Very Satisfied"
+                              />
+                            );
+                          }
+                        })()}
+                        <SelectRating />
+                      </div>
                     </td>
-                    <td>{fb.Feedback}</td>
+
+                    <td>
+                      <TextField
+                        id="outlined-normal"
+                        variant="outlined"
+                        label=" "
+                        multiline
+                        maxRows={4}
+                        defaultValue={fb.Feedback}
+                      >
+                        {fb.Feedback}
+                      </TextField>
+                    </td>
                     <td>
                       <Button button={button[0]}></Button>
                     </td>
@@ -167,4 +183,7 @@ export default function FeedbackEUList() {
       </div>
     </>
   );
+}
+
+{
 }

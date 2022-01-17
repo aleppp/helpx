@@ -89,7 +89,6 @@ a:active {
 }
 
 /* User header/navigation */
-
 .Content-Nav {
   display: inline;
   float: left;
@@ -103,4 +102,49 @@ a:active {
 .FeedbackList-EU {
   display: inline;
   padding: 2%;
+}
+
+/* dropdown for rating */
+.dropbtn {
+  background-color: #f3f3f3;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+  /* display: inline-block; */
+}
+
+.dropdown:hover .dropdown-content {
+  display: inline-block;
+  background-color: #f3f3f3;
+}
+
+/* .dropdown:hover .dropbtn {
+  background-color: #f3f3f3;
+} */
+
+.dropdown-content {
+  display: none;
+  position: fixed;
+  background-color: #f9f9f9;
+  min-width: max-content;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content img {
+  width: 60%;
+  height: 60%;
+}
+
+.dropdown-content a {
+  padding: 10px 10px;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.dropdown-content a:hover {
+  background-color: white;
 }

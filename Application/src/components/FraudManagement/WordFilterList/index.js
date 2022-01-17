@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./style.css";
 import Button from "../../Buttons/Buttons";
+import { Pagination } from "@mui/material";
 
 export default function WordFilterList() {
   const [FraudCCList, setFraudCCList] = useState([]);
@@ -14,6 +15,36 @@ export default function WordFilterList() {
       })
       .catch((err) => console.log(err));
   }, []);
+
+  let [page, setPage] = useState(1);
+  const PER_PAGE = 4;
+
+  const count = Math.ceil(FraudCCList.length / PER_PAGE);
+  const FraudDataCC = usePagination(FraudCCList, PER_PAGE);
+
+  const handleChange = (e, p) => {
+    setPage(p);
+    FraudDataCC.jump(p);
+  };
+
+  function usePagination(data, itemsPerPage) {
+    const [currentPage, setCurrentPage] = useState(1);
+    const maxPage = Math.ceil(data.length / itemsPerPage);
+
+    function currentData() {
+      const begin = (currentPage - 1) * itemsPerPage;
+      const end = begin + itemsPerPage;
+
+      return data.slice(begin, end);
+    }
+
+    function jump(page) {
+      const pageNumber = Math.max(1, page);
+      setCurrentPage((currentPage) => Math.min(pageNumber, maxPage));
+    }
+
+    return { jump, currentData, currentPage, maxPage };
+  }
 
   const button = [
     {
@@ -49,12 +80,14 @@ export default function WordFilterList() {
             </tr>
           </thead>
           <tbody>
-            {FraudCCList.map((fraudcc, i) => (
-              <tr key={i}>
-                <td>{fraudcc.id}</td>
-                <td>{fraudcc.term}</td>
-              </tr>
-            ))}
+            {FraudDataCC.currentData().map((fraudcc, i) => {
+              return (
+                <tr key={i}>
+                  <td>{fraudcc.id}</td>
+                  <td>{fraudcc.term}</td>
+                </tr>
+              );
+            })}
           </tbody>
           <tfoot>
             <tr>
@@ -64,6 +97,15 @@ export default function WordFilterList() {
             </tr>
           </tfoot>
         </table>
+        <Pagination
+          className="pageBar"
+          count={count}
+          size="large"
+          color="primary"
+          page={page}
+          shape="rounded"
+          onChange={handleChange}
+        />
       </div>
     </>
   );

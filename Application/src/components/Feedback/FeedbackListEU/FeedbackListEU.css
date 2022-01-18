@@ -1,9 +1,10 @@
 /* overall */
-.overall {
+.FeedbackList-EU {
   display: inline-block;
-  width: 85%;
-  height: 20%;
-  margin-top: 5%;
+  width: 90%;
+  height: 100%;
+  margin-top: 3%;
+  margin-left: 5%;
 }
 
 /* table for data (grey) */
@@ -88,22 +89,6 @@ a:active {
   text-decoration: underline;
 }
 
-/* User header/navigation */
-.Content-Nav {
-  display: inline;
-  float: left;
-}
-
-.Content-Header {
-  display: inline;
-  float: top;
-}
-
-.FeedbackList-EU {
-  display: inline;
-  padding: 2%;
-}
-
 /* dropdown for rating */
 .dropbtn {
   background-color: #f3f3f3;
@@ -113,17 +98,12 @@ a:active {
 
 .dropdown {
   position: relative;
-  /* display: inline-block; */
 }
 
 .dropdown:hover .dropdown-content {
   display: inline-block;
   background-color: #f3f3f3;
 }
-
-/* .dropdown:hover .dropbtn {
-  background-color: #f3f3f3;
-} */
 
 .dropdown-content {
   display: none;

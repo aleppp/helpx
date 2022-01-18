@@ -1,9 +1,11 @@
 /* overall */
 .WordFilterListCC {
   display: inline-block;
-  width: 1500px;
-  height: 648px;
-  margin-top: 5%;
+  width: 90%;
+  height: 100%;
+  margin-top: 3%;
+  margin-left: 5%;
+  position: relative;
 }
 
 /* table for data (grey) */

@@ -369,7 +369,7 @@ app.post("/bookmarks/ins", (req, res) => {
 });
 
 // db hook to delete bookmark
-app.delete("/bookmarks/del", (req, res) => {
+app.post("/bookmarks/del", (req, res) => {
   const deleteBookmarks = "CALL sp_bookmarks_del(?)";
   const params = req.body;
   setQuery(db, deleteBookmarks, params.id, res);

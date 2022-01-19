@@ -1,24 +1,80 @@
-h1 {
-  text-align: left;
+/* overall */
+.overall {
+  display: inline-block;
+  width: 85%;
+  height: 20%;
+  margin-top: 5%;
 }
 
-th {
-  text-align: center;
-}
-
+/* table for data (grey) */
 table {
   width: 100%;
   height: 100%;
+  background-color: #f3f3f3;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   table-layout: fixed;
+  text-align: center;
 }
 
+/* attribute name */
+thead {
+  text-align: center;
+  background-color: #38b09d;
+  font-size: 18px;
+  color: white;
+}
+
+/* table dashboard*/
+.tdashboard {
+  background-color: #f3f3f3;
+  color: black;
+}
+
+/* number on table dashboard */
+.title {
+  display: inline;
+  float: left;
+  font-size: 40px;
+  padding: 20px;
+}
+
+/* data in table (grey) */
 tbody tr td {
   font-size: 18px;
-  padding-top: 10px;
   vertical-align: middle;
 }
 
-table {
-  border-collapse: collapse;
-  width: 100%;
+/* table footer */
+tfoot {
+  background-color: #38b09d;
+  height: 68px;
+}
+
+/* description on table footer */
+.foot {
+  float: left;
+  margin-top: 10px;
+  margin-left: 40px;
+  font-weight: normal;
+  font-size: 18px;
+  color: white;
+}
+
+/* User header/navigation */
+
+.Content-Nav {
+  display: inline;
+  float: left;
+}
+
+.Content-Header {
+  display: inline;
+  float: top;
+}
+
+.FeedbackList-EU {
+  display: inline;
+  padding: 2%;
 }

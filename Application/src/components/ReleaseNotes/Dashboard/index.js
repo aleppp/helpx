@@ -5,9 +5,72 @@ import axios from 'axios'
 
 export default function Dashboard() {
   const [tableData, setTableData] = useState([])
+
+  //for sorting
   const [currentCreated, setCurrentCreated] = useState("createdUnsort");
   const [currentSchedule, setCurrentSchedule] = useState("scheduleUnsort");
   const [dateClicked, setDateClicked] = useState("")
+
+  //for filtering using text input
+  const [query, setQuery] = useState("")
+  const [targetFilter, setTargetFilter] = useState("")
+
+  //label for checkbox filtering
+  const statusLabel = [
+    {
+      id: 1,
+      name: "In Draft",
+      value: "In Draft"
+    },
+    {
+      id: 2,
+      name: "Sent for approval",
+      value: "Sent for approval"
+    },
+    {
+      id: 3,
+      name: "Approved",
+      value: "Approved"
+    }
+  ]
+ 
+  const visibleLabel= [
+    {
+      id: 4,
+      name: "On",
+      value: 1
+    },
+    {
+      id: 5,
+      name: "Off",
+      value: 0
+    },
+  ]
+  const fbuttonLabel = [
+    {
+      id: 6,
+      name: "On",
+      value: 1
+    },
+    {
+      id: 7,
+      name: "Off",
+      value: 0
+    },
+  ]
+
+  //to store which checkbox is checked
+  const [fbuttonFilter, setFbuttonFilter] = useState([])
+  const [visibleFilter, setVisibleFilter] = useState([])
+  const [statusFilter, setStatusFilter] = useState([])
+
+  //to determine which checkbox has been ticked
+  const [checkedStatusState, setCheckedStatusState] = useState([false, false, false]);
+  const [checkedVisibleState, setCheckedVisibleState] = useState([false, false]);
+  const [checkedFeedbackState, setCheckedFeedbackState] = useState([false, false]);
+
+  //using filtering
+  const checkfilter = useCheckbox(tableData)
 
   useEffect(() => {
     axios
@@ -20,12 +83,14 @@ export default function Dashboard() {
       .catch((err) => console.log(err));
   }, []);
 
+  //for pagination
   let [page, setPage] = useState(1);
   const PER_PAGE = 4;
+  
+  const _DATA = usePagination(checkfilter, PER_PAGE);
+  const count = Math.ceil(checkfilter.length / PER_PAGE);
 
-  const count = Math.ceil(tableData.length / PER_PAGE);
-  const _DATA = usePagination(tableData, PER_PAGE);
-
+  //handler for MUI oagination
   const handleChange = (e, p) => {
     setPage(p);
     _DATA.jump(p);
@@ -150,6 +215,109 @@ export default function Dashboard() {
     return { jump, currentData, currentPage, maxPage };
   }
 
+  //handler for text input filtering
+  function handleFilter(e){
+    setTargetFilter(e.target.id)
+    setQuery(e.target.value)
+  }
+  
+  //event handler for checkbox filtering
+  function handleCheckbox(filter, column, position) {
+    if(column === "fbutton") {
+      let feedback = checkedFeedbackState.map((item, index) => 
+        index === position ? !item : item
+      )
+      setCheckedFeedbackState(feedback)
+
+      if(fbuttonFilter.includes(filter)) {
+        const filterIndex = fbuttonFilter.indexOf(filter);
+        const newFilter = [...fbuttonFilter];
+        newFilter.splice(filterIndex, 1);
+        setFbuttonFilter(newFilter)
+      } else {
+        setFbuttonFilter([...fbuttonFilter, filter])
+      }
+    } else if (column === "visible") {
+      let visible = checkedVisibleState.map((item, index) => 
+        index === position ? !item : item
+      )
+      setCheckedVisibleState(visible)
+
+      if(visibleFilter.includes(filter)) {
+        const filterIndex = visibleFilter.indexOf(filter);
+        const newFilter = [...visibleFilter];
+        newFilter.splice(filterIndex, 1);
+        setVisibleFilter(newFilter)
+      } else {
+        setVisibleFilter([...visibleFilter, filter])
+      }
+    } else if (column === "stats") {
+      let status = checkedStatusState.map((item, index) => 
+        index === position ? !item : item
+      )
+      setCheckedStatusState(status)
+
+      if(statusFilter.includes(filter)) {
+        const filterIndex = statusFilter.indexOf(filter);
+        const newFilter = [...statusFilter];
+        newFilter.splice(filterIndex, 1);
+        setStatusFilter(newFilter)
+      } else {
+        setStatusFilter([...statusFilter, filter])
+      }
+    }
+  }
+
+  //where all the filtering implemented
+  function useCheckbox(data) {
+    let checkdata = [];
+
+    console.log(fbuttonFilter, visibleFilter, statusFilter)
+
+    if(
+      (fbuttonFilter.length === 0 || fbuttonFilter.length === fbuttonLabel.length) &&
+      (visibleFilter.length === 0 || visibleFilter.length === visibleLabel.length) &&
+      (statusFilter.length === 0 || statusFilter.length === statusLabel.length) &&
+      query === ""
+      ) {
+      checkdata = tableData;
+    }else {
+      if(!checkedFeedbackState.every(x => x === false)){ //if any of the checkbox checked return true
+        checkdata = data.filter(item => fbuttonFilter.includes(item.IsFeebackAllowed));
+      }if(!checkedVisibleState.every(x => x === false)) {
+        checkdata = data.filter(item => visibleFilter.includes(item.IsVisible));
+      }if(!checkedStatusState.every(x => x === false)) {
+        checkdata = data.filter(item => statusFilter.includes(item.status));
+      }if(!checkedFeedbackState.every(x => x === false) && !checkedStatusState.every(x => x === false)) { //if both status and feedback button checked
+        checkdata = data.filter(item => fbuttonFilter.includes(item.IsFeebackAllowed) && statusFilter.includes(item.status));
+      }if(!checkedFeedbackState.every(x => x === false) && !checkedVisibleState.every(x => x === false)) {
+        checkdata = data.filter(item => fbuttonFilter.includes(item.IsFeebackAllowed) && visibleFilter.includes(item.IsVisible));
+      }if(!checkedVisibleState.every(x => x === false) && !checkedStatusState.every(x => x === false)) {
+        checkdata = data.filter(item => visibleFilter.includes(item.IsVisible) && statusFilter.includes(item.status));
+      }if(!checkedFeedbackState.every(x => x === false) && !checkedVisibleState.every(x => x === false) && !checkedStatusState.every(x => x === false)) {
+        checkdata = data.filter(item => fbuttonFilter.includes(item.IsFeebackAllowed) && visibleFilter.includes(item.IsVisible) && statusFilter.includes(item.status));
+      }if(targetFilter === "Title" && query !== "") { //text input filtering
+        checkdata = data.filter(item => item["Title"].toString().toLowerCase().indexOf(query.toLowerCase()) > -1) 
+      }if((targetFilter === "Title" && query !== "") && !checkedFeedbackState.every(x => x === false)){
+        checkdata = data.filter(item => item["Title"].toString().toLowerCase().indexOf(query.toLowerCase()) > -1 && fbuttonFilter.includes(item.IsFeebackAllowed));
+      }if((targetFilter === "Title" && query !== "") && !checkedVisibleState.every(x => x === false)) {
+        checkdata = data.filter(item => item["Title"].toString().toLowerCase().indexOf(query.toLowerCase()) > -1 && visibleFilter.includes(item.IsVisible));
+      }if((targetFilter === "Title" && query !== "") && !checkedStatusState.every(x => x === false)) {
+        checkdata = data.filter(item => item["Title"].toString().toLowerCase().indexOf(query.toLowerCase()) > -1 && statusFilter.includes(item.status));
+      }if((targetFilter === "Title" && query !== "") && !checkedFeedbackState.every(x => x === false) && !checkedStatusState.every(x => x === false)) {
+        checkdata = data.filter(item => item["Title"].toString().toLowerCase().indexOf(query.toLowerCase()) > -1 && fbuttonFilter.includes(item.IsFeebackAllowed) && statusFilter.includes(item.status));
+      }if((targetFilter === "Title" && query !== "") && !checkedFeedbackState.every(x => x === false) && !checkedVisibleState.every(x => x === false)) {
+        checkdata = data.filter(item => item["Title"].toString().toLowerCase().indexOf(query.toLowerCase()) > -1 && fbuttonFilter.includes(item.IsFeebackAllowed) && visibleFilter.includes(item.IsVisible));
+      }if((targetFilter === "Title" && query !== "") && !checkedVisibleState.every(x => x === false) && !checkedStatusState.every(x => x === false)) {
+        checkdata = data.filter(item => item["Title"].toString().toLowerCase().indexOf(query.toLowerCase()) > -1 && visibleFilter.includes(item.IsVisible) && statusFilter.includes(item.status));
+      }if((targetFilter === "Title" && query !== "") && !checkedFeedbackState.every(x => x === false) && !checkedVisibleState.every(x => x === false) && !checkedStatusState.every(x => x === false)) {
+        checkdata = data.filter(item => item["Title"].toString().toLowerCase().indexOf(query.toLowerCase()) > -1 && fbuttonFilter.includes(item.IsFeebackAllowed) && visibleFilter.includes(item.IsVisible) && statusFilter.includes(item.status));
+      }
+    }
+      
+    return checkdata; 
+  }
+
   return (
     <>
     <div className="dashboard"> 
@@ -177,7 +345,15 @@ export default function Dashboard() {
                   )}
               </button>  
             </th>
-            <th>Title <img  src={process.env.PUBLIC_URL + '/icons/descend.svg'} /></th>
+            <th>
+              Title 
+              <img  src={process.env.PUBLIC_URL + '/icons/descend.svg'} />
+              <input
+               id='Title' 
+               type='text' 
+               value={query} 
+               onChange={(e) => handleFilter(e)} />
+            </th>
             <th className='tableHeader'>
               <button id='DatePublished' onClick={(e) => dispatchSort(e)}>
                   Schedule
@@ -190,13 +366,66 @@ export default function Dashboard() {
                   ) : (
                     <img src={process.env.PUBLIC_URL + '/icons/unsort.svg'} alt='unsort'/>
                   )}
-              </button>
-              
+              </button>   
             </th>
-            <th><div className="fbHead">Feedback Button <img  src={process.env.PUBLIC_URL + '/icons/descend.svg'} /></div></th>
-            <th>Feedback <img  src={process.env.PUBLIC_URL + '/icons/descend.svg'} /></th>
-            <th>Visibility <img  src={process.env.PUBLIC_URL + '/icons/descend.svg'} /></th>
-            <th>Status <img  src={process.env.PUBLIC_URL + '/icons/descend.svg'} /></th>
+            <th>
+                Feedback Button 
+                <img  src={process.env.PUBLIC_URL + '/icons/descend.svg'} /><br/>
+                {
+                fbuttonLabel.map((cb, index) => (
+                  <>
+                    <input
+                      key={`cb-${index}`}
+                      id={cb.id}
+                      type='checkbox'
+                      checked={checkedFeedbackState[index]}
+                      onClick={() => handleCheckbox(cb.value, 'fbutton', index)}
+                    /><label htmlFor={cb.id}>{cb.name}</label><br/>
+                  </>
+                )
+                )
+              }
+            </th>
+            <th>
+              Feedback 
+              <img  src={process.env.PUBLIC_URL + '/icons/descend.svg'} />
+            </th>
+            <th>
+              Visibility 
+              <img  src={process.env.PUBLIC_URL + '/icons/descend.svg'} /><br/>
+              {
+                visibleLabel.map((cb, index) => (
+                  <>
+                    <input
+                      key={`cb-${index}`}
+                      id={cb.id}
+                      type='checkbox'
+                      checked={checkedVisibleState[index]}
+                      onClick={() => handleCheckbox(cb.value, 'visible', index)}
+                    /><label htmlFor={cb.id}>{cb.name}</label><br/>
+                  </>
+                )
+                )
+              }
+            </th>
+            <th>
+              Status
+              <img  src={process.env.PUBLIC_URL + '/icons/descend.svg'} /><br/>
+              {
+                statusLabel.map((cb, index) => (
+                  <>
+                    <input
+                      key={`cb-${index}`}z
+                      id={cb.id}
+                      type='checkbox'
+                      checked={checkedStatusState[index]}
+                      onClick={() => handleCheckbox(cb.value, 'stats', index)}
+                    /><label htmlFor={cb.id}>{cb.name}</label><br/>
+                  </>
+                )
+                )
+              }
+            </th>
           </tr>
         </thead>
         <tbody>

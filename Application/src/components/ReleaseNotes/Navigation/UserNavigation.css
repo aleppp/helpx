@@ -5,10 +5,10 @@
   height: 102vh;
   background: #27323c;
   padding-top: 10px;
-  align-items: center;
   overflow: hidden;
   width: 131px;
   float: left;
+  position: relative;
 }
 
 .profilePic {
@@ -28,7 +28,6 @@
 
 .links {
   padding-top: 50px;
-  left: 10px;
   display: flex;
   flex-direction: column;
 }
@@ -43,6 +42,7 @@
 
 .links ul {
   padding: 0;
+  margin: 0%;
 }
 
 .links ul li {
@@ -77,4 +77,10 @@
 
 .dashboardLogo {
   width: 40px;
+}
+
+.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
 }

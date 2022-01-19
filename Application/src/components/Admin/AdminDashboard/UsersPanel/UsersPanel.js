@@ -22,25 +22,39 @@ function UsersPanel() {
   });
 
   return (
-    <div className="user-panel">
-      <h2 className="users-without-roles">Users without roles</h2>
-      {listUsersWithoutRoles.slice(0, 3).map((user, i) => {
-        return (
-          <div key={i}>
-            <div class="green-circle"></div>
-            <span>{user.Name}</span>
-          </div>
-        );
-      })}
-      <h2 className="not-active-users">Not active user</h2>
-      {listNotActiveUsers.slice(0, 3).map((user, i) => {
-        return (
-          <div key={i}>
-            <div class="gray-circle"></div>
-            <span>{user.Name}</span>
-          </div>
-        );
-      })}
+    <div className="container-lg m-3">
+      <div className="d-flex flex-column" id="user-panel">
+        <div className="d-flex flex-column" id="users-without-roles">
+          <h2>Users without roles</h2>
+          {listUsersWithoutRoles.slice(0, 3).map((user, i) => {
+            return (
+              <div className="row">
+                <div key={i}>
+                  <div className="col-2" id="green-circle"></div>
+                  <span className="col-10" id="user-name">
+                    {user.Name}
+                  </span>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+        <div className="d-flex flex-column" id="not-active-users">
+          <h2>Not active user</h2>
+          {listNotActiveUsers.slice(0, 3).map((user, i) => {
+            return (
+              <div className="row">
+                <div key={i}>
+                  <div className="col-2" id="gray-circle"></div>
+                  <span className="col-10" id="user-name">
+                    {user.Name}
+                  </span>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 }

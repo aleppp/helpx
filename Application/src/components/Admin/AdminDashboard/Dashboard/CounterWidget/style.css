@@ -1,4 +1,4 @@
-.counter-widget {
+#counter-widget {
   background-color: #00a19c;
   color: white;
   border-radius: 5px;
@@ -10,15 +10,6 @@
   margin: 20pt;
   font-family: "Mulish", sans-serif;
   font-size: 15pt;
-  display: flex;
-  flex-direction: row;
-}
-
-.title {
-  display: flex;
-  flex-direction: row;
-}
-.count {
   display: flex;
   flex-direction: row;
 }

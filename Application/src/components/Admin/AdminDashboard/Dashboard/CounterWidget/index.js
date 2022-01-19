@@ -3,16 +3,10 @@ import "./style.css";
 
 function CounterWidget(props) {
   return (
-    <div className="counter-widget">
-      <div className="title">
-        <td>
-          <div> {props.title}</div>
-        </td>
-      </div>
-      <div className="count">
-        <td>
-          <div> {props.count} </div>
-        </td>
+    <div className="container-fluid" id="counter-widget">
+      <div className="d-flex">
+        <div className="col-sm text-center mx-5 my-4"> {props.title}</div>
+        <div className="col-sm p-3 text-center my-4"> {props.count}</div>
       </div>
     </div>
   );

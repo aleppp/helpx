@@ -3,6 +3,7 @@ import UserNavigation from "./Navigation/UserNavigation.js";
 import UserHeader from "./Navigation/UserHeader.js";
 import NormalEditor from "./Editor/NormalEditor.js";
 import Index from "./Details/index.js";
+import FeedbackListCCRN from "../Feedback/FeedbackListCCRN";
 
 function Content() {
   return (
@@ -18,6 +19,9 @@ function Content() {
       </div>
       <div className="Content-App">
         <Index />
+      </div>
+      <div className="Content-Feedback">
+        <FeedbackListCCRN />
       </div>
     </div>
   );

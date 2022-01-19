@@ -3,16 +3,11 @@
 h2 {
   font-size: 15px;
   text-align: center;
+  font-weight: bolder;
 }
 
-.RecentAppConfigList {
+#RecentAppConfigList {
   background-color: #f8f8f8;
-  width: 500px;
-  padding-left: 15pt;
-  padding-right: 15pt;
-  padding-top: 20pt;
-  padding-bottom: 20pt;
-  margin: 20pt;
   font-family: "Mulish", sans-serif;
   font-size: 15pt;
 }
@@ -21,7 +16,8 @@ div {
   font-size: 15px;
 }
 
-#recent-app {
+#recent-app,
+#pending-app {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: center;
@@ -32,35 +28,11 @@ div {
 }
 
 #recent-app th {
-  font-weight: bolder;
+  font-weight: bold;
 }
 
-#recent-app td {
-  font-weight: lighter;
-}
-
-table {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: center;
+#PendingAppConfigList {
   background-color: #f8f8f8;
-  width: 100%;
-  justify-content: space-between;
-  table-layout: fixed;
-}
-
-.PendingAppConfigList {
-  background-color: #f8f8f8;
-  border-radius: 5pt;
-  width: 500px;
-  padding-left: 15pt;
-  padding-right: 15pt;
-  padding-top: 20pt;
-  padding-bottom: 20pt;
-  margin: 20pt;
   font-family: "Mulish", sans-serif;
   font-size: 15pt;
 }
-
-
-  

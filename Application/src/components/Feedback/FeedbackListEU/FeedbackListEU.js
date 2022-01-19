@@ -3,8 +3,7 @@ import axios from "axios";
 import "./FeedbackListEU.css";
 import Button from "../../Buttons/Buttons";
 import { Pagination, TextField } from "@mui/material";
-import UserHeader from "../../ReleaseNotes/Navigation/UserHeader";
-import UserNavigation from "../../ReleaseNotes/Navigation/UserNavigation";
+import SelectRating from "./SelectRating";
 
 export default function FeedbackEUList() {
   const [FeedbackListEU, setFeedbackListEU] = useState([]);
@@ -57,38 +56,32 @@ export default function FeedbackEUList() {
 
   return (
     <>
-      <div className="Content-Nav">
-        <UserNavigation />
-      </div>
-      <div className="Content-Header">
-        <UserHeader />
-      </div>
       <div className="FeedbackList-EU">
-        <div className="overall">
-          <table className="table table-borderless">
-            <thead>
-              <tr className="tdashboard">
-                <td colSpan={4}>
-                  <div className="title">Feedback List</div>
-                </td>
-              </tr>
-              <tr>
-                <th>Content</th>
-                <th>Date</th>
-                <th>Rating</th>
-                <th>Feedback</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {FeedbackDataEU.currentData().map((fb, index) => {
-                return (
-                  <tr key={index}>
-                    <td>
-                      <a href={fb.title}>{fb.title}</a>
-                    </td>
-                    <td>{fb.DateCreated}</td>
-                    <td>
+        <table className="table table-borderless">
+          <thead>
+            <tr className="tdashboard">
+              <td colSpan={4}>
+                <div className="title">Feedback List</div>
+              </td>
+            </tr>
+            <tr>
+              <th>Content</th>
+              <th>Date</th>
+              <th>Rating</th>
+              <th>Feedback</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {FeedbackDataEU.currentData().map((fb, index) => {
+              return (
+                <tr key={index}>
+                  <td>
+                    <a href={fb.title}>{fb.title}</a>
+                  </td>
+                  <td>{fb.DateCreated}</td>
+                  <td>
+                    <div class="dropdown">
                       {(function () {
                         if (fb.Rating == "1") {
                           return (
@@ -137,34 +130,50 @@ export default function FeedbackEUList() {
                           );
                         }
                       })()}
-                    </td>
-                    <td>{fb.Feedback}</td>
-                    <td>
-                      <Button button={button[0]}></Button>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-            <tfoot>
-              <tr>
-                <td colSpan={5}>
-                  <p className="foot"></p>
-                </td>
-              </tr>
-            </tfoot>
-          </table>
-          <Pagination
-            className="pageBar"
-            count={count}
-            size="large"
-            color="primary"
-            page={page}
-            shape="rounded"
-            onChange={handleChange}
-          />
-        </div>
+                      <SelectRating />
+                    </div>
+                  </td>
+
+                  <td>
+                    <TextField
+                      id="outlined-normal"
+                      variant="outlined"
+                      label=" "
+                      multiline
+                      maxRows={4}
+                      defaultValue={fb.Feedback}
+                    >
+                      {fb.Feedback}
+                    </TextField>
+                  </td>
+                  <td>
+                    <Button button={button[0]}></Button>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colSpan={5}>
+                <p className="foot"></p>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+        <Pagination
+          className="pageBar"
+          count={count}
+          size="large"
+          color="primary"
+          page={page}
+          shape="rounded"
+          onChange={handleChange}
+        />
       </div>
     </>
   );
+}
+
+{
 }

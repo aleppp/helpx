@@ -15,12 +15,12 @@ function RecentAuditLog() {
   }, []);
 
   return (
-    <div>
+    <div className="container-lg my-3 bg-light">
       <div id="recent-1">
-        <h1>Latest Audit Log History</h1>
+        <h2>Latest Audit Log History</h2>
       </div>
 
-      <table id="recent-audit-log">
+      <table className="container-lg" id="recent-audit-log">
         <tr>
           <th>Date & Time</th>
           <th>Category</th>

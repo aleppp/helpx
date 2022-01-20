@@ -2,7 +2,7 @@ import "./UserNavigation.css";
 
 const UserNavigation = () => {
   return (
-    <div className="UserNav">
+    <div className="UserNav sticky-top">
       <img
         src={process.env.PUBLIC_URL + "/images/profile.png"}
         className="profilePic"

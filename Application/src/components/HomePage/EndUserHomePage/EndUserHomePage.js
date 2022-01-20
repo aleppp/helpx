@@ -13,7 +13,7 @@ function EndUserHomePage() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/searchterm/sel")
+      .get("http://localhost:8080/releasenotes/list")
       .then((res) => {
         if (res.status === 200) setFilteredNotes(res.data[0]);
       })

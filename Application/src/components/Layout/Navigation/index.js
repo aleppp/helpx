@@ -1,13 +1,15 @@
 import React from "react";
 import "./style.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import FraudConfig from "../../FraudManagement/FraudAdmin";
 import UserManagement from "../../Admin/AdminManagement/UserManagement";
 import RolesManagement from "../../Admin/AdminManagement/RolesManagement";
+import AdminInboxPage from "../../Admin/AdminInboxPage";
 
 const NavigationBar = () => {
   return (
-    <div>
+    <div className="container-fluid">
       <div className="admin-nav close">
         <img
           className="profilePic"
@@ -120,9 +122,11 @@ const NavigationBar = () => {
           <Route path="/roles">
             <RolesManagement />
           </Route>
-
           <Route path="/fraud">
             <FraudConfig />
+          </Route>
+          <Route path="/notification">
+            <AdminInboxPage />
           </Route>
         </Switch>
       </Router>

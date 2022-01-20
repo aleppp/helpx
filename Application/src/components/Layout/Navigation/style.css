@@ -6,40 +6,32 @@
   font-family: "Mulish", serif;
 }
 
-main {
-  margin-left: 5rem;
-  padding: 1rem;
-}
-
 .admin-nav {
   text-align: left;
   height: 100%;
   background: #27323c;
-  padding-top: 10px;
+  padding-top: 20px;
   align-items: center;
   overflow: hidden;
   width: 19%;
   float: left;
   position: fixed;
   color: white;
-  top: 0;
   z-index: 1;
-  padding-top: 20px;
 }
 
 .profilePic {
   top: 20px;
   width: 60px;
   height: 60px;
-  margin-left: 25px;
+  left: 10px;
 }
 
 .admin-nav h2 {
   font-size: 12pt;
   color: #fff;
-  margin-bottom: 10px;
   text-align: center;
-  margin-left: 13px;
+  margin-left: 44px;
   display: inline-block;
 }
 
@@ -99,27 +91,11 @@ main {
   transition: all 0.4s ease;
 }
 
-.links ul li a svg {
-  margin-right: 20px;
-  height: 30px;
-  width: 35px;
-}
-
-.profile-icon {
-  height: 60px;
-  width: 60px;
-  margin-top: 20px;
-}
-
-.dashboardLogo {
-  width: 40px;
-}
-
 /* Arrow for dropdown menu - user */
 .whitedown {
   width: 25px;
   text-align: center;
-  left: 55px;
+  left: 30%;
   bottom: 1.5px;
 }
 
@@ -127,7 +103,7 @@ main {
 .whitedown-2 {
   width: 25px;
   text-align: center;
-  right: 3px;
+  left: 32px;
   bottom: 1.5px;
 }
 
@@ -168,7 +144,7 @@ main {
 
 /* effect when hovering sub menu */
 .admin-nav.close .links li:hover .sub-menu {
-  top: 42%;
+  top: 33%;
   opacity: 1;
   pointer-events: auto;
 }
@@ -223,7 +199,7 @@ main {
 
 /* effect when hovering sub menu - configuration */
 .admin-nav.close .links li:hover .sub-menu-2 {
-  top: 65%;
+  top: 52%;
   opacity: 1;
   pointer-events: auto;
 }

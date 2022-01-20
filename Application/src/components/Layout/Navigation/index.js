@@ -49,10 +49,10 @@ const NavigationBar = () => {
               </div>
               <ul className="sub-menu">
                 <li>
-                  <a href="/users/user">User</a>
+                  <a href="/users">Users</a>
                 </li>
                 <li>
-                  <a href="/users/roles">Roles</a>
+                  <a href="/roles">Roles</a>
                 </li>
               </ul>
             </li>
@@ -94,7 +94,7 @@ const NavigationBar = () => {
                   <a href="">FAQ</a>
                 </li>
                 <li>
-                  <a href="/configuration/fraud">Fraud</a>
+                  <a href="/fraud">Fraud</a>
                 </li>
               </ul>
             </li>
@@ -114,14 +114,14 @@ const NavigationBar = () => {
       </div>
       <Router>
         <Switch>
-          <Route path="/users/user">
+          <Route path="/user">
             <UserManagement />
           </Route>
-          <Route path="/users/roles">
+          <Route path="/roles">
             <RolesManagement />
           </Route>
 
-          <Route path="/configuration/fraud">
+          <Route path="/fraud">
             <FraudConfig />
           </Route>
         </Switch>

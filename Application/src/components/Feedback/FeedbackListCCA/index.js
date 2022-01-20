@@ -3,6 +3,7 @@ import axios from "axios";
 import "./style.css";
 import UserHeader from "../../ReleaseNotes/Navigation/UserHeader";
 import UserNavigation from "../../ReleaseNotes/Navigation/UserNavigation";
+import { Pagination } from "@mui/material";
 
 export default function FeedbackListCCA() {
   const [FeedbackCCAList, setFeedbackCCAList] = useState([]);
@@ -15,6 +16,29 @@ export default function FeedbackListCCA() {
       })
       .catch((err) => console.log(err));
   }, []);
+
+  let [page, setPage] = useState(1);
+  const PER_PAGE = 4;
+  const count = Math.ceil(FeedbackCCAList.length / PER_PAGE);
+  const BookmarkDataEU = usePagination(FeedbackCCAList, PER_PAGE);
+  const handleChange = (e, p) => {
+    setPage(p);
+    BookmarkDataEU.jump(p);
+  };
+  function usePagination(data, itemsPerPage) {
+    const [currentPage, setCurrentPage] = useState(1);
+    const maxPage = Math.ceil(data.length / itemsPerPage);
+    function currentData() {
+      const begin = (currentPage - 1) * itemsPerPage;
+      const end = begin + itemsPerPage;
+      return data.slice(begin, end);
+    }
+    function jump(page) {
+      const pageNumber = Math.max(1, page);
+      setCurrentPage((currentPage) => Math.min(pageNumber, maxPage));
+    }
+    return { jump, currentData, currentPage, maxPage };
+  }
 
   return (
     <>
@@ -89,7 +113,9 @@ export default function FeedbackListCCA() {
                     })()}
                   </td>
                   <td>{fb.Feedback}</td>
-                  <td>{fb.title}</td>
+                  <td>
+                    <a href="#">{fb.title}</a>
+                  </td>
                   <td>{fb.DateCreated}</td>
                 </tr>
               ))}
@@ -102,6 +128,15 @@ export default function FeedbackListCCA() {
               </tr>
             </tfoot>
           </table>
+          <Pagination
+            className="pageBar"
+            count={count}
+            size="large"
+            color="primary"
+            page={page}
+            shape="rounded"
+            onChange={handleChange}
+          />
         </div>
       </div>
     </>

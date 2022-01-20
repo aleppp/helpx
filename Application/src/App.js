@@ -1,12 +1,13 @@
 import React, { Component } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import "./App.css";
 import LandingPage from "./components/LandingPage/LandingPage";
 import Auth from "./services/Auth/Auth";
 import Callback from "./services/Auth/Callback";
 import EndUserHomePage from "./components/HomePage/EndUserHomePage/EndUserHomePage";
 import AuditLogDatatable from "./components/Admin/AdminAuditLog/AuditLogDatatable";
-
+import AdminHomePage from "./components/Admin/AdminDashboard";
+import NavigationBar from "./components/Layout/Navigation/AdminNavigation";
 class App extends Component {
   constructor(props) {
     super(props);
@@ -15,38 +16,44 @@ class App extends Component {
 
   render() {
     return (
-      <>
-        {/* <EndUserHomePage /> */}
-        {/* <Header auth={this.auth} />  */}{" "}
-        <Switch>
-          <div className="App">
-            <Route
-              path="/"
-              exact
-              render={(props) => <LandingPage {...props} />}
-            />
-            <Route
-              path="/callback"
-              exact
-              render={(props) => <Callback auth={this.auth} {...props} />}
-            />
-            <Route
-              path="/homepage"
-              exact
-              render={(props) => (
-                <EndUserHomePage auth={this.auth} {...props} />
-              )}
-            />
-            <Route
-              path="/audit-logs"
-              exact
-              render={(props) => (
-                <AuditLogDatatable auth={this.auth} {...props} />
-              )}
-            />
-          </div>
-        </Switch>
-      </>
+      <div className="chunk">
+        <Router>
+          <NavigationBar />
+          <Switch>
+            <div className="App">
+              <Route
+                path="/"
+                exact
+                render={(props) => <LandingPage {...props} />}
+              />
+              <Route
+                path="/admin-home"
+                exact
+                render={(props) => <AdminHomePage {...props} />}
+              />
+              <Route
+                path="/callback"
+                exact
+                render={(props) => <Callback auth={this.auth} {...props} />}
+              />
+              <Route
+                path="/homepage"
+                exact
+                render={(props) => (
+                  <EndUserHomePage auth={this.auth} {...props} />
+                )}
+              />
+              <Route
+                path="/audit-logs"
+                exact
+                render={(props) => (
+                  <AuditLogDatatable auth={this.auth} {...props} />
+                )}
+              />
+            </div>
+          </Switch>
+        </Router>
+      </div>
     );
   }
 }

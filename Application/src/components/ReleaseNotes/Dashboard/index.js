@@ -318,147 +318,186 @@ export default function Dashboard() {
     return checkdata; 
   }
 
+  function counter(count) {
+    let add = 0
+    if(count === "approval") {
+      tableData.map( item => {
+        if(item.status === "Sent for approval")
+          add+=1;
+        }
+      )
+    } else if(count === "draft") {
+      tableData.map( item => {
+        if(item.status === "In Draft")
+          add+=1;
+        }
+      )
+    }
+    return add
+  }
+
   return (
-    <>
-    <div className="dashboard"> 
-      <table className="table table-borderless text-center">
-        <thead>
-          <tr className="dashSummary">
-            <td colSpan={7}>
-            <div className="supscript" id="sup1">5<sup>Pending Approval</sup></div>
-            <div className="supscript" id="sup2">2<sup>In Draft</sup></div> 
-            <button>{"New Release Note"}</button>
-            </td>
-          </tr>
-          <tr>
-            <th className="tableHeader">
-              <button id='DateCreated' onClick={(e) => dispatchSort(e)}>
-                  Date
-                  {state.isCreatedSorted ? (
-                    state.isCreatedDesc ? (
-                      <img  src={process.env.PUBLIC_URL + '/icons/descend.svg'} />
-                    ) : (
-                      <img src={process.env.PUBLIC_URL + '/icons/ascend.svg'} />
-                    )
-                  ) : (
-                    <img src={process.env.PUBLIC_URL + '/icons/unsort.svg'} />
-                  )}
-              </button>  
-            </th>
-            <th>
-              Title 
-              <img  src={process.env.PUBLIC_URL + '/icons/descend.svg'} />
-              <input
-               id='Title' 
-               type='text' 
-               value={query} 
-               onChange={(e) => handleFilter(e)} />
-            </th>
-            <th className='tableHeader'>
-              <button id='DatePublished' onClick={(e) => dispatchSort(e)}>
-                  Schedule
-                  {state.isScheduleSorted ? (
-                    state.isScheduleDesc ? (
-                      <img  src={process.env.PUBLIC_URL + '/icons/descend.svg'} alt='descending' />
-                    ) : (
-                      <img  src={process.env.PUBLIC_URL + '/icons/ascend.svg'} alt='ascending'/>
-                    )
-                  ) : (
-                    <img src={process.env.PUBLIC_URL + '/icons/unsort.svg'} alt='unsort'/>
-                  )}
-              </button>   
-            </th>
-            <th>
-                Feedback Button 
-                <img  src={process.env.PUBLIC_URL + '/icons/descend.svg'} /><br/>
-                {
-                fbuttonLabel.map((cb, index) => (
-                  <>
-                    <input
-                      key={`cb-${index}`}
-                      id={cb.id}
-                      type='checkbox'
-                      checked={checkedFeedbackState[index]}
-                      onClick={() => handleCheckbox(cb.value, 'fbutton', index)}
-                    /><label htmlFor={cb.id}>{cb.name}</label><br/>
-                  </>
-                )
-                )
-              }
-            </th>
-            <th>
-              Feedback 
-              <img  src={process.env.PUBLIC_URL + '/icons/descend.svg'} />
-            </th>
-            <th>
-              Visibility 
-              <img  src={process.env.PUBLIC_URL + '/icons/descend.svg'} /><br/>
-              {
-                visibleLabel.map((cb, index) => (
-                  <>
-                    <input
-                      key={`cb-${index}`}
-                      id={cb.id}
-                      type='checkbox'
-                      checked={checkedVisibleState[index]}
-                      onClick={() => handleCheckbox(cb.value, 'visible', index)}
-                    /><label htmlFor={cb.id}>{cb.name}</label><br/>
-                  </>
-                )
-                )
-              }
-            </th>
-            <th>
-              Status
-              <img  src={process.env.PUBLIC_URL + '/icons/descend.svg'} /><br/>
-              {
-                statusLabel.map((cb, index) => (
-                  <>
-                    <input
-                      key={`cb-${index}`}z
-                      id={cb.id}
-                      type='checkbox'
-                      checked={checkedStatusState[index]}
-                      onClick={() => handleCheckbox(cb.value, 'stats', index)}
-                    /><label htmlFor={cb.id}>{cb.name}</label><br/>
-                  </>
-                )
-                )
-              }
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {_DATA.currentData().map((item, index) => {
-            return(
-              <tr key={index}>
-                <td>{item.DateCreated}</td>
-                <td>{item.Title}</td>
-                <td>{item.DatePublished}</td>
-                <td>{item.IsFeebackAllowed}</td>
-                <td>{item.feedback}</td>
-                <td>{item.IsVisible}</td>
-                <td>{item.status}</td>
+    <div className='container'>
+      <div className='row g-0'>
+        <div className='col-lg-12' style={{border:"solid black"}}>
+          <table className='m-0'>
+            <thead>
+              <tr>
+                <td colSpan={7}>
+                <div>{counter("approval")}<sup>Pending Approval</sup></div>
+                <div>{counter("draft")}<sup>In Draft</sup></div> 
+                <button>New Release Note</button>
+                </td>
               </tr>
-            );
-          })}
-        </tbody>
-        <tfoot>
-          <tr>
-            <td colSpan={7}><p className="foot">Total Number of Release: {tableData.length}</p></td>
-          </tr>
-        </tfoot>
-      </table>
-      <Pagination 
-      className = "pageBar"
-      count = {count}
-      size = "large"
-      color = "primary"
-      page = {page}
-      shape = "rounded"
-      onChange = {handleChange} 
-    />
+              <tr>
+                <th>
+                  <button id='DateCreated' onClick={(e) => dispatchSort(e)}>
+                      Date
+                      {state.isCreatedSorted ? (
+                        state.isCreatedDesc ? (
+                          <img  src={process.env.PUBLIC_URL + '/icons/descend.svg'} />
+                        ) : (
+                          <img src={process.env.PUBLIC_URL + '/icons/ascend.svg'} />
+                        )
+                      ) : (
+                        <img src={process.env.PUBLIC_URL + '/icons/unsort.svg'} />
+                      )}
+                  </button>  
+                </th>
+                <th>
+                <div class="dropdown">
+                    <p className="dropdown-toggle" data-bs-toggle="dropdown">Title</p>
+                    <div className="dropdown-menu">
+                      <input
+                        id='Title' 
+                        type='text' 
+                        value={query} 
+                        onChange={(e) => handleFilter(e)}
+                      />
+                    </div>
+                  </div>
+                </th>
+                <th>
+                  <button id='DatePublished' onClick={(e) => dispatchSort(e)}>
+                      Schedule
+                      {state.isScheduleSorted ? (
+                        state.isScheduleDesc ? (
+                          <img  src={process.env.PUBLIC_URL + '/icons/descend.svg'} alt='descending' />
+                        ) : (
+                          <img  src={process.env.PUBLIC_URL + '/icons/ascend.svg'} alt='ascending'/>
+                        )
+                      ) : (
+                        <img src={process.env.PUBLIC_URL + '/icons/unsort.svg'} alt='unsort'/>
+                      )}
+                  </button>   
+                </th>
+                <th>
+                <div class="dropdown">
+                    <p className="dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close='outside' aria-expanded='false'>
+                      Feedback Button
+                    </p>
+                    <div className="dropdown-menu">
+                      {
+                          fbuttonLabel.map((cb, index) => (
+                              <div>
+                                <input
+                                  key={`cb-${index}`}
+                                  type= 'checkbox'
+                                  id={cb.id}
+                                  checked={checkedFeedbackState[index]}
+                                  onClick={() => handleCheckbox(cb.value, 'fbutton', index)}
+                                /><label htmlFor={cb.id} style={{width:"90%"}}>{cb.name}</label><br/>
+                              </div>
+                            )
+                          )
+                      }  
+                    </div>
+                  </div>
+                </th>
+                <th>
+                  Feedback 
+                  <img  src={process.env.PUBLIC_URL + '/icons/descend.svg'} />
+                </th>
+                <th>
+                  <div class="dropdown">
+                    <p className="dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close='outside' aria-expanded='false'>
+                      Visibility
+                    </p>
+                    <div className="dropdown-menu">
+                      {
+                        visibleLabel.map((cb, index) => (
+                            <>
+                              <input
+                                key={`cb-${index}`}
+                                id={cb.id}
+                                type='checkbox'
+                                checked={checkedVisibleState[index]}
+                                onClick={() => handleCheckbox(cb.value, 'visible', index)}
+                              /><label htmlFor={cb.id} style={{width:"90%"}}>{cb.name}</label><br/>
+                            </>
+                          )
+                        )
+                      }
+                    </div>
+                  </div>
+                </th>
+                <th>
+                <div class="dropdown">
+                    <p className="dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close='outside' aria-expanded='false'>
+                      Status
+                    </p>
+                    <div className="dropdown-menu">
+                      {
+                        statusLabel.map((cb, index) => (
+                            <div>
+                              <input
+                                key={`cb-${index}`}z
+                                id={cb.id}
+                                type='checkbox'
+                                checked={checkedStatusState[index]}
+                                onClick={() => handleCheckbox(cb.value, 'stats', index)}
+                              /><label htmlFor={cb.id} style={{width:"90%"}}>{cb.name}</label><br/>
+                            </div>
+                          )
+                        )
+                    }
+                  </div>
+                </div>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {_DATA.currentData().map((item, index) => {
+                return(
+                  <tr key={index}>
+                    <td>{item.DateCreated}</td>
+                    <td>{item.Title}</td>
+                    <td>{item.DatePublished}</td>
+                    <td>{item.IsFeebackAllowed}</td>
+                    <td>{item.feedback}</td>
+                    <td>{item.IsVisible}</td>
+                    <td>{item.status}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colSpan={7}><p>Total Number of Release: {tableData.length}</p></td>
+              </tr>
+            </tfoot>
+          </table>
+          <Pagination 
+            className = "pageBar"
+            count = {count}
+            size = "large"
+            color = "primary"
+            page = {page}
+            shape = "rounded"
+            onChange = {handleChange} 
+          />
+        </div>
+      </div>
     </div>
-    </>
   );
 }

@@ -31,7 +31,7 @@ const NavigationBar = () => {
               >
                 {/* Dashboard navbar */}
                 <li className="nav-item m-3">
-                  <a href="/" class="nav-link align-middle px-0">
+                  <a href="/admin-home" class="nav-link align-middle px-0">
                     <img
                       src={process.env.PUBLIC_URL + "/images/dashbd.png"}
                       className="dashboardLogo"

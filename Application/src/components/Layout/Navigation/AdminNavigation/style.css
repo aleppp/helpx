@@ -13,14 +13,14 @@ main {
 
 .admin-nav {
   text-align: left;
-  height: 100%;
+  height: 100vh;
   background: #27323c;
   padding-top: 10px;
   align-items: center;
   overflow: hidden;
-  width: 19%;
+  max-width: 300px;
   float: left;
-  position: fixed;
+  position: absolute;
   color: white;
   top: 0;
   z-index: 1;
@@ -51,8 +51,10 @@ main {
 }
 
 .admin-nav img {
-  position: relative;
   margin-left: 15px;
+  margin-right: 15px;
+  width: 50px;
+  height: 50px;
 }
 
 .admin-nav .link-name {
@@ -233,4 +235,26 @@ main {
   font-size: 18px;
   opacity: 1s;
   display: block;
+}
+
+#profile-name {
+  vertical-align: middle;
+  align-items: center;
+}
+
+.dropdown-menu {
+  background-color: #27323c !important;
+}
+.dropdown-item:active,
+.dropdown-item-focus,
+.dropdown-item:hover {
+  background-color: #818b9c;
+  font-family: "Mulish", serif;
+  font-weight: bold;
+}
+
+@media (max-width: 500px) {
+  .admin-nav {
+    width: 100px;
+  }
 }

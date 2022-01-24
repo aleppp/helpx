@@ -3,6 +3,7 @@ import "./style.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import FraudConfig from "../../../FraudManagement/FraudAdmin";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min";
 
 const NavigationBar = () => {
   return (

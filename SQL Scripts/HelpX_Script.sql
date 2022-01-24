@@ -2165,6 +2165,17 @@ BEGIN
     END $$
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS sp_feedback_ins;
+DELIMITER $$
+
+CREATE PROCEDURE sp_feedback_ins (IN UserID INT, ContentID INT, Feedback varchar(1024), Rating INT , DateCreated datetime, DateModified datetime)
+BEGIN
+    INSERT INTO feedback (UserID, ContentID, Feedback, Rating, DateCreated, DateModified)
+    VALUES (UserID, ContentID, Feedback, Rating, DateCreated, DateModified);
+
+END $$
+DELIMITER ;
+
 DROP PROCEDURE IF EXISTS sp_feedback_sel_cc;
 DELIMITER $$
 CREATE PROCEDURE sp_feedback_sel_cc()
@@ -2309,3 +2320,5 @@ call sp_users_ins('Amirul', 'Luqman Shamshi', 'mirul@petronas.com',now(),now(),3
 CALL sp_auditlogs_sel();
 
 CALL sp_auditlogs_ins(1,1,1,1,1,now());
+
+CALL sp_feedback_ins(1, 2, 'Feedback thirteen', 4, now(), now());

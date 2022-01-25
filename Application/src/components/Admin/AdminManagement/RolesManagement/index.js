@@ -18,10 +18,12 @@ function RolesManagement() {
   }, []);
 
   return (
-    <div>
-      <div className="roles-management-component">
-        <h1>Roles Management</h1>
-        <button className="button-add">Add New</button>
+    <div className="container-fluid">
+      <div className="row">
+        <div className="roles-management-component">
+          <h1>Roles Management</h1>
+          <button className="button-blue">Add New</button>
+        </div>
       </div>
 
       <table>
@@ -51,10 +53,10 @@ function RolesManagement() {
             <td> {roles.Description} </td>
             <td> {roles.Number} </td>
             <td>
-              <button className="button-edit" onClick={() => setShow(!show)}>
+              <button className="button-green" onClick={() => setShow(!show)}>
                 Edit
               </button>
-              <button className="button-delete">Delete</button>
+              <button className="button-red">Delete</button>
             </td>
             <td>
               {show ? (

@@ -13,18 +13,19 @@ main {
 
 .admin-nav {
   text-align: left;
-  height: 100vh;
+  min-height: 100vh;
   background: #27323c;
-  padding-top: 10px;
   align-items: center;
   overflow: hidden;
+  width: auto;
   max-width: 300px;
   float: left;
-  position: absolute;
+  position: fixed;
   color: white;
   top: 0;
   z-index: 1;
   padding-top: 20px;
+  overflow: auto;
 }
 
 .profilePic {

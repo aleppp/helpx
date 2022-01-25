@@ -1,46 +1,39 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./style.css";
-import Button from "../../Buttons/Buttons";
-//import Pagination from "../Pagination/pagination";
+import Pagination from "../../Layout/Navigation/Pagination/pagination";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { EditFraud } from "./FraudSlide";
 
 function FraudConfig() {
   const [fraudManagement, setFraudManagement] = useState([]);
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
     axios
-      .get("/fraudmanagement/sel")
+      .get("http://localhost:8080/fraudmanagement/sel")
       .then((res) => {
         if (res.status === 200) setFraudManagement(res.data[0]);
       })
       .catch((err) => console.log(err));
   }, []);
 
-  const Buttons = [
-    {
-      type: "button-blue",
-      text: "Add New",
-    },
-    {
-      type: "button-green",
-      text: "Edit",
-    },
-    {
-      type: "button-red",
-      text: "Delete",
-    },
-  ];
-
   return (
     <div>
       <div className="fraud-config-component">
         <h1>Fraud Management</h1>
-        <Button button={Buttons[0]}></Button>
+        <button className="button-add">Add New</button>
       </div>
 
       <table>
         <tr>
-          <th>ID</th>
+          <th>
+            ID
+            <img
+              className="dropdown"
+              src={process.env.PUBLIC_URL + "/images/expandMore.png"}
+            />
+          </th>
           <th>Term</th>
           <th>Action</th>
         </tr>
@@ -51,15 +44,25 @@ function FraudConfig() {
               <td>{fraud.id}</td>
               <td>{fraud.term}</td>
               <td>
-                <center>
-                  <Button button={Buttons[1]}></Button>{" "}
-                  <Button button={Buttons[2]}></Button>
-                </center>
+                <button className="button-edit" onClick={() => setShow(!show)}>
+                  Edit
+                </button>
+                <button className="button-delete">Delete</button>
+              </td>
+              <td>
+                {show ? (
+                  <div>
+                    <EditFraud />
+                  </div>
+                ) : null}
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+      <div>
+        <Pagination />
+      </div>
     </div>
   );
 }

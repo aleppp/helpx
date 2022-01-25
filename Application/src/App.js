@@ -8,6 +8,8 @@ import EndUserHomePage from "./components/HomePage/EndUserHomePage/EndUserHomePa
 import AuditLogDatatable from "./components/Admin/AdminAuditLog/AuditLogDatatable";
 import AdminHomePage from "./components/Admin/AdminDashboard";
 import NavigationBar from "./components/Layout/Navigation/AdminNavigation";
+import Dashboard from "./components/ReleaseNotes/Dashboard";
+import Content from "./components/ReleaseNotes/Content";
 class App extends Component {
   constructor(props) {
     super(props);
@@ -48,6 +50,20 @@ class App extends Component {
                 exact
                 render={(props) => (
                   <AuditLogDatatable auth={this.auth} {...props} />
+                )}
+              />
+              <Route
+                path="/creator-dashboard"
+                exact
+                render={(props) => (
+                  <Dashboard auth={this.auth} {...props} />
+                )}
+              />
+              <Route
+                path="/normal-editor"
+                exact
+                render={(props) => (
+                  <Content auth={this.auth} {...props} />
                 )}
               />
             </div>

@@ -22,7 +22,7 @@ function FraudConfig() {
     <div>
       <div className="fraud-config-component">
         <h1>Fraud Management</h1>
-        <button className="button-add">Add New</button>
+        <button className="button-blue">Add New</button>
       </div>
 
       <table>
@@ -44,10 +44,10 @@ function FraudConfig() {
               <td>{fraud.id}</td>
               <td>{fraud.term}</td>
               <td>
-                <button className="button-edit" onClick={() => setShow(!show)}>
+                <button className="button-green" onClick={() => setShow(!show)}>
                   Edit
                 </button>
-                <button className="button-delete">Delete</button>
+                <button className="button-red">Delete</button>
               </td>
               <td>
                 {show ? (

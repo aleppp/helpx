@@ -2,18 +2,29 @@
   background-color: #00a19c;
   color: white;
   border-radius: 5px;
-  width: 250px;
-  padding-left: 10pt;
-  padding-right: 10pt;
-  padding-top: 20pt;
-  padding-bottom: 20pt;
-  margin: 20pt;
+  width: 450px;
+  height: 180px;
   font-family: "Mulish", sans-serif;
-  font-size: 15pt;
-  display: flex;
-  flex-direction: row;
 }
 
-div {
-  font-size: 15px;
+@media only screen and (max-width: 600px) {
+  #counter-widget {
+    width: 200px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  #counter-widget {
+    width: 300px;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+#fill {
+  height: 100%;
 }

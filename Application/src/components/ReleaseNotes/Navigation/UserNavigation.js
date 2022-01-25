@@ -12,7 +12,7 @@ const UserNavigation = () => {
       <div className="links">
         <ul>
           <li>
-            <a href="/">
+            <a href="/creator-dashboard">
               <img
                 src={process.env.PUBLIC_URL + "/images/dashboard.png"}
                 className="dashboardLogo"

@@ -6,7 +6,7 @@ const UserHeader = () => {
       <div className="userHeader-nav ">
         <ul className="UserHeader-ul">
           <li className="UserHeader-li">
-            <a href="/">Release Notes</a>
+            <a href="/releasenote">Release Notes</a>
           </li>
           <li className="UserHeader-li">
             <a href="/documenation">Documentation</a>

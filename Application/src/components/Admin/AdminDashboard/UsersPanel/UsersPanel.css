@@ -2,11 +2,8 @@
 
 #user-panel {
   background-color: #f8f8f8;
-  width: 250px;
-  padding-left: 15pt;
-  padding-right: 15pt;
-  padding-top: 10pt;
-  padding-bottom: 10pt;
+  width: 415px;
+  height: 355px;
   margin: 5pt;
   font-family: "Mulish", sans-serif;
   font-size: 15pt;
@@ -50,4 +47,24 @@ span {
 #users-without-roles,
 #not-active-users {
   padding-top: 30px;
+}
+
+@media only screen and (max-width: 600px) {
+  #users-without-roles,
+  #not-active-users {
+    width: 200px;
+    height: 355px;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: 720px) {
+  #users-without-roles,
+  #not-active-users {
+    width: 300px;
+    height: 355px;
+    display: flex;
+    flex-direction: column;
+  }
 }

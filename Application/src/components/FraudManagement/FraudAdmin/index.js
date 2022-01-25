@@ -19,12 +19,13 @@ function FraudConfig() {
   }, []);
 
   return (
-    <div>
-      <div className="fraud-config-component">
-        <h1>Fraud Management</h1>
-        <button className="button-blue">Add New</button>
+    <div className="container-fluid">
+      <div className="row">
+        <div className="fraud-config-component">
+          <h1>Fraud Management</h1>
+          <button className="button-blue">Add New</button>
+        </div>
       </div>
-
       <table>
         <tr>
           <th>

@@ -8,6 +8,7 @@ import EndUserHomePage from "./components/HomePage/EndUserHomePage/EndUserHomePa
 import AuditLogDatatable from "./components/Admin/AdminAuditLog/AuditLogDatatable";
 import AdminHomePage from "./components/Admin/AdminDashboard";
 import NavigationBar from "./components/Layout/Navigation/AdminNavigation";
+import UserNavigation from "./components/ReleaseNotes/Navigation/UserNavigation";
 class App extends Component {
   constructor(props) {
     super(props);
@@ -19,6 +20,7 @@ class App extends Component {
       <div className="chunk">
         <Router>
           <NavigationBar />
+          <UserNavigation />
           <Switch>
             <div className="App">
               <Route

@@ -1,16 +1,14 @@
 .dropdown{
-    position: relative;
-    display: inline-block;
-    cursor: pointer;
+    display: inline-block !important;
+    cursor: pointer !important;
 }
 
-.dropdown-content{
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-    min-width: 150px;
+.dropdown-menu{
+    position: absolute !important;
+    background-color: #f9f9f9 !important;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2) !important;
+    z-index: 1 !important;
+    min-width: 150px !important;
 }
 
 .pageBar{

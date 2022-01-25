@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../style.css";
-import Button from "../../../../Buttons/Buttons";
+import "../../../../Buttons/Buttons.css";
 
 function PendingAppConfigList() {
   const [unconfiguredApps, setUnconfiguredApps] = useState([]);
@@ -15,21 +15,15 @@ function PendingAppConfigList() {
       .catch((err) => console.log(err));
   }, []);
 
-  const button = [
-    {
-      type: "button-blue-small",
-      text: "Configure",
-    },
-  ];
   return (
-    <div className="container-lg m-3">
-      <div id="PendingAppConfigList" className="d-flex flex-column">
-        <h2>
+    <div className="container-fluid mt-2 g-0">
+      <div id="PendingAppConfigList" className="d-flex flex-fill flex-column">
+        <h2 className="mt-2">
           Pending Configuration <br />
           Application
         </h2>
         <div>
-          <table id="pending-app">
+          <table id="pending-app" className="mt-2 mb-2 text-center">
             <thead>
               <th>Application</th>
               <th>Description</th>
@@ -41,7 +35,7 @@ function PendingAppConfigList() {
                   <td>{unconfigured.Application}</td>
                   <td>{unconfigured.Description}</td>
                   <td>
-                    <Button button={button[0]}></Button>
+                    <button className="button-blue-small">Configure</button>
                   </td>
                 </tr>
               ))}

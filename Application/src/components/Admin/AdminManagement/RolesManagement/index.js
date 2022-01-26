@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./style.css";
 import Button from "../../../Buttons/Buttons";
+import "./style.css";
+import { EditRole } from "./RolesManagementBtn/EditRole";
 
 function RolesManagement() {
   const [RolesManagement, setRolesManagement] = useState([]);
+  const [show, setShow] = useState(true);
 
   useEffect(() => {
     axios
@@ -15,26 +17,13 @@ function RolesManagement() {
       .catch((err) => console.log(err));
   }, []);
 
-  const button = [
-    {
-      type: "button-red",
-      text: "Delete",
-    },
-    {
-      type: "button-blue",
-      text: "Add New",
-    },
-    {
-      type: "button-green",
-      text: "Edit",
-    },
-  ];
-
   return (
-    <div>
-      <div className="roles-management-component">
-        <h1>Roles Management</h1>
-        <Button button={button[1]}></Button>
+    <div className="container-fluid">
+      <div className="row">
+        <div className="roles-management-component">
+          <h1>Roles Management</h1>
+          <button className="button-blue">Add New</button>
+        </div>
       </div>
 
       <table>
@@ -64,8 +53,17 @@ function RolesManagement() {
             <td> {roles.Description} </td>
             <td> {roles.Number} </td>
             <td>
-              <Button button={button[2]}></Button>
-              <Button button={button[0]}></Button>
+              <button className="button-green" onClick={() => setShow(!show)}>
+                Edit
+              </button>
+              <button className="button-red">Delete</button>
+            </td>
+            <td>
+              {show ? (
+                <div>
+                  <EditRole />
+                </div>
+              ) : null}
             </td>
           </tr>
         ))}

@@ -17,3 +17,7 @@
   display: inline;
   float: right;
 }
+
+.row {
+  grid-gap: 2px 13px;
+}

@@ -28,22 +28,18 @@ function Dashboard() {
   ];
 
   return (
-    <div className="container-lg m-3">
-      <div className="d-inline-flex">
-        <div className="container-lg bg-light m-1" id="dashboard-counter">
-          <div className="d-sm-flex m-4">
-            <CounterWidget
-              title={arrayTitle[0].title}
-              count={countUser.map((user) => user.ActiveUser)}
-            />
-          </div>
-          <div className="d-sm-flex m-4">
-            <CounterWidget
-              title={arrayTitle[1].title}
-              count={countApp.map((app) => app.IntegratedApp)}
-            />
-          </div>
-        </div>
+    <div className="container-fluid" id="dashboard-counter">
+      <div className="d-flex flex-fill p-3 d-sm-flex-row ">
+        <CounterWidget
+          title={arrayTitle[0].title}
+          count={countUser.map((user) => user.ActiveUser)}
+        />
+      </div>
+      <div className="d-flex flex-fill p-3 d-sm-flex-row ">
+        <CounterWidget
+          title={arrayTitle[1].title}
+          count={countApp.map((app) => app.IntegratedApp)}
+        />
       </div>
     </div>
   );

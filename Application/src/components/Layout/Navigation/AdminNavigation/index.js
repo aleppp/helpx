@@ -7,8 +7,8 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 
 const NavigationBar = () => {
   return (
-    <div className="container-fluid m-0 g-0">
-      <div className="row flex-nowrap col-sm-1">
+    <div className="container-fluid g-0">
+      <div className="row flex-nowrap col-md-1 col-sm-1">
         <div className="admin-nav close col-auto col-md-3 col-xl-2 px-sm px-0">
           <div className="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
             {/* Section for profile picture and name */}

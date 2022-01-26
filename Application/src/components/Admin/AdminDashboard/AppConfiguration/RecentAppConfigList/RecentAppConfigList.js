@@ -14,18 +14,18 @@ function RecentAppConfigList() {
       .catch((err) => console.log(err));
   }, []);
   return (
-    <div className="container-lg m-3">
+    <div className="container-fluid mt-2">
       <div
         className="d-flex flex-column"
         id="RecentAppConfigList"
         data-testid="divShows"
       >
-        <h2>
+        <h2 className="mt-3">
           Recent Configuration <br />
           Application
         </h2>
         <div>
-          <table id="recent-app">
+          <table id="recent-app" className="mt-4 mb-4 text-center">
             <thead>
               <th>Date & Time</th>
               <th>Application Name</th>

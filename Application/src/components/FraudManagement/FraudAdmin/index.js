@@ -3,7 +3,7 @@ import axios from "axios";
 import "./style.css";
 import Pagination from "../../Layout/Navigation/Pagination/pagination";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { EditFraud } from "./FraudSlide";
+import { EditFraud } from "./FraudBtn";
 
 function FraudConfig() {
   const [fraudManagement, setFraudManagement] = useState([]);

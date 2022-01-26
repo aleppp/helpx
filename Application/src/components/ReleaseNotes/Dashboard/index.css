@@ -1,22 +1,54 @@
-.dropdown{
-    display: inline-block !important;
-    cursor: pointer !important;
+#DashboardCC {
+  display: flex;
+  width: 90%;
+  height: 100%;
+  margin-top: 1%;
+  margin-left: 5%;
+  position: relative;
 }
 
-.dropdown-menu{
-    position: absolute !important;
-    background-color: #f9f9f9 !important;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2) !important;
-    z-index: 1 !important;
-    min-width: 150px !important;
+#DashboardCC .pageBar {
+  float: right;
+  margin-top: 2%;
+}
+#dashboard-cc .dropdown {
+  display: inline-block !important;
+  cursor: pointer !important;
 }
 
-.pageBar{
-    float: right;
-    border: solid black;
+#dashboard-cc .dropdown-menu {
+  position: absolute !important;
+  background-color: #f9f9f9 !important;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2) !important;
+  z-index: 1 !important;
+  min-width: 150px !important;
 }
 
-table{
-    border: solid black;
-    width: 100%;
+#dashboard-cc table {
+  width: 100%;
+  background-color: #f3f3f3;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  table-layout: fixed;
+}
+
+#dashboard-cc tbody tr th {
+  overflow: hidden;
+}
+
+@media only screen and (max-width: 700px) {
+  #dashboard-cc {
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  #dashboard-cc {
+    width: 820px;
+    display: flex;
+    flex-direction: column;
+  }
 }

@@ -1,10 +1,12 @@
 import React, {useState, useReducer, useEffect} from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import {Pagination} from "@mui/material";
 import './index.css';
 import axios from 'axios'
 
 export default function Dashboard() {
   const [tableData, setTableData] = useState([])
+  const history = useHistory()
 
   //for sorting
   const [currentCreated, setCurrentCreated] = useState("createdUnsort");
@@ -344,9 +346,11 @@ export default function Dashboard() {
             <thead>
               <tr>
                 <td colSpan={7}>
-                <div>{counter("approval")}<sup>Pending Approval</sup></div>
-                <div>{counter("draft")}<sup>In Draft</sup></div> 
-                <button>New Release Note</button>
+                <div>
+                  {counter("approval")}<sup>Pending Approval</sup>
+                  {counter("draft")}<sup>In Draft</sup>
+                </div> 
+                <button onClick={() => history.push('/normal-editor')}>New Release Note</button>
                 </td>
               </tr>
               <tr>

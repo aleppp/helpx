@@ -5,9 +5,10 @@
   margin-top: 10%;
   margin-left: 5%;
   position: relative;
+  text-align: center;
 }
 
-#word-filter-list table {
+#WordFilterListCC table {
   width: 100%;
   height: 100%;
   background-color: #f3f3f3;
@@ -17,25 +18,25 @@
   table-layout: fixed;
 }
 
-#word-filter-list thead {
+#WordFilterListCC thead {
   background-color: #38b09d;
   font-size: 24px;
   color: white;
 }
 
-#word-filter-list .tdashboard {
+#WordFilterListCC .tdashboard {
   background-color: #f3f3f3;
   color: black;
 }
 
-#word-filter-list .title {
+#WordFilterListCC .title {
   display: inline;
   float: left;
   font-size: 40px;
   padding: 20px;
 }
 
-#word-filter-list .desc {
+#WordFilterListCC .desc {
   display: inline;
   float: left;
   text-align: left;
@@ -43,12 +44,12 @@
   padding: 20px;
 }
 
-#word-filter-list tbody tr td {
+#WordFilterListCC tbody tr td {
   font-size: 18px;
   vertical-align: middle;
 }
 
-#word-filter-list tfoot {
+#WordFilterListCC tfoot {
   background-color: #38b09d;
   height: 68px;
 }
@@ -59,7 +60,7 @@
 }
 
 @media only screen and (max-width: 700px) {
-  #word-filter-list {
+  #WordFilterListCC {
     width: 600px;
     display: flex;
     flex-direction: column;
@@ -67,7 +68,7 @@
 }
 
 @media only screen and (max-width: 900px) {
-  #word-filter-list {
+  #WordFilterListCC {
     width: 820px;
     display: flex;
     flex-direction: column;

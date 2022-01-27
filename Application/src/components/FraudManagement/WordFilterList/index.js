@@ -59,7 +59,7 @@ export default function WordFilterList() {
         <div className="d-flex d-sm-flex-column">
           <div className="row g-0 d-flex">
             <div className="col-lg-12">
-              <table id="word-filter-list">
+              <table>
                 <thead>
                   <tr className="tdashboard">
                     <td colSpan={2}>

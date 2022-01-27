@@ -504,7 +504,7 @@ export default function Dashboard() {
       <div className="d-flex d-sm-flex-column">
         <div className="row g-0 d-flex">
           <div className="col-lg-12">
-            <table id="dashboard-cc">
+            <table>
               <thead>
                 <tr>
                   <td colSpan={7}>

@@ -3,8 +3,7 @@
   display: inline-block;
   width: 90%;
   height: 100%;
-  margin-top: 3%;
-  margin-left: 5%;
+  align-content: center;
 }
 
 /* table for data (grey) */
@@ -17,6 +16,11 @@ table {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   table-layout: fixed;
   text-align: center;
+}
+
+.FeedbackList-EU table {
+  margin-left: 40px;
+  margin-right: 40px;
 }
 
 /* attribute name */
@@ -42,7 +46,7 @@ thead {
 }
 
 /* data in table (grey) */
-tbody tr td {
+.FeedbackList-EU tbody tr td {
   font-size: 18px;
   vertical-align: middle;
 }

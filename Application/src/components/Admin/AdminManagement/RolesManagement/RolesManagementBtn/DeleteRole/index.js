@@ -1,40 +1,52 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "./style.css";
-import Button from "../../../Buttons/Buttons";
+import Button from "../../../../../Buttons/Buttons";
 
-export default function FAQNew() {
+export const DeleteRole = (props) => {
+  const [role, setRole] = useState(props.role);
+
   const button = [
     {
-      type: "button-blue",
-      text: "Yes",
+      type: "button-blue-small",
+      text: "Submit",
     },
     {
       type: "button-red",
-      text: "No",
+      text: "Cancel",
     },
   ];
 
   return (
-    <div class="container">
+    <div class="container-deleterole">
+      <p className="title-deleterole">Delete Role</p>
       <br />
-
-      <h1 class="head">Delete User</h1>
-      <br></br>
-      <label for="question">User Name</label>
+      <label className="float-left" for="name">
+        Role Name
+      </label>
       <textarea
-        id="question"
-        name="question"
-        placeholder="Nisa Asri"
-      ></textarea>
-      <label for="answer">Roles Description</label>
+        className="textarea-name-del"
+        name="role-name"
+        placeholder="Role Name..."
+      >
+        End User
+      </textarea>
+      <label className="float-left" for="description">
+        Description
+      </label>
       <textarea
-        id="answer"
-        name="answer"
-        placeholder="Content Contributor"
-      ></textarea>
+        className="textarea-description-del"
+        name="description"
+        placeholder="Enter a description."
+      >
+        Only consume content
+      </textarea>
       <br />
-      <Button button={button[0]}></Button>
-      <Button button={button[1]}></Button>
+      <br />
+      <div className="float-center">
+        <Button button={button[0]}></Button>
+        <Button button={button[1]}></Button>
+      </div>
     </div>
   );
-}
+};

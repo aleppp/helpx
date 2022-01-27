@@ -18,6 +18,7 @@
   float: right;
 }
 
+#content-gap,
 .row {
   grid-gap: 2px 13px;
 }

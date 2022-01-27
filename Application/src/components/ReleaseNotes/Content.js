@@ -8,7 +8,7 @@ import FeedbackListCCRN from "../Feedback/FeedbackListCCRN";
 function Content() {
   return (
     <div class="container-fluid g-0">
-      <div class="row">
+      <div class="row" id="content-gap">
         <div class="col-sm-1 col-md-2 col-lg-1">
           <UserNavigation />
         </div>

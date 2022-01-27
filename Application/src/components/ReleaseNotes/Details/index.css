@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Mulish:wght@500&display=swap%22");
 
-h2 {
+.superContain .container h2 {
   font-size: 20px;
   text-align: left;
 }
@@ -16,7 +16,7 @@ h2 {
   padding-top: 6pt;
 }
 
-.container {
+.container-details {
   background-color: #ededed;
   font-size: 10pt;
   display: flex;

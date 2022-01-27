@@ -79,7 +79,7 @@
   width: 40px;
 }
 
-.sticky {
+.sticky-top {
   position: -webkit-sticky;
   position: sticky;
   top: 0;

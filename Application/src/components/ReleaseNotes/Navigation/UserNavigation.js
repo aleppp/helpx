@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import FeedbackListCCA from "../../Feedback/FeedbackListCCA";
 import FeedbackEUList from "../../Feedback/FeedbackListEU/FeedbackListEU";
-import UserHeader from "./UserHeader";
+import DashboardCV from "../Dashboard/DashboardCC";
 import "./UserNavigation.css";
 
 const UserNavigation = () => {
@@ -24,7 +24,7 @@ const UserNavigation = () => {
                 <ul>
                   {/* dashboard */}
                   <li>
-                    <a href="/">
+                    <a href="/creator-dashboard">
                       <img
                         src={process.env.PUBLIC_URL + "/images/dashboard.png"}
                         className="dashboardLogo"
@@ -75,6 +75,9 @@ const UserNavigation = () => {
           {/* call component */}
           <Router>
             <Switch>
+              <Route path="/creator-dashboard">
+                <DashboardCV />
+              </Route>
               <Route path="/feedback">
                 <FeedbackEUList />
               </Route>

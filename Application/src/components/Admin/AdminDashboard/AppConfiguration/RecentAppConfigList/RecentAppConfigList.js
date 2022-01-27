@@ -20,7 +20,7 @@ function RecentAppConfigList() {
         id="RecentAppConfigList"
         data-testid="divShows"
       >
-        <h2 className="mt-3">
+        <h2 className="heading-app mt-3">
           Recent Configuration <br />
           Application
         </h2>

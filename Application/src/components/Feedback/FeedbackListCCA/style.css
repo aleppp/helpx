@@ -56,7 +56,11 @@
   #FeedbackLCCA {
     width: 600px;
     display: flex;
+<<<<<<< HEAD
     flex-direction: column;
+=======
+    flex-direction: row;
+>>>>>>> c5c7bd93fcbcc88e0c859ad58b1c942b895e3603
   }
 }
 
@@ -64,6 +68,10 @@
   #FeedbackLCCA {
     width: 820px;
     display: flex;
+<<<<<<< HEAD
     flex-direction: column;
+=======
+    flex-direction: row;
+>>>>>>> c5c7bd93fcbcc88e0c859ad58b1c942b895e3603
   }
 }

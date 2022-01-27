@@ -57,6 +57,7 @@ export default function FeedbackEUList() {
   return (
     <>
       <div className="container-fluid" id="FeedbackListEU">
+<<<<<<< Updated upstream
         <div className="row g-0 d-flex">
           <div className="d-line flex d-sm-flex-column">
             <div className="col-lg-12">
@@ -141,6 +142,95 @@ export default function FeedbackEUList() {
                             <SelectRating />
                           </div>
                         </td>
+=======
+        <div className="row g-0 d-inline flex">
+          <div className="col-md-10 col-lg-12 col-xl-12">
+            <div className="row d-inline flex">
+              {/* <div className="d-inline flex d-sm-flex-column"> */}
+              <div className="col-auto">
+                {/* <div className="FeedbackList-EU"> */}
+                <table>
+                  <thead>
+                    <tr className="tdashboard">
+                      <td colSpan={5}>
+                        <div className="title">Feedback List</div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>Content</th>
+                      <th>Date</th>
+                      <th>Rating</th>
+                      <th>Feedback</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {FeedbackDataEU.currentData().map((fb, index) => {
+                      return (
+                        <tr key={index}>
+                          <td>
+                            <a href={fb.title}>{fb.title}</a>
+                          </td>
+                          <td>{fb.DateCreated}</td>
+                          <td>
+                            <div class="dropdown">
+                              {(function () {
+                                if (fb.Rating == "1") {
+                                  return (
+                                    <img
+                                      src={
+                                        process.env.PUBLIC_URL +
+                                        "/images/rate_1.png"
+                                      }
+                                      alt="Very Dissatisfied"
+                                    />
+                                  );
+                                } else if (fb.Rating == "2") {
+                                  return (
+                                    <img
+                                      src={
+                                        process.env.PUBLIC_URL +
+                                        "/images/rate_2.png"
+                                      }
+                                      alt="Very Dissatisfied"
+                                    />
+                                  );
+                                } else if (fb.Rating == "3") {
+                                  return (
+                                    <img
+                                      src={
+                                        process.env.PUBLIC_URL +
+                                        "/images/rate_3.png"
+                                      }
+                                      alt="Neutral"
+                                    />
+                                  );
+                                } else if (fb.Rating == "4") {
+                                  return (
+                                    <img
+                                      src={
+                                        process.env.PUBLIC_URL +
+                                        "/images/rate_4.png"
+                                      }
+                                      alt="Satisfied"
+                                    />
+                                  );
+                                } else {
+                                  return (
+                                    <img
+                                      src={
+                                        process.env.PUBLIC_URL +
+                                        "/images/rate_5.png"
+                                      }
+                                      alt="Very Satisfied"
+                                    />
+                                  );
+                                }
+                              })()}
+                              <SelectRating />
+                            </div>
+                          </td>
+>>>>>>> Stashed changes
 
                         <td>
                           <TextField
@@ -182,6 +272,8 @@ export default function FeedbackEUList() {
           </div>
         </div>
       </div>
+      {/* </div> */}
+      {/* </div> */}
     </>
   );
 }

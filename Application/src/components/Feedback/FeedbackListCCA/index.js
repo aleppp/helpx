@@ -42,12 +42,12 @@ export default function FeedbackListCCA() {
 
   return (
     <>
-      <div className="Content-Nav">
+      {/* <div className="Content-Nav">
         <UserNavigation></UserNavigation>
       </div>
       <div className="Content-Header">
         <UserHeader></UserHeader>
-      </div>
+      </div> */}
       <div id="container">
         <div className="overall">
           <table className="table table-borderless text-center">

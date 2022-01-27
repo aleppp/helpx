@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./style.css";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { Pagination } from "@mui/material";
 
 function AuditLogDatatable() {
   const [AuditLogDatatable, setAuditLogDatatable] = useState([]);
@@ -14,6 +15,36 @@ function AuditLogDatatable() {
       })
       .catch((err) => console.log(err));
   }, []);
+
+  let [page, setPage] = useState(1);
+  const PER_PAGE = 4;
+
+  const count = Math.ceil(AuditLogDatatable.length / PER_PAGE);
+  const FraudDataCC = usePagination(AuditLogDatatable, PER_PAGE);
+
+  const handleChange = (event, page) => {
+    setPage(page);
+    FraudDataCC.jump(page);
+  };
+
+  function usePagination(data, itemsPerPage) {
+    const [currentPage, setCurrentPage] = useState(1);
+    const maxPage = Math.ceil(data.length / itemsPerPage);
+
+    function currentData() {
+      const begin = (currentPage - 1) * itemsPerPage;
+      const end = begin + itemsPerPage;
+
+      return data.slice(begin, end);
+    }
+
+    function jump(page) {
+      const pageNumber = Math.max(1, page);
+      setCurrentPage((currentPage) => Math.min(pageNumber, maxPage));
+    }
+
+    return { jump, currentData, currentPage, maxPage };
+  }
 
   return (
     <div>
@@ -54,17 +85,15 @@ function AuditLogDatatable() {
           </tr>
         ))}
       </table>
-      <div className="pagination">
-        <a href="#">&laquo;</a>
-        <a href="#">2</a>
-        <a href="#">3</a>
-        <a href="#" class="active">
-          4
-        </a>
-        <a href="#">5</a>
-        <a href="#">6</a>
-        <a href="#">&raquo;</a>
-      </div>
+      <Pagination
+        className="pageBar"
+        count={count}
+        size="large"
+        color="primary"
+        page={page}
+        shape="rounded"
+        onChange={handleChange}
+      />
     </div>
   );
 }

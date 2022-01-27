@@ -3,10 +3,12 @@ import axios from "axios";
 import Button from "../../../Buttons/Buttons";
 import "./style.css";
 import { EditRole } from "./RolesManagementBtn/EditRole";
+import { DeleteRole } from "./RolesManagementBtn/DeleteRole";
 
 function RolesManagement() {
   const [RolesManagement, setRolesManagement] = useState([]);
-  const [show, setShow] = useState(true);
+  const [showEdit, setShowEdit] = useState(true);
+  const [showDel, setShowDel] = useState(true);
 
   useEffect(() => {
     axios
@@ -53,15 +55,28 @@ function RolesManagement() {
             <td> {roles.Description} </td>
             <td> {roles.Number} </td>
             <td>
-              <button className="button-green" onClick={() => setShow(!show)}>
+              <button
+                className="button-green"
+                onClick={() => setShowEdit(!showEdit)}
+              >
                 Edit
               </button>
-              <button className="button-red">Delete</button>
+              <button
+                className="button-red"
+                onClick={() => setShowDel(!showDel)}
+              >
+                Delete
+              </button>
             </td>
             <td>
-              {show ? (
+              {showEdit ? (
                 <div>
                   <EditRole />
+                </div>
+              ) : null}
+              {showDel ? (
+                <div>
+                  <DeleteRole />
                 </div>
               ) : null}
             </td>

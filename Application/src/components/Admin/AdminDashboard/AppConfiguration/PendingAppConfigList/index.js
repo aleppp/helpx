@@ -18,7 +18,7 @@ function PendingAppConfigList() {
   return (
     <div className="container-fluid mt-2 g-0">
       <div id="PendingAppConfigList" className="d-flex flex-fill flex-column">
-        <h2 className="mt-2">
+        <h2 className="heading-app mt-2">
           Pending Configuration <br />
           Application
         </h2>

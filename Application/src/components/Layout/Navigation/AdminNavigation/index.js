@@ -9,7 +9,7 @@ const NavigationBar = () => {
   return (
     <div className="container-fluid g-0">
       <div className="row flex-nowrap col-md-1 col-sm-1">
-        <div className="admin-nav close col-auto col-md-3 col-xl-2 px-sm px-0">
+        <div className="admin-nav col-auto col-md-3 col-xl-2 px-sm px-0 g-0">
           <div className="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
             {/* Section for profile picture and name */}
             <div className="row " id="profile-name">
@@ -85,7 +85,7 @@ const NavigationBar = () => {
                 </li>
                 {/* Menu for auditlog */}
                 <li className="nav-item">
-                  <a href="/auditlog">
+                  <a href="/audit-logs">
                     <img
                       className="images-4"
                       alt="audit-img"

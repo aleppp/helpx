@@ -8,7 +8,7 @@ import { DeleteRole } from "./RolesManagementBtn/DeleteRole";
 function RolesManagement() {
   const [RolesManagement, setRolesManagement] = useState([]);
   const [showEdit, setShowEdit] = useState(false);
-  const [showDel, setShowDel] = useState(true);
+  const [showDel, setShowDel] = useState(false);
 
   useEffect(() => {
     axios

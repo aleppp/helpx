@@ -2274,12 +2274,10 @@ CALL sp_content_ins(1, 1, 1, 1, true, true, 'Release Note 5.0', 'This is a new R
 CALL sp_fraudmanagement_sel();
 
 CALL `sp_fraudmanagement_ins`('park yoo', now(), now()) ;
-
+CALL sp_users_ins('Amirul', 'Luqman Shamshi', 'mirul@petronas.com', now(), now(), 2,2,2,2);
 CALL sp_users_sel() ;
 
 CALL sp_bookmarks_sel_user(2);
-
-CALL sp_users_ins('Roman', 'Kvaska', 'roman.kvaska@gmail.com', now(), now() ) ;
 
 CALL `sp_faq_ins`(1, 'Question', 'Answer', true, true, now(), now());
 
@@ -2289,7 +2287,7 @@ CALL `sp_feedback_sel_user`();
 
 CALL sp_notifications_sel();
 
-CALL sp_bookmarks_ins(2, 'helpx.petronas.com/releasenote/1.11', 'Release Note 1.11', now(), now());
+CALL sp_bookmarks_ins(1, 'helpx.petronas.com/releasenote/1.11', 'Release Note 1.11', now(), now());
 
 CALL `sp_lookupuserroles_ins`(6, 'Admin App', 'have an eye for detail', now(), now()) ;
 
@@ -2307,7 +2305,7 @@ CALL sp_feedbackrn_sel(1,1);
 
 CALL sp_integratedapps_sel();
 
-CALL sp_users_ins('User1', 'UserL1', 'user2@petronas.com', now(), now(), 2,2,2,2); 
+ 
 
 call `sp_applications_ins`('Setel',null,now(),now());
 

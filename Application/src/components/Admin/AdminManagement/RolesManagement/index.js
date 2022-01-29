@@ -4,9 +4,11 @@ import Button from "../../../Buttons/Buttons";
 import "./style.css";
 import { EditRole } from "./RolesManagementBtn/EditRole";
 import { DeleteRole } from "./RolesManagementBtn/DeleteRole";
+import { AddNewRole } from "./RolesManagementBtn/AddNewRole";
 
 function RolesManagement() {
   const [RolesManagement, setRolesManagement] = useState([]);
+  const [showAdd, setShowAdd] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
   const [showDel, setShowDel] = useState(false);
 
@@ -24,7 +26,9 @@ function RolesManagement() {
       <div className="row">
         <div className="roles-management-component">
           <h1>Roles Management</h1>
-          <button className="button-blue">Add New</button>
+          <button className="button-blue" onClick={() => setShowAdd(!showAdd)}>
+            Add New
+          </button>
         </div>
       </div>
 
@@ -69,6 +73,11 @@ function RolesManagement() {
               </button>
             </td>
             <td>
+              {showAdd ? (
+                <div>
+                  <AddNewRole />
+                </div>
+              ) : null}
               {showEdit ? (
                 <div>
                   <EditRole />

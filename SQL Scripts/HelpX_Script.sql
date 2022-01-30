@@ -2260,54 +2260,19 @@ DELIMITER ;
 -- ************************************************* --
 --              Call Stored Procedure                --
 -- ************************************************* --
-CALL sp_applications_sel();
-CALL sp_contentdb_sel();
-CALL sp_bookmarks_sel_all();
 CALL sp_template_ins(1,1,'Release Note 1','Here are some details on..', now(), now());
-CALL sp_template_sel();
-
-CALL sp_ReleaseNotes_sel();
-CALL sp_ContentBodyReleaseNotes_sel();
 
 CALL sp_content_ins(1, 1, 1, 1, true, true, 'Release Note 5.0', 'This is a new Release Notes', now(), now(), '2021-11-20 00:00:00');
 
-CALL sp_fraudmanagement_sel();
-
 CALL `sp_fraudmanagement_ins`('park yoo', now(), now()) ;
-
-CALL sp_users_sel() ;
-
-CALL sp_bookmarks_sel_user(2);
-
-CALL sp_users_ins('Roman', 'Kvaska', 'roman.kvaska@gmail.com', now(), now() ) ;
+CALL sp_users_ins('Amirul', 'Luqman Shamshi', 'mirul@petronas.com', now(), now(), 2,2,2,2);
 
 CALL `sp_faq_ins`(1, 'Question', 'Answer', true, true, now(), now());
-
-CALL `sp_faq_sel`();
-
-CALL `sp_feedback_sel_user`();
-
-CALL sp_notifications_sel();
-
-CALL sp_bookmarks_ins(2, 'helpx.petronas.com/releasenote/1.11', 'Release Note 1.11', now(), now());
+CALL sp_bookmarks_ins(1, 'helpx.petronas.com/releasenote/1.11', 'Release Note 1.11', now(), now());
 
 CALL `sp_lookupuserroles_ins`(6, 'Admin App', 'have an eye for detail', now(), now()) ;
 
-CALL sp_userapproles_sel_numofusers() ;
-
-CALL sp_feedback_sel_byContentID();
-
 CALL sp_notifications_ins(1, 1, 'Notifications', true, now(), now()) ;
-
-CALL `sp_searchterm_sel`();
-
-CALL sp_feedback_sel_cc();
-
-CALL sp_feedbackrn_sel(1,1);
-
-CALL sp_integratedapps_sel();
-
-CALL sp_users_ins('User1', 'UserL1', 'user2@petronas.com', now(), now(), 2,2,2,2); 
 
 call `sp_applications_ins`('Setel',null,now(),now());
 
@@ -2316,8 +2281,6 @@ call `sp_applicationsattributes_ins`(1,1,null,now(),now());
 call `sp_userslogin_ins`('alifmuqri.hazmi@petronas.com');
 
 call sp_users_ins('Amirul', 'Luqman Shamshi', 'mirul@petronas.com',now(),now(),3,null,2,1);
-
-CALL sp_auditlogs_sel();
 
 CALL sp_auditlogs_ins(1,1,1,1,1,now());
 

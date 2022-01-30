@@ -4,10 +4,12 @@ import "./style.css";
 import Pagination from "../../Layout/Navigation/Pagination/pagination";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { EditFraud } from "./FraudBtn";
+import { DeleteFraud } from "./FraudBtn/delete";
 
 function FraudConfig() {
   const [fraudManagement, setFraudManagement] = useState([]);
-  const [show, setShow] = useState(false);
+  const [showEdit, setShowEdit] = useState(false);
+  const [showDel, setShowDel] = useState(false);
 
   useEffect(() => {
     axios
@@ -26,7 +28,7 @@ function FraudConfig() {
           <button className="button-blue">Add New</button>
         </div>
       </div>
-      <table>
+      <table id="fraud">
         <tr>
           <th>
             ID
@@ -45,15 +47,28 @@ function FraudConfig() {
               <td>{fraud.id}</td>
               <td>{fraud.term}</td>
               <td>
-                <button className="button-green" onClick={() => setShow(!show)}>
+                <button
+                  className="button-green"
+                  onClick={() => setShowEdit(!showEdit)}
+                >
                   Edit
                 </button>
-                <button className="button-red">Delete</button>
+                <button
+                  className="button-red"
+                  onClick={() => setShowDel(!showDel)}
+                >
+                  Delete
+                </button>
               </td>
               <td>
-                {show ? (
+                {showEdit ? (
                   <div>
                     <EditFraud />
+                  </div>
+                ) : null}
+                {showDel ? (
+                  <div>
+                    <DeleteFraud />
                   </div>
                 ) : null}
               </td>

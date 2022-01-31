@@ -13,17 +13,20 @@ class Header extends Component {
   render() {
     const { isAuthenticated, login, logout } = this.props.auth;
     return (
-      <div className="canvas">
-        <div className="container-1">
-          <div className="col-1">Helpx</div>
-          <div className="col-2"></div>
-          <div className="col-3">
-            <button
-              className="button-green"
-              onClick={isAuthenticated() ? logout : login}
-            >
-              {isAuthenticated() ? "Log Out" : "Log In"}
-            </button>
+      <div className="container-fluid g-0">
+        <div className="canvas">
+          <div className="row">
+            <div className="col text-start ps-5 pt-3 fs-2 fw-bolder text-white">
+              Helpx
+            </div>
+            <div className="col pt-3 text-end pe-5">
+              <button
+                className="button-green"
+                onClick={isAuthenticated() ? logout : login}
+              >
+                {isAuthenticated() ? "Log Out" : "Log In"}
+              </button>
+            </div>
           </div>
         </div>
       </div>

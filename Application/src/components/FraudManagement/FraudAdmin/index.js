@@ -26,7 +26,7 @@ function FraudConfig() {
     <div className="container-fluid">
       <div className="row">
         <div className="fraud-config-component">
-          <h1>Fraud Management</h1>
+          <h1 className="fraud-title">Fraud Management</h1>
           <button className="button-blue" onClick={() => setShowAdd(!showAdd)}>
             Add New
           </button>

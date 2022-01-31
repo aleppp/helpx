@@ -4,8 +4,6 @@ import "./style.css";
 import Button from "../../../../../Buttons/Buttons";
 
 export const AddNewRole = (props) => {
-  const [role, setRole] = useState(props.role);
-
   const button = [
     {
       type: "button-blue-small",

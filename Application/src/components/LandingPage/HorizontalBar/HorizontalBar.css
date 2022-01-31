@@ -1,9 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Mulish:wght@200&display=swap");
 
-.container-fluid {
+/* .container-fluid {
   grid-column-gap: 0px;
   grid-row-gap: 0px;
-}
+} */
 
 #midnav {
   display: flex;

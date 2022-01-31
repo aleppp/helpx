@@ -15,8 +15,3 @@
   width: 160px;
   height: 160px;
 }
-
-.container-fluid {
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
-}

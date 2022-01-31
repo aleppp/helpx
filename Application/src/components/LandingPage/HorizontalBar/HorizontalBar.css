@@ -1,16 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Mulish:wght@200&display=swap");
 
-* {
-  /* font-size: 50px; */
-  font-family: "Mulish";
+.container-fluid {
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
 }
-.midnav {
+
+#midnav {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   background-color: #f4f1f1;
-  position: fixed;
-  width: 100%;
+  position: absolute;
+  max-width: 100%;
+  width: 1600px;
 }
 
 .container-nav {
@@ -22,14 +24,4 @@
 .nav-1 {
   display: flex;
   margin: 15px 60px;
-}
-
-.nav-2 {
-  display: flex;
-  margin: 15px 15px;
-}
-
-.nav-3 {
-  display: flex;
-  margin: 15px 15px;
 }

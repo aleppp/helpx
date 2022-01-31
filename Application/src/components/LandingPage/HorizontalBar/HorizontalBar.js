@@ -1,37 +1,27 @@
 import React from "react";
 import "./HorizontalBar.css";
-import Buttons from "../../Buttons/Buttons";
-
-const Button = [
-  {
-    type: "button-white-big",
-    text: "Release Notes",
-  },
-  {
-    type: "button-white-big",
-    text: "Documentation",
-  },
-  {
-    type: "button-white-big",
-    text: "FAQ",
-  },
-];
+import "../../Buttons/Buttons.css";
 
 function HorizontalBar() {
   return (
-    <div className="midnav">
+    <div className="container-fluid g-0" id="midnav">
       <div className="container-nav">
-        <div className="nav-1">
-          {" "}
-          <Buttons button={Button[0]}></Buttons>
-        </div>
-        <div className="nav-2">
-          {" "}
-          <Buttons button={Button[1]}></Buttons>
-        </div>
-        <div className="nav-3">
-          {" "}
-          <Buttons button={Button[2]}></Buttons>
+        <div className="row">
+          <div className="col">
+            <div className="nav-1">
+              <button className="button-white-big">Release Notes</button>
+            </div>
+          </div>
+          <div className="col">
+            <div className="nav-1">
+              <button className="button-white-big">Documentation</button>
+            </div>
+          </div>
+          <div className="col">
+            <div className="nav-1">
+              <button className="button-white-big">FAQ</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

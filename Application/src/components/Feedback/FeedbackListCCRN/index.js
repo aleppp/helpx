@@ -31,41 +31,42 @@ function FeedbackListCCRN() {
   }
 
   function ratingSelector(selectedRating) {
-    if (selectedRating == "1") {
-      return (
-        <img
-          src={process.env.PUBLIC_URL + "/images/rate_1.png"}
-          alt="Very Dissatisfied"
-        />
-      );
-    } else if (selectedRating == "2") {
-      return (
-        <img
-          src={process.env.PUBLIC_URL + "/images/rate_2.png"}
-          alt="Dissatisfied"
-        />
-      );
-    } else if (selectedRating == "3") {
-      return (
-        <img
-          src={process.env.PUBLIC_URL + "/images/rate_3.png"}
-          alt="Neutral"
-        />
-      );
-    } else if (selectedRating == "4") {
-      return (
-        <img
-          src={process.env.PUBLIC_URL + "/images/rate_4.png"}
-          alt="Satisfied"
-        />
-      );
-    } else {
-      return (
-        <img
-          src={process.env.PUBLIC_URL + "/images/rate_5.png"}
-          alt="Very Satisfied"
-        />
-      );
+    switch (selectedRating) {
+      case 1:
+        return (
+          <img
+            src={process.env.PUBLIC_URL + "/images/rate_1.png"}
+            alt="Very Dissatisfied"
+          />
+        );
+      case 2:
+        return (
+          <img
+            src={process.env.PUBLIC_URL + "/images/rate_2.png"}
+            alt="Dissatisfied"
+          />
+        );
+      case 3:
+        return (
+          <img
+            src={process.env.PUBLIC_URL + "/images/rate_3.png"}
+            alt="Neutral"
+          />
+        );
+      case 4:
+        return (
+          <img
+            src={process.env.PUBLIC_URL + "/images/rate_4.png"}
+            alt="Satisfied"
+          />
+        );
+      case 5:
+        return (
+          <img
+            src={process.env.PUBLIC_URL + "/images/rate_5.png"}
+            alt="Very Satisfied"
+          />
+        );
     }
   }
 

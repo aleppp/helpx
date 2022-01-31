@@ -6,21 +6,6 @@ import axios from "axios";
 function FeedbackListCCRN() {
   const [FeedbackCCRNList, setFeedbackCCRNList] = useState([]);
 
-  function setSortType(e) {
-    let sortData = [...FeedbackCCRNList];
-    let sortDate = e.currentTarget.value;
-    if (sortDate === "Newest") {
-      sortData = sortData.sort((a, b) =>
-        a.DateCreated.localeCompare(b.DateCreated)
-      );
-    } else if (sortDate === "Oldest") {
-      sortData = sortData.sort((a, b) =>
-        b.DateCreated.localeCompare(a.DateCreated)
-      );
-    }
-    setFeedbackCCRNList(sortData);
-  }
-
   useEffect(() => {
     axios
       .get("http://localhost:8080/feedbackccrn/sel")
@@ -29,6 +14,60 @@ function FeedbackListCCRN() {
       })
       .catch((err) => console.log(err));
   }, []);
+
+  function setSortType(e) {
+    let sortData = [...FeedbackCCRNList];
+    let sortDate = e.currentTarget.value;
+    if (sortDate === "Oldest") {
+      sortData = sortData.sort((a, b) =>
+        a.DateCreated.localeCompare(b.DateCreated)
+      );
+    } else if (sortDate === "Newest") {
+      sortData = sortData.sort((a, b) =>
+        b.DateCreated.localeCompare(a.DateCreated)
+      );
+    }
+    setFeedbackCCRNList(sortData);
+  }
+
+  function ratingSelector(selectedRating) {
+    if (selectedRating == "1") {
+      return (
+        <img
+          src={process.env.PUBLIC_URL + "/images/rate_1.png"}
+          alt="Very Dissatisfied"
+        />
+      );
+    } else if (selectedRating == "2") {
+      return (
+        <img
+          src={process.env.PUBLIC_URL + "/images/rate_2.png"}
+          alt="Dissatisfied"
+        />
+      );
+    } else if (selectedRating == "3") {
+      return (
+        <img
+          src={process.env.PUBLIC_URL + "/images/rate_3.png"}
+          alt="Neutral"
+        />
+      );
+    } else if (selectedRating == "4") {
+      return (
+        <img
+          src={process.env.PUBLIC_URL + "/images/rate_4.png"}
+          alt="Satisfied"
+        />
+      );
+    } else {
+      return (
+        <img
+          src={process.env.PUBLIC_URL + "/images/rate_5.png"}
+          alt="Very Satisfied"
+        />
+      );
+    }
+  }
 
   return (
     <div class="container">
@@ -58,46 +97,7 @@ function FeedbackListCCRN() {
             <table>
               <tbody>
                 <tr key={i}>
-                  <th>
-                    {(function () {
-                      if (fb.Rating == "1") {
-                        return (
-                          <img
-                            src={process.env.PUBLIC_URL + "/images/rate_1.png"}
-                            alt="Very Dissatisfied"
-                          />
-                        );
-                      } else if (fb.Rating == "2") {
-                        return (
-                          <img
-                            src={process.env.PUBLIC_URL + "/images/rate_2.png"}
-                            alt="Dissatisfied"
-                          />
-                        );
-                      } else if (fb.Rating == "3") {
-                        return (
-                          <img
-                            src={process.env.PUBLIC_URL + "/images/rate_3.png"}
-                            alt="Neutral"
-                          />
-                        );
-                      } else if (fb.Rating == "4") {
-                        return (
-                          <img
-                            src={process.env.PUBLIC_URL + "/images/rate_4.png"}
-                            alt="Satisfied"
-                          />
-                        );
-                      } else {
-                        return (
-                          <img
-                            src={process.env.PUBLIC_URL + "/images/rate_5.png"}
-                            alt="Very Satisfied"
-                          />
-                        );
-                      }
-                    })()}
-                  </th>
+                  <th>{ratingSelector(fb.Rating)}</th>
                   <div class="HeaderName">
                     <th>{fb.UserName}</th>
                   </div>

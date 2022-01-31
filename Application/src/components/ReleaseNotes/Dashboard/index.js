@@ -504,22 +504,24 @@ export default function Dashboard() {
       <div className="d-flex d-sm-flex-column">
         <div className="row g-0 d-flex">
           <div className="col-lg-12">
-            <table>
+            <table className="table table-hover table-borderless mb-0">
               <thead>
-                <tr>
-                  <td colSpan={7}>
-                    <div>
-                      {counter("approval")}
-                      <sup>Pending Approval</sup>
-                      {counter("draft")}
-                      <sup>In Draft</sup>
+                <tr className="content-summary">
+                  <td colSpan={8}>
+                    <div className="d-flex justify-content-between">
+                      <div className="align-self-center">
+                        <p className="d-inline ms-4">{counter("approval")}</p>
+                        <sup className="text-danger me-5">Pending Approval</sup>
+                        <p className="d-inline ms-5">{counter("draft")}</p>
+                        <sup className="text-warning">In Draft</sup>
+                      </div>
+                      <button className="btn align-self-center me-3 add-content" onClick={() => history.push("/normal-editor")}>
+                        New Release Note
+                      </button>
                     </div>
-                    <button onClick={() => history.push("/normal-editor")}>
-                      New Release Note
-                    </button>
                   </td>
                 </tr>
-                <tr>
+                <tr className="border-bottom-5 border-white">
                   <th>
                     <button id="DateCreated" onClick={(e) => dispatchSort(e)}>
                       Date
@@ -541,18 +543,13 @@ export default function Dashboard() {
                     </button>
                   </th>
                   <th>
-                    <div class="dropdown">
-                      <p className="dropdown-toggle" data-bs-toggle="dropdown">
+                    <div>
+                      <button data-bs-toggle="collapse" data-bs-target="#title-collapse" aria-expanded="false" aria-controls="title-collapse">
                         Title
-                      </p>
-                      <div className="dropdown-menu">
-                        <input
-                          id="Title"
-                          type="text"
-                          value={query}
-                          onChange={(e) => handleFilter(e)}
+                        <img
+                            src={process.env.PUBLIC_URL + "/icons/descend.svg"}
                         />
-                      </div>
+                      </button>
                     </div>
                   </th>
                   <th>
@@ -578,20 +575,24 @@ export default function Dashboard() {
                       )}
                     </button>
                   </th>
-                  <th>
+                  <th colSpan={2}>
                     <div class="dropdown">
                       <p
-                        className="dropdown-toggle"
                         data-bs-toggle="dropdown"
                         data-bs-auto-close="outside"
                         aria-expanded="false"
                       >
                         Feedback Button
+                        <img
+                            src={process.env.PUBLIC_URL + "/icons/descend.svg"}
+                            alt="descending"
+                        />
                       </p>
-                      <div className="dropdown-menu">
+                      <div className="dropdown-menu float-end">
                         {fbuttonLabel.map((cb, index) => (
-                          <div>
+                          <label className="form-check mb-2">
                             <input
+                              className="form-check-input"
                               key={`cb-${index}`}
                               type="checkbox"
                               id={cb.id}
@@ -600,33 +601,36 @@ export default function Dashboard() {
                                 handleCheckbox(cb.value, "fbutton", index)
                               }
                             />
-                            <label htmlFor={cb.id} style={{ width: "90%" }}>
+                            <label className="form-check-label" for={cb.id}>
                               {cb.name}
                             </label>
                             <br />
-                          </div>
+                          </label>
                         ))}
                       </div>
                     </div>
                   </th>
                   <th>
-                    Feedback
-                    <img src={process.env.PUBLIC_URL + "/icons/descend.svg"} />
+                    <p className="mt-3">Feedback<img src={process.env.PUBLIC_URL + "/icons/descend.svg"} /></p>
                   </th>
                   <th>
                     <div class="dropdown">
                       <p
-                        className="dropdown-toggle"
                         data-bs-toggle="dropdown"
                         data-bs-auto-close="outside"
                         aria-expanded="false"
                       >
                         Visibility
+                        <img
+                            src={process.env.PUBLIC_URL + "/icons/descend.svg"}
+                            alt="descending"
+                        />
                       </p>
                       <div className="dropdown-menu">
                         {visibleLabel.map((cb, index) => (
-                          <>
+                          <label className="form-check mb-2">
                             <input
+                              className="form-check-input"
                               key={`cb-${index}`}
                               id={cb.id}
                               type="checkbox"
@@ -635,11 +639,11 @@ export default function Dashboard() {
                                 handleCheckbox(cb.value, "visible", index)
                               }
                             />
-                            <label htmlFor={cb.id} style={{ width: "90%" }}>
+                            <label className="form-check-label" for={cb.id}>
                               {cb.name}
                             </label>
                             <br />
-                          </>
+                          </label>
                         ))}
                       </div>
                     </div>
@@ -647,19 +651,22 @@ export default function Dashboard() {
                   <th>
                     <div class="dropdown">
                       <p
-                        className="dropdown-toggle"
                         data-bs-toggle="dropdown"
                         data-bs-auto-close="outside"
                         aria-expanded="false"
                       >
                         Status
+                        <img
+                            src={process.env.PUBLIC_URL + "/icons/descend.svg"}
+                            alt="descending"
+                        />
                       </p>
                       <div className="dropdown-menu">
                         {statusLabel.map((cb, index) => (
-                          <div>
+                          <label for={cb.id} className="form-check mb-2">
                             <input
+                              className="form-check-input"
                               key={`cb-${index}`}
-                              z
                               id={cb.id}
                               type="checkbox"
                               checked={checkedStatusState[index]}
@@ -667,15 +674,27 @@ export default function Dashboard() {
                                 handleCheckbox(cb.value, "stats", index)
                               }
                             />
-                            <label htmlFor={cb.id} style={{ width: "90%" }}>
+                            <label className="form-check-label" for={cb.id}>
                               {cb.name}
                             </label>
                             <br />
-                          </div>
+                          </label>
                         ))}
                       </div>
                     </div>
                   </th>
+                </tr>
+                <tr className="collapse" id="title-collapse">
+                  <td colSpan={8}>
+                    <input
+                      id="Title"
+                      className="form-control mb-2"
+                      type="text"
+                      value={query}
+                      placeholder="Search Title..."
+                      onChange={(e) => handleFilter(e)}
+                    />
+                  </td>
                 </tr>
               </thead>
               <tbody>
@@ -685,7 +704,7 @@ export default function Dashboard() {
                       <td>{item.DateCreated}</td>
                       <td>{item.Title}</td>
                       <td>{item.DatePublished}</td>
-                      <td>{item.IsFeebackAllowed}</td>
+                      <td colSpan={2}>{item.IsFeebackAllowed}</td>
                       <td>{item.feedback}</td>
                       <td>{item.IsVisible}</td>
                       <td>{item.status}</td>
@@ -695,14 +714,14 @@ export default function Dashboard() {
               </tbody>
               <tfoot>
                 <tr>
-                  <td colSpan={7}>
-                    <p>Total Number of Release: {tableData.length}</p>
+                  <td colSpan={8}>
+                    <p className="float-start ms-3 mt-2">Total Number of Release: {tableData.length}</p>
                   </td>
                 </tr>
               </tfoot>
             </table>
             <Pagination
-              className="pageBar"
+              className="mt-1 pageBar"
               count={count}
               size="large"
               color="primary"

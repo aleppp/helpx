@@ -1,8 +1,11 @@
-.nav {
-  height: 100%;
-  width: 300px;
-}
+/* * {
+  outline: 1px solid red;
+} */
 
+#landing-page {
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+}
 .header {
   display: flex;
   height: 90px;
@@ -26,9 +29,4 @@
   flex-direction: column;
   justify-content: flex-start;
   height: 100%;
-}
-
-.container {
-  display: flex;
-  flex-direction: row;
 }

@@ -29,7 +29,8 @@
 }
 
 .container-editfraud,
-.container-deletefraud {
+.container-deletefraud,
+.container-addfraud {
   border-radius: 5px;
   background-color: #f2f2f2;
   padding: 20px;
@@ -39,7 +40,8 @@
 }
 
 .title-editfraud,
-.title-deletefraud {
+.title-deletefraud,
+.title-addfraud {
   font-family: "Mulish";
   font-size: 20px;
   font-weight: bold;
@@ -74,4 +76,5 @@ label {
 
 .float-center {
   align-items: center;
+  cursor: pointer;
 }

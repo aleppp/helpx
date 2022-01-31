@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./style.css";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Pagination } from "@mui/material";
+import { MultiSelect } from "react-multi-select-component";
 
-function AuditLogDatatable() {
+export default function AuditLogDatatable() {
   const [AuditLogDatatable, setAuditLogDatatable] = useState([]);
 
   useEffect(() => {
@@ -46,56 +46,95 @@ function AuditLogDatatable() {
     return { jump, currentData, currentPage, maxPage };
   }
 
-  return (
-    <div>
-      <div className="audit-1">
-        <h1>Audit Log History</h1>
-        <img src="images/export.png" alt="Download" className="export"></img>
-      </div>
+  const options = [
+    { label: "User", value: "user" },
+    { label: "Application", value: "application" },
+    { label: "Role", value: "role" },
+    { label: "FAQ", value: "faq" },
+  ];
 
-      <table>
-        <tr>
-          <th>
-            Date & Time <ExpandMoreIcon />
-          </th>
-          <th>
-            User <ExpandMoreIcon />
-          </th>
-          <th>
-            {" "}
-            Category <ExpandMoreIcon />{" "}
-          </th>
-          <th>
-            {" "}
-            Changes <ExpandMoreIcon />{" "}
-          </th>
-          <th>
-            {" "}
-            Changed Object <ExpandMoreIcon />{" "}
-          </th>
-          <th> Action </th>
-        </tr>
-        {AuditLogDatatable.map((auditlog, i) => (
-          <tr key={i}>
-            <td> {auditlog.DateTime} </td>
-            <td> {auditlog.User} </td>
-            <td> {auditlog.Category} </td>
-            <td> {auditlog.Changes} </td>
-            <td> {auditlog.ChangedObject} </td>
+  const Example = () => {
+    const [selected, setSelected] = useState([]);
+
+    return (
+      <div>
+        <div className="audit-1">
+          <h1>Audit Log History</h1>
+          <img src="images/export.png" alt="Download" className="export"></img>
+        </div>
+
+        <table>
+          <tr>
+            <th>
+              Date & Time{" "}
+              <MultiSelect
+                options={options}
+                value={selected}
+                onChange={setSelected}
+                labelledBy="Select"
+              />
+            </th>
+            <th>
+              User{" "}
+              <MultiSelect
+                options={options}
+                value={selected}
+                onChange={setSelected}
+                labelledBy="Select"
+              />
+            </th>
+            <th>
+              {" "}
+              Category{" "}
+              <MultiSelect
+                options={options}
+                value={selected}
+                onChange={setSelected}
+                labelledBy="Select"
+              />{" "}
+            </th>
+            <th>
+              {" "}
+              Changes{" "}
+              <MultiSelect
+                options={options}
+                value={selected}
+                onChange={setSelected}
+                labelledBy="Select"
+              />{" "}
+            </th>
+            <th>
+              {" "}
+              Changed Object{" "}
+              <MultiSelect
+                options={options}
+                value={selected}
+                onChange={setSelected}
+                labelledBy="Select"
+              />{" "}
+            </th>
+            <th> Action </th>
           </tr>
-        ))}
-      </table>
-      <Pagination
-        className="pageBar"
-        count={count}
-        size="large"
-        color="primary"
-        page={page}
-        shape="rounded"
-        onChange={handleChange}
-      />
-    </div>
-  );
+          {AuditLogDatatable.map((auditlog, i) => (
+            <tr key={i}>
+              <td> {auditlog.DateTime} </td>
+              <td> {auditlog.User} </td>
+              <td> {auditlog.Category} </td>
+              <td> {auditlog.Changes} </td>
+              <td> {auditlog.ChangedObject} </td>
+            </tr>
+          ))}
+        </table>
+        <Pagination
+          className="pageBar"
+          count={count}
+          size="large"
+          color="primary"
+          page={page}
+          shape="rounded"
+          onChange={handleChange}
+        />
+      </div>
+    );
+  };
 }
-
-export default AuditLogDatatable;

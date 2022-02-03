@@ -5,6 +5,7 @@ import axios from "axios";
 
 function FeedbackListCCRN() {
   const [FeedbackCCRNList, setFeedbackCCRNList] = useState([]);
+
   useEffect(() => {
     axios
       .get("http://localhost:8080/feedbackccrn/sel")
@@ -13,6 +14,46 @@ function FeedbackListCCRN() {
       })
       .catch((err) => console.log(err));
   }, []);
+
+  function ratingSelector(selectedRating) {
+    switch (selectedRating) {
+      case 1:
+        return (
+          <img
+            src={process.env.PUBLIC_URL + "/images/rate_1.png"}
+            alt="Very Dissatisfied"
+          />
+        );
+      case 2:
+        return (
+          <img
+            src={process.env.PUBLIC_URL + "/images/rate_2.png"}
+            alt="Dissatisfied"
+          />
+        );
+      case 3:
+        return (
+          <img
+            src={process.env.PUBLIC_URL + "/images/rate_3.png"}
+            alt="Neutral"
+          />
+        );
+      case 4:
+        return (
+          <img
+            src={process.env.PUBLIC_URL + "/images/rate_4.png"}
+            alt="Satisfied"
+          />
+        );
+      case 5:
+        return (
+          <img
+            src={process.env.PUBLIC_URL + "/images/rate_5.png"}
+            alt="Very Satisfied"
+          />
+        );
+    }
+  }
 
   return (
     <div class="container-fblistccrn">
@@ -41,51 +82,11 @@ function FeedbackListCCRN() {
             <table className="fblistccrn-table">
               <tbody>
                 <tr key={i}>
-                  <th>
-                    {(function () {
-                      if (fb.Rating == "1") {
-                        return (
-                          <img
-                            src={process.env.PUBLIC_URL + "/images/rate_1.png"}
-                            alt="Very Dissatisfied"
-                          />
-                        );
-                      } else if (fb.Rating == "2") {
-                        return (
-                          <img
-                            src={process.env.PUBLIC_URL + "/images/rate_2.png"}
-                            alt="Dissatisfied"
-                          />
-                        );
-                      } else if (fb.Rating == "3") {
-                        return (
-                          <img
-                            src={process.env.PUBLIC_URL + "/images/rate_3.png"}
-                            alt="Neutral"
-                          />
-                        );
-                      } else if (fb.Rating == "4") {
-                        return (
-                          <img
-                            src={process.env.PUBLIC_URL + "/images/rate_4.png"}
-                            alt="Satisfied"
-                          />
-                        );
-                      } else {
-                        return (
-                          <img
-                            src={process.env.PUBLIC_URL + "/images/rate_5.png"}
-                            alt="Very Satisfied"
-                          />
-                        );
-                      }
-                    })()}
-                  </th>
+                  <th>{ratingSelector(fb.Rating)}</th>
                   <div class="HeaderName">
                     <th>{fb.UserName}</th>
                   </div>
                 </tr>
-
                 <tr>
                   <td colSpan="2">{fb.Feedback}</td>
                 </tr>

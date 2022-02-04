@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./style.css";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Pagination } from "@mui/material";
+import { MultiSelect } from "react-multi-select-component";
 
-function AuditLogDatatable() {
+export default function AuditLogDatatable() {
   const [AuditLogDatatable, setAuditLogDatatable] = useState([]);
 
   useEffect(() => {
@@ -46,6 +46,13 @@ function AuditLogDatatable() {
     return { jump, currentData, currentPage, maxPage };
   }
 
+  const options = [
+    { label: "User", value: "user" },
+    { label: "Application", value: "application" },
+    { label: "Role", value: "role" },
+    { label: "FAQ", value: "faq" },
+  ];
+
   return (
     <div>
       <div className="audit-1">
@@ -56,22 +63,49 @@ function AuditLogDatatable() {
       <table>
         <tr>
           <th>
-            Date & Time <ExpandMoreIcon />
+            Date & Time
+            <MultiSelect
+              options={options}
+              value={AuditLogDatatable}
+              onChange={setAuditLogDatatable}
+              labelledBy="Date & Time"
+            />
           </th>
           <th>
-            User <ExpandMoreIcon />
+            User
+            <MultiSelect
+              options={options}
+              value={AuditLogDatatable}
+              onChange={setAuditLogDatatable}
+              labelledBy="User"
+            />
           </th>
           <th>
-            {" "}
-            Category <ExpandMoreIcon />{" "}
+            Category
+            <MultiSelect
+              options={options}
+              value={AuditLogDatatable}
+              onChange={setAuditLogDatatable}
+              labelledBy="Category"
+            />
           </th>
           <th>
-            {" "}
-            Changes <ExpandMoreIcon />{" "}
+            Changes
+            <MultiSelect
+              options={options}
+              value={AuditLogDatatable}
+              onChange={setAuditLogDatatable}
+              labelledBy="Changes"
+            />
           </th>
           <th>
-            {" "}
-            Changed Object <ExpandMoreIcon />{" "}
+            Changed Object
+            <MultiSelect
+              options={options}
+              value={AuditLogDatatable}
+              onChange={setAuditLogDatatable}
+              labelledBy="Changed Object"
+            />
           </th>
           <th> Action </th>
         </tr>
@@ -97,5 +131,3 @@ function AuditLogDatatable() {
     </div>
   );
 }
-
-export default AuditLogDatatable;

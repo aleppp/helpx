@@ -53,9 +53,6 @@ export default function AuditLogDatatable() {
     { label: "FAQ", value: "faq" },
   ];
 
-  //const Example = () => {
-  //const [selected, setSelected] = useState([]);
-
   return (
     <div>
       <div className="audit-1">
@@ -66,7 +63,7 @@ export default function AuditLogDatatable() {
       <table>
         <tr>
           <th>
-            Date & Time{" "}
+            Date & Time
             <MultiSelect
               options={options}
               value={AuditLogDatatable}
@@ -75,7 +72,7 @@ export default function AuditLogDatatable() {
             />
           </th>
           <th>
-            User{" "}
+            User
             <MultiSelect
               options={options}
               value={AuditLogDatatable}
@@ -90,7 +87,7 @@ export default function AuditLogDatatable() {
               value={AuditLogDatatable}
               onChange={setAuditLogDatatable}
               labelledBy="Category"
-            />{" "}
+            />
           </th>
           <th>
             Changes

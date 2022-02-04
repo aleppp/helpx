@@ -53,88 +53,84 @@ export default function AuditLogDatatable() {
     { label: "FAQ", value: "faq" },
   ];
 
-  const Example = () => {
-    const [selected, setSelected] = useState([]);
+  //const Example = () => {
+  //const [selected, setSelected] = useState([]);
 
-    return (
-      <div>
-        <div className="audit-1">
-          <h1>Audit Log History</h1>
-          <img src="images/export.png" alt="Download" className="export"></img>
-        </div>
-
-        <table>
-          <tr>
-            <th>
-              Date & Time{" "}
-              <MultiSelect
-                options={options}
-                value={selected}
-                onChange={setSelected}
-                labelledBy="Select"
-              />
-            </th>
-            <th>
-              User{" "}
-              <MultiSelect
-                options={options}
-                value={selected}
-                onChange={setSelected}
-                labelledBy="Select"
-              />
-            </th>
-            <th>
-              {" "}
-              Category{" "}
-              <MultiSelect
-                options={options}
-                value={selected}
-                onChange={setSelected}
-                labelledBy="Select"
-              />{" "}
-            </th>
-            <th>
-              {" "}
-              Changes{" "}
-              <MultiSelect
-                options={options}
-                value={selected}
-                onChange={setSelected}
-                labelledBy="Select"
-              />{" "}
-            </th>
-            <th>
-              {" "}
-              Changed Object{" "}
-              <MultiSelect
-                options={options}
-                value={selected}
-                onChange={setSelected}
-                labelledBy="Select"
-              />{" "}
-            </th>
-            <th> Action </th>
-          </tr>
-          {AuditLogDatatable.map((auditlog, i) => (
-            <tr key={i}>
-              <td> {auditlog.DateTime} </td>
-              <td> {auditlog.User} </td>
-              <td> {auditlog.Category} </td>
-              <td> {auditlog.Changes} </td>
-              <td> {auditlog.ChangedObject} </td>
-            </tr>
-          ))}
-        </table>
-        <Pagination
-          className="pageBar"
-          count={count}
-          size="large"
-          color="primary"
-          page={page}
-          shape="rounded"
-          onChange={handleChange}
-        />
+  return (
+    <div>
+      <div className="audit-1">
+        <h1>Audit Log History</h1>
+        <img src="images/export.png" alt="Download" className="export"></img>
       </div>
-    );
-  };
+
+      <table>
+        <tr>
+          <th>
+            Date & Time{" "}
+            <MultiSelect
+              options={options}
+              value={AuditLogDatatable}
+              onChange={setAuditLogDatatable}
+              labelledBy="Date & Time"
+            />
+          </th>
+          <th>
+            User{" "}
+            <MultiSelect
+              options={options}
+              value={AuditLogDatatable}
+              onChange={setAuditLogDatatable}
+              labelledBy="User"
+            />
+          </th>
+          <th>
+            Category
+            <MultiSelect
+              options={options}
+              value={AuditLogDatatable}
+              onChange={setAuditLogDatatable}
+              labelledBy="Category"
+            />{" "}
+          </th>
+          <th>
+            Changes
+            <MultiSelect
+              options={options}
+              value={AuditLogDatatable}
+              onChange={setAuditLogDatatable}
+              labelledBy="Changes"
+            />
+          </th>
+          <th>
+            Changed Object
+            <MultiSelect
+              options={options}
+              value={AuditLogDatatable}
+              onChange={setAuditLogDatatable}
+              labelledBy="Changed Object"
+            />
+          </th>
+          <th> Action </th>
+        </tr>
+        {AuditLogDatatable.map((auditlog, i) => (
+          <tr key={i}>
+            <td> {auditlog.DateTime} </td>
+            <td> {auditlog.User} </td>
+            <td> {auditlog.Category} </td>
+            <td> {auditlog.Changes} </td>
+            <td> {auditlog.ChangedObject} </td>
+          </tr>
+        ))}
+      </table>
+      <Pagination
+        className="pageBar"
+        count={count}
+        size="large"
+        color="primary"
+        page={page}
+        shape="rounded"
+        onChange={handleChange}
+      />
+    </div>
+  );
 }

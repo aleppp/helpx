@@ -4,12 +4,14 @@ import "./style.css";
 import Pagination from "../../Layout/Navigation/Pagination/pagination";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { EditFraud } from "./FraudBtn";
+import { AddFraud } from "./FraudBtn/addnew";
 import { DeleteFraud } from "./FraudBtn/delete";
 
 function FraudConfig() {
   const [fraudManagement, setFraudManagement] = useState([]);
   const [showEdit, setShowEdit] = useState(false);
   const [showDel, setShowDel] = useState(false);
+  const [showAdd, setShowAdd] = useState(false);
 
   useEffect(() => {
     axios
@@ -24,18 +26,23 @@ function FraudConfig() {
     <div className="container-fluid">
       <div className="row">
         <div className="fraud-config-component">
-          <h1>Fraud Management</h1>
-          <button className="button-blue">Add New</button>
+          <h1 className="fraud-title">Fraud Management</h1>
+          <button className="button-blue" onClick={() => setShowAdd(!showAdd)}>
+            Add New
+          </button>
         </div>
       </div>
       <table id="fraud">
         <tr>
           <th>
-            ID
-            <img
-              className="dropdown"
-              src={process.env.PUBLIC_URL + "/images/expandMore.png"}
-            />
+            <div className="dropdown dropdown-admin">
+              <p className="dropdown-toggle" data-bs-toggle="dropdown">
+                ID
+              </p>
+              <div className="dropdown-menu dropdown-m-admin">
+                <input id="id" type="text" />
+              </div>
+            </div>
           </th>
           <th>Term</th>
           <th>Action</th>
@@ -61,6 +68,11 @@ function FraudConfig() {
                 </button>
               </td>
               <td>
+                {showAdd ? (
+                  <div>
+                    <AddFraud />
+                  </div>
+                ) : null}
                 {showEdit ? (
                   <div>
                     <EditFraud />

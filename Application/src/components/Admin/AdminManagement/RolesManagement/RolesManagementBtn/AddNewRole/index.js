@@ -1,42 +1,46 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "./style.css";
 import Button from "../../../../../Buttons/Buttons";
 
-const button = [
-  {
-    type: "button-red",
-    text: "Delete",
-  },
-  {
-    type: "button-blue-small",
-    text: "Submit",
-  },
-];
-export default function App() {
+export const AddNewRole = (props) => {
+  const button = [
+    {
+      type: "button-blue-small",
+      text: "Submit",
+    },
+    {
+      type: "button-red",
+      text: "Cancel",
+    },
+  ];
+
   return (
-    <div class="container">
-      <h2> Add New Role </h2>
-
+    <div class="container-addrole">
+      <p className="title-addrole">Add New Role</p>
       <br />
-      <label for="rolename">Role Name</label>
+      <label className="float-left" for="name">
+        Role Name
+      </label>
       <textarea
-        id="rolename"
-        name="rolename"
-        placeholder="Enter the role."
+        className="textarea-name-del"
+        name="role-name"
+        placeholder="Role Name..."
       ></textarea>
-
+      <label className="float-left" for="description">
+        Description
+      </label>
+      <textarea
+        className="textarea-description-add"
+        name="description"
+        placeholder="Enter a description."
+      ></textarea>
       <br />
-      <label for="roledesc">Role Description</label>
-      <textarea
-        id="roledesc"
-        name="roledesc"
-        placeholder="Role Description."
-      ></textarea>
-
-      <div className="center">
-        <Button button={button[1]}></Button>
+      <br />
+      <div className="float-center">
         <Button button={button[0]}></Button>
+        <Button button={button[1]}></Button>
       </div>
     </div>
   );
-}
+};

@@ -1,19 +1,9 @@
 import React, { useState } from "react";
 import "./style.css";
 import Button from "../../Buttons/Buttons";
-<<<<<<< HEAD
-=======
-import { Form } from "react-bootstrap";
->>>>>>> 8eed5e8c9f7a2a99c0d5afa420f7f6ae0c25d57e
 
 export const EditFAQCC = (props) => {
   const [fql, setFAQ] = useState(props.fql);
-  const [showEdit, setShowEdit] = useState(false);
-<<<<<<< HEAD
-  const handleCloseEdit = (props) => setShowEdit(false);
-=======
-  const handleCloseEdit = () => setShowEdit(false);
->>>>>>> 8eed5e8c9f7a2a99c0d5afa420f7f6ae0c25d57e
 
   const button = [
     {
@@ -28,11 +18,7 @@ export const EditFAQCC = (props) => {
 
   return (
     <div class="container-editfaq-cc">
-<<<<<<< HEAD
       <h2 className="title-editfaq">Edit FAQ</h2>
-=======
-      <h2 className="title-addfaq">Edit FAQ</h2>
->>>>>>> 8eed5e8c9f7a2a99c0d5afa420f7f6ae0c25d57e
       <div>
         <label class="switch">
           <input type="checkbox"></input>
@@ -85,12 +71,6 @@ export const EditFAQCC = (props) => {
       </div>
       <div className="button-float float-right">
         <Button button={button[1]}></Button>
-<<<<<<< HEAD
-=======
-        <button onClick={handleCloseEdit} className="button-red">
-          Cancel
-        </button>
->>>>>>> 8eed5e8c9f7a2a99c0d5afa420f7f6ae0c25d57e
       </div>
     </div>
   );

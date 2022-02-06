@@ -1,7 +1,7 @@
-import "./style.css";
-import Buttons from "../../Buttons/Buttons";
+import "../FAQEdit/style.css";
+import Button from "../../Buttons/Buttons";
 
-export default function NewFAQ() {
+export default function FAQNewCC() {
   const button = [
     {
       type: "button-red",
@@ -14,8 +14,8 @@ export default function NewFAQ() {
   ];
 
   return (
-    <div class="container-addnew-admin">
-      <h2 className="title-addfaq">Add New FAQ</h2>
+    <div class="container-editfaq-cc">
+      <h2 className="title-editfaq">Add New FAQ</h2>
       <div>
         <label class="switch">
           <input type="checkbox"></input>
@@ -61,9 +61,8 @@ export default function NewFAQ() {
           placeholder="Enter an answer."
         ></textarea>
       </div>
-      <div className="button-float">
-        <Buttons button={button[0]}></Buttons>
-        <Buttons button={button[1]}></Buttons>
+      <div className="button-float float-right">
+        <Button button={button[1]}></Button>
       </div>
     </div>
   );

@@ -1,7 +1,10 @@
-import "./App.css";
-import Button from "./button";
+import React, { useState } from "react";
+import "./style.css";
+import Button from "../../Buttons/Buttons";
 
-export default function App() {
+export const EditFAQCC = (props) => {
+  const [fql, setFAQ] = useState(props.fql);
+
   const button = [
     {
       type: "button-red",
@@ -14,7 +17,8 @@ export default function App() {
   ];
 
   return (
-    <div class="container">
+    <div class="container-editfaq-cc">
+      <h2 className="title-editfaq">Edit FAQ</h2>
       <div>
         <label class="switch">
           <input type="checkbox"></input>
@@ -23,29 +27,53 @@ export default function App() {
         <p id="visible">Visibility</p>
       </div>
       <br />
-      <label for="faqsection">FAQ Section</label>
-      <select id="faqsection" name="faqsection">
-        <option value="ao">Alpha Oil</option>
-        <option value="pd">Petronas Digital</option>
-        <option value="pu">Petronas Up</option>
-        <option value="se">Setel</option>
-      </select>
-      <label for="question">Question</label>
-      <textarea
-        id="question"
-        name="question"
-        placeholder="Enter a question."
-      ></textarea>
-      <label for="answer">Answer</label>
-      <textarea
-        id="answer"
-        name="answer"
-        placeholder="Enter an answer."
-      ></textarea>
-      <Button button={button[0]}></Button>
-      <Button button={button[1]}></Button>
+      <br />
+      <br />
+      <div className="display-row">
+        <label className="section-label" for="faqsection">
+          FAQ Section
+        </label>
+        <select className="select-section" id="faqsection" name="faqsection">
+          <option value="ao">Alpha Oil</option>
+          <option value="pd">Petronas Digital</option>
+          <option value="pu">Petronas Up</option>
+          <option value="se">Setel</option>
+        </select>
+
+        <label for="faqorder">FAQ Order</label>
+        <select className="select-order" id="faqorder" name="faqorder">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select>
+      </div>
+      <div className="display-column">
+        <label className="float-left">Question</label>
+        <textarea
+          className="textarea-question"
+          name="question"
+          placeholder="Enter a question."
+        >
+          What is a release notes?
+        </textarea>
+        <label className="float-left" for="answer">
+          Answer
+        </label>
+        <textarea
+          className="textarea-answer"
+          name="answer"
+          placeholder="Enter an answer."
+        >
+          Release notes are documents that are distributed with software
+          products
+        </textarea>
+      </div>
+      <div className="button-float float-right">
+        <Button button={button[1]}></Button>
+      </div>
     </div>
   );
-}
+};
 
-
+export default EditFAQCC;

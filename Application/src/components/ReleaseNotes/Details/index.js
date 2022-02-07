@@ -4,14 +4,12 @@ const label = { componentsProps: { input: { "aria-label": "Demo switch" } } };
 
 function Index() {
   return (
-    <div className="superContain">
-      <div className="container">
+    <div class="superContain">
+      <div className="container-details">
         <h2>Details</h2>
-
         <button className="darkgreen" onclick="preview()">
           Preview
         </button>
-
         <div className="word">
           <input type="checkbox" />
           <label htmlFor="Visibility"> Visibility </label>
@@ -28,7 +26,6 @@ function Index() {
             </span>
           </div>
         </div>
-
         <div className="word">
           <input type="checkbox" />
           <label htmlFor="Show Feedback Button"> Show Feedback Button </label>
@@ -44,7 +41,6 @@ function Index() {
             </span>
           </div>
         </div>
-
         <div className="word">
           <img
             src={process.env.PUBLIC_URL + "/images/calendar.png"}
@@ -54,8 +50,7 @@ function Index() {
           <a href="www.editlink.com">Edit</a>
         </div>
       </div>
-
-      <div className="buttonContainer">
+      <div class="buttonContainer">
         <button className="blue" onclick="sendForApproval()">
           Send for Approval
         </button>

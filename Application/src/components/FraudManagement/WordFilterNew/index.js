@@ -20,7 +20,7 @@ export const AddNewTerm = (props) => {
       <p className="title-addterm">Add New Term</p>
 
       <label className="float-left" for="name">
-        Term
+        <strong>Term</strong>
       </label>
       <textarea
         className="textarea-name-del"

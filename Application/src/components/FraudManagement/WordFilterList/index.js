@@ -97,15 +97,6 @@ export default function WordFilterList() {
                                   <AddNewTerm />
                                 </div>
                               </div>
-                              <div class="modal-footer">
-                                <a
-                                  href="#"
-                                  data-bs-dismiss="modal"
-                                  class="btn btn-outline-dark"
-                                >
-                                  Close
-                                </a>
-                              </div>
                             </div>
                           </div>
                         </div>{" "}

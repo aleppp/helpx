@@ -3,20 +3,13 @@ import axios from "axios";
 import "./style.css";
 import { Pagination } from "@material-ui/lab";
 import Button from "../../Buttons/Buttons";
-import EditFAQCC from "../FAQEdit";
-import FAQNewCC from "../FAQNew";
+import { EditFAQButton } from "../FAQEdit/EditFAQButton";
 
 export default function FAQListCC() {
+  //store data and render in dom
   const [FAQList, setFAQList] = useState([]);
 
-  const [showEdit, setShowEdit] = useState(false);
-  const handleShowEdit = () => setShowEdit(true);
-  const handleCloseEdit = () => setShowEdit(false);
-
-  const [showAdd, setShowAdd] = useState(false);
-  const handleShowAdd = () => setShowAdd(true);
-  const handleCloseAdd = () => setShowAdd(false);
-
+  //fetch data for faq list
   useEffect(() => {
     axios
       .get("http://localhost:8080/faq/sel")
@@ -26,6 +19,7 @@ export default function FAQListCC() {
       .catch((err) => console.log(err));
   }, []);
 
+  //for mui pagination
   let [page, setPage] = useState(1);
   const PER_PAGE = 4;
 
@@ -55,25 +49,6 @@ export default function FAQListCC() {
     return { jump, currentData, currentPage, maxPage };
   }
 
-  const button = [
-    {
-      type: "button-white",
-      text: "Publish",
-    },
-    {
-      type: "button-green",
-      text: "Edit",
-    },
-    {
-      type: "button-red",
-      text: "Delete",
-    },
-    {
-      type: "button-blue",
-      text: "Add New",
-    },
-  ];
-
   return (
     <>
       <div className="container-fluid" id="FAQListCC">
@@ -86,13 +61,10 @@ export default function FAQListCC() {
                     <td colSpan={8}>
                       <div className="title">Frequently Asked Questions</div>
                       <div className="desc">
-                        <button onClick={handleShowAdd} className="button-blue">
-                          Add New
-                        </button>
+                        <button className="button-blue">Add New</button>
                       </div>
                     </td>
                   </tr>
-
                   <tr>
                     <th>FAQ ID</th>
                     <th>FAQ Section</th>
@@ -104,54 +76,11 @@ export default function FAQListCC() {
                     <th></th>
                   </tr>
                 </thead>
-
                 <tbody>
                   {FAQList.map((fql, i) => (
-                    <tr key={i}>
-                      <td>{fql.ID}</td>
-                      <td>{fql.Name}</td>
-                      <td>{fql.Question}</td>
-                      <td>{fql.Answer}</td>
-                      <td>{fql.QuestionOrder}</td>
-                      <td>{fql.IsVisible}</td>
-                      <td>
-                        <Button button={button[0]}></Button>
-                        <button
-                          onClick={handleShowEdit}
-                          className="button-green"
-                        >
-                          Edit
-                        </button>
-                        <Button button={button[2]}></Button>
-                      </td>
-                      <td>
-                        {showEdit ? (
-                          <div>
-                            <button
-                              onClick={handleCloseEdit}
-                              type="button"
-                              class="btn-close float-right"
-                              aria-label="Close"
-                            ></button>
-                            <EditFAQCC />
-                          </div>
-                        ) : null}
-                        {showAdd ? (
-                          <div>
-                            <button
-                              onClick={handleCloseAdd}
-                              type="button"
-                              class="btn-close float-right"
-                              aria-label="Close"
-                            ></button>
-                            <FAQNewCC />
-                          </div>
-                        ) : null}
-                      </td>
-                    </tr>
+                    <EditFAQButton fql={fql} i={i} />
                   ))}
                 </tbody>
-
                 <tfoot>
                   <tr>
                     <td colSpan={8}>

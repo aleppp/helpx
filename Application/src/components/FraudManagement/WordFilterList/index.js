@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./style.css";
+import { AddNewTerm } from "../WordFilterNew";
 import Button from "../../Buttons/Buttons";
 import { Pagination } from "@mui/material";
 
@@ -46,13 +47,6 @@ export default function WordFilterList() {
     return { jump, currentData, currentPage, maxPage };
   }
 
-  const button = [
-    {
-      type: "button-blue",
-      text: "Add New",
-    },
-  ];
-
   return (
     <>
       <div className="container-fluid" id="WordFilterListCC">
@@ -73,7 +67,39 @@ export default function WordFilterList() {
                           new content and cannot be submit for approval until
                           the highlighted words are removed.
                         </p>
-                        <Button button={button[0]}></Button>
+                        <button
+                          data-bs-toggle="modal"
+                          href="#myModal2"
+                          class="btn btn-primary"
+                          className="button-blue"
+                        >
+                          Add New
+                        </button>
+                        <div
+                          class="modal"
+                          id="myModal2"
+                          data-bs-backdrop="static"
+                        >
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h4 class="modal-title">Add New Term</h4>
+                                <button
+                                  type="button"
+                                  class="btn-close"
+                                  data-bs-dismiss="modal"
+                                  aria-hidden="true"
+                                ></button>
+                              </div>
+                              <div class="container"></div>
+                              <div class="modal-body">
+                                <div className="term">
+                                  <AddNewTerm />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>{" "}
                       </div>
                     </td>
                   </tr>

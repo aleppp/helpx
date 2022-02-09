@@ -35,6 +35,11 @@
   font-size: 40px;
   padding: 20px;
 }
+#WordFilterListCC .term {
+  margin: auto;
+  width: 60%;
+  padding: 10px;
+}
 
 #WordFilterListCC .desc {
   display: inline;
@@ -73,4 +78,11 @@
     display: flex;
     flex-direction: column;
   }
+}
+
+#WordFilterListCC .modal:nth-of-type(even) {
+  z-index: 1062 !important;
+}
+#WordFilterListCC .modal-backdrop.show:nth-of-type(even) {
+  z-index: 1061 !important;
 }

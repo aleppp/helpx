@@ -11,6 +11,9 @@ import NavigationBar from "./components/Layout/Navigation/AdminNavigation";
 import Dashboard from "./components/ReleaseNotes/Dashboard";
 import Content from "./components/ReleaseNotes/Content";
 import ApplicationSettingsList from "./components/Admin/AdminConfiguration/ApplicationSettings/ApplicationSettingsList";
+import UserManagement from "./components/Admin/AdminManagement/UserManagement";
+import RolesManagement from "./components/Admin/AdminManagement/RolesManagement";
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -68,6 +71,20 @@ class App extends Component {
                 exact
                 render={(props) => (
                   <ApplicationSettingsList auth={this.auth} {...props} />
+                )}
+              />
+              <Route
+                path="/user-management"
+                exact
+                render={(props) => (
+                  <UserManagement auth={this.auth} {...props} />
+                )}
+              />
+              <Route
+                path="/roles-management"
+                exact
+                render={(props) => (
+                  <RolesManagement auth={this.auth} {...props} />
                 )}
               />
             </div>

@@ -1,84 +1,36 @@
-@import url("https://fonts.googleapis.com/css2?family=Mulish:wght@200&display=swap");
-
-h1 {
-  font-size: 30px;
-  font-family: "Mulish", sans-serif;
+#user-mana {
+  display: flex;
+  width: 1550px;
+  overflow-x: hidden;
 }
 
-table {
-  font-family: Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-  border: 1px solid black;
-  background-color: white;
+.button-float-right {
+  float: right;
 }
 
-th {
+#user-mana th {
   border-bottom: 1px solid black;
   padding-top: 12px;
   padding-bottom: 12px;
-  text-align: left;
   background-color: white;
   color: black;
 }
 
-td,
-th {
-  padding: 8px;
-  text-align: left;
-}
-
-tr:hover {
-  background-color: #ddd;
-}
-
-.action-column td {
-  width: max-content;
-}
-
-.user-management-component {
-  background-color: white;
-  margin: 15px 15px;
-}
-
-.dropdown {
-  width: 25px;
-}
-
-.checkbox {
-  width: 30px;
-}
-@import url("https://fonts.googleapis.com/css2?family=Mulish:wght@200&display=swap");
-
-h1 {
-  font-size: 30px;
-  font-family: "Mulish", sans-serif;
-}
-
-table {
+#user-mana {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
-  width: 60%;
-  border: 1px solid black;
+  width: 1600px;
   background-color: white;
+  margin: 5px;
 }
 
-th {
-  border-bottom: 1px solid black;
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: white;
-  color: black;
+#user-mana td,
+#user-mana th {
+  text-align: center;
+  width: auto;
 }
 
-td,
-th {
-  padding: 8px;
-  text-align: left;
-}
-
-tr:hover {
+#user-mana tr:hover {
   background-color: #ddd;
 }
 
@@ -93,54 +45,4 @@ tr:hover {
 
 .dropdown {
   width: 25px;
-}
-
-.button-green {
-  background-color: #26afab;
-  border: none;
-  color: black;
-  /* padding: 15px 32px; */
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 15px;
-  margin: 4px 2px;
-  cursor: pointer;
-  width: 80px;
-  height: 45px;
-  border-radius: 5px;
-}
-
-.button-red {
-  background-color: #fd4343;
-  border: none;
-  color: black;
-  /* padding: 15px 32px; */
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 15px;
-  margin: 4px 2px;
-  cursor: pointer;
-  width: 80px;
-  height: 45px;
-  border-radius: 5px;
-}
-
-.button-blue {
-  background-color: #20419a;
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-  width: 150px;
-  height: 45px;
-  border-radius: 5px;
-  float: right;
-  font-size: 15px;
-  margin: 15px 15px;
 }

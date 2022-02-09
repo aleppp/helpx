@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+
 import "./style.css";
-import Button from "../../../Buttons/Buttons";
+import DeleteButton from "./UserManagementBtn/DeleteUser/DeleteButton";
 
 function UserManagement() {
   const [UserManagement, setUserManagement] = useState([]);
@@ -15,26 +16,19 @@ function UserManagement() {
       .catch((err) => console.log(err));
   }, []);
 
-  const button = [
-    {
-      type: "button-red",
-      text: "Delete",
-    },
-    {
-      type: "button-blue",
-      text: "Add New",
-    },
-  ];
-
   return (
     <div>
-      <div className="user-management-component">
-        <h1>User Management</h1>
-        <Button button={button[1]}></Button>
+      <div className="container-fluid">
+        <div className="row">
+          <div className="user-management-component">
+            <h1>User Management</h1>
+            <button className="button-blue">Add New</button>
+          </div>
+        </div>
 
         <div>
           <table>
-            <tr>
+            <thead>
               <th>
                 <div className="img-expandMore">
                   User ID
@@ -69,36 +63,13 @@ function UserManagement() {
               <th> Content Approver </th>
               <th> System Admin </th>
               <th> Action </th>
-            </tr>
-            {UserManagement.map((user, i) => (
-              <tr key={i}>
-                <td> {user.id} </td>
-                <td> {user.FirstName}</td>
-                <td> {user.Email} </td>
-                <td> {user.Name} </td>
-                <td>
-                  <img
-                    className="checkbox"
-                    src={process.env.PUBLIC_URL + "/images/checkboxBlank.png"}
-                  />
-                </td>
-                <td>
-                  <img
-                    className="checkbox"
-                    src={process.env.PUBLIC_URL + "/images/checkboxBlank.png"}
-                  />
-                </td>
-                <td>
-                  <img
-                    className="checkbox"
-                    src={process.env.PUBLIC_URL + "/images/checkboxBlank.png"}
-                  />
-                </td>
-                <td>
-                  <Button button={button[0]}></Button>
-                </td>
-              </tr>
-            ))}
+              <th></th>
+            </thead>
+            <tbody>
+              {UserManagement.map((userDelete, i) => (
+                <DeleteButton userDelete={userDelete} i={i} />
+              ))}
+            </tbody>
           </table>
         </div>
       </div>

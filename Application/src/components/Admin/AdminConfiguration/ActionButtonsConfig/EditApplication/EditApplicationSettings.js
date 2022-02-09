@@ -1,18 +1,6 @@
 import "../style.css";
-import Buttons from "../../../Buttons/Buttons";
 
 export default function EditApplicationSettings() {
-  const button = [
-    {
-      type: "button-blue-small",
-      text: "Save",
-    },
-    {
-      type: "button-red",
-      text: "Cancel",
-    },
-  ];
-
   return (
     <div class="container-editapp">
       <h2 className="title-editapp">Edit Application</h2>
@@ -49,8 +37,8 @@ export default function EditApplicationSettings() {
           <option value="pd">Vertical</option>
         </select>
         <div className="float-center-app">
-          <Buttons button={button[0]}></Buttons>
-          <Buttons button={button[1]}></Buttons>
+          <button className="button-blue-small">Save</button>
+          <button className="button-red">Cancel</button>
         </div>
       </div>
     </div>

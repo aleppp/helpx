@@ -10,6 +10,7 @@ import AdminHomePage from "./components/Admin/AdminDashboard";
 import NavigationBar from "./components/Layout/Navigation/AdminNavigation";
 import Dashboard from "./components/ReleaseNotes/Dashboard";
 import Content from "./components/ReleaseNotes/Content";
+import ApplicationSettingsList from "./components/Admin/AdminConfiguration/ApplicationSettings/ApplicationSettingsList";
 class App extends Component {
   constructor(props) {
     super(props);
@@ -55,15 +56,18 @@ class App extends Component {
               <Route
                 path="/creator-dashboard"
                 exact
-                render={(props) => (
-                  <Dashboard auth={this.auth} {...props} />
-                )}
+                render={(props) => <Dashboard auth={this.auth} {...props} />}
               />
               <Route
                 path="/normal-editor"
                 exact
+                render={(props) => <Content auth={this.auth} {...props} />}
+              />
+              <Route
+                path="/app-settings"
+                exact
                 render={(props) => (
-                  <Content auth={this.auth} {...props} />
+                  <ApplicationSettingsList auth={this.auth} {...props} />
                 )}
               />
             </div>

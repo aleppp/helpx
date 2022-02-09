@@ -130,10 +130,7 @@ const NavigationBar = () => {
                       </a>
                     </li>
                     <li>
-                      <a
-                        href="#Application-Settings-List"
-                        className="dropdown-item"
-                      >
+                      <a href="/app-settings" className="dropdown-item">
                         Setting
                       </a>
                     </li>

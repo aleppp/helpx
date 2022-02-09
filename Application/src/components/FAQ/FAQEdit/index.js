@@ -1,23 +1,14 @@
 import React, { useState } from "react";
 import "./style.css";
-import Button from "../../Buttons/Buttons";
 
-export const EditFAQCC = (props) => {
-  const [fql, setFAQ] = useState(props.fql);
-
-  const button = [
-    {
-      type: "button-red",
-      text: "Cancel",
-    },
-    {
-      type: "button-green",
-      text: "Save",
-    },
-  ];
-
+export default function EditFAQCC() {
   return (
     <div class="container-editfaq-cc">
+      <button
+        type="button"
+        class="btn-close float-right"
+        aria-label="Close"
+      ></button>
       <h2 className="title-editfaq">Edit FAQ</h2>
       <div>
         <label class="switch">
@@ -70,10 +61,9 @@ export const EditFAQCC = (props) => {
         </textarea>
       </div>
       <div className="button-float float-right">
-        <Button button={button[1]}></Button>
+        <button className="button-green">Save</button>
+        <button className="button-red">Cancel</button>
       </div>
     </div>
   );
-};
-
-export default EditFAQCC;
+}

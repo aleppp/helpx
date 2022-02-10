@@ -72,12 +72,12 @@ const NavigationBar = () => {
                     aria-labelledby="navbarDropdown"
                   >
                     <li>
-                      <a href="#users-management" className="dropdown-item">
+                      <a href="/user-management" className="dropdown-item">
                         User
                       </a>
                     </li>
                     <li>
-                      <a href="#roles-management " className="dropdown-item">
+                      <a href="/roles-management " className="dropdown-item">
                         Roles
                       </a>
                     </li>

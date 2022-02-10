@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import FAQEditCC from ".";
+import "./style.css";
 
 export const EditFAQButton = ({ fql, i }) => {
   //active component
   const [showEditFAQCC, setShowEditFAQCC] = useState(false);
+  const [showDeleteFAQCC, setShowDeleteFAQCC] = useState(false);
 
   return (
     <tr key={i}>
@@ -16,15 +18,21 @@ export const EditFAQButton = ({ fql, i }) => {
       <td>
         <button className="button-white">Publish</button>
         <button
-          key={i}
           className="button-green"
           onClick={() => setShowEditFAQCC(!showEditFAQCC)}
         >
           Edit
         </button>
-        <button className="button-red">Cancel</button>
+        <button className="button-red">Delete</button>
       </td>
-      <td>{showEditFAQCC ? <FAQEditCC /> : null}</td>
+      <td>
+        {showEditFAQCC ? (
+          <FAQEditCC
+            fql={fql}
+            changeState={(showEditFAQCC) => setShowEditFAQCC(showEditFAQCC)}
+          />
+        ) : null}
+      </td>
     </tr>
   );
 };

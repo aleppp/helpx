@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../style.css";
-import Buttons from "../../../../../Buttons/Buttons";
+import Button from "../../../../Buttons/Buttons";
+import DataTable from "../../FAQTable/DataTable";
 
-export default function EditFAQ() {
+export default function EditFAQ({ fq, ...props }) {
   const button = [
     {
       type: "button-red",
@@ -71,8 +72,10 @@ export default function EditFAQ() {
         </textarea>
       </div>
       <div className="button-float">
-        <Buttons button={button[0]}></Buttons>
-        <Buttons button={button[1]}></Buttons>
+        <button className="button-red" onClick={() => props.changeState(false)}>
+          Cancel
+        </button>
+        <button className="button-green">Edit</button>
       </div>
     </div>
   );

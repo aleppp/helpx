@@ -33,6 +33,8 @@
   margin-left: 350px;
   position: absolute;
   right: 35px;
+  text-decoration: none;
+  color: black;
 }
 
 .button-usetemplate:hover {

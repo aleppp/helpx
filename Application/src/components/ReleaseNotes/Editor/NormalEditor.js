@@ -12,9 +12,9 @@ function NormalEditor() {
     <>
       <div className="NormalEditor">
         <div className="background">
-          <button className="button-usetemplate" onClick={clicked}>
+          <a className="button-usetemplate" href="/template-editor">
             Use Template
-          </button>
+          </a>
           <h3 className="h3">Title </h3>
           <form>
             <input

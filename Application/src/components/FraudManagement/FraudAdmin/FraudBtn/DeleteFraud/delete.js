@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./style.css";
-import Button from "../../../Buttons/Buttons";
+import Button from "../../../../Buttons/Buttons";
 
 export const DeleteFraud = (props) => {
   const [fraud, setFraud] = useState(props.fraud);

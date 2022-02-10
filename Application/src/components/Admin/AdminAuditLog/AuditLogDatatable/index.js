@@ -3,6 +3,7 @@ import axios from "axios";
 import "./style.css";
 import { Pagination } from "@mui/material";
 import { MultiSelect } from "react-multi-select-component";
+import { CSVLink, CSVDownload } from "react-csv";
 
 export default function AuditLogDatatable() {
   const [AuditLogDatatable, setAuditLogDatatable] = useState([]);
@@ -16,6 +17,7 @@ export default function AuditLogDatatable() {
       .catch((err) => console.log(err));
   }, []);
 
+  //pagination
   let [page, setPage] = useState(1);
   const PER_PAGE = 4;
 
@@ -46,6 +48,7 @@ export default function AuditLogDatatable() {
     return { jump, currentData, currentPage, maxPage };
   }
 
+  //label for dropdown
   const options = [
     { label: "User", value: "user" },
     { label: "Application", value: "application" },
@@ -53,14 +56,30 @@ export default function AuditLogDatatable() {
     { label: "FAQ", value: "faq" },
   ];
 
+  //data for export function
+  const csvData = [
+    ["DateTime", "User", "Category", "Changes", "ChangedObject"],
+    ["2021-11-16 12:15:03", "Alif", "UserID", "Remove", "Jenny"],
+  ];
+
   return (
     <div>
       <div className="audit-1">
         <h1>Audit Log History</h1>
-        <img src="images/export.png" alt="Download" className="export"></img>
+
+        <CSVLink data={csvData} filename={"AuditLog.csv"}>
+          <span className="export">
+            <img
+              src="images/export.png"
+              alt="Download"
+              className="export"
+            ></img>
+            Export
+          </span>
+        </CSVLink>
       </div>
 
-      <table>
+      <table className="table-audit">
         <tr>
           <th>
             Date & Time

@@ -10,35 +10,31 @@
 .fraud-title {
   font-size: 38px;
   font-family: "Mulish", sans-serif;
-  text-align: center;
+  align-items: flex-start;
   margin-top: 10px;
 }
 
 #fraud {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
-  border: 1px solid black;
+  width: 1000px;
   background-color: white;
-  height: 100px;
-  margin: 20px;
-  text-align: center;
-  margin-left: 320px;
-  width: 60%;
-  margin-top: 100px;
+  margin: 5px;
+  margin-right: 320px;
+  overflow-x: hidden;
 }
 
 #fraud th {
   border-bottom: 1px solid black;
   padding-top: 12px;
   padding-bottom: 12px;
-  text-align: center;
   background-color: white;
   color: black;
 }
 
 #fraud td,
 #fraud th {
-  padding: 8px;
+  width: auto;
   text-align: center;
 }
 
@@ -55,29 +51,13 @@
   margin: 15px 15px;
 }
 
-.dropdown {
-  width: 25px;
-}
-
-.checkbox {
-  width: 30px;
-}
-
-.action-column td {
-  width: max-content;
-}
-
-.fraud-management-component {
-  background-color: white;
-  margin: 15px 15px;
-}
-
 .fraud-management-component button {
-  margin-right: 300px;
+  margin-right: 270px;
 }
 
 .pageBar {
-  margin-left: 1090px;
+  margin-left: 900px;
+  margin-top: 15px;
 }
 
 #id,

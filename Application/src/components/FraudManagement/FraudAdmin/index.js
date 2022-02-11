@@ -135,7 +135,7 @@ export default function FraudConfig() {
     <div className="container-fluid">
       <div className="row">
         <div className="fraud-management-component">
-          <h1 className="fraud-title">Fraud Management</h1>
+          <h1 className="fraud-title">Filtered Words</h1>
           <button className="button-blue" onClick={() => setShowAdd(!showAdd)}>
             Add New
           </button>

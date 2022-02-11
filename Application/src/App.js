@@ -13,6 +13,7 @@ import Content from "./components/ReleaseNotes/Content";
 import ApplicationSettingsList from "./components/Admin/AdminConfiguration/ApplicationSettings/ApplicationSettingsList";
 import UserManagement from "./components/Admin/AdminManagement/UserManagement";
 import RolesManagement from "./components/Admin/AdminManagement/RolesManagement";
+import FraudConfig from "./components/FraudManagement/FraudAdmin";
 
 class App extends Component {
   constructor(props) {
@@ -86,6 +87,11 @@ class App extends Component {
                 render={(props) => (
                   <RolesManagement auth={this.auth} {...props} />
                 )}
+              />
+              <Route
+                path="/fraud-management"
+                exact
+                render={(props) => <FraudConfig auth={this.auth} {...props} />}
               />
             </div>
           </Switch>

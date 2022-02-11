@@ -13,15 +13,21 @@ const EditButton = ({ appSettings, i }) => {
       <td>{appSettings.Theme}</td>
       <td>{appSettings.NavigationBar}</td>
       <td className="action-column">
-        <button
-          key={i}
-          className="button-green"
-          onClick={() => setShowEdit(!showEdit)}
-        >
-          Edit
-        </button>
+        {showEdit ? (
+          <EditApplicationSettings
+            appSettings={appSettings}
+            changeState={(showEdit) => setShowEdit(showEdit)}
+          />
+        ) : (
+          <button
+            key={i}
+            className="button-green"
+            onClick={() => setShowEdit(!showEdit)}
+          >
+            Edit
+          </button>
+        )}
       </td>
-      <td>{showEdit ? <EditApplicationSettings /> : null}</td>
     </tr>
   );
 };

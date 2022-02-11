@@ -46,7 +46,6 @@ function ApplicationSettingsList() {
                 <th>Theme</th>
                 <th>Navigation Bar</th>
                 <th>Action</th>
-                <th></th>
               </thead>
               <tbody>
                 {appSettingsList.map((appSettings, i) => (

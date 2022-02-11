@@ -13,6 +13,8 @@ import Content from "./components/ReleaseNotes/Content";
 import ApplicationSettingsList from "./components/Admin/AdminConfiguration/ApplicationSettings/ApplicationSettingsList";
 import UserManagement from "./components/Admin/AdminManagement/UserManagement";
 import RolesManagement from "./components/Admin/AdminManagement/RolesManagement";
+import TemplateEditor from "./components/ReleaseNotes/Editor/TemplateEditor";
+import NormalEditor from "./components/ReleaseNotes/Editor/NormalEditor";
 import FraudConfig from "./components/FraudManagement/FraudAdmin";
 
 class App extends Component {
@@ -86,6 +88,13 @@ class App extends Component {
                 exact
                 render={(props) => (
                   <RolesManagement auth={this.auth} {...props} />
+                )}
+              />
+              <Route
+                path="/template-editor"
+                exact
+                render={(props) => (
+                  <TemplateEditor auth={this.auth} {...props} />
                 )}
               />
               <Route

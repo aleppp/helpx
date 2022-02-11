@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Mulish:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mulish:wght@200&display=swap");
 @import url("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css");
 
 /* base styles */
@@ -11,6 +11,7 @@
   font-size: 38px;
   font-family: "Mulish", sans-serif;
   text-align: center;
+  margin-top: 10px;
 }
 
 #fraud {
@@ -21,7 +22,7 @@
   height: 100px;
   margin: 20px;
   text-align: center;
-  margin-left: 270px;
+  margin-left: 320px;
   width: 60%;
   margin-top: 100px;
 }
@@ -49,11 +50,37 @@
   width: max-content;
 }
 
-.fraud-config-component {
+.fraud-management-component {
   background-color: white;
   margin: 15px 15px;
 }
 
-.fraud-config-component button {
-  margin-right: 350px;
+.dropdown {
+  width: 25px;
+}
+
+.checkbox {
+  width: 30px;
+}
+
+.action-column td {
+  width: max-content;
+}
+
+.fraud-management-component {
+  background-color: white;
+  margin: 15px 15px;
+}
+
+.fraud-management-component button {
+  margin-right: 300px;
+}
+
+.pageBar {
+  margin-left: 1090px;
+}
+
+#id,
+#term img {
+  cursor: pointer;
 }

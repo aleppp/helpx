@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./style.css";
 import Button from "../../../Buttons/Buttons";
+import "./style.css";
+import { EditRole } from "./RolesManagementBtn/EditRole";
+import { DeleteRole } from "./RolesManagementBtn/DeleteRole";
+import { AddNewRole } from "./RolesManagementBtn/AddNewRole";
 
 function RolesManagement() {
   const [RolesManagement, setRolesManagement] = useState([]);
+  const [showAdd, setShowAdd] = useState(false);
+  const [showEdit, setShowEdit] = useState(false);
+  const [showDel, setShowDel] = useState(false);
 
   useEffect(() => {
     axios
@@ -15,26 +21,15 @@ function RolesManagement() {
       .catch((err) => console.log(err));
   }, []);
 
-  const button = [
-    {
-      type: "button-red",
-      text: "Delete",
-    },
-    {
-      type: "button-blue",
-      text: "Add New",
-    },
-    {
-      type: "button-green",
-      text: "Edit",
-    },
-  ];
-
   return (
-    <div>
-      <div className="roles-management-component">
-        <h1>Roles Management</h1>
-        <Button button={button[1]}></Button>
+    <div className="container-fluid">
+      <div className="row">
+        <div className="roles-management-component">
+          <h1>Roles Management</h1>
+          <button className="button-blue" onClick={() => setShowAdd(!showAdd)}>
+            Add New
+          </button>
+        </div>
       </div>
 
       <table>
@@ -64,8 +59,35 @@ function RolesManagement() {
             <td> {roles.Description} </td>
             <td> {roles.Number} </td>
             <td>
-              <Button button={button[2]}></Button>
-              <Button button={button[0]}></Button>
+              <button
+                className="button-green"
+                onClick={() => setShowEdit(!showEdit)}
+              >
+                Edit
+              </button>
+              <button
+                className="button-red"
+                onClick={() => setShowDel(!showDel)}
+              >
+                Delete
+              </button>
+            </td>
+            <td>
+              {showAdd ? (
+                <div>
+                  <AddNewRole />
+                </div>
+              ) : null}
+              {showEdit ? (
+                <div>
+                  <EditRole />
+                </div>
+              ) : null}
+              {showDel ? (
+                <div>
+                  <DeleteRole />
+                </div>
+              ) : null}
             </td>
           </tr>
         ))}

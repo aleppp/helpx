@@ -1,15 +1,14 @@
-/* overall */
-.WordFilterListCC {
-  display: inline-block;
+#WordFilterListCC {
+  display: flex;
   width: 90%;
   height: 100%;
-  margin-top: 3%;
+  margin-top: 10%;
   margin-left: 5%;
   position: relative;
+  text-align: center;
 }
 
-/* table for data (grey) */
-table {
+#WordFilterListCC table {
   width: 100%;
   height: 100%;
   background-color: #f3f3f3;
@@ -17,32 +16,32 @@ table {
   border-radius: 20px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   table-layout: fixed;
-  text-align: center;
 }
 
-/* attribute name */
-thead {
-  text-align: center;
+#WordFilterListCC thead {
   background-color: #38b09d;
   font-size: 24px;
   color: white;
 }
 
-/* table dashboard*/
-.tdashboard {
+#WordFilterListCC .tdashboard {
   background-color: #f3f3f3;
   color: black;
 }
 
-/* number on table dashboard */
-.title {
+#WordFilterListCC .title {
   display: inline;
   float: left;
-  font-size: 48px;
+  font-size: 40px;
   padding: 20px;
 }
+#WordFilterListCC .term {
+  margin: auto;
+  width: 60%;
+  padding: 10px;
+}
 
-.desc {
+#WordFilterListCC .desc {
   display: inline;
   float: left;
   text-align: left;
@@ -50,24 +49,40 @@ thead {
   padding: 20px;
 }
 
-/* data in table (grey) */
-tbody tr td {
+#WordFilterListCC tbody tr td {
   font-size: 18px;
   vertical-align: middle;
 }
 
-/* table footer */
-tfoot {
+#WordFilterListCC tfoot {
   background-color: #38b09d;
   height: 68px;
 }
 
-/* description on table footer */
-.foot {
-  float: left;
-  margin-top: 10px;
-  margin-left: 40px;
-  font-weight: normal;
-  font-size: 18px;
-  color: white;
+#WordFilterListCC .pageBar {
+  float: right;
+  margin-top: 2%;
+}
+
+@media only screen and (max-width: 700px) {
+  #WordFilterListCC {
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  #WordFilterListCC {
+    width: 820px;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+#WordFilterListCC .modal:nth-of-type(even) {
+  z-index: 1062 !important;
+}
+#WordFilterListCC .modal-backdrop.show:nth-of-type(even) {
+  z-index: 1061 !important;
 }

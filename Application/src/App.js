@@ -8,6 +8,14 @@ import EndUserHomePage from "./components/HomePage/EndUserHomePage/EndUserHomePa
 import AuditLogDatatable from "./components/Admin/AdminAuditLog/AuditLogDatatable";
 import AdminHomePage from "./components/Admin/AdminDashboard";
 import NavigationBar from "./components/Layout/Navigation/AdminNavigation";
+import Dashboard from "./components/ReleaseNotes/Dashboard";
+import Content from "./components/ReleaseNotes/Content";
+import ApplicationSettingsList from "./components/Admin/AdminConfiguration/ApplicationSettings/ApplicationSettingsList";
+import UserManagement from "./components/Admin/AdminManagement/UserManagement";
+import RolesManagement from "./components/Admin/AdminManagement/RolesManagement";
+import TemplateEditor from "./components/ReleaseNotes/Editor/TemplateEditor";
+import NormalEditor from "./components/ReleaseNotes/Editor/NormalEditor";
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -48,6 +56,44 @@ class App extends Component {
                 exact
                 render={(props) => (
                   <AuditLogDatatable auth={this.auth} {...props} />
+                )}
+              />
+              <Route
+                path="/creator-dashboard"
+                exact
+                render={(props) => <Dashboard auth={this.auth} {...props} />}
+              />
+              <Route
+                path="/normal-editor"
+                exact
+                render={(props) => <Content auth={this.auth} {...props} />}
+              />
+              <Route
+                path="/app-settings"
+                exact
+                render={(props) => (
+                  <ApplicationSettingsList auth={this.auth} {...props} />
+                )}
+              />
+              <Route
+                path="/user-management"
+                exact
+                render={(props) => (
+                  <UserManagement auth={this.auth} {...props} />
+                )}
+              />
+              <Route
+                path="/roles-management"
+                exact
+                render={(props) => (
+                  <RolesManagement auth={this.auth} {...props} />
+                )}
+              />
+              <Route
+                path="/template-editor"
+                exact
+                render={(props) => (
+                  <TemplateEditor auth={this.auth} {...props} />
                 )}
               />
             </div>

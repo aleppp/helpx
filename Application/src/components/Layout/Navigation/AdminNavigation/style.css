@@ -1,30 +1,20 @@
 @import url("https://fonts.googleapis.com/css2?family=Mulish:wght@500&display=swap");
 
-/* base styles */
-* {
-  margin: 0;
-  font-family: "Mulish", serif;
-}
-
-main {
-  margin-left: 5rem;
-  padding: 1rem;
-}
-
 .admin-nav {
   text-align: left;
-  height: 100vh;
-  background: #27323c;
-  padding-top: 10px;
+  min-height: 100vh;
+  background: #27323c !important;
   align-items: center;
   overflow: hidden;
+  width: auto;
   max-width: 300px;
   float: left;
-  position: absolute;
+  position: fixed !important;
   color: white;
   top: 0;
   z-index: 1;
   padding-top: 20px;
+  overflow: auto;
 }
 
 .profilePic {
@@ -43,22 +33,11 @@ main {
   display: inline-block;
 }
 
-.admin-nav h3 {
-  font-size: 10pt;
-  color: #fff;
-  text-align: center;
-  margin-left: 13px;
-}
-
 .admin-nav img {
   margin-left: 15px;
   margin-right: 15px;
   width: 50px;
   height: 50px;
-}
-
-.admin-nav .link-name {
-  margin-left: 20px;
 }
 
 .admin-nav .links {
@@ -83,7 +62,7 @@ main {
 
 .links ul li {
   list-style-type: none;
-  margin: 10px 0;
+  margin: 15px 0;
 }
 
 .links ul li a {
@@ -101,153 +80,17 @@ main {
   transition: all 0.4s ease;
 }
 
-.links ul li a svg {
-  margin-right: 20px;
-  height: 30px;
-  width: 35px;
-}
-
-.profile-icon {
-  height: 60px;
-  width: 60px;
-  margin-top: 20px;
-}
-
-.dashboardLogo {
-  width: 40px;
-}
-
-/* Arrow for dropdown menu - user */
-.whitedown {
-  width: 25px;
-  text-align: center;
-  left: 55px;
-  bottom: 1.5px;
-}
-
-/* Arrow for dropdown menu - configuration */
-.whitedown-2 {
-  width: 25px;
-  text-align: center;
-  right: 3px;
-  bottom: 1.5px;
-}
-
-/* box for sub menu */
-.admin-nav .links li .sub-menu {
-  padding: 6px 6px 14px 80px;
-  margin-top: -10px;
-  background: #3b454e;
-  /*display: none;*/
-}
-
-/* text yang dalam box bila hover */
-.admin-nav .links li .sub-menu a {
-  font-size: 14px;
-  padding: 5px 0;
-  white-space: nowrap;
-  opacity: 0.6;
-  transition: all 0.3 ease;
-}
-
-.admin-nav .links li .sub-menu a:hover {
-  opacity: 1;
-}
-
-/* Position part for sub menu */
-.admin-nav.close .links li .sub-menu {
-  position: fixed;
-  left: 7%;
-  top: -10px; /* animated sub menu */
-  width: 10%;
-  margin-top: 0;
-  padding: 10px 20px;
-  border-radius: 0 6px 6px 0;
-  transition: all 0.4s ease;
-  opacity: 0;
-  pointer-events: none;
-}
-
-/* effect when hovering sub menu */
-.admin-nav.close .links li:hover .sub-menu {
-  top: 42%;
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.admin-nav .links li .sub-menu .link-name {
-  display: none;
-}
-
-/* Font size under sub menu*/
-.admin-nav.close .links li .sub-menu .link-name {
-  font-size: 18px;
-  opacity: 1s;
-  display: block;
-}
-
-/*----------------*/
-
-/* box for sub menu - configuration */
-.admin-nav .links li .sub-menu-2 {
-  padding: 6px 6px 14px 80px;
-  margin-top: -10px;
-  background: #3b454e;
-  /*display: none;*/
-}
-
-/* text yang dalam box bila hover - configuration */
-.admin-nav .links li .sub-menu-2 a {
-  font-size: 14px;
-  padding: 5px 0;
-  white-space: nowrap;
-  opacity: 0.6;
-  transition: all 0.3 ease;
-}
-
-.admin-nav .links li .sub-menu-2 a:hover {
-  opacity: 1;
-}
-
-/* Position part for sub menu - configuration */
-.admin-nav.close .links li .sub-menu-2 {
-  position: fixed;
-  left: 7%;
-  top: -10px; /* animated sub menu */
-  width: 10%;
-  margin-top: 0;
-  padding: 10px 20px;
-  border-radius: 0 6px 6px 0;
-  transition: all 0.4s ease;
-  opacity: 0;
-  pointer-events: none;
-}
-
-/* effect when hovering sub menu - configuration */
-.admin-nav.close .links li:hover .sub-menu-2 {
-  top: 65%;
-  opacity: 1;
-  pointer-events: auto;
-}
-
-/* Font size under sub menu - configuration */
-.admin-nav.close .links li .sub-menu-2 .link-name {
-  font-size: 18px;
-  opacity: 1s;
-  display: block;
-}
-
 #profile-name {
   vertical-align: middle;
   align-items: center;
 }
 
-.dropdown-menu {
+.admin-nav .dropdown-menu {
   background-color: #27323c !important;
 }
-.dropdown-item:active,
-.dropdown-item-focus,
-.dropdown-item:hover {
+.admin-nav .dropdown-item:active,
+.admin-nav .dropdown-item-focus,
+.admin-nav .dropdown-item:hover {
   background-color: #818b9c;
   font-family: "Mulish", serif;
   font-weight: bold;

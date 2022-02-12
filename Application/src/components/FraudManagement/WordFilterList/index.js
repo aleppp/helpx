@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./style.css";
+import { AddNewTerm } from "../WordFilterNew";
 import Button from "../../Buttons/Buttons";
 import { Pagination } from "@mui/material";
 
@@ -46,66 +47,97 @@ export default function WordFilterList() {
     return { jump, currentData, currentPage, maxPage };
   }
 
-  const button = [
-    {
-      type: "button-blue",
-      text: "Add New",
-    },
-  ];
-
   return (
     <>
-      <div className="WordFilterListCC">
-        <table className="table table-borderless">
-          <thead>
-            <tr className="tdashboard">
-              <td colSpan={2}>
-                <div className="title">Word Filter List</div>
-                <div className="desc">
-                  <p>
-                    {" "}
-                    Words you specify below will be filtered from all user input
-                    (e.g. release notes, documentation and FAQ). All filtered
-                    words will be highlighted during creation of new content and
-                    cannot be submit for approval until the highlighted words
-                    are removed.
-                  </p>
-                  <Button button={button[0]}></Button>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <th>ID</th>
-              <th>Term</th>
-            </tr>
-          </thead>
-          <tbody>
-            {FraudDataCC.currentData().map((fraudcc, i) => {
-              return (
-                <tr key={i}>
-                  <td>{fraudcc.id}</td>
-                  <td>{fraudcc.term}</td>
-                </tr>
-              );
-            })}
-          </tbody>
-          <tfoot>
-            <tr>
-              <td colSpan={2}>
-                <p className="foot"></p>
-              </td>
-            </tr>
-          </tfoot>
-        </table>
-        <Pagination
-          className="pageBar"
-          count={count}
-          size="large"
-          color="primary"
-          page={page}
-          shape="rounded"
-          onChange={handleChange}
-        />
+      <div className="container-fluid" id="WordFilterListCC">
+        <div className="d-flex d-sm-flex-column">
+          <div className="row g-0 d-flex">
+            <div className="col-lg-12">
+              <table>
+                <thead>
+                  <tr className="tdashboard">
+                    <td colSpan={2}>
+                      <div className="title">Word Filter List</div>
+                      <div className="desc">
+                        <p>
+                          {" "}
+                          Words you specify below will be filtered from all user
+                          input (e.g. release notes, documentation and FAQ). All
+                          filtered words will be highlighted during creation of
+                          new content and cannot be submit for approval until
+                          the highlighted words are removed.
+                        </p>
+                        <button
+                          data-bs-toggle="modal"
+                          href="#myModal2"
+                          class="btn btn-primary"
+                          className="button-blue"
+                        >
+                          Add New
+                        </button>
+                        <div
+                          class="modal"
+                          id="myModal2"
+                          data-bs-backdrop="static"
+                        >
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h4 class="modal-title">Add New Term</h4>
+                                <button
+                                  type="button"
+                                  class="btn-close"
+                                  data-bs-dismiss="modal"
+                                  aria-hidden="true"
+                                ></button>
+                              </div>
+                              <div class="container"></div>
+                              <div class="modal-body">
+                                <div className="term">
+                                  <AddNewTerm />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>{" "}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>ID</th>
+                    <th>Term</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {FraudDataCC.currentData().map((fraudcc, i) => {
+                    return (
+                      <tr key={i}>
+                        <td>{fraudcc.id}</td>
+                        <td>{fraudcc.term}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td colSpan={2}>
+                      <p className="foot"></p>
+                    </td>
+                  </tr>
+                </tfoot>
+              </table>
+              <Pagination
+                className="pageBar"
+                count={count}
+                size="large"
+                color="primary"
+                page={page}
+                shape="rounded"
+                onChange={handleChange}
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );

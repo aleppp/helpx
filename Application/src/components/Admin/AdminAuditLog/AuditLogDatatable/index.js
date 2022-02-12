@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./style.css";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { Pagination } from "@mui/material";
+import { MultiSelect } from "react-multi-select-component";
+import { CSVLink, CSVDownload } from "react-csv";
 
-function AuditLogDatatable() {
+export default function AuditLogDatatable() {
   const [AuditLogDatatable, setAuditLogDatatable] = useState([]);
 
   useEffect(() => {
@@ -15,32 +17,114 @@ function AuditLogDatatable() {
       .catch((err) => console.log(err));
   }, []);
 
+  //pagination
+  let [page, setPage] = useState(1);
+  const PER_PAGE = 4;
+
+  const count = Math.ceil(AuditLogDatatable.length / PER_PAGE);
+  const FraudDataCC = usePagination(AuditLogDatatable, PER_PAGE);
+
+  const handleChange = (event, page) => {
+    setPage(page);
+    FraudDataCC.jump(page);
+  };
+
+  function usePagination(data, itemsPerPage) {
+    const [currentPage, setCurrentPage] = useState(1);
+    const maxPage = Math.ceil(data.length / itemsPerPage);
+
+    function currentData() {
+      const begin = (currentPage - 1) * itemsPerPage;
+      const end = begin + itemsPerPage;
+
+      return data.slice(begin, end);
+    }
+
+    function jump(page) {
+      const pageNumber = Math.max(1, page);
+      setCurrentPage((currentPage) => Math.min(pageNumber, maxPage));
+    }
+
+    return { jump, currentData, currentPage, maxPage };
+  }
+
+  //label for dropdown
+  const options = [
+    { label: "User", value: "user" },
+    { label: "Application", value: "application" },
+    { label: "Role", value: "role" },
+    { label: "FAQ", value: "faq" },
+  ];
+
+  //data for export function
+  const csvData = [
+    ["DateTime", "User", "Category", "Changes", "ChangedObject"],
+    ["2021-11-16 12:15:03", "Alif", "UserID", "Remove", "Jenny"],
+  ];
+
   return (
     <div>
       <div className="audit-1">
         <h1>Audit Log History</h1>
-        <img src="images/export.png" alt="Download" className="export"></img>
+
+        <CSVLink data={csvData} filename={"AuditLog.csv"}>
+          <span className="export">
+            <img
+              src="images/export.png"
+              alt="Download"
+              className="export"
+            ></img>
+            Export
+          </span>
+        </CSVLink>
       </div>
 
-      <table>
+      <table className="table-audit">
         <tr>
           <th>
-            Date & Time <ExpandMoreIcon />
+            Date & Time
+            <MultiSelect
+              options={options}
+              value={AuditLogDatatable}
+              onChange={setAuditLogDatatable}
+              labelledBy="Date & Time"
+            />
           </th>
           <th>
-            User <ExpandMoreIcon />
+            User
+            <MultiSelect
+              options={options}
+              value={AuditLogDatatable}
+              onChange={setAuditLogDatatable}
+              labelledBy="User"
+            />
           </th>
           <th>
-            {" "}
-            Category <ExpandMoreIcon />{" "}
+            Category
+            <MultiSelect
+              options={options}
+              value={AuditLogDatatable}
+              onChange={setAuditLogDatatable}
+              labelledBy="Category"
+            />
           </th>
           <th>
-            {" "}
-            Changes <ExpandMoreIcon />{" "}
+            Changes
+            <MultiSelect
+              options={options}
+              value={AuditLogDatatable}
+              onChange={setAuditLogDatatable}
+              labelledBy="Changes"
+            />
           </th>
           <th>
-            {" "}
-            Changed Object <ExpandMoreIcon />{" "}
+            Changed Object
+            <MultiSelect
+              options={options}
+              value={AuditLogDatatable}
+              onChange={setAuditLogDatatable}
+              labelledBy="Changed Object"
+            />
           </th>
           <th> Action </th>
         </tr>
@@ -54,19 +138,15 @@ function AuditLogDatatable() {
           </tr>
         ))}
       </table>
-      <div className="pagination">
-        <a href="#">&laquo;</a>
-        <a href="#">2</a>
-        <a href="#">3</a>
-        <a href="#" class="active">
-          4
-        </a>
-        <a href="#">5</a>
-        <a href="#">6</a>
-        <a href="#">&raquo;</a>
-      </div>
+      <Pagination
+        className="pageBar"
+        count={count}
+        size="large"
+        color="primary"
+        page={page}
+        shape="rounded"
+        onChange={handleChange}
+      />
     </div>
   );
 }
-
-export default AuditLogDatatable;

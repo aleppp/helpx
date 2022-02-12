@@ -16,17 +16,25 @@ class LandingPage extends Component {
     // const { isAuthenticated, login } = this.props.auth;
 
     return (
-      <div className="container">
-        <div className="nav">
-          <VerticalBar />
-        </div>
-        <Header auth={this.auth} />
-        <div className="body">
-          <div className="navhor">
-            <HorizontalBar />
+      <div className="container-fluid" id="landing-page">
+        <div className="row p-0">
+          <div className="col p-0 d-none d-sm-block">
+            <div>
+              <VerticalBar />
+            </div>
           </div>
-          <div className="menu">
-            <Menu />
+          <div className="col-lg-10 col-sm-1 p-0 g-0">
+            <div className="row">
+              <div className="header">
+                <Header auth={this.auth} />
+              </div>
+              <div className="navhor d-none d-sm-block">
+                <HorizontalBar />
+              </div>
+              <div className="body d-none d-sm-block">
+                <Menu />
+              </div>
+            </div>
           </div>
         </div>
       </div>

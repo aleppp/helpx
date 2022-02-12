@@ -5,7 +5,7 @@ const label = { componentsProps: { input: { "aria-label": "Demo switch" } } };
 function Index() {
   return (
     <div className="superContain">
-      <div className="container">
+      <div className="container-details">
         <h2>Details</h2>
 
         <button className="darkgreen" onclick="preview()">

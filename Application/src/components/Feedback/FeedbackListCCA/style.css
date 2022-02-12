@@ -1,13 +1,15 @@
-/* overall */
-.overall {
-  display: inline-block;
-  width: 85%;
-  height: 20%;
-  margin-top: 5%;
+#FeedbackLCCA {
+  display: flex;
+  width: 90%;
+  height: 100%;
+  margin-top: 1%;
+  text-align: center;
+  text-align: center;
+  padding-left: 5%;
+  padding-right: 5%;
 }
 
-/* table for data (grey) */
-table {
+#FeedbackLCCA table {
   width: 100%;
   height: 100%;
   background-color: #f3f3f3;
@@ -15,71 +17,53 @@ table {
   border-radius: 20px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   table-layout: fixed;
-  text-align: center;
 }
 
-/* attribute name */
-thead {
-  text-align: center;
+#FeedbackLCCA thead {
   background-color: #38b09d;
-  font-size: 18px;
+  font-size: 24px;
   color: white;
 }
 
-/* table dashboard*/
-.tdashboard {
+#FeedbackLCCA .tdashboard {
   background-color: #f3f3f3;
   color: black;
 }
 
-/* number on table dashboard */
-.title {
+#FeedbackLCCA .title {
   display: inline;
   float: left;
   font-size: 40px;
   padding: 20px;
 }
 
-/* data in table (grey) */
-tbody tr td {
+#FeedbackLCCA tbody tr td {
   font-size: 18px;
-  text-align: center;
+  vertical-align: middle;
 }
 
-/* pagination position */
-.pageBar {
+#FeedbackLCCA .pageBar {
   float: right;
+  margin-top: 2%;
 }
 
-/* table footer */
-tfoot {
+#FeedbackLCCA tfoot {
   background-color: #38b09d;
   height: 68px;
 }
 
-/* description on table footer */
-.foot {
-  float: left;
-  margin-top: 10px;
-  margin-left: 40px;
-  font-weight: normal;
-  font-size: 18px;
-  color: white;
+@media only screen and (max-width: 700px) {
+  #FeedbackLCCA {
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+  }
 }
 
-/* User header/navigation */
-
-.Content-Nav {
-  display: inline;
-  float: left;
-}
-
-.Content-Header {
-  display: inline;
-  float: top;
-}
-
-.FeedbackList-EU {
-  display: inline;
-  padding: 2%;
+@media only screen and (max-width: 900px) {
+  #FeedbackLCCA {
+    width: 820px;
+    display: flex;
+    flex-direction: column;
+  }
 }

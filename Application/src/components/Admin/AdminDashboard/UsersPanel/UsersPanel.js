@@ -19,13 +19,13 @@ function UsersPanel() {
         if (res.status === 200) setListNotActiveUsers(res.data[0]);
       })
       .catch((err) => console.log(err));
-  });
+  }, []);
 
   return (
-    <div className="container-lg m-3">
-      <div className="d-flex flex-column" id="user-panel">
+    <div className="container-fluid m-1">
+      <div id="user-panel" className="d-flex flex-fill flex-column">
         <div className="d-flex flex-column" id="users-without-roles">
-          <h2>Users without roles</h2>
+          <h2 className="heading-app pb-4">Users without roles</h2>
           {listUsersWithoutRoles.slice(0, 3).map((user, i) => {
             return (
               <div className="row">
@@ -40,7 +40,7 @@ function UsersPanel() {
           })}
         </div>
         <div className="d-flex flex-column" id="not-active-users">
-          <h2>Not active user</h2>
+          <h2 className="heading-app pb-4">Not active user</h2>
           {listNotActiveUsers.slice(0, 3).map((user, i) => {
             return (
               <div className="row">

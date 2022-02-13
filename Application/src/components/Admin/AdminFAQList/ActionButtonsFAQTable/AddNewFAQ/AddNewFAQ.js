@@ -2,17 +2,6 @@ import "../style.css";
 import Button from "../../../../Buttons/Buttons";
 
 export default function AddNewFAQ({ fq, ...props }) {
-  const button = [
-    {
-      type: "button-red",
-      text: "Cancel",
-    },
-    {
-      type: "button-green",
-      text: "Create",
-    },
-  ];
-
   return (
     <div class="container-addnew-admin">
       <h2 className="title-addfaq">Add New FAQ</h2>

@@ -1,18 +1,7 @@
 import "../style.css";
-import Buttons from "../../../../../Buttons/Buttons";
+import Button from "../../../../Buttons/Buttons";
 
-export default function AddNewFAQ() {
-  const button = [
-    {
-      type: "button-red",
-      text: "Cancel",
-    },
-    {
-      type: "button-green",
-      text: "Create",
-    },
-  ];
-
+export default function AddNewFAQ({ fq, ...props }) {
   return (
     <div class="container-addnew-admin">
       <h2 className="title-addfaq">Add New FAQ</h2>
@@ -62,8 +51,10 @@ export default function AddNewFAQ() {
         ></textarea>
       </div>
       <div className="button-float">
-        <Buttons button={button[0]}></Buttons>
-        <Buttons button={button[1]}></Buttons>
+        <button className="button-red" onClick={() => props.changeState(false)}>
+          Cancel
+        </button>
+        <button className="button-green">Create</button>
       </div>
     </div>
   );

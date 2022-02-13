@@ -4,17 +4,6 @@ import Button from "../../../../Buttons/Buttons";
 import DataTable from "../../FAQTable/DataTable";
 
 export default function EditFAQ({ fq, ...props }) {
-  const button = [
-    {
-      type: "button-red",
-      text: "Cancel",
-    },
-    {
-      type: "button-green",
-      text: "Edit",
-    },
-  ];
-
   return (
     <div class="container-addnew-admin">
       <h2 className="title-addfaq">Edit FAQ</h2>

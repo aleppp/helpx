@@ -1,8 +1,8 @@
 import React from "react";
 import "../style.css";
-import Buttons from "../../../../Buttons/Buttons";
+import Button from "../../../../Buttons/Buttons";
 
-export default function DeleteFAQ() {
+export default function DeleteFAQ({ fq, ...props }) {
   const button = [
     {
       type: "button-red",
@@ -61,8 +61,10 @@ export default function DeleteFAQ() {
       <br />
       <div className="float-center">
         <p>Confirm Delete?</p>
-        <Buttons button={button[0]}></Buttons>
-        <Buttons button={button[1]}></Buttons>
+        <button className="button-red" onClick={() => props.changeState(false)}>
+          Cancel
+        </button>
+        <button className="button-blue-small">Delete</button>
       </div>
     </div>
   );

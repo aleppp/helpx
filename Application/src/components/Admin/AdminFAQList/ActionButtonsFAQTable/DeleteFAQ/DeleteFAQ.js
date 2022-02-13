@@ -3,17 +3,6 @@ import "../style.css";
 import Button from "../../../../Buttons/Buttons";
 
 export default function DeleteFAQ({ fq, ...props }) {
-  const button = [
-    {
-      type: "button-red",
-      text: "Cancel",
-    },
-    {
-      type: "button-blue-small",
-      text: "Delete",
-    },
-  ];
-
   return (
     <div class="container-addnew-admin">
       <p className="title-addfaq">Delete FAQ</p>

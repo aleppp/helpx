@@ -1,13 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import FeedbackListCCA from "../../Feedback/FeedbackListCCA";
-import FeedbackEUList from "../../Feedback/FeedbackListEU/FeedbackListEU";
-import DashboardCV from "../Dashboard/DashboardCC";
+import { Link } from "react-router-dom";
 import "./UserNavigation.css";
 
 const UserNavigation = () => {
   return (
-    <div className="container-fluid m-0 g-0">
+    <div className="container-fluid m-0 g-0" >
       <div className="row flex-nowrap g-0">
         <div className="d-flex flex-row">
           <div className="col-auto">
@@ -24,18 +21,18 @@ const UserNavigation = () => {
                 <ul>
                   {/* dashboard */}
                   <li>
-                    <a href="/creator-dashboard">
+                    <Link to="/creator/dashboard">
                       <img
                         src={process.env.PUBLIC_URL + "/images/dashboard.png"}
                         className="dashboardLogo"
                       />
                       <br />
                       Dashboard
-                    </a>
+                    </Link>
                   </li>
                   {/* feedback */}
                   <li>
-                    <a href="/feedback">
+                    <Link to="/content/feedback">
                       <img
                         src={process.env.PUBLIC_URL + "/images/thumbUp.png"}
                       />
@@ -44,21 +41,21 @@ const UserNavigation = () => {
                       />
                       <br />
                       Feedback
-                    </a>
+                    </Link>
                   </li>
                   {/* bookmark */}
                   <li>
-                    <a href="/bookmark">
+                    <Link to="/content/bookmark">
                       <img
                         src={process.env.PUBLIC_URL + "/images/bookmark.png"}
                       />
                       <br />
                       Bookmark
-                    </a>
+                    </Link>
                   </li>
                   {/* contact admin */}
                   <li>
-                    <a href="/contact">
+                    <Link to="/content/contact">
                       <img
                         src={
                           process.env.PUBLIC_URL + "/images/contactAdmin.png"
@@ -66,23 +63,12 @@ const UserNavigation = () => {
                       />
                       <br />
                       Contact Admin
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>
             </div>
           </div>
-          {/* call component */}
-          <Router>
-            <Switch>
-              <Route path="/creator-dashboard">
-                <DashboardCV />
-              </Route>
-              <Route path="/feedback">
-                <FeedbackEUList />
-              </Route>
-            </Switch>
-          </Router>
         </div>
       </div>
     </div>

@@ -515,7 +515,7 @@ export default function Dashboard() {
                         <p className="d-inline ms-5">{counter("draft")}</p>
                         <sup className="text-warning">In Draft</sup>
                       </div>
-                      <button className="btn align-self-center me-3 add-content" onClick={() => history.push("/normal-editor")}>
+                      <button className="btn align-self-center me-3 add-content" onClick={() => <Link to="/editor/normal" />}>
                         New Release Note
                       </button>
                     </div>

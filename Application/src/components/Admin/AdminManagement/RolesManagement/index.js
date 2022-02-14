@@ -2,15 +2,12 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Button from "../../../Buttons/Buttons";
 import "./style.css";
-import { EditRole } from "./RolesManagementBtn/EditRole";
-import { DeleteRole } from "./RolesManagementBtn/DeleteRole";
-import { AddNewRole } from "./RolesManagementBtn/AddNewRole";
+
+import RolesButton from "./RolesManagementBtn/RolesButton";
 
 function RolesManagement() {
   const [RolesManagement, setRolesManagement] = useState([]);
   const [showAdd, setShowAdd] = useState(false);
-  const [showEdit, setShowEdit] = useState(false);
-  const [showDel, setShowDel] = useState(false);
 
   useEffect(() => {
     axios
@@ -22,76 +19,54 @@ function RolesManagement() {
   }, []);
 
   return (
-    <div className="container-fluid">
+    <div className="container-fluid" id="role-mana">
       <div className="row">
-        <div className="roles-management-component">
-          <h1>Roles Management</h1>
-          <button className="button-blue" onClick={() => setShowAdd(!showAdd)}>
-            Add New
-          </button>
+        <div className="col-lg-12 col-md-6 col-sm-4">
+          <div className="row">
+            <h1 className="text-start">Roles Management</h1>
+          </div>
+          <div className="row ">
+            <div className="">
+              <button
+                className="button-blue"
+                onClick={() => setShowAdd(!showAdd)}
+              >
+                Add New
+              </button>
+            </div>
+          </div>
+
+          <div className="row">
+            <table>
+              <thead>
+                <th>
+                  Role ID{" "}
+                  <img
+                    className="dropdown"
+                    src={process.env.PUBLIC_URL + "/images/expandMore.png"}
+                  />
+                </th>
+                <th>
+                  Role Name{" "}
+                  <img
+                    className="dropdown"
+                    src={process.env.PUBLIC_URL + "/images/expandMore.png"}
+                  />
+                </th>
+                <th> Description </th>
+                <th> Number of Users </th>
+                <th> Action </th>
+                <th></th>
+              </thead>
+              <tbody>
+                {RolesManagement.map((roleButton, i) => (
+                  <RolesButton roleButton={roleButton} i={i} />
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
-
-      <table>
-        <tr>
-          <th>
-            Role ID{" "}
-            <img
-              className="dropdown"
-              src={process.env.PUBLIC_URL + "/images/expandMore.png"}
-            />
-          </th>
-          <th>
-            Role Name{" "}
-            <img
-              className="dropdown"
-              src={process.env.PUBLIC_URL + "/images/expandMore.png"}
-            />
-          </th>
-          <th> Description </th>
-          <th> Number of Users </th>
-          <th> Action </th>
-        </tr>
-        {RolesManagement.map((roles, i) => (
-          <tr key={i}>
-            <td>{roles.ID} </td>
-            <td> {roles.Name} </td>
-            <td> {roles.Description} </td>
-            <td> {roles.Number} </td>
-            <td>
-              <button
-                className="button-green"
-                onClick={() => setShowEdit(!showEdit)}
-              >
-                Edit
-              </button>
-              <button
-                className="button-red"
-                onClick={() => setShowDel(!showDel)}
-              >
-                Delete
-              </button>
-            </td>
-            <td>
-              {showAdd ? (
-                <div>
-                  <AddNewRole />
-                </div>
-              ) : null}
-              {showEdit ? (
-                <div>
-                  <EditRole />
-                </div>
-              ) : null}
-              {showDel ? (
-                <div>
-                  <DeleteRole />
-                </div>
-              ) : null}
-            </td>
-          </tr>
-        ))}
-      </table>
     </div>
   );
 }

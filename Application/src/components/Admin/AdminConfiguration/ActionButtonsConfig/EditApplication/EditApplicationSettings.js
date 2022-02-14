@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import "../style.css";
 import GetCurrentLocalDateTime from "../../../../../services/GetCurrentLocalDateTime";
+import Swal from "sweetalert2";
 
 export default function EditApplicationSettings({ appSettings, ...props }) {
   const [newValue, setNewValue] = useState([]);
@@ -16,6 +17,10 @@ export default function EditApplicationSettings({ appSettings, ...props }) {
   function changeHandler(e) {
     setNewValue([...newValue, e.target.value]);
     setAttributeId([...attributeId, e.target.name]);
+  }
+
+  function refreshPage() {
+    window.location.reload(false);
   }
 
   function submitUpdate(e) {
@@ -44,7 +49,15 @@ export default function EditApplicationSettings({ appSettings, ...props }) {
           )
         );
     }
-    props.changeState(false);
+    Swal.fire({
+      icon: "success",
+      title: "Your work has been saved",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+    setInterval(() => {
+      refreshPage();
+    }, 1500);
   }
 
   return (
@@ -56,14 +69,11 @@ export default function EditApplicationSettings({ appSettings, ...props }) {
           // value={newValue}
           name="1"
           onSubmit={submitUpdate}
-          // onChange={(e) => {
-          //   const selectedValue = e.target.value;
-          //   setNewValue([...newValue, selectedValue]);
-          // }}
           onChange={changeHandler}
         >
           <option>{appSettings.BackgroundColor}</option>
           <option>Yellow</option>
+          <option>Green</option>
           <option>Red</option>
           <option>Blue</option>
         </select>

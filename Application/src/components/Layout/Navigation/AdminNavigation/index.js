@@ -144,7 +144,7 @@ const NavigationBar = () => {
                     </li>
                     <li>
                       <Link
-                        to="#fraud-management-admin"
+                        to="/admin/fraud-management"
                         className="dropdown-item"
                       >
                         Fraud

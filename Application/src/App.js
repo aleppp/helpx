@@ -19,6 +19,7 @@ import UserManagement from "./components/Admin/AdminManagement/UserManagement";
 import RolesManagement from "./components/Admin/AdminManagement/RolesManagement";
 import TemplateEditor from "./components/ReleaseNotes/Editor/TemplateEditor";
 import NormalEditor from "./components/ReleaseNotes/Editor/NormalEditor";
+import FraudConfig from "./components/FraudManagement/FraudAdmin";
 
 class App extends Component {
   constructor(props) {
@@ -110,6 +111,13 @@ class App extends Component {
               path="/editor/template"
               render={(props) => (
                 <TemplateEditor auth={this.auth} {...props}  />
+              )}
+            />
+            <ProtectedRoute
+              exact
+              path="/admin/fraud-management"
+              render={(props) => (
+                <FraudConfig auth={this.auth} {...props}  />
               )}
             />
         </Switch>

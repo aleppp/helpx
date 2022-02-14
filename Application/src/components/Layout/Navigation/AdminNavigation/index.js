@@ -140,10 +140,7 @@ const NavigationBar = () => {
                       </a>
                     </li>
                     <li>
-                      <a
-                        href="#fraud-management-admin"
-                        className="dropdown-item"
-                      >
+                      <a href="/fraud-management" className="dropdown-item">
                         Fraud
                       </a>
                     </li>
@@ -165,13 +162,6 @@ const NavigationBar = () => {
               </ul>
             </div>
           </div>
-          <Router>
-            <Switch>
-              <Route path="/configuration">
-                <FraudConfig />
-              </Route>
-            </Switch>
-          </Router>
         </div>
       </div>
     </div>

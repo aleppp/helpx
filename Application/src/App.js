@@ -28,11 +28,11 @@ class App extends Component {
 
   render() {
     const isAdmin = localStorage.getItem("isAdmin");
+    const isAuthorized = localStorage.getItem("id_token");
     return (
       <div className="chunk">
-        {(window.location.href.toString() === "http://localhost:3000/") ? null:<Header />}
-        {((window.location.href.toString() === "http://localhost:3000/") ?
-         null:(isAdmin === "true") ? <NavigationBar />:<UserNavigation/> )}
+        {isAuthorized ?<Header />:null}
+        {isAuthorized ? ((isAdmin === "true") ? <NavigationBar />:<UserNavigation/> ):null}
         <Switch>
             <Route
               exact

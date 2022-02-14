@@ -1591,12 +1591,11 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `sp_applicationsattributes_upd`;
 DELIMITER $$
-CREATE PROCEDURE `sp_applicationsattributes_upd`(IN id int, appid int, appAttributeid int, newvalue varchar(20), datemodified datetime)
+CREATE PROCEDURE `sp_applicationsattributes_upd`(IN appid int, attributeid int, newvalue varchar(20), datemodified datetime)
 BEGIN
 UPDATE applicationsattributes as apt
-ON lapt.id = apt.attributeid
 SET apt.appattributevalue = newvalue, apt.datemodified = datemodified
-WHERE apt.id = id AND apt.appid = appid AND apt.attributeid = appAttributeid;
+WHERE apt.attributeid = attributeid AND apt.appid = appid;
 END $$
 DELIMITER ;
 

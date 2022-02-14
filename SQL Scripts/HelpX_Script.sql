@@ -1574,7 +1574,7 @@ DROP PROCEDURE IF EXISTS `sp_appattributes_sel`;
 DELIMITER $$
 CREATE PROCEDURE `sp_appattributes_sel`()
 BEGIN
-SELECT (app.Name),
+SELECT apt.id,(app.Name),
 	MAX(CASE WHEN lapt.Name = "Background Color" THEN apt.AppAttributeValue END) AS "BackgroundColor",
     MAX(CASE WHEN lapt.Name = "Font Size" THEN apt.AppAttributeValue END) AS "FontSize",
     MAX(CASE WHEN lapt.Name = "Font Family" THEN apt.AppAttributeValue END) AS "FontFamily",
@@ -1591,11 +1591,12 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `sp_applicationsattributes_upd`;
 DELIMITER $$
-CREATE PROCEDURE `sp_applicationsattributes_upd`(IN id int, appid int, newvalue varchar(20), datemodified datetime)
+CREATE PROCEDURE `sp_applicationsattributes_upd`(IN id int, appid int, appAttributeid int, newvalue varchar(20), datemodified datetime)
 BEGIN
 UPDATE applicationsattributes as apt
+ON lapt.id = apt.attributeid
 SET apt.appattributevalue = newvalue, apt.datemodified = datemodified
-WHERE apt.id = id AND apt.appid = appid;
+WHERE apt.id = id AND apt.appid = appid AND apt.attributeid = appAttributeid;
 END $$
 DELIMITER ;
 
@@ -2276,8 +2277,16 @@ CALL sp_notifications_ins(1, 1, 'Notifications', true, now(), now()) ;
 
 call `sp_applications_ins`('Setel',null,now(),now());
 
-call `sp_applicationsattributes_ins`(1,1,null,now(),now());
-
+call `sp_applicationsattributes_ins`(1,1,'Red',now(),now());
+call `sp_applicationsattributes_ins`(1,2,16,now(),now());
+call `sp_applicationsattributes_ins`(1,3,'Sans Serif',now(),now());
+call `sp_applicationsattributes_ins`(1,4,'Default',now(),now());
+call `sp_applicationsattributes_ins`(1,5,'Horizontal',now(),now());
+call `sp_applicationsattributes_ins`(2,1,'Green',now(),now());
+call `sp_applicationsattributes_ins`(2,2,16,now(),now());
+call `sp_applicationsattributes_ins`(2,3,'Mulish',now(),now());
+call `sp_applicationsattributes_ins`(2,4,'Monothematic',now(),now());
+call `sp_applicationsattributes_ins`(2,5,'Vertical',now(),now());
 call `sp_userslogin_ins`('alifmuqri.hazmi@petronas.com');
 
 call sp_users_ins('Amirul', 'Luqman Shamshi', 'mirul@petronas.com',now(),now(),3,null,2,1);

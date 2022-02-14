@@ -25,13 +25,11 @@ export default function EditApplicationSettings({ appSettings, ...props }) {
 
   function submitUpdate(e) {
     e.preventDefault();
-    console.log(newValue, attributeId);
     for (var i = 0; i < newValue.length; i++) {
       attributes.appid = appSettings.appid;
       attributes.attributeid = attributeId[i];
       attributes.newvalue = newValue[i];
       attributes.datemodified = GetCurrentLocalDateTime();
-      console.log(attributes);
       axios
         .put(
           `http://localhost:8080/application-settings/${appSettings.appid}`,
@@ -39,9 +37,6 @@ export default function EditApplicationSettings({ appSettings, ...props }) {
             attributes,
           }
         )
-        .then((res) => {
-          console.log(res);
-        })
         .catch((error) =>
           console.log(
             "Failed to update employment type data",
@@ -65,12 +60,7 @@ export default function EditApplicationSettings({ appSettings, ...props }) {
       <h2 className="title-editapp">Edit Application</h2>
       <div className="display-column">
         <label for="appconfig">Background Color</label>
-        <select
-          // value={newValue}
-          name="1"
-          onSubmit={submitUpdate}
-          onChange={changeHandler}
-        >
+        <select name="1" onSubmit={submitUpdate} onChange={changeHandler}>
           <option>{appSettings.BackgroundColor}</option>
           <option>Yellow</option>
           <option>Green</option>

@@ -1,4 +1,4 @@
-import React, { useState, Component } from "react";
+import React, { useState } from "react";
 
 import EditApplicationSettings from "../../ActionButtonsConfig/EditApplication/EditApplicationSettings";
 

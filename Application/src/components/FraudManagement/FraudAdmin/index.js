@@ -147,24 +147,24 @@ export default function FraudConfig() {
             ID
             {state.isCreatedSorted ? (
               state.isCreatedDesc ? (
-                <img src={process.env.PUBLIC_URL + "/icons/descend.svg"} />
+                <img src={process.env.PUBLIC_URL + "/icons/descendblack.svg"} />
               ) : (
-                <img src={process.env.PUBLIC_URL + "/icons/ascend.svg"} />
+                <img src={process.env.PUBLIC_URL + "/icons/ascendblack.svg"} />
               )
             ) : (
-              <img src={process.env.PUBLIC_URL + "/icons/unsort.svg"} />
+              <img src={process.env.PUBLIC_URL + "/icons/unsortblack.svg"} />
             )}
           </th>
           <th id="term" onClick={(e) => dispatchSort(e)}>
             Term
             {state.isCreatedSorted ? (
               state.isCreatedDesc ? (
-                <img src={process.env.PUBLIC_URL + "/icons/descend.svg"} />
+                <img src={process.env.PUBLIC_URL + "/icons/descendblack.svg"} />
               ) : (
-                <img src={process.env.PUBLIC_URL + "/icons/ascend.svg"} />
+                <img src={process.env.PUBLIC_URL + "/icons/ascendblack.svg"} />
               )
             ) : (
-              <img src={process.env.PUBLIC_URL + "/icons/unsort.svg"} />
+              <img src={process.env.PUBLIC_URL + "/icons/unsortblack.svg"} />
             )}
           </th>
           <th>Action</th>

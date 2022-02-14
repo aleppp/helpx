@@ -14,6 +14,11 @@ import UserNavigation from "./components/ReleaseNotes/Navigation/UserNavigation"
 import Header from "./components/LandingPage/Header/Header";
 import NavigationBar from "./components/Layout/Navigation/AdminNavigation";
 import FeedbackEUList from "./components/Feedback/FeedbackListEU/FeedbackListEU";
+import ApplicationSettingsList from "./components/Admin/AdminConfiguration/ApplicationSettings/ApplicationSettingsList";
+import UserManagement from "./components/Admin/AdminManagement/UserManagement";
+import RolesManagement from "./components/Admin/AdminManagement/RolesManagement";
+import TemplateEditor from "./components/ReleaseNotes/Editor/TemplateEditor";
+import NormalEditor from "./components/ReleaseNotes/Editor/NormalEditor";
 
 class App extends Component {
   constructor(props) {
@@ -77,6 +82,34 @@ class App extends Component {
               path="/content/feedback"
               render={(props) => (
                 <FeedbackEUList auth={this.auth} {...props}  />
+              )}
+            />
+            <ProtectedRoute
+              exact
+              path="/admin/app-settings"
+              render={(props) => (
+                <ApplicationSettingsList auth={this.auth} {...props}  />
+              )}
+            />
+            <ProtectedRoute
+              exact
+              path="/admin/user-management"
+              render={(props) => (
+                <UserManagement auth={this.auth} {...props}  />
+              )}
+            />
+            <ProtectedRoute
+              exact
+              path="/admin/roles-management"
+              render={(props) => (
+                <RolesManagement auth={this.auth} {...props}  />
+              )}
+            />
+            <ProtectedRoute
+              exact
+              path="/editor/template"
+              render={(props) => (
+                <TemplateEditor auth={this.auth} {...props}  />
               )}
             />
         </Switch>

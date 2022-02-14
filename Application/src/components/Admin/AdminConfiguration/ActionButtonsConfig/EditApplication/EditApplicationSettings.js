@@ -51,7 +51,7 @@ export default function EditApplicationSettings({ appSettings, ...props }) {
     }
     Swal.fire({
       icon: "success",
-      title: "Your work has been saved",
+      title: "Successfully Updated!",
       showConfirmButton: false,
       timer: 1500,
     });

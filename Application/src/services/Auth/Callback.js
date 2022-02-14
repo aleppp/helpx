@@ -2,15 +2,20 @@ import React, { Component } from "react";
 
 class Callback extends Component {
   componentDidMount() {
-    //Handle authentication if expected values are in the URL.
+    // handle authentication if expected values are in the URL.
     if (/access_token|id_token|error/.test(this.props.location.hash)) {
       this.props.auth.handleAuthentication();
     } else {
-      throw new Error("Invalid callback URL.");
+      throw new Error("invalid callback url");
     }
   }
+
   render() {
-    return <h1>Loading...</h1>;
+    return (
+      <div className="spinner-border" role="status">
+        <span className="sr-only">Loading...</span>
+      </div>
+    );
   }
 }
 

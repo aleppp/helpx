@@ -28,18 +28,11 @@ const ProtectedRoute = ({component:Component, ...rest}) => {
     const userRole = getRole();
     
     const checkAdmin = () => {
-        if(userRole === "System Admin") {
-            return true;
-        } else {
-            return false;
-        }
+        return (userRole === "System Admin") 
     }
 
     localStorage.setItem("isAdmin", (checkAdmin() ? "true":"false"))
 
-    console.log(url);
-    console.log(tokenEmail);
-    console.log(userRole);
     //check whether id token is generated or not
     if(!isAuthenticated) {
         return <Redirect to ="/" />

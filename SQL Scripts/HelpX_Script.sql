@@ -2288,8 +2288,6 @@ call `sp_applicationsattributes_ins`(2,4,'Monothematic',now(),now());
 call `sp_applicationsattributes_ins`(2,5,'Vertical',now(),now());
 call `sp_userslogin_ins`('alifmuqri.hazmi@petronas.com');
 
-call sp_users_ins('Amirul', 'Luqman Shamshi', 'mirul@petronas.com',now(),now(),3,null,2,1);
-
 CALL sp_auditlogs_ins(1,1,1,1,1,now());
 
 CALL sp_feedback_ins(1, 2, 'Feedback thirteen', 4, now(), now());

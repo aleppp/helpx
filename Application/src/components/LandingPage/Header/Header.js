@@ -8,10 +8,9 @@ class Header extends Component {
   constructor(props) {
     super(props);
     this.auth = new Auth(this.props.history);
-    // const { isAuthenticated, login, logout } = this.props.auth;
   }
   render() {
-    const { isAuthenticated, login, logout } = this.props.auth;
+    const { isAuthenticated, login, logout } = this.auth;
     return (
       <div className="container-fluid g-0">
         <div className="canvas">

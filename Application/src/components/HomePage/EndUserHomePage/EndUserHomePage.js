@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "./EndUserHomePage.css";
-import UserHeader from "../../ReleaseNotes/Navigation/UserHeader";
-import UserNavigation from "../../ReleaseNotes/Navigation/UserNavigation";
 
 import axios from "axios";
 
@@ -27,8 +25,6 @@ function EndUserHomePage() {
   return (
     <div>
       {" "}
-      <UserNavigation />
-      <UserHeader />
       <div className="LandingPage">
         <div className="rectangle">
           <div className="TopLeft">

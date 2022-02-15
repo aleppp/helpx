@@ -1,6 +1,5 @@
 import React from "react";
 
-import NavigationBar from "../../Layout/Navigation/AdminNavigation";
 import Dashboard from "./Dashboard";
 import PendingAppConfigList from "./AppConfiguration/PendingAppConfigList";
 import RecentAppConfigList from "./AppConfiguration/RecentAppConfigList/RecentAppConfigList";

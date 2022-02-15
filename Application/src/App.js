@@ -32,8 +32,8 @@ class App extends Component {
     const isAuthorized = localStorage.getItem("id_token");
     return (
       <div className="chunk">
-        {isAuthorized ?<Header />:null}
-        {isAuthorized ? ((isAdmin === "true") ? <NavigationBar />:<UserNavigation/> ):null}
+        {isAuthorized && <Header/>}
+        {isAuthorized && (isAdmin === "true" ? <NavigationBar/> : <UserNavigation />)}
         <Switch>
             <Route
               exact

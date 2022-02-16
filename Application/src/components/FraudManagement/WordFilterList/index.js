@@ -69,29 +69,28 @@ export default function WordFilterList() {
                         <button
                           data-bs-toggle="modal"
                           href="#myModal2"
-                          class="btn btn-primary"
-                          className="button-blue"
+                          className="btn btn-primary button-blue"
                         >
                           Add New
                         </button>
                         <div
-                          class="modal"
+                          className="modal"
                           id="myModal2"
                           data-bs-backdrop="static"
                         >
-                          <div class="modal-dialog">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <h4 class="modal-title">Add New Term</h4>
+                          <div className="modal-dialog">
+                            <div className="modal-content">
+                              <div className="modal-header">
+                                <h4 className="modal-title">Add New Term</h4>
                                 <button
                                   type="button"
-                                  class="btn-close"
+                                  className="btn-close"
                                   data-bs-dismiss="modal"
                                   aria-hidden="true"
                                 ></button>
                               </div>
-                              <div class="container"></div>
-                              <div class="modal-body">
+                              <div className="container"></div>
+                              <div className="modal-body">
                                 <div className="term">
                                   <AddNewTerm />
                                 </div>

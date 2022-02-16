@@ -128,7 +128,7 @@ export default function FeedbackEUList() {
                         </td>
                         <td>{fb.DateCreated}</td>
                         <td>
-                          <div class="dropdown">
+                          <div className="dropdown">
                             {ratingSelector(fb.Rating)}
                             <SelectRating />
                           </div>

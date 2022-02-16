@@ -2,7 +2,7 @@ import "./FeedbackListEU.css";
 
 export default function SelectRating(props) {
   return (
-    <div class="dropdown-content">
+    <div className="dropdown-content">
       <a href="/dummy1">
         <img
           src={process.env.PUBLIC_URL + "/images/rate_1.png"}

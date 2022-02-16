@@ -101,13 +101,13 @@ app.get("/api/appattributes/listappattributes", (req, res) => {
 });
 
 //edit attributes value for admin app configurations
-app.post("/api/appattributes/editattribute", (req, res) => {
-  const updAppAttributes = "CALL sp_appattributes_upd(?,?,?,?)";
+app.put("/application-settings/:appid", (req, res) => {
+  const updAppAttributes = "CALL sp_applicationsattributes_upd(?,?,?,?)";
   const params = req.body.attributes;
   setQuery(
     db,
     updAppAttributes,
-    [params.id, params.appid, params.newvalue, params.datemodified],
+    [params.appid, params.attributeid, params.newvalue, params.datemodified],
     res
   );
 });

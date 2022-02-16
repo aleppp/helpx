@@ -31,6 +31,7 @@ function ApplicationSettingsList() {
           <div className="row">
             <table id="appSettings">
               <thead>
+                <th>Application ID</th>
                 <th>
                   Application Name
                   <button className="filter-app-settings">

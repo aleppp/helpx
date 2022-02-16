@@ -3,8 +3,7 @@ import axios from "axios";
 import "./style.css";
 import { Pagination } from "@mui/material";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { EditFraud } from "./FraudBtn";
-import DeleteButton from "./FraudBtn/DeleteFraud/deletebutton";
+import FraudButton from "./FraudBtn/FraudButton";
 
 export default function FraudConfig() {
   const [fraudManagement, setFraudManagement] = useState([]);
@@ -172,8 +171,8 @@ export default function FraudConfig() {
         </tr>
 
         <tbody>
-          {_DATA.currentData().map((fraudDelete, i) => (
-            <DeleteButton fraudDelete={fraudDelete} i={i} />
+          {_DATA.currentData().map((fraudButton, i) => (
+            <FraudButton fraudButton={fraudButton} i={i} />
           ))}
         </tbody>
       </table>

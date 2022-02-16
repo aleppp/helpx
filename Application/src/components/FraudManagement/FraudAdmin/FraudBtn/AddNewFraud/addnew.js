@@ -1,12 +1,12 @@
-import React from "react";
-import "./style.css";
+import React, { useState } from "react";
+import "../style.css";
 import Button from "../../../../Buttons/Buttons";
 
-export default function DeleteFraud() {
+export const AddNewFraud = () => {
   const button = [
     {
       type: "button-blue-small",
-      text: "Confirm",
+      text: "Submit",
     },
     {
       type: "button-red",
@@ -15,17 +15,18 @@ export default function DeleteFraud() {
   ];
 
   return (
-    <div class="container-deletefraud">
-      <p className="title-deletefraud">Delete Term</p>
+    <div class="container-addfraud">
+      <p className="title-addfraud">Add New</p>
       <br />
-      <label className="float-left" for="term">
+      <label className="float-left" for="name">
         Term
       </label>
       <textarea
         className="textarea-name-del"
         name="term"
-        placeholder="Enter a term..."
+        placeholder="Enter a term."
       ></textarea>
+
       <br />
       <br />
       <div className="float-center">
@@ -34,4 +35,4 @@ export default function DeleteFraud() {
       </div>
     </div>
   );
-}
+};

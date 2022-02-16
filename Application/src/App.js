@@ -19,6 +19,8 @@ import RolesManagement from "./components/Admin/AdminManagement/RolesManagement"
 import TemplateEditor from "./components/ReleaseNotes/Editor/TemplateEditor";
 import NormalEditor from "./components/ReleaseNotes/Editor/NormalEditor";
 import FraudConfig from "./components/FraudManagement/FraudAdmin";
+import ContentBody from "./components/ReleaseNotes/ContentBody/ContentBody";
+import FAQCCPage from "./components/FAQ/FAQCCPage";
 
 class App extends Component {
   constructor(props) {
@@ -31,95 +33,92 @@ class App extends Component {
     const isAuthorized = localStorage.getItem("id_token");
     return (
       <div className="chunk">
-        {isAuthorized && <Header/>}
-        {isAuthorized && (isAdmin === "true" ? <NavigationBar/> : <UserNavigation />)}
+        {isAuthorized && <Header />}
+        {isAuthorized &&
+          (isAdmin === "true" ? <NavigationBar /> : <UserNavigation />)}
         <Switch>
-            <Route
-              exact
-              path="/"
-              render={(props) => <LandingPage {...props} />}
-            />
-            <Route
-              exact
-              path="/callback"
-              render={(props) => <Callback auth={this.auth} {...props} />}
-            />
-            <ProtectedRoute
-              exact
-              path="/homepage"
-              render={(props) => (
-                <EndUserHomePage auth={this.auth} {...props}  />
-              )}
-            />
-            <ProtectedRoute
-              exact
-              path="/admin/home"
-              render={(props) => <AdminHomePage auth={this.auth} {...props}  />}
-            />
-            
-            <ProtectedRoute
-              exact
-              path="/admin/audit-logs"
-              render={(props) => (
-                <AuditLogDatatable auth={this.auth} {...props}  />
-              )}
-            />
-            <ProtectedRoute
-              exact
-              path="/admin/app-settings"
-              render={(props) => (
-                <ApplicationSettingsList auth={this.auth} {...props}  />
-              )}
-            />
-            <ProtectedRoute
-              exact
-              path="/admin/user-management"
-              render={(props) => (
-                <UserManagement auth={this.auth} {...props}  />
-              )}
-            />
-            <ProtectedRoute
-              exact
-              path="/admin/roles-management"
-              render={(props) => (
-                <RolesManagement auth={this.auth} {...props}  />
-              )}
-            />
-            <ProtectedRoute
-              exact
-              path="/admin/fraud-management"
-              render={(props) => (
-                <FraudConfig auth={this.auth} {...props}  />
-              )}
-            />
-            <ProtectedRoute
-              exact
-              path="/creator/dashboard"
-              render={(props) => (
-                <DashboardCV auth={this.auth} {...props}  />
-              )}
-            />
-            <ProtectedRoute
-              exact
-              path="/editor/normal"
-              render={(props) => (
-                <NormalEditor auth={this.auth} {...props}  />
-              )}
-            />
-            <ProtectedRoute
-              exact
-              path="/content/feedback"
-              render={(props) => (
-                <FeedbackEUList auth={this.auth} {...props}  />
-              )}
-            />
-            <ProtectedRoute
-              exact
-              path="/editor/template"
-              render={(props) => (
-                <TemplateEditor auth={this.auth} {...props}  />
-              )}
-            />
+          <Route
+            exact
+            path="/"
+            render={(props) => <LandingPage {...props} />}
+          />
+          <Route
+            exact
+            path="/callback"
+            render={(props) => <Callback auth={this.auth} {...props} />}
+          />
+          <ProtectedRoute
+            exact
+            path="/homepage"
+            render={(props) => <EndUserHomePage auth={this.auth} {...props} />}
+          />
+          <ProtectedRoute
+            exact
+            path="/admin/home"
+            render={(props) => <AdminHomePage auth={this.auth} {...props} />}
+          />
+
+          <ProtectedRoute
+            exact
+            path="/admin/audit-logs"
+            render={(props) => (
+              <AuditLogDatatable auth={this.auth} {...props} />
+            )}
+          />
+          <ProtectedRoute
+            exact
+            path="/admin/app-settings"
+            render={(props) => (
+              <ApplicationSettingsList auth={this.auth} {...props} />
+            )}
+          />
+          <ProtectedRoute
+            exact
+            path="/admin/user-management"
+            render={(props) => <UserManagement auth={this.auth} {...props} />}
+          />
+          <ProtectedRoute
+            exact
+            path="/admin/roles-management"
+            render={(props) => <RolesManagement auth={this.auth} {...props} />}
+          />
+          <ProtectedRoute
+            exact
+            path="/admin/fraud-management"
+            render={(props) => <FraudConfig auth={this.auth} {...props} />}
+          />
+          <ProtectedRoute
+            exact
+            path="/creator/dashboard"
+            render={(props) => <DashboardCV auth={this.auth} {...props} />}
+          />
+          <ProtectedRoute
+            exact
+            path="/editor/normal"
+            render={(props) => <NormalEditor auth={this.auth} {...props} />}
+          />
+          <ProtectedRoute
+            exact
+            path="/content/feedback"
+            render={(props) => <FeedbackEUList auth={this.auth} {...props} />}
+          />
+          <ProtectedRoute
+            exact
+            path="/editor/template"
+            render={(props) => <TemplateEditor auth={this.auth} {...props} />}
+          />
+
+          <ProtectedRoute
+            exact
+            path="/content/release-note"
+            render={(props) => <ContentBody auth={this.auth} {...props} />}
+          />
+
+          <ProtectedRoute
+            exact
+            path="/content/faq"
+            render={(props) => <FAQCCPage auth={this.auth} {...props} />}
+          />
         </Switch>
       </div>
     );

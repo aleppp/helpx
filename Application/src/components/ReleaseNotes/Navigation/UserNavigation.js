@@ -12,6 +12,7 @@ const UserNavigation = () => {
               {/* profile section */}
               <img
                 src={process.env.PUBLIC_URL + "/images/profile.png"}
+                alt="profile"
                 className="profilpic"
               />
               <h2>Shahmy</h2>
@@ -24,6 +25,7 @@ const UserNavigation = () => {
                     <Link to="/creator/dashboard">
                       <img
                         src={process.env.PUBLIC_URL + "/images/dashboard.png"}
+                        alt="Dashboard"
                         className="dashboardLogo"
                       />
                       <br />
@@ -35,9 +37,11 @@ const UserNavigation = () => {
                     <Link to="/content/feedback">
                       <img
                         src={process.env.PUBLIC_URL + "/images/thumbUp.png"}
+                        alt="feedback"
                       />
                       <img
                         src={process.env.PUBLIC_URL + "/images/thumbDown.png"}
+                        alt="feedback"
                       />
                       <br />
                       Feedback
@@ -48,6 +52,7 @@ const UserNavigation = () => {
                     <Link to="/content/bookmark">
                       <img
                         src={process.env.PUBLIC_URL + "/images/bookmark.png"}
+                        alt="bookmark"
                       />
                       <br />
                       Bookmark
@@ -58,8 +63,8 @@ const UserNavigation = () => {
                     <Link to="/content/contact">
                       <img
                         src={
-                          process.env.PUBLIC_URL + "/images/contactAdmin.png"
-                        }
+                          process.env.PUBLIC_URL + "/images/contactAdmin.png"}
+                          alt="contact admin"
                       />
                       <br />
                       Contact Admin

@@ -3,7 +3,7 @@ import axios from "axios";
 import "./style.css";
 import { Pagination } from "@mui/material";
 import { MultiSelect } from "react-multi-select-component";
-import { CSVLink, CSVDownload } from "react-csv";
+import { CSVLink } from "react-csv";
 
 export default function AuditLogDatatable() {
   const [AuditLogDatatable, setAuditLogDatatable] = useState([]);

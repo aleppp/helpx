@@ -1,11 +1,9 @@
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import React, { useState } from "react";
-//import SpellcheckIcon from "@mui/icons-material/Spellcheck";
 import "./NormalEditor.css";
 
 function NormalEditor() {
-  const clicked = () => {};
   const [text, setText] = useState("");
   const [title, setTitle] = useState("");
   return (
@@ -26,6 +24,7 @@ function NormalEditor() {
           <img
             className="spell-icon"
             src={process.env.PUBLIC_URL + "/images/spellCheck.png"}
+            alt="spelling checker"
           />
           <div className="editor">
             <h3 className="h3">Body Content</h3>

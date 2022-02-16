@@ -1,9 +1,6 @@
 import React from "react";
 import "./style.css";
-import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
-import FraudConfig from "../../../FraudManagement/FraudAdmin";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle.min";
+import { Link } from "react-router-dom";
 
 const NavigationBar = () => {
   return (
@@ -44,8 +41,8 @@ const NavigationBar = () => {
                 </li>
                 {/* bar for Users with sub menu of User and Roles */}
                 <li className="nav-item dropdown w-100">
-                  <Link
-                    to="/submenu1"
+                  <a
+                    href="/submenu1"
                     id="navbarDropdown"
                     className="nav-link dropdown-toggle"
                     data-bs-toggle="dropdown"
@@ -65,7 +62,7 @@ const NavigationBar = () => {
                         alt="arrowdown"
                       /> */}
                     </span>
-                  </Link>
+                  </a>
                   {/* submenus under Users menu */}
                   <ul
                     className="dropdown-menu w-100"
@@ -97,8 +94,8 @@ const NavigationBar = () => {
                 </li>
                 {/* section for configuration with submenues of application,settings,faq,fraud */}
                 <li className="nav-item dropdown w-100">
-                  <Link
-                    to="/submenu2"
+                  <a
+                    href="/submenu2"
                     id="navbarDropdown"
                     className="nav-link dropdown-toggle"
                     data-bs-toggle="dropdown"
@@ -118,14 +115,14 @@ const NavigationBar = () => {
                         alt="arrowdown"
                       /> */}
                     </span>
-                  </Link>
+                  </a>
                   {/* Submenus for configurations */}
                   <ul
                     className="dropdown-menu w-100"
                     aria-labelledby="navbarDropdown"
                   >
                     <li>
-                      <Link to="#Application-List" className="dropdown-item">
+                      <Link to="admin/application-List" className="dropdown-item">
                         Application
                       </Link>
                     </li>
@@ -153,7 +150,7 @@ const NavigationBar = () => {
                   </ul>
                 </li>
                 <li>
-                  <Link to="/notification">
+                  <Link to="/admin/notification">
                     <img
                       className="images-6"
                       alt="noti-img"

@@ -67,6 +67,11 @@ function FeedbackListCCRN() {
             alt="Very Satisfied"
           />
         );
+      default:
+        return(
+          console.log("out of bound, no icon will be shown")
+        )
+        
     }
   }
 
@@ -122,6 +127,7 @@ function FeedbackListCCRN() {
                     <td>
                       <img
                         src={process.env.PUBLIC_URL + "/images/read_icon.png"}
+                        alt="read data"
                       ></img>
                     </td>
                   </tr>

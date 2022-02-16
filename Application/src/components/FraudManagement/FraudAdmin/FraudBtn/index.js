@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React from "react";
 import "./style.css";
 import Button from "../../../Buttons/Buttons";
 
 export const EditFraud = (props) => {
-  const [fraud, setFraud] = useState(props.fraud);
+  /*const [fraud, setFraud] = useState(props.fraud); //just disabled the comment if this still needed
   const editAdminFraud = (fraudData) => {
     axios
       .post("/fraudmanagement/upd", {
@@ -13,7 +12,7 @@ export const EditFraud = (props) => {
       .catch((error) => {
         console.log("Failed to edit the term", error);
       });
-  };
+  }; */ 
 
   const button = [
     {

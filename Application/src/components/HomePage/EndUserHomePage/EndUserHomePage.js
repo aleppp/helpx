@@ -74,7 +74,7 @@ function EndUserHomePage() {
                 return (
                   <ul key={index}>
                     <li>
-                      <a href="#">{content.Title}</a>
+                      <a href="/title">{content.Title}</a>
                     </li>
                   </ul>
                 );

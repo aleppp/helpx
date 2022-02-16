@@ -38,6 +38,7 @@ function UserManagement() {
                     <img
                       className="dropdown"
                       src={process.env.PUBLIC_URL + "/images/expandMore.png"}
+                      alt="dropdown for user id"
                     />
                   </div>
                 </th>
@@ -46,6 +47,7 @@ function UserManagement() {
                   <img
                     className="dropdown"
                     src={process.env.PUBLIC_URL + "/images/expandMore.png"}
+                    alt="dropdown for user name"
                   />
                 </th>
                 <th>
@@ -53,6 +55,7 @@ function UserManagement() {
                   <img
                     className="dropdown"
                     src={process.env.PUBLIC_URL + "/images/expandMore.png"}
+                    alt="dropdown for user email"
                   />
                 </th>
                 <th>
@@ -60,6 +63,7 @@ function UserManagement() {
                   <img
                     className="dropdown"
                     src={process.env.PUBLIC_URL + "/images/expandMore.png"}
+                    alt="dropdown for application"
                   />
                 </th>
                 <th> Content Contributor </th>

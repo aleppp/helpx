@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer, useMemo } from "react";
+import React, { useState, useEffect, useReducer } from "react";
 import axios from "axios";
 import "./style.css";
 import { Pagination } from "@mui/material";
@@ -147,24 +147,30 @@ export default function FraudConfig() {
             ID
             {state.isCreatedSorted ? (
               state.isCreatedDesc ? (
-                <img src={process.env.PUBLIC_URL + "/icons/descendblack.svg"} />
+                <img src={process.env.PUBLIC_URL + "/icons/descendblack.svg"}
+                alt="descending" />
               ) : (
-                <img src={process.env.PUBLIC_URL + "/icons/ascendblack.svg"} />
+                <img src={process.env.PUBLIC_URL + "/icons/ascendblack.svg"}
+                alt="ascending" />
               )
             ) : (
-              <img src={process.env.PUBLIC_URL + "/icons/unsortblack.svg"} />
+              <img src={process.env.PUBLIC_URL + "/icons/unsortblack.svg"}
+              alt="click to sort" />
             )}
           </th>
           <th id="term" onClick={(e) => dispatchSort(e)}>
             Term
             {state.isCreatedSorted ? (
               state.isCreatedDesc ? (
-                <img src={process.env.PUBLIC_URL + "/icons/descendblack.svg"} />
+                <img src={process.env.PUBLIC_URL + "/icons/descendblack.svg"}
+                alt="descending" />
               ) : (
-                <img src={process.env.PUBLIC_URL + "/icons/ascendblack.svg"} />
+                <img src={process.env.PUBLIC_URL + "/icons/ascendblack.svg"}
+                alt="ascending" />
               )
             ) : (
-              <img src={process.env.PUBLIC_URL + "/icons/unsortblack.svg"} />
+              <img src={process.env.PUBLIC_URL + "/icons/unsortblack.svg"}
+              alt="click to sort" />
             )}
           </th>
           <th>Action</th>

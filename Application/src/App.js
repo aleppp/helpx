@@ -7,7 +7,6 @@ import Callback from "./services/Auth/Callback";
 import EndUserHomePage from "./components/HomePage/EndUserHomePage/EndUserHomePage";
 import AuditLogDatatable from "./components/Admin/AdminAuditLog/AuditLogDatatable";
 import AdminHomePage from "./components/Admin/AdminDashboard";
-import Content from "./components/ReleaseNotes/Content";
 import ProtectedRoute from "./services/ProtectedRoute";
 import DashboardCV from "./components/ReleaseNotes/Dashboard/DashboardCC";
 import UserNavigation from "./components/ReleaseNotes/Navigation/UserNavigation";
@@ -47,11 +46,6 @@ class App extends Component {
             />
             <ProtectedRoute
               exact
-              path="/admin/home"
-              render={(props) => <AdminHomePage {...props}  />}
-            />
-            <ProtectedRoute
-              exact
               path="/homepage"
               render={(props) => (
                 <EndUserHomePage auth={this.auth} {...props}  />
@@ -59,30 +53,15 @@ class App extends Component {
             />
             <ProtectedRoute
               exact
+              path="/admin/home"
+              render={(props) => <AdminHomePage auth={this.auth} {...props}  />}
+            />
+            
+            <ProtectedRoute
+              exact
               path="/admin/audit-logs"
               render={(props) => (
                 <AuditLogDatatable auth={this.auth} {...props}  />
-              )}
-            />
-            <ProtectedRoute
-              exact
-              path="/creator/dashboard"
-              render={(props) => (
-                <DashboardCV auth={this.auth} {...props}  />
-              )}
-            />
-            <ProtectedRoute
-              exact
-              path="/editor/normal"
-              render={(props) => (
-                <Content auth={this.auth} {...props}  />
-              )}
-            />
-            <ProtectedRoute
-              exact
-              path="/content/feedback"
-              render={(props) => (
-                <FeedbackEUList auth={this.auth} {...props}  />
               )}
             />
             <ProtectedRoute
@@ -108,16 +87,37 @@ class App extends Component {
             />
             <ProtectedRoute
               exact
-              path="/editor/template"
+              path="/admin/fraud-management"
               render={(props) => (
-                <TemplateEditor auth={this.auth} {...props}  />
+                <FraudConfig auth={this.auth} {...props}  />
               )}
             />
             <ProtectedRoute
               exact
-              path="/admin/fraud-management"
+              path="/creator/dashboard"
               render={(props) => (
-                <FraudConfig auth={this.auth} {...props}  />
+                <DashboardCV auth={this.auth} {...props}  />
+              )}
+            />
+            <ProtectedRoute
+              exact
+              path="/editor/normal"
+              render={(props) => (
+                <NormalEditor auth={this.auth} {...props}  />
+              )}
+            />
+            <ProtectedRoute
+              exact
+              path="/content/feedback"
+              render={(props) => (
+                <FeedbackEUList auth={this.auth} {...props}  />
+              )}
+            />
+            <ProtectedRoute
+              exact
+              path="/editor/template"
+              render={(props) => (
+                <TemplateEditor auth={this.auth} {...props}  />
               )}
             />
         </Switch>

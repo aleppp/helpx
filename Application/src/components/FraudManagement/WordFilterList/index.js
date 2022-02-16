@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./style.css";
 import { AddNewTerm } from "../WordFilterNew";
-import Button from "../../Buttons/Buttons";
 import { Pagination } from "@mui/material";
 
 export default function WordFilterList() {

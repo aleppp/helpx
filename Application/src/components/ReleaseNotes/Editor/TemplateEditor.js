@@ -4,7 +4,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./TemplateEditor.css";
 import TemplatePopup from "./TemplatePopup.js";
-import Button from "../../Buttons/Buttons";
 
 function TemplateEditor() {
   const [name, setName] = useState("");

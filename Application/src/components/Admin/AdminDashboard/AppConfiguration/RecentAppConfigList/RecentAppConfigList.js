@@ -27,10 +27,13 @@ function RecentAppConfigList() {
         <div>
           <table id="recent-app" className="mt-4 mb-4 text-center">
             <thead>
-              <th>Date & Time</th>
-              <th>Application Name</th>
-              <th>Changes</th>
-              <th>User</th>
+              <tr>
+                <th>Date & Time</th>
+                <th>Application Name</th>
+                <th>Changes</th>
+                <th>User</th>
+              </tr>
+              
             </thead>
             <tbody>
               {recentApp.slice(0, 3).map((app, i) => (

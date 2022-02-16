@@ -1,22 +1,20 @@
 import React, { useState } from "react";
 import "./style.css";
 
-export default function EditFAQCC() {
+export default function FAQEditCC({ fql, ...props }) {
   return (
-    <div class="container-editfaq-cc">
+    <div class="editfaqcc" id="FAQEditCC">
       <button
+        onClick={() => props.changeState(false)}
         type="button"
         class="btn-close float-right"
         aria-label="Close"
       ></button>
-      <h2 className="title-editfaq">Edit FAQ</h2>
-      <div>
-        <label class="switch">
-          <input type="checkbox"></input>
-          <span class="slider round"></span>
-        </label>
-        <p id="visible">Visibility</p>
-      </div>
+      <label class="switch">
+        <input type="checkbox"></input>
+        <span class="slider round"></span>
+      </label>
+      <p id="visible">Visibility</p>
       <br />
       <br />
       <br />
@@ -40,7 +38,7 @@ export default function EditFAQCC() {
         </select>
       </div>
       <div className="display-column">
-        <label className="float-left">Question</label>
+        <label className="question-label">Question</label>
         <textarea
           className="textarea-question"
           name="question"
@@ -48,7 +46,7 @@ export default function EditFAQCC() {
         >
           What is a release notes?
         </textarea>
-        <label className="float-left" for="answer">
+        <label className="answer-label" for="answer">
           Answer
         </label>
         <textarea
@@ -62,7 +60,9 @@ export default function EditFAQCC() {
       </div>
       <div className="button-float float-right">
         <button className="button-green">Save</button>
-        <button className="button-red">Cancel</button>
+        <button className="button-red" onClick={() => props.changeState(false)}>
+          Cancel
+        </button>
       </div>
     </div>
   );

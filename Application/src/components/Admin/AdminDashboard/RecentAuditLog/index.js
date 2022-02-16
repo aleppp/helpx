@@ -20,20 +20,25 @@ function RecentAuditLog() {
         <h2 className="mt-3">Latest Audit Log History</h2>
 
         <table className="mt-4 mb-4 text-center" id="recent-audit-log">
-          <tr>
-            <th>Date & Time</th>
-            <th>Category</th>
-            <th>Changed Object</th>
-            <th>User</th>
-          </tr>
-          {RecentAuditLog.slice(0, 3).map((recentlog, i) => (
-            <tr key={i}>
-              <td> {recentlog.DateTime} </td>
-              <td> {recentlog.Category} </td>
-              <td> {recentlog.ChangedObject} </td>
-              <td> {recentlog.User} </td>
+          <thead>
+            <tr>
+              <th>Date & Time</th>
+              <th>Category</th>
+              <th>Changed Object</th>
+              <th>User</th>
             </tr>
-          ))}
+          </thead>
+          <tbody>
+            {RecentAuditLog.slice(0, 3).map((recentlog, i) => (
+              <tr key={i}>
+                <td> {recentlog.DateTime} </td>
+                <td> {recentlog.Category} </td>
+                <td> {recentlog.ChangedObject} </td>
+                <td> {recentlog.User} </td>
+              </tr>
+            ))}
+          </tbody>
+          
         </table>
       </div>
     </div>

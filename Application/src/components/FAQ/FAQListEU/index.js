@@ -36,9 +36,9 @@ function FAQList() {
   };
 
   return (
-    <div className="App" data-testid="divTest">
+    <div className="faqlisteu" data-testid="divTest">
       <div className="faqs">
-        <h1>FAQ Page</h1>
+        <h1>Frequently Asked Questions</h1>
         {faqs.map((faq, i) => (
           <FAQ faq={faq} index={i} toggleFAQ={toggleFAQ} />
         ))}

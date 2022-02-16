@@ -1,20 +1,25 @@
 import React, { Component } from "react";
-// import { Route, Redirect } from "react-router-dom";
 import "./LandingPage.css";
 import Header from "./Header/Header";
 import VerticalBar from "./VerticalBar/VerticalBar";
 import HorizontalBar from "./HorizontalBar/HorizontalBar";
 import Menu from "./Menu/Menu";
-import Auth from "../../services/Auth/Auth";
 
 class LandingPage extends Component {
-  constructor(props) {
-    super(props);
-    this.auth = new Auth(this.props.history);
-  }
-  render() {
-    // const { isAuthenticated, login } = this.props.auth;
 
+  componentDidMount() {
+    if(localStorage.getItem("access_token") && localStorage.getItem("id_token") && 
+      localStorage.getItem("expires_at") && localStorage.getItem("user_email") &&
+      localStorage.getItem("isAdmin")) {
+        localStorage.removeItem("access_token");
+        localStorage.removeItem("id_token");
+        localStorage.removeItem("expires_at");
+        localStorage.removeItem("user_email");
+        localStorage.removeItem("isAdmin");
+     }
+  }
+
+  render() {
     return (
       <div className="container-fluid" id="landing-page">
         <div className="row p-0">
@@ -26,7 +31,7 @@ class LandingPage extends Component {
           <div className="col-lg-10 col-sm-1 p-0 g-0">
             <div className="row">
               <div className="header">
-                <Header auth={this.auth} />
+                <Header />
               </div>
               <div className="navhor d-none d-sm-block">
                 <HorizontalBar />

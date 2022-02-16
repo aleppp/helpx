@@ -1,4 +1,4 @@
-import React, { useState, Component } from "react";
+import React, { useState } from "react";
 
 import EditApplicationSettings from "../../ActionButtonsConfig/EditApplication/EditApplicationSettings";
 
@@ -6,6 +6,7 @@ const EditButton = ({ appSettings, i }) => {
   const [showEdit, setShowEdit] = useState(false);
   return (
     <tr key={i}>
+      <td>{appSettings.appid}</td>
       <td>{appSettings.Name}</td>
       <td>{appSettings.BackgroundColor}</td>
       <td>{appSettings.FontSize}</td>

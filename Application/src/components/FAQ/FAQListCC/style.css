@@ -4,8 +4,7 @@
   height: 100%;
   margin-top: 1%;
   text-align: center;
-  padding-left: 5%;
-  padding-right: 5%;
+  position: relative;
 }
 
 #FAQListCC table {
@@ -19,6 +18,7 @@
 }
 
 #FAQListCC thead {
+  vertical-align: middle;
   background-color: #38b09d;
   font-size: 24px;
   color: white;
@@ -39,6 +39,7 @@
 #FAQListCC tbody tr td {
   font-size: 18px;
   vertical-align: middle;
+  overflow: hidden;
 }
 
 #FAQListCC tfoot {
@@ -56,4 +57,40 @@
   text-align: right;
   font-size: 18px;
   padding: 20px;
+}
+
+#FAQListCC .dropdown {
+  display: inline-block !important;
+  cursor: pointer !important;
+}
+
+#FAQListCC .dropdown p {
+  margin-top: 15px;
+}
+
+#FAQListCC .dropdown-menu {
+  float: right;
+  font-weight: normal;
+  background-color: #f9f9f9 !important;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2) !important;
+  z-index: 1 !important;
+  min-width: 200px !important;
+}
+
+#FAQListCC .form-check {
+  padding-left: 30px;
+}
+
+#FAQListCC .form-check:hover {
+  background-color: #e0e0e0;
+}
+
+#FAQListCC .form-control:focus,
+#FAQListCC .form-check-input:focus {
+  box-shadow: inset 0 -1px #ddd;
+  border-color: #c2c2c2;
+}
+
+#FAQListCC input:focus::placeholder {
+  color: transparent;
 }

@@ -2,10 +2,10 @@ import React, { useState } from "react";
 
 import EditApplicationSettings from "../../ActionButtonsConfig/EditApplication/EditApplicationSettings";
 
-const EditButton = ({ appSettings, i }) => {
+const EditButton = ({ appSettings }) => {
   const [showEdit, setShowEdit] = useState(false);
   return (
-    <tr key={i}>
+    <tr>
       <td>{appSettings.appid}</td>
       <td>{appSettings.Name}</td>
       <td>{appSettings.BackgroundColor}</td>
@@ -17,11 +17,10 @@ const EditButton = ({ appSettings, i }) => {
         {showEdit ? (
           <EditApplicationSettings
             appSettings={appSettings}
-            changeState={(showEdit) => setShowEdit(showEdit)}
+            changeState={() => setShowEdit(false)}
           />
         ) : (
           <button
-            key={i}
             className="button-green"
             onClick={() => setShowEdit(!showEdit)}
           >

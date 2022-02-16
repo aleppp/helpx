@@ -2,17 +2,6 @@ import React from "react";
 import "./Menu.css";
 import "../../Buttons/Buttons.css";
 
-const Button = [
-  {
-    type: "button-green-big",
-    text: "Release Notes",
-  },
-  {
-    type: "button-green-big",
-    text: "Documentation",
-  },
-];
-
 function Menu() {
   return (
     <div className="container-fluid g-0">

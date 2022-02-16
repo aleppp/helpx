@@ -37,19 +37,19 @@ const ProtectedRoute = ({component:Component, ...rest}) => {
     if(!isAuthenticated) {
         return <Redirect to ="/" />
     } else if(url.indexOf("/creator") > -1){
-            if(userRole === "Content Contributor") {
+            if(userRole !== "End User" && userRole !== "Content Approver" && userRole !== "System Admin") {
                 return <Route {...rest} />
             } else {
                 return <Redirect push to="/homepage" />
             }
     } else if(url.indexOf("/approver") > -1){
-        if(userRole === "Content Approver") {
+        if(userRole !== "End User" && userRole !== "System Admin" && userRole !== "Content Contributor") {
             return <Route {...rest} />
         } else {
             return <Redirect push to="/homepage" />
         }
     } else if(url.indexOf("/admin") > -1){
-        if(userRole === "System Admin") {
+        if(userRole !== "End User" && userRole !== "Content Approver" && userRole !== "Content Contributor") {
             return <Route {...rest} />
         } else {
             return <Redirect push to="/homepage" />

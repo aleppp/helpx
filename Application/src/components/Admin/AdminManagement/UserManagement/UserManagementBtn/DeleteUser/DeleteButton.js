@@ -1,6 +1,5 @@
-import React, { useState, Component } from "react";
+import React, { useState } from "react";
 import DeleteUser from ".";
-import UserManagement from "../..";
 
 const DeleteButton = ({ userDelete, i }) => {
   const [showDelete, setShowDelete] = useState(false);
@@ -14,18 +13,21 @@ const DeleteButton = ({ userDelete, i }) => {
         <img
           className="checkbox"
           src={process.env.PUBLIC_URL + "/images/checkboxBlank.png"}
+          alt="1st checkbox"
         />
       </td>
       <td>
         <img
           className="checkbox"
           src={process.env.PUBLIC_URL + "/images/checkboxBlank.png"}
+          alt="2nd checkbox"
         />
       </td>
       <td>
         <img
           className="checkbox"
           src={process.env.PUBLIC_URL + "/images/checkboxBlank.png"}
+          alt="3rd checkbox"
         />
       </td>
       <td className="action-column">

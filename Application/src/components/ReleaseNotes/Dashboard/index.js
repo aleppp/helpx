@@ -1,12 +1,11 @@
 import React, { useState, useReducer, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Pagination } from "@mui/material";
 import "./index.css";
 import axios from "axios";
 
 export default function Dashboard() {
   const [tableData, setTableData] = useState([]);
-  const history = useHistory();
 
   //for sorting
   const [currentCreated, setCurrentCreated] = useState("createdUnsort");
@@ -495,6 +494,8 @@ export default function Dashboard() {
       tableData.map((item) => {
         if (item.status === "In Draft") add += 1;
       });
+    } else {
+      return console.log("count is not either draft or approval");
     }
     return add;
   }
@@ -529,15 +530,18 @@ export default function Dashboard() {
                         state.isCreatedDesc ? (
                           <img
                             src={process.env.PUBLIC_URL + "/icons/descend.svg"}
+                            alt="descending"
                           />
                         ) : (
                           <img
                             src={process.env.PUBLIC_URL + "/icons/ascend.svg"}
+                            alt="ascending"
                           />
                         )
                       ) : (
                         <img
                           src={process.env.PUBLIC_URL + "/icons/unsort.svg"}
+                          alt="click to sort"
                         />
                       )}
                     </button>
@@ -548,6 +552,7 @@ export default function Dashboard() {
                         Title
                         <img
                             src={process.env.PUBLIC_URL + "/icons/descend.svg"}
+                            alt="dropdown for title"
                         />
                       </button>
                     </div>
@@ -585,7 +590,7 @@ export default function Dashboard() {
                         Feedback Button
                         <img
                             src={process.env.PUBLIC_URL + "/icons/descend.svg"}
-                            alt="descending"
+                            alt="dropdown for feedback button"
                         />
                       </p>
                       <div className="dropdown-menu float-end">
@@ -611,7 +616,13 @@ export default function Dashboard() {
                     </div>
                   </th>
                   <th>
-                    <p className="mt-3">Feedback<img src={process.env.PUBLIC_URL + "/icons/descend.svg"} /></p>
+                    <p className="mt-3">
+                      Feedback
+                      <img 
+                      src={process.env.PUBLIC_URL + "/icons/descend.svg"}
+                      alt="dropdown for schedule" 
+                      />
+                    </p>
                   </th>
                   <th>
                     <div class="dropdown">
@@ -623,7 +634,7 @@ export default function Dashboard() {
                         Visibility
                         <img
                             src={process.env.PUBLIC_URL + "/icons/descend.svg"}
-                            alt="descending"
+                            alt="dropdown for visibilty"
                         />
                       </p>
                       <div className="dropdown-menu">
@@ -658,7 +669,7 @@ export default function Dashboard() {
                         Status
                         <img
                             src={process.env.PUBLIC_URL + "/icons/descend.svg"}
-                            alt="descending"
+                            alt="dropdown for Status"
                         />
                       </p>
                       <div className="dropdown-menu">

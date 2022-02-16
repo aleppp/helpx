@@ -1,4 +1,4 @@
-import React, { useState, Component } from "react";
+import React, { useState } from "react";
 import { AddNewRole } from "./AddNewRole";
 import { DeleteRole } from "./DeleteRole";
 import { EditRole } from "./EditRole";

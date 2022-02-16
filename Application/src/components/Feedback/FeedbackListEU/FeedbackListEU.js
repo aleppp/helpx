@@ -84,6 +84,10 @@ export default function FeedbackEUList() {
             alt="Very Satisfied"
           />
         );
+      default:
+        return(
+          console.log("out of bound, no icon will be displayed")
+        );
     }
   }
 

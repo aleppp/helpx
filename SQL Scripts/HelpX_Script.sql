@@ -2288,8 +2288,11 @@ call `sp_applicationsattributes_ins`(2,4,'Monothematic',now(),now());
 call `sp_applicationsattributes_ins`(2,5,'Vertical',now(),now());
 call `sp_userslogin_ins`('alifmuqri.hazmi@petronas.com');
 
-call sp_users_ins('Amirul', 'Luqman Shamshi', 'mirul@petronas.com',now(),now(),3,null,2,1);
-
 CALL sp_auditlogs_ins(1,1,1,1,1,now());
 
 CALL sp_feedback_ins(1, 2, 'Feedback thirteen', 4, now(), now());
+CALL sp_applications_ins('HelpX','/helpx',now(),now());
+
+call sp_users_ins('Mohammad', 'Abdullah', 'mohd.abdullah@petronas.com.my',now(),now(),2,2,2,2);
+call sp_users_ins('Nur', 'Hamid', 'nur.hamid@petronas.com.my',now(),now(),3,4,3,1);
+call sp_users_ins('Zulaikha', 'Ahmad', 'zulaikha.ahmad@petronas.com.my',now(),now(),4,3,4,2);

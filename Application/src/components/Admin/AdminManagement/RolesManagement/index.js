@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Button from "../../../Buttons/Buttons";
 import "./style.css";
 
 import RolesButton from "./RolesManagementBtn/RolesButton";
@@ -44,6 +43,7 @@ function RolesManagement() {
                   <img
                     className="dropdown"
                     src={process.env.PUBLIC_URL + "/images/expandMore.png"}
+                    alt="dropdown"
                   />
                 </th>
                 <th>
@@ -51,6 +51,7 @@ function RolesManagement() {
                   <img
                     className="dropdown"
                     src={process.env.PUBLIC_URL + "/images/expandMore.png"}
+                    alt="dropdown"
                   />
                 </th>
                 <th> Description </th>

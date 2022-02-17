@@ -33,26 +33,37 @@ const handleClick = () => {
     })
     .catch((err) => console.log(err));
 };*/
+const content = {
+  appid: 1,
 
+  userid: 1,
+
+  contenttypeid: 1,
+
+  statusid: 1,
+
+  isfeebackallowed: 1,
+
+  isvisible: 1,
+
+  datecreated: "2021-07-28 12:12:12",
+
+  datemodified: "2021-07-30 12:12:12",
+
+  datepublished: "2021-08-28 12:12:12",
+};
 const NormalEditor = () => {
   const clicked = () => {};
   const [body, setBody] = useState("");
   const [title, setTitle] = useState("");
-  let content = {
-    appid: [],
-    userid: [],
-    contenttypeid: [],
-    statusid: [],
-    isfeebackallowed: [],
-    isvisible: [],
-    datecreated: [],
-    datemodified: [],
-    datepublished: [],
-  };
+  const [sessionData, setSessionData] = useState(content);
+
   const setContent = () => {
+    setSessionData({ ...sessionData, body: body });
+    setSessionData({ ...sessionData, title: title });
     axios
       .post("http://localhost:8080/content/ins", {
-        content,
+        sessionData,
       })
       .then((res) => {
         if (res.status === 200) setTitle(res.data[0]);
@@ -92,7 +103,7 @@ const NormalEditor = () => {
             <input
               type="text"
               value={title}
-              onSubmit={setContent}
+              onSubmit={() => setContent()}
               onChange={(e) => setTitle(e.target.value)}
             />
           </form>

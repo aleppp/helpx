@@ -2,11 +2,10 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./ContentBody.css";
 import parse from "html-react-parser";
+
 // use State to get the seelected topic's id
 //
-
-function ContentBody() {
-  /*const data = [
+/*const data = [
     {
       title: "What is New",
       body: "Release notes are documents that people receive when they buy and/or download software products. Nowadays, they're often distributed virtually. In the modern world, release notes are more important than ever. This is because buying software products isn't as straightforward a process as it used to be. Buying software products is now an ongoing process as you can count on the fact that you'll be sent product updates, bug fixes, new features, and more after your initial purchase.",
@@ -29,6 +28,7 @@ function ContentBody() {
     },
   ];*/
 
+const ContentBody = () => {
   const [ContentBodyReleaseNotes, setContentBodyReleaseNotes] = useState([]);
   useEffect(() => {
     axios
@@ -38,24 +38,26 @@ function ContentBody() {
       })
       .catch((err) => console.log(err));
   }, []);
-  return (
-    <>
-      <div className="center">
-        <div className="scroll">
-          <div className="title-content">
-            {ContentBodyReleaseNotes.map((ContentBodyReleaseNotes) => (
-              <h2>
-                <b>{ContentBodyReleaseNotes.Title}</b>
-              </h2>
-            ))}
-          </div>
-          {ContentBodyReleaseNotes.map((ContentBodyReleaseNotes) => (
-            <ul>
-              <li className="contents-h2">
-                <a href="#content1">{ContentBodyReleaseNotes.Body}</a>
-              </li>
 
-              {/*<li className="contents-h2">
+  return (
+    <div class="container-fluid g-0">
+      <div className="ContentBody">
+        <div className="box">
+          <div className="scroll">
+            <div className="notes">
+              {ContentBodyReleaseNotes.map((ContentBodyReleaseNotes) => (
+                <h2>
+                  <b>{ContentBodyReleaseNotes.Title}</b>
+                </h2>
+              ))}
+            </div>
+            {ContentBodyReleaseNotes.map((ContentBodyReleaseNotes) => (
+              <ul>
+                <li className="notes">
+                  <a href="#content1">{ContentBodyReleaseNotes.Title}</a>
+                </li>
+
+                {/*<li className="contents-h2">
                 <a href="#content2">Purpose of the Change</a>
               </li>
               <li className="contents-h2">
@@ -67,17 +69,17 @@ function ContentBody() {
               <li className="contents-h2">
                 <a href="#content5">History</a>
   </li>*/}
-            </ul>
-          ))}
+              </ul>
+            ))}
 
-          {ContentBodyReleaseNotes.map((ContentBodyReleaseNotes) => (
-            <div className="note">
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: ContentBodyReleaseNotes.Body,
-                }}
-              />
-              {/*<h2>Purpose of the Change</h2>
+            {ContentBodyReleaseNotes.map((ContentBodyReleaseNotes) => (
+              <div className="notes">
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: ContentBodyReleaseNotes.Body,
+                  }}
+                />
+                {/*<h2>Purpose of the Change</h2>
             <p id="content2">{data[1].body}</p>
             <h2>How are you Affected</h2>
             <p id="content3">{data[2].body}</p>
@@ -85,16 +87,17 @@ function ContentBody() {
             <p id="content4">{data[3].body}</p>
             <h2>History</h2>
             <p id="content5">{data[4].body}</p>*/}
-            </div>
-          ))}
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
-      <div className="page-header">
-        <h1>
-          <strong></strong>
-        </h1>
-      </div>
-      {/*{contentBodyRN.map((post, index) => (
+
+        <div className="page-header">
+          <h1>
+            <strong></strong>
+          </h1>
+        </div>
+        {/*{contentBodyRN.map((post, index) => (
         <>
           <ul>
             <li key={index}>
@@ -109,9 +112,10 @@ function ContentBody() {
           </div>
         </>
       ))}*/}
-    </>
+      </div>
+    </div>
   );
-}
+};
 {
   /*const posts = [
   {

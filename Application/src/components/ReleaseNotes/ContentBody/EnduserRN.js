@@ -1,10 +1,10 @@
 import UserNavigation from "../Navigation/UserNavigation.js";
 import UserHeader from "../Navigation/UserHeader.js";
 import ContentBody from "../../ReleaseNotes/ContentBody/ContentBody.js";
-import VerticalSearch from "../../Search/RNSearchVertical/VerticalSearch.js";
-import Index from "../../Feedback/FeedbackRN/index.js";
+import RNSearchVertical from "../../Search/RNSearchVertical";
+import FeedbackRN from "../../Feedback/FeedbackRN";
 
-
+//-sm col-md-6 col-lg-12
 function EndUserRN() {
   return (
     <div class="container-fluid g-0">
@@ -22,11 +22,11 @@ function EndUserRN() {
                 <ContentBody />
               </div>
               <div class="col ">
-                <VerticalSearch />
+                <RNSearchVertical />
               </div>
               <div class="row">
                 <div class="col-sm-2 col-md-9 col-lg-12">
-                  <Index />
+                  <FeedbackRN />
                 </div>
               </div>
             </div>

@@ -80,63 +80,67 @@ export default function AuditLogDatatable() {
       </div>
 
       <table className="table-audit">
-        <tr>
-          <th>
-            Date & Time
-            <MultiSelect
-              options={options}
-              value={AuditLogDatatable}
-              onChange={setAuditLogDatatable}
-              labelledBy="Date & Time"
-            />
-          </th>
-          <th>
-            User
-            <MultiSelect
-              options={options}
-              value={AuditLogDatatable}
-              onChange={setAuditLogDatatable}
-              labelledBy="User"
-            />
-          </th>
-          <th>
-            Category
-            <MultiSelect
-              options={options}
-              value={AuditLogDatatable}
-              onChange={setAuditLogDatatable}
-              labelledBy="Category"
-            />
-          </th>
-          <th>
-            Changes
-            <MultiSelect
-              options={options}
-              value={AuditLogDatatable}
-              onChange={setAuditLogDatatable}
-              labelledBy="Changes"
-            />
-          </th>
-          <th>
-            Changed Object
-            <MultiSelect
-              options={options}
-              value={AuditLogDatatable}
-              onChange={setAuditLogDatatable}
-              labelledBy="Changed Object"
-            />
-          </th>
-          <th> Action </th>
-        </tr>
-        {AuditLogDatatable.map((auditlog, i) => (
-          <tr key={i}>
-            <td> {auditlog.DateTime} </td>
-            <td> {auditlog.User} </td>
-            <td> {auditlog.Category} </td>
-            <td> {auditlog.Changes} </td>
-            <td> {auditlog.ChangedObject} </td>
+        <thead>
+          <tr>
+            <th>
+              Date & Time
+              <MultiSelect
+                options={options}
+                value={AuditLogDatatable}
+                onChange={setAuditLogDatatable}
+                labelledBy="Date & Time"
+              />
+            </th>
+            <th>
+              User
+              <MultiSelect
+                options={options}
+                value={AuditLogDatatable}
+                onChange={setAuditLogDatatable}
+                labelledBy="User"
+              />
+            </th>
+            <th>
+              Category
+              <MultiSelect
+                options={options}
+                value={AuditLogDatatable}
+                onChange={setAuditLogDatatable}
+                labelledBy="Category"
+              />
+            </th>
+            <th>
+              Changes
+              <MultiSelect
+                options={options}
+                value={AuditLogDatatable}
+                onChange={setAuditLogDatatable}
+                labelledBy="Changes"
+              />
+            </th>
+            <th>
+              Changed Object
+              <MultiSelect
+                options={options}
+                value={AuditLogDatatable}
+                onChange={setAuditLogDatatable}
+                labelledBy="Changed Object"
+              />
+            </th>
+            <th> Action </th>
           </tr>
-        ))}
+        </thead>
+        <tbody>
+          {AuditLogDatatable.map((auditlog, i) => (
+            <tr key={i}>
+              <td> {auditlog.DateTime} </td>
+              <td> {auditlog.User} </td>
+              <td> {auditlog.Category} </td>
+              <td> {auditlog.Changes} </td>
+              <td> {auditlog.ChangedObject} </td>
+            </tr>
+          ))}
+        </tbody> 
       </table>
       <Pagination
         className="pageBar"

@@ -581,7 +581,7 @@ export default function Dashboard() {
                     </button>
                   </th>
                   <th colSpan={2}>
-                    <div class="dropdown">
+                    <div className="dropdown">
                       <p
                         data-bs-toggle="dropdown"
                         data-bs-auto-close="outside"
@@ -595,18 +595,17 @@ export default function Dashboard() {
                       </p>
                       <div className="dropdown-menu float-end">
                         {fbuttonLabel.map((cb, index) => (
-                          <label className="form-check mb-2">
+                          <label className="form-check mb-2" key={`cb-${index}`}>
                             <input
                               className="form-check-input"
-                              key={`cb-${index}`}
                               type="checkbox"
                               id={cb.id}
                               checked={checkedFeedbackState[index]}
-                              onClick={() =>
+                              onChange={() =>
                                 handleCheckbox(cb.value, "fbutton", index)
                               }
                             />
-                            <label className="form-check-label" for={cb.id}>
+                            <label className="form-check-label" htmlFor={cb.id}>
                               {cb.name}
                             </label>
                             <br />
@@ -625,7 +624,7 @@ export default function Dashboard() {
                     </p>
                   </th>
                   <th>
-                    <div class="dropdown">
+                    <div className="dropdown">
                       <p
                         data-bs-toggle="dropdown"
                         data-bs-auto-close="outside"
@@ -639,18 +638,17 @@ export default function Dashboard() {
                       </p>
                       <div className="dropdown-menu">
                         {visibleLabel.map((cb, index) => (
-                          <label className="form-check mb-2">
+                          <label className="form-check mb-2" key={`cb-${index}`}>
                             <input
                               className="form-check-input"
-                              key={`cb-${index}`}
                               id={cb.id}
                               type="checkbox"
                               checked={checkedVisibleState[index]}
-                              onClick={() =>
+                              onChange={() =>
                                 handleCheckbox(cb.value, "visible", index)
                               }
                             />
-                            <label className="form-check-label" for={cb.id}>
+                            <label className="form-check-label" htmlFor={cb.id}>
                               {cb.name}
                             </label>
                             <br />
@@ -660,7 +658,7 @@ export default function Dashboard() {
                     </div>
                   </th>
                   <th>
-                    <div class="dropdown">
+                    <div className="dropdown">
                       <p
                         data-bs-toggle="dropdown"
                         data-bs-auto-close="outside"
@@ -674,18 +672,18 @@ export default function Dashboard() {
                       </p>
                       <div className="dropdown-menu">
                         {statusLabel.map((cb, index) => (
-                          <label for={cb.id} className="form-check mb-2">
+                          <label htmlFor={cb.id} className="form-check mb-2" key={`cb-${index}`}>
                             <input
                               className="form-check-input"
-                              key={`cb-${index}`}
+                              
                               id={cb.id}
                               type="checkbox"
                               checked={checkedStatusState[index]}
-                              onClick={() =>
+                              onChange={() =>
                                 handleCheckbox(cb.value, "stats", index)
                               }
                             />
-                            <label className="form-check-label" for={cb.id}>
+                            <label className="form-check-label" htmlFor={cb.id}>
                               {cb.name}
                             </label>
                             <br />

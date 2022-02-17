@@ -32,7 +32,7 @@ function EndUserHomePage() {
           </div>
 
           <div className="row row-1">
-            <div className="col-md-6 col-6 col-s-6" padding-0>
+            <div className="col-md-6 col-6 col-s-6" padding-0="true">
               <input
                 type="text"
                 id="myInput"
@@ -44,7 +44,7 @@ function EndUserHomePage() {
               <p>Sort by: Date</p>
             </div>
             <div className="vl"></div>{" "}
-            <div className="col-md-6 col-6 col-s-6" padding-0>
+            <div className="col-md-6 col-6 col-s-6" padding-0="true">
               <p className="desc">
                 Release notes provide information on the features and
                 improvements in each release. This page includes release notes

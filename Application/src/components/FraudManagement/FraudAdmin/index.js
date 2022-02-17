@@ -142,40 +142,41 @@ export default function FraudConfig() {
         </div>
       </div>
       <table id="fraud">
-        <tr>
-          <th id="id" onClick={(e) => dispatchSort(e)}>
-            ID
-            {state.isCreatedSorted ? (
-              state.isCreatedDesc ? (
-                <img src={process.env.PUBLIC_URL + "/icons/descendblack.svg"}
-                alt="descending" />
+        <thead>
+          <tr>
+            <th id="id" onClick={(e) => dispatchSort(e)}>
+              ID
+              {state.isCreatedSorted ? (
+                state.isCreatedDesc ? (
+                  <img src={process.env.PUBLIC_URL + "/icons/descendblack.svg"}
+                  alt="descending" />
+                ) : (
+                  <img src={process.env.PUBLIC_URL + "/icons/ascendblack.svg"}
+                  alt="ascending" />
+                )
               ) : (
-                <img src={process.env.PUBLIC_URL + "/icons/ascendblack.svg"}
-                alt="ascending" />
-              )
-            ) : (
-              <img src={process.env.PUBLIC_URL + "/icons/unsortblack.svg"}
-              alt="click to sort" />
-            )}
-          </th>
-          <th id="term" onClick={(e) => dispatchSort(e)}>
-            Term
-            {state.isCreatedSorted ? (
-              state.isCreatedDesc ? (
-                <img src={process.env.PUBLIC_URL + "/icons/descendblack.svg"}
-                alt="descending" />
+                <img src={process.env.PUBLIC_URL + "/icons/unsortblack.svg"}
+                alt="click to sort" />
+              )}
+            </th>
+            <th id="term" onClick={(e) => dispatchSort(e)}>
+              Term
+              {state.isCreatedSorted ? (
+                state.isCreatedDesc ? (
+                  <img src={process.env.PUBLIC_URL + "/icons/descendblack.svg"}
+                  alt="descending" />
+                ) : (
+                  <img src={process.env.PUBLIC_URL + "/icons/ascendblack.svg"}
+                  alt="ascending" />
+                )
               ) : (
-                <img src={process.env.PUBLIC_URL + "/icons/ascendblack.svg"}
-                alt="ascending" />
-              )
-            ) : (
-              <img src={process.env.PUBLIC_URL + "/icons/unsortblack.svg"}
-              alt="click to sort" />
-            )}
-          </th>
-          <th>Action</th>
-        </tr>
-
+                <img src={process.env.PUBLIC_URL + "/icons/unsortblack.svg"}
+                alt="click to sort" />
+              )}
+            </th>
+            <th>Action</th>
+          </tr>
+        </thead>
         <tbody>
           {_DATA.currentData().map((fraud, index) => (
             <tr key={index}>

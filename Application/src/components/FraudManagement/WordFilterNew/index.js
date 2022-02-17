@@ -15,10 +15,10 @@ export const AddNewTerm = (props) => {
   ];
 
   return (
-    <div class="container-addterm">
+    <div className="container-addterm">
       <p className="title-addterm">Add New Term</p>
 
-      <label className="float-left" for="name">
+      <label className="float-left" htmlFor="name">
         <strong>Term</strong>
       </label>
       <textarea

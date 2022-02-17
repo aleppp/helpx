@@ -3,7 +3,7 @@ import axios from "axios";
 import "./style.css";
 import { Pagination } from "@mui/material";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { EditFraud } from "./FraudBtn";
+import FraudButton from "./FraudBtn/FraudButton";
 
 export default function FraudConfig() {
   const [fraudManagement, setFraudManagement] = useState([]);
@@ -142,67 +142,44 @@ export default function FraudConfig() {
         </div>
       </div>
       <table id="fraud">
-        <tr>
-          <th id="id" onClick={(e) => dispatchSort(e)}>
-            ID
-            {state.isCreatedSorted ? (
-              state.isCreatedDesc ? (
-                <img src={process.env.PUBLIC_URL + "/icons/descendblack.svg"}
-                alt="descending" />
+        <thead>
+          <tr>
+            <th id="id" onClick={(e) => dispatchSort(e)}>
+              ID
+              {state.isCreatedSorted ? (
+                state.isCreatedDesc ? (
+                  <img src={process.env.PUBLIC_URL + "/icons/descendblack.svg"}
+                  alt="descending" />
+                ) : (
+                  <img src={process.env.PUBLIC_URL + "/icons/ascendblack.svg"}
+                  alt="ascending" />
+                )
               ) : (
-                <img src={process.env.PUBLIC_URL + "/icons/ascendblack.svg"}
-                alt="ascending" />
-              )
-            ) : (
-              <img src={process.env.PUBLIC_URL + "/icons/unsortblack.svg"}
-              alt="click to sort" />
-            )}
-          </th>
-          <th id="term" onClick={(e) => dispatchSort(e)}>
-            Term
-            {state.isCreatedSorted ? (
-              state.isCreatedDesc ? (
-                <img src={process.env.PUBLIC_URL + "/icons/descendblack.svg"}
-                alt="descending" />
+                <img src={process.env.PUBLIC_URL + "/icons/unsortblack.svg"}
+                alt="click to sort" />
+              )}
+            </th>
+            <th id="term" onClick={(e) => dispatchSort(e)}>
+              Term
+              {state.isCreatedSorted ? (
+                state.isCreatedDesc ? (
+                  <img src={process.env.PUBLIC_URL + "/icons/descendblack.svg"}
+                  alt="descending" />
+                ) : (
+                  <img src={process.env.PUBLIC_URL + "/icons/ascendblack.svg"}
+                  alt="ascending" />
+                )
               ) : (
-                <img src={process.env.PUBLIC_URL + "/icons/ascendblack.svg"}
-                alt="ascending" />
-              )
-            ) : (
-              <img src={process.env.PUBLIC_URL + "/icons/unsortblack.svg"}
-              alt="click to sort" />
-            )}
-          </th>
-          <th>Action</th>
-        </tr>
-
+                <img src={process.env.PUBLIC_URL + "/icons/unsortblack.svg"}
+                alt="click to sort" />
+              )}
+            </th>
+            <th>Action</th>
+          </tr>
+        </thead>
         <tbody>
-          {_DATA.currentData().map((fraud, index) => (
-            <tr key={index}>
-              <td>{fraud.id}</td>
-              <td>{fraud.term}</td>
-              <td>
-                <button
-                  className="button-green"
-                  onClick={() => setShowEdit(!showEdit)}
-                >
-                  Edit
-                </button>
-                <button
-                  className="button-red"
-                  onClick={() => setShowDel(!showDel)}
-                >
-                  Delete
-                </button>
-              </td>
-              <td>
-                {showEdit ? (
-                  <div>
-                    <EditFraud />
-                  </div>
-                ) : null}
-              </td>
-            </tr>
+          {_DATA.currentData().map((fraudButton, i) => (
+            <FraudButton fraudButton={fraudButton} i={i} />
           ))}
         </tbody>
       </table>

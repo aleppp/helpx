@@ -1,12 +1,12 @@
 import React from "react";
-import "./style.css";
-import Button from "../../Buttons/Buttons";
+import "../style.css";
+import Button from "../../../../Buttons/Buttons";
 
-export const AddNewTerm = (props) => {
+export default function DeleteFraud() {
   const button = [
     {
       type: "button-blue-small",
-      text: "Create",
+      text: "Confirm",
     },
     {
       type: "button-red",
@@ -15,18 +15,18 @@ export const AddNewTerm = (props) => {
   ];
 
   return (
-    <div className="container-addterm">
-      <p className="title-addterm">Add New Term</p>
-
-      <label className="float-left" htmlFor="name">
-        <strong>Term</strong>
+    <div class="container-deletefraud">
+      <p className="title-deletefraud">Delete Term</p>
+      <br />
+      <label className="float-left" for="term">
+        Term
       </label>
       <textarea
         className="textarea-name-del"
-        name="term-name"
-        placeholder="Term Name..."
+        name="term"
+        placeholder="Enter a term..."
       ></textarea>
-
+      <br />
       <br />
       <div className="float-center">
         <Button button={button[0]}></Button>
@@ -34,4 +34,4 @@ export const AddNewTerm = (props) => {
       </div>
     </div>
   );
-};
+}

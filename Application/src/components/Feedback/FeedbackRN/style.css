@@ -1,14 +1,17 @@
-.center {
-  text-align: left;
-  margin-left: auto;
-  margin-right: auto;
-  width: 80%;
+.feedback-center {
+  position: absolute;
+  bottom: 0;
+  top: 90%;
+  left: 0;
+  margin: 150px;
 }
-
+.feedback-center h2 {
+  font-size: 20px;
+}
 button {
   float: left;
   margin-right: 30px;
-  margin-top: 40px;
+  margin-bottom: 40px;
   width: 100px;
   height: 38px;
   background-color: #20419a;
@@ -27,4 +30,3 @@ input[type="text"] {
   text-align: justify;
   font-family: Mulish;
 }
-

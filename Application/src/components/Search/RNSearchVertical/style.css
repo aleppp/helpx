@@ -2,8 +2,10 @@
 
 .content {
   position: absolute;
-  top: 14%;
-  left: 72%;
+  top: 10%;
+  right: 200px;
+  margin: 0px;
+  width: 20%;
 }
 
 .BodySearchVertical {
@@ -13,53 +15,50 @@
   width: 270px;
   border: 5px;
 }
-
 .VerticalLine {
   float: right;
+  right: 550px;
   border-left: 1px solid black;
   height: 100%;
   position: fixed;
   top: 0px;
 }
-
 .releaseNoteList {
   font-family: "Mulish", sans-serif;
   float: right;
   font-size: 15px;
   text-decoration: none;
   position: absolute;
-  margin-top: 40px;
+  margin-top: 20px;
 }
-
+form.SearchBar {
+  margin: auto;
+  max-width: 300px;
+}
 /* Style the search field */
 form.SearchBar input[type="text"] {
-  font-family: "Mulish", sans-serif;
-  padding: 7px;
-  font-size: 15px;
-  border: none;
-  float: right;
-  width: auto;
-  background: #eeeeee;
-  height: 20px;
-  margin-left: 0px;
-  position: absolute;
-  box-shadow: 1px 1px 2px rgb(134, 133, 133);
+  padding: 10px;
+  font-size: 17px;
+  border: 0.5px solid grey;
+  float: left;
+  width: 80%;
+
+  background: #f1f1f1;
 }
 
 /* Style the submit button */
 form.SearchBar button {
   float: left;
-  width: auto;
-  padding: 7px;
+  width: 20%;
+
+  padding: 9px;
   background: #eeeeee;
   color: white;
   font-size: 17px;
   border: none;
   border-left: none; /* Prevent double borders */
   cursor: pointer;
-  margin-left: 17px;
-  max-width: 30px;
-  height: 34px;
+  margin-top: 10px;
   box-shadow: 1px 1px 2px rgb(134, 133, 133);
 }
 
@@ -114,12 +113,4 @@ a {
 
 .dataResult .dataItem {
   width: 100%;
-  height: 30px;
-  display: flex;
-  align-items: center;
-  color: black;
-}
-
-.dataItem p {
-  margin-left: 10px;
 }

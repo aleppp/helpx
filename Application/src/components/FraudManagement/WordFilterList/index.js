@@ -6,6 +6,7 @@ import { Pagination } from "@mui/material";
 
 export default function WordFilterList() {
   const [FraudCCList, setFraudCCList] = useState([]);
+  const [showOverlay, toggleOverlay] = useState(false);
 
   useEffect(() => {
     axios
@@ -17,7 +18,7 @@ export default function WordFilterList() {
   }, []);
 
   let [page, setPage] = useState(1);
-  const PER_PAGE = 4;
+  const PER_PAGE = 7;
 
   const count = Math.ceil(FraudCCList.length / PER_PAGE);
   const FraudDataCC = usePagination(FraudCCList, PER_PAGE);
@@ -55,7 +56,7 @@ export default function WordFilterList() {
               <table>
                 <thead>
                   <tr className="tdashboard">
-                    <td colSpan={2}>
+                    <td colSpan={3}>
                       <div className="title">Word Filter List</div>
                       <div className="desc">
                         <p>
@@ -67,58 +68,58 @@ export default function WordFilterList() {
                           the highlighted words are removed.
                         </p>
                         <button
-                          data-bs-toggle="modal"
-                          href="#myModal2"
+                          onClick={() => toggleOverlay(true)}
                           className="btn btn-primary button-blue"
                         >
                           Add New
                         </button>
-                        <div
-                          className="modal"
-                          id="myModal2"
-                          data-bs-backdrop="static"
-                        >
-                          <div className="modal-dialog">
-                            <div className="modal-content">
-                              <div className="modal-header">
-                                <h4 className="modal-title">Add New Term</h4>
-                                <button
-                                  type="button"
-                                  className="btn-close"
-                                  data-bs-dismiss="modal"
-                                  aria-hidden="true"
-                                ></button>
-                              </div>
-                              <div className="container"></div>
-                              <div className="modal-body">
-                                <div className="term">
-                                  <AddNewTerm />
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>{" "}
                       </div>
                     </td>
                   </tr>
                   <tr>
                     <th>ID</th>
                     <th>Term</th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody>
                   {FraudDataCC.currentData().map((fraudcc, i) => {
                     return (
-                      <tr key={i}>
+                      <tr>
                         <td>{fraudcc.id}</td>
-                        <td>{fraudcc.term}</td>
+                        <td>{fraudcc.term}</td>{" "}
+                        {showOverlay ? (
+                          <div
+                            className="overlayBG"
+                            onClick={() => toggleOverlay(false)}
+                          >
+                            <div
+                              style={{
+                                position: "relative",
+                                width: "100%",
+                                height: "100%",
+                              }}
+                            >
+                              <div
+                                className="overlayContent"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                }}
+                              >
+                                <AddNewTerm />{" "}
+                              </div>
+                            </div>
+                          </div>
+                        ) : (
+                          <td></td>
+                        )}
                       </tr>
                     );
                   })}
                 </tbody>
                 <tfoot>
                   <tr>
-                    <td colSpan={2}>
+                    <td colSpan={3}>
                       <p className="foot"></p>
                     </td>
                   </tr>

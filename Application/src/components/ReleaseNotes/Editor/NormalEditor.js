@@ -68,7 +68,7 @@ const NormalEditor = () => {
             <CKEditor
               editor={ClassicEditor}
               data={body}
-              onSubmit={setContent}
+              onSubmit={() => setContent()}
               onChange={(event, editor) => {
                 const data = editor.getData();
                 setBody(data);

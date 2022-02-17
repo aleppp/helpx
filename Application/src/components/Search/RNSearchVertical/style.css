@@ -37,6 +37,7 @@ form.SearchBar {
 }
 /* Style the search field */
 form.SearchBar input[type="text"] {
+  font-family: "Mulish", sans-serif;
   padding: 10px;
   font-size: 17px;
   border: 0.5px solid grey;

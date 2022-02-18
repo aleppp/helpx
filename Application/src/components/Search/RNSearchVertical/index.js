@@ -40,9 +40,9 @@ function RNSearchVertical() {
       setFilteredData(newFilter);
     }
   };
-
+  //<div className="BodySearchVertical">
   return (
-    <div className="content" id="content">
+    <div className="content">
       <div className="BodySearchVertical">
         <div className="VerticalLine"></div>
         <div className="Search">

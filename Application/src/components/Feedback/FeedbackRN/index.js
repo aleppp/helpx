@@ -13,7 +13,7 @@ import Emoji5 from "./Emoji5.png";
 
 function FeedbackRN() {
   return (
-    <div className="center" data-testid="divTest">
+    <div className="feedback-center" data-testid="divTest">
       <h2>
         If you find this documentation helpful, please give us a feedback.{" "}
       </h2>

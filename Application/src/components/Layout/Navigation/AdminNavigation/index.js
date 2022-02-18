@@ -69,12 +69,12 @@ const NavigationBar = () => {
                     aria-labelledby="navbarDropdown"
                   >
                     <li>
-                      <Link to="admin/users-management" className="dropdown-item">
+                      <Link to="/admin/users-management" className="dropdown-item">
                         User
                       </Link>
                     </li>
                     <li>
-                      <Link to="/admin/roles-management " className="dropdown-item">
+                      <Link to="/admin/roles-management" className="dropdown-item">
                         Roles
                       </Link>
                     </li>
@@ -122,7 +122,7 @@ const NavigationBar = () => {
                     aria-labelledby="navbarDropdown"
                   >
                     <li>
-                      <Link to="admin/application-List" className="dropdown-item">
+                      <Link to="/admin/application-List" className="dropdown-item">
                         Application
                       </Link>
                     </li>

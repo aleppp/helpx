@@ -21,6 +21,7 @@ import NormalEditor from "./components/ReleaseNotes/Editor/NormalEditor";
 import FraudConfig from "./components/FraudManagement/FraudAdmin";
 import ContentBody from "./components/ReleaseNotes/ContentBody/ContentBody";
 import FAQCCPage from "./components/FAQ/FAQCCPage";
+import UrlHandler from "./services/UrlHandler";
 
 class App extends Component {
   constructor(props) {
@@ -74,7 +75,7 @@ class App extends Component {
           />
           <ProtectedRoute
             exact
-            path="/admin/user-management"
+            path="/admin/users-management"
             render={(props) => <UserManagement auth={this.auth} {...props} />}
           />
           <ProtectedRoute
@@ -118,6 +119,10 @@ class App extends Component {
             exact
             path="/content/faq"
             render={(props) => <FAQCCPage auth={this.auth} {...props} />}
+          />
+          <Route
+            path="*"
+            render={(props) => <UrlHandler auth={this.auth} {...props} />}
           />
         </Switch>
       </div>

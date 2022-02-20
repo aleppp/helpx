@@ -148,33 +148,46 @@ export default function FraudConfig() {
               ID
               {state.isCreatedSorted ? (
                 state.isCreatedDesc ? (
-                  <img src={process.env.PUBLIC_URL + "/icons/descendblack.svg"}
-                  alt="descending" />
+                  <img
+                    src={process.env.PUBLIC_URL + "/icons/descendblack.svg"}
+                    alt="descending"
+                  />
                 ) : (
-                  <img src={process.env.PUBLIC_URL + "/icons/ascendblack.svg"}
-                  alt="ascending" />
+                  <img
+                    src={process.env.PUBLIC_URL + "/icons/ascendblack.svg"}
+                    alt="ascending"
+                  />
                 )
               ) : (
-                <img src={process.env.PUBLIC_URL + "/icons/unsortblack.svg"}
-                alt="click to sort" />
+                <img
+                  src={process.env.PUBLIC_URL + "/icons/unsortblack.svg"}
+                  alt="click to sort"
+                />
               )}
             </th>
             <th id="term" onClick={(e) => dispatchSort(e)}>
               Term
               {state.isCreatedSorted ? (
                 state.isCreatedDesc ? (
-                  <img src={process.env.PUBLIC_URL + "/icons/descendblack.svg"}
-                  alt="descending" />
+                  <img
+                    src={process.env.PUBLIC_URL + "/icons/descendblack.svg"}
+                    alt="descending"
+                  />
                 ) : (
-                  <img src={process.env.PUBLIC_URL + "/icons/ascendblack.svg"}
-                  alt="ascending" />
+                  <img
+                    src={process.env.PUBLIC_URL + "/icons/ascendblack.svg"}
+                    alt="ascending"
+                  />
                 )
               ) : (
-                <img src={process.env.PUBLIC_URL + "/icons/unsortblack.svg"}
-                alt="click to sort" />
+                <img
+                  src={process.env.PUBLIC_URL + "/icons/unsortblack.svg"}
+                  alt="click to sort"
+                />
               )}
             </th>
             <th>Action</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useReducer } from "react";
 import axios from "axios";
 import "./style.css";
 import { AddNewTerm } from "../WordFilterNew";
@@ -6,8 +6,91 @@ import Button from "../../Buttons/Buttons";
 import { Pagination } from "@mui/material";
 
 export default function WordFilterList() {
+  //store data and render in dom
   const [FraudCCList, setFraudCCList] = useState([]);
+  const checkfilter = FraudCCList;
 
+  //using sorting
+  const checksort = FraudCCList;
+
+  //for sorting
+  const [currentFraud, setCurrentFraud] = useState("fraudUnsort");
+  const [fraudClicked, setFraudClicked] = useState("");
+
+  const initialState = {
+    isFraudSorted: false,
+    isFraudDesc: false,
+  };
+
+  const [state, dispatch] = useReducer(sortReducer, initialState);
+
+  function sortReducer(state, action) {
+    if (fraudClicked === "fraudid" || fraudClicked === "fraudterm") {
+      switch (action.type) {
+        case "fraudUnsort":
+          return {
+            isFraudSorted: true,
+            isFraudDesc: false,
+          };
+        case "fraudAsc":
+          return {
+            isFraudSorted: true,
+            isFraudDesc: true,
+          };
+        case "fraudDesc":
+          return {
+            isFraudSorted: true,
+            isFraudDesc: false,
+          };
+        default:
+          return {
+            isFraudSorted: state.isFraudSorted,
+            isFraudDesc: state.isFraudDesc,
+          };
+      }
+    }
+  }
+
+  function dispatchSort(e) {
+    let sortData = [...FraudCCList];
+    setFraudClicked(e.currentTarget.id);
+    let targetDate = e.currentTarget.id;
+
+    if (targetDate === "fraudid") {
+      if (currentFraud === "fraudUnsort") {
+        setCurrentFraud("fraudAsc");
+        dispatch({ type: "fraudUnsort" });
+        sortData = sortData.sort((a, b) => a.id - b.id);
+      } else if (currentFraud === "fraudAsc") {
+        setCurrentFraud("fraudDesc");
+        dispatch({ type: "fraudAsc" });
+        sortData = sortData.sort((a, b) => b.id - a.id);
+      } else {
+        setCurrentFraud("fraudAsc");
+        dispatch({ type: "fraudUnsort" });
+        sortData = sortData.sort((a, b) => a.id - b.id);
+      }
+    }
+    if (targetDate === "fraudterm") {
+      if (currentFraud === "fraudUnsort") {
+        setCurrentFraud("fraudAsc");
+        dispatch({ type: "fraudUnsort" });
+        sortData = sortData.sort((a, b) => a.term.localeCompare(b.term));
+      } else if (currentFraud === "fraudAsc") {
+        setCurrentFraud("fraudDesc");
+        dispatch({ type: "fraudAsc" });
+        sortData = sortData.sort((a, b) => b.term.localeCompare(a.term));
+      } else {
+        setCurrentFraud("fraudAsc");
+        dispatch({ type: "fraudUnsort" });
+        sortData = sortData.sort((a, b) => a.term.localeCompare(b.term));
+      }
+    }
+
+    setFraudCCList(sortData);
+  }
+
+  //fetch data from api
   useEffect(() => {
     axios
       .get("http://localhost:8080/fraudmanagement/sel")
@@ -17,11 +100,12 @@ export default function WordFilterList() {
       .catch((err) => console.log(err));
   }, []);
 
+  //mui pagination
   let [page, setPage] = useState(1);
   const PER_PAGE = 4;
 
-  const count = Math.ceil(FraudCCList.length / PER_PAGE);
-  const FraudDataCC = usePagination(FraudCCList, PER_PAGE);
+  const count = Math.ceil(checkfilter.length / PER_PAGE);
+  const FraudDataCC = usePagination(checkfilter, PER_PAGE);
 
   const handleChange = (event, page) => {
     setPage(page);
@@ -104,8 +188,42 @@ export default function WordFilterList() {
                     </td>
                   </tr>
                   <tr>
-                    <th>ID</th>
-                    <th>Term</th>
+                    <th id="fraudid" onClick={(e) => dispatchSort(e)}>
+                      ID
+                      {state.isFraudSorted ? (
+                        state.isFraudDesc ? (
+                          <img
+                            src={process.env.PUBLIC_URL + "/icons/descend.svg"}
+                          />
+                        ) : (
+                          <img
+                            src={process.env.PUBLIC_URL + "/icons/ascend.svg"}
+                          />
+                        )
+                      ) : (
+                        <img
+                          src={process.env.PUBLIC_URL + "/icons/unsort.svg"}
+                        />
+                      )}
+                    </th>
+                    <th id="fraudterm" onClick={(e) => dispatchSort(e)}>
+                      Term
+                      {state.isFraudSorted ? (
+                        state.isFraudDesc ? (
+                          <img
+                            src={process.env.PUBLIC_URL + "/icons/descend.svg"}
+                          />
+                        ) : (
+                          <img
+                            src={process.env.PUBLIC_URL + "/icons/ascend.svg"}
+                          />
+                        )
+                      ) : (
+                        <img
+                          src={process.env.PUBLIC_URL + "/icons/unsort.svg"}
+                        />
+                      )}
+                    </th>
                   </tr>
                 </thead>
                 <tbody>

@@ -381,46 +381,26 @@ export default function FAQListCC() {
                         <button className="button-red">Delete</button>
                       </td>
                       <td>
-                        {showEditFAQCC ? (
-                          <div>
-                            <FAQEditCC
-                              fql={fql}
-                              changeState={(showEditFAQCC) =>
-                                setShowEditFAQCC(showEditFAQCC)
-                              }
-                            />
-                          </div>
-                        ) : null}{" "}
-                        {showAddFAQCC ? (
-                          <div>
-                            <FAQNewCC
-                              fql={fql}
-                              changeState={(showAddFAQCC) =>
-                                setShowAddFAQCC(showAddFAQCC)
-                              }
-                            />
-                          </div>
-                        ) : null}{" "}
+                        {showEditFAQCC && (
+                          <FAQEditCC
+                            fql={fql}
+                            changeState={(showEditFAQCC) =>
+                              setShowEditFAQCC(showEditFAQCC)
+                            }
+                          />
+                        )}
+                        {showAddFAQCC && (
+                          <FAQNewCC
+                            fql={fql}
+                            changeState={(showAddFAQCC) =>
+                              setShowAddFAQCC(showAddFAQCC)
+                            }
+                          />
+                        )}
                       </td>
                     </tr>
                   ))}
                 </tbody>
-                {/* <tbody>
-                  <tr>
-                    <td className="float-right">
-                      {showAddFAQCC ? (
-                        <FAQNewCC
-                          changeState={(showAddFAQCC) =>
-                            setShowAddFAQCC(showAddFAQCC)
-                          }
-                        />
-                      ) : null}
-                    </td>
-                  </tr>
-                  {FAQList.map((fql, i) => (
-                    <EditFAQButton fql={fql} i={i} />
-                  ))}
-                </tbody> */}
                 <tfoot>
                   <tr>
                     <td colSpan={8}>

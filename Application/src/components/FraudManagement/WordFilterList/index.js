@@ -88,30 +88,20 @@ export default function WordFilterList() {
                       <tr>
                         <td>{fraudcc.id}</td>
                         <td>{fraudcc.term}</td>{" "}
-                        {showOverlay ? (
+                        {showOverlay && (
                           <div
                             className="overlayBG"
                             onClick={() => toggleOverlay(false)}
                           >
                             <div
-                              style={{
-                                position: "relative",
-                                width: "100%",
-                                height: "100%",
+                              className="overlayContent"
+                              onClick={(e) => {
+                                e.stopPropagation();
                               }}
                             >
-                              <div
-                                className="overlayContent"
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                }}
-                              >
-                                <AddNewTerm />{" "}
-                              </div>
+                              <AddNewTerm />{" "}
                             </div>
                           </div>
-                        ) : (
-                          <td></td>
                         )}
                       </tr>
                     );

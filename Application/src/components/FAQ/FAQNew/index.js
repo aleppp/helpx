@@ -1,28 +1,20 @@
-import "../FAQEdit/style.css";
-import Button from "../../Buttons/Buttons";
+import React from "react";
+import "./style.css";
 
-export default function FAQNewCC() {
-  const button = [
-    {
-      type: "button-red",
-      text: "Cancel",
-    },
-    {
-      type: "button-green",
-      text: "Create",
-    },
-  ];
-
+export default function FAQNewCC({ ...props }) {
   return (
-    <div class="container-editfaq-cc">
-      <h2 className="title-editfaq">Add New FAQ</h2>
-      <div>
-        <label class="switch">
-          <input type="checkbox"></input>
-          <span class="slider round"></span>
-        </label>
-        <p id="visible">Visibility</p>
-      </div>
+    <div class="addfaqcc" id="FAQAddCC">
+      <button
+        onClick={() => props.changeState(false)}
+        type="button"
+        class="btn-close float-right"
+        aria-label="Close"
+      ></button>
+      <label class="switch">
+        <input type="checkbox"></input>
+        <span class="slider round"></span>
+      </label>
+      <p id="visible">Visibility</p>
       <br />
       <br />
       <br />
@@ -62,7 +54,10 @@ export default function FAQNewCC() {
         ></textarea>
       </div>
       <div className="button-float float-right">
-        <Button button={button[1]}></Button>
+        <button className="button-green">Create</button>
+        <button className="button-red" onClick={() => props.changeState(false)}>
+          Cancel
+        </button>
       </div>
     </div>
   );

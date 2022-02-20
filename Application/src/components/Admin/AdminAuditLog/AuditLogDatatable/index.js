@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useReducer } from "react";
 import axios from "axios";
 import "./style.css";
 import { Pagination } from "@mui/material";
-import { MultiSelect } from "react-multi-select-component";
 import { CSVLink } from "react-csv";
 
 export default function AuditLogDatatable() {
@@ -48,19 +47,75 @@ export default function AuditLogDatatable() {
     return { jump, currentData, currentPage, maxPage };
   }
 
-  //label for dropdown
-  const options = [
-    { label: "User", value: "user" },
-    { label: "Application", value: "application" },
-    { label: "Role", value: "role" },
-    { label: "FAQ", value: "faq" },
-  ];
-
   //data for export function
   const csvData = [
     ["DateTime", "User", "Category", "Changes", "ChangedObject"],
     ["2021-11-16 12:15:03", "Alif", "UserID", "Remove", "Jenny"],
   ];
+
+  //using sorting
+  const checksort = AuditLogDatatable;
+  //for sorting
+  const [currentCreated, setCurrentCreated] = useState("createdUnsort");
+  const [dateClicked, setDateClicked] = useState("");
+  const initialState = {
+    isCreatedSorted: false,
+    isCreatedDesc: false,
+  };
+  const [state, dispatch] = useReducer(sortReducer, initialState);
+  function sortReducer(state, action) {
+    if (dateClicked === "datetime") {
+      switch (action.type) {
+        case "createdUnsort":
+          return {
+            isCreatedSorted: true,
+            isCreatedDesc: false,
+          };
+        case "createdAsc":
+          return {
+            isCreatedSorted: true,
+            isCreatedDesc: true,
+          };
+        case "createdDesc":
+          return {
+            isCreatedSorted: true,
+            isCreatedDesc: false,
+          };
+        default:
+          return {
+            isCreatedSorted: state.isCreatedSorted,
+            isCreatedDesc: state.isCreatedDesc,
+          };
+      }
+    }
+  }
+  function dispatchSort(e) {
+    let sortData = [...AuditLogDatatable];
+    setDateClicked(e.currentTarget.id);
+    let targetDate = e.currentTarget.id;
+    if (targetDate === "datetime") {
+      if (currentCreated === "createdUnsort") {
+        setCurrentCreated("createdAsc");
+        dispatch({ type: "createdUnsort" });
+        sortData = sortData.sort((a, b) =>
+          a.DateCreated.localeCompare(b.DateCreated)
+        );
+      } else if (currentCreated === "createdAsc") {
+        setCurrentCreated("createdDesc");
+        dispatch({ type: "createdAsc" });
+        sortData = sortData.sort((a, b) =>
+          b.DateCreated.localeCompare(a.DateCreated)
+        );
+      } else {
+        setCurrentCreated("createdAsc");
+        dispatch({ type: "createdUnsort" });
+        sortData = sortData.sort((a, b) =>
+          a.DateCreated.localeCompare(b.DateCreated)
+        );
+      }
+    }
+    setAuditLogDatatable(sortData);
+  }
 
   return (
     <div>
@@ -70,7 +125,7 @@ export default function AuditLogDatatable() {
         <CSVLink data={csvData} filename={"AuditLog.csv"}>
           <span className="export">
             <img
-              src="images/export.png"
+              src="/images/export.png"
               alt="Download"
               className="export"
             ></img>
@@ -82,52 +137,23 @@ export default function AuditLogDatatable() {
       <table className="table-audit">
         <thead>
           <tr>
-            <th>
+            <th id="datetime" onClick={(e) => dispatchSort(e)}>
               Date & Time
-              <MultiSelect
-                options={options}
-                value={AuditLogDatatable}
-                onChange={setAuditLogDatatable}
-                labelledBy="Date & Time"
-              />
+              {state.isCreatedSorted ? (
+                state.isCreatedDesc ? (
+                  <img src={process.env.PUBLIC_URL + "/icons/descend.svg"} />
+                ) : (
+                  <img src={process.env.PUBLIC_URL + "/icons/ascend.svg"} />
+                )
+              ) : (
+                <img src={process.env.PUBLIC_URL + "/icons/unsort.svg"} />
+              )}
             </th>
-            <th>
-              User
-              <MultiSelect
-                options={options}
-                value={AuditLogDatatable}
-                onChange={setAuditLogDatatable}
-                labelledBy="User"
-              />
-            </th>
-            <th>
-              Category
-              <MultiSelect
-                options={options}
-                value={AuditLogDatatable}
-                onChange={setAuditLogDatatable}
-                labelledBy="Category"
-              />
-            </th>
-            <th>
-              Changes
-              <MultiSelect
-                options={options}
-                value={AuditLogDatatable}
-                onChange={setAuditLogDatatable}
-                labelledBy="Changes"
-              />
-            </th>
-            <th>
-              Changed Object
-              <MultiSelect
-                options={options}
-                value={AuditLogDatatable}
-                onChange={setAuditLogDatatable}
-                labelledBy="Changed Object"
-              />
-            </th>
-            <th> Action </th>
+            <th>User</th>
+            <th>Category</th>
+            <th>Changes</th>
+            <th>Changed Object</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -140,7 +166,7 @@ export default function AuditLogDatatable() {
               <td> {auditlog.ChangedObject} </td>
             </tr>
           ))}
-        </tbody> 
+        </tbody>
       </table>
       <Pagination
         className="pageBar"

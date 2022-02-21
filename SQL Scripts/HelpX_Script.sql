@@ -1397,6 +1397,27 @@ WHERE
       UserID = 1
       AND ActionID = 2
   );
+  
+  INSERT INTO
+  auditlogs (UserID, ActionID, DateCreated)
+SELECT
+  '1',
+  '4',
+  "2021-11-16 12:15:03"
+FROM
+  DUAL
+WHERE
+  NOT EXISTS(
+    SELECT
+      UserID,
+      ActionID
+    FROM
+      auditlogs
+    WHERE
+      UserID = 1
+      AND ActionID = 4
+  );
+  
   -- AuditLogObjects
 INSERT INTO
   AuditLogObjects (AuditLogID, ObjectID, ObjectValue, DateCreated)
@@ -1404,7 +1425,7 @@ SELECT
   "1",
   "1",
   "Jenny",
-  "2021-11-16 11:01:11"
+  "2022-02-20 22:47:10"
 FROM
   DUAL
 WHERE
@@ -1416,6 +1437,26 @@ WHERE
     WHERE
       AuditLogID = 1
   );
+  
+  INSERT INTO
+  AuditLogObjects (AuditLogID, ObjectID, ObjectValue, DateCreated)
+SELECT
+  "2",
+  "2",
+  "Siti",
+  "2022-02-20 22:47:10"
+FROM
+  DUAL
+WHERE
+  NOT EXISTS (
+    SELECT
+      auditlogid
+    FROM
+      AuditLogObjects
+    WHERE
+      AuditLogID = 2
+  );
+  
   -- Notification
   INSERT INTO
   Notifications(
@@ -2289,6 +2330,7 @@ call `sp_applicationsattributes_ins`(2,5,'Vertical',now(),now());
 call `sp_userslogin_ins`('alifmuqri.hazmi@petronas.com');
 
 CALL sp_auditlogs_ins(1,1,1,1,1,now());
+CALL sp_auditlogs_ins(2,3,2,2,2,now());
 
 CALL sp_feedback_ins(1, 2, 'Feedback thirteen', 4, now(), now());
 CALL sp_applications_ins('HelpX','/helpx',now(),now());

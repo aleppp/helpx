@@ -140,9 +140,9 @@ export default function FraudConfig() {
           <button className="button-blue" onClick={() => setShowAdd(!showAdd)}>
             Add New
           </button>
-          {showAdd ? <AddNewFraud /> : null}
         </div>
       </div>
+      <div>{showAdd ? <AddNewFraud /> : null}</div>
       <table id="fraud">
         <thead>
           <tr>

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
-import "./App.css";
 import LandingPage from "./components/LandingPage/LandingPage";
 import Auth from "./services/Auth/Auth";
 import Callback from "./services/Auth/Callback";
@@ -36,7 +35,7 @@ class App extends Component {
       <div className="chunk">
         {isAuthorized && <Header />}
         {isAuthorized &&
-          (isAdmin === "true" ? <NavigationBar /> : <UserNavigation />)}
+        (isAdmin === "true" ? <NavigationBar /> : <UserNavigation />)}
         <Switch>
           <Route
             exact

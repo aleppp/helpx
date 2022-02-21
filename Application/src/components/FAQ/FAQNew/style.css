@@ -2,17 +2,23 @@
   box-sizing: border-box;
 }
 
-input[type="text"] {
+#FAQAddCC .addfaqcc {
+  background-color: #f2f2f2;
+  padding: 20px;
+  float: right;
+  text-align: left;
+}
+
+#FAQAddCC input[type="text"] {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
-  /* border-radius: 4px; */
   resize: vertical;
   font-size: 15px;
 }
 
-.select-section {
-  width: 150px;
+#FAQAddCC .select-section {
+  width: 180px;
   padding: 12px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -20,8 +26,8 @@ input[type="text"] {
   font-size: 15px;
 }
 
-.select-order {
-  width: 55px;
+#FAQAddCC .select-order {
+  width: 100px;
   padding: 12px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -29,71 +35,69 @@ input[type="text"] {
   font-size: 15px;
 }
 
-.textarea-answer {
+#FAQAddCC .textarea-answer {
   width: 500px;
   padding: 10px;
   border: 1px solid #ccc;
   resize: vertical;
   font-size: 15px;
   height: 150px;
+  float: right;
 }
 
-.textarea-question {
+#FAQAddCC .textarea-question {
   width: 500px;
   padding: 10px;
   border: 1px solid #ccc;
   resize: vertical;
   font-size: 15px;
   height: 100px;
+  float: right;
 }
 
-.textarea-question-del {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  resize: vertical;
-  font-size: 15px;
-  height: max-content;
+#FAQAddCC .question-label {
+  text-align: left;
+  float: right;
 }
 
-.textarea-answer-del {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  resize: vertical;
-  font-size: 15px;
-  height: max-content;
+#FAQAddCC .answer-label {
+  text-align: left;
+  float: right;
 }
 
-.textarea-order {
-  width: 50px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  resize: vertical;
-  font-size: 15px;
-  height: 50px;
-}
-
-.textarea-section {
-  width: 130px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  resize: vertical;
-  font-size: 15px;
-  height: 50px;
-}
-
-label {
+#FAQAddCC label {
   padding: 12px 12px 12px 0;
   display: inline-block;
 }
 
-.container-addnew-admin {
-  /* border-radius: 5px; */
-  background-color: #f2f2f2;
-  padding: 20px;
-  width: 30%;
+#FAQAddCC .display-row {
+  display: flex;
+  flex-direction: row;
+  width: max-content;
+  column-count: 2;
+  column-gap: 8px;
   float: right;
+}
+
+#FAQAddCC .display-column {
+  display: flex;
+  flex-direction: column;
+  width: max-content;
+  column-count: 2;
+  column-gap: 8px;
+}
+
+#FAQAddCC .float-left {
+  float: left;
+}
+
+#FAQAddCC .float-right {
+  float: right;
+  padding-right: 10px;
+}
+
+#FAQAddCC .float-center {
+  align-items: center;
 }
 
 /* Clear floats after the columns */
@@ -103,13 +107,13 @@ label {
   clear: both;
 }
 
-#visible {
+#FAQAddCC #visible {
   float: right;
   margin: 5px;
   font-weight: bold;
 }
 
-.switch {
+#FAQAddCC .switch {
   position: relative;
   width: 60px;
   height: 34px;
@@ -117,13 +121,13 @@ label {
   margin: 5px;
 }
 
-.switch input {
+#FAQAddCC .switch input {
   opacity: 0;
   width: 0;
   height: 0;
 }
 
-.slider {
+#FAQAddCC .slider {
   position: absolute;
   cursor: pointer;
   top: 0;
@@ -135,7 +139,7 @@ label {
   transition: 0.4s;
 }
 
-.slider:before {
+#FAQAddCC .slider:before {
   position: absolute;
   content: "";
   height: 26px;
@@ -147,55 +151,26 @@ label {
   transition: 0.4s;
 }
 
-input:checked + .slider:before {
+#FAQAddCC input:checked + .slider:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
   transform: translateX(26px);
 }
+
 /* To slide the toggle */
-input:checked + .slider {
+#FAQAddCC input:checked + .slider {
   background-color: #2196f3;
 }
 
-input:focus + .slider {
+#FAQAddCC input:focus + .slider {
   box-shadow: 0 0 1px #2196f3;
 }
 
 /* Rounded sliders */
-.slider.round {
+#FAQAddCC .slider.round {
   border-radius: 34px;
 }
 
-.slider.round:before {
+#FAQAddCC .slider.round:before {
   border-radius: 50%;
-}
-
-.display-row {
-  display: flex;
-  flex-direction: row;
-  width: max-content;
-  column-count: 2;
-  column-gap: 8px;
-}
-
-.display-column {
-  display: flex;
-  flex-direction: column;
-  width: max-content;
-  column-count: 2;
-  column-gap: 8px;
-}
-
-.float-left {
-  float: left;
-}
-
-.title-addfaq {
-  font-family: "Mulish";
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.float-center {
-  align-items: center;
 }

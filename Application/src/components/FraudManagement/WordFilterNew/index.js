@@ -2,28 +2,36 @@ import React from "react";
 import "./style.css";
 import Button from "../../Buttons/Buttons";
 
-export default function WordFilterNew() {
+export const AddNewTerm = (props) => {
   const button = [
     {
-      type: "button-red",
-      text: "Delete",
-    },
-    {
-      type: "button-green",
+      type: "button-blue-small",
       text: "Create",
     },
+    {
+      type: "button-red",
+      text: "Cancel",
+    },
   ];
+
   return (
-    <div class="container">
-      <p>FR01</p>
-      <label for="term">Term</label>
-      <textarea id="term" name="term" placeholder="Enter a term."></textarea>
+    <div className="container-addterm">
+      <p className="title-addterm">Add New Term</p>
+
+      <label className="float-left" htmlFor="name">
+        <strong>Term</strong>
+      </label>
+      <textarea
+        className="textarea-name-del"
+        name="term-name"
+        placeholder="Term Name..."
+      ></textarea>
+
       <br />
-      <div class="row">
+      <div className="float-center">
         <Button button={button[0]}></Button>
         <Button button={button[1]}></Button>
       </div>
     </div>
   );
-}
-
+};

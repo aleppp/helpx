@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./style.css";
-import Button from "../../Buttons/Buttons";
+import { AddNewTerm } from "../WordFilterNew";
 import { Pagination } from "@mui/material";
 
 export default function WordFilterList() {
   const [FraudCCList, setFraudCCList] = useState([]);
+  const [showOverlay, toggleOverlay] = useState(false);
 
   useEffect(() => {
     axios
@@ -17,7 +18,7 @@ export default function WordFilterList() {
   }, []);
 
   let [page, setPage] = useState(1);
-  const PER_PAGE = 4;
+  const PER_PAGE = 7;
 
   const count = Math.ceil(FraudCCList.length / PER_PAGE);
   const FraudDataCC = usePagination(FraudCCList, PER_PAGE);
@@ -46,13 +47,6 @@ export default function WordFilterList() {
     return { jump, currentData, currentPage, maxPage };
   }
 
-  const button = [
-    {
-      type: "button-blue",
-      text: "Add New",
-    },
-  ];
-
   return (
     <>
       <div className="container-fluid" id="WordFilterListCC">
@@ -62,7 +56,7 @@ export default function WordFilterList() {
               <table>
                 <thead>
                   <tr className="tdashboard">
-                    <td colSpan={2}>
+                    <td colSpan={3}>
                       <div className="title">Word Filter List</div>
                       <div className="desc">
                         <p>
@@ -73,28 +67,49 @@ export default function WordFilterList() {
                           new content and cannot be submit for approval until
                           the highlighted words are removed.
                         </p>
-                        <Button button={button[0]}></Button>
+                        <button
+                          onClick={() => toggleOverlay(true)}
+                          className="btn btn-primary button-blue"
+                        >
+                          Add New
+                        </button>
                       </div>
                     </td>
                   </tr>
                   <tr>
                     <th>ID</th>
                     <th>Term</th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody>
                   {FraudDataCC.currentData().map((fraudcc, i) => {
                     return (
-                      <tr key={i}>
+                      <tr>
                         <td>{fraudcc.id}</td>
-                        <td>{fraudcc.term}</td>
+                        <td>{fraudcc.term}</td>{" "}
+                        {showOverlay && (
+                          <div
+                            className="overlayBG"
+                            onClick={() => toggleOverlay(false)}
+                          >
+                            <div
+                              className="overlayContent"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                              }}
+                            >
+                              <AddNewTerm />{" "}
+                            </div>
+                          </div>
+                        )}
                       </tr>
                     );
                   })}
                 </tbody>
                 <tfoot>
                   <tr>
-                    <td colSpan={2}>
+                    <td colSpan={3}>
                       <p className="foot"></p>
                     </td>
                   </tr>

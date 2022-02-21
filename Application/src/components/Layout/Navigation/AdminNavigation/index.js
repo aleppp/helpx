@@ -1,9 +1,6 @@
 import React from "react";
 import "./style.css";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import FraudConfig from "../../../FraudManagement/FraudAdmin";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle.min";
+import { Link } from "react-router-dom";
 
 const NavigationBar = () => {
   return (
@@ -32,7 +29,7 @@ const NavigationBar = () => {
               >
                 {/* Dashboard navbar */}
                 <li className="nav-item m-3">
-                  <a href="/admin-home" class="nav-link align-middle px-0">
+                  <Link to="/admin/home" className="nav-link align-middle px-0">
                     <img
                       src={process.env.PUBLIC_URL + "/images/dashbd.png"}
                       className="dashboardLogo"
@@ -40,7 +37,7 @@ const NavigationBar = () => {
                     />
                     <span className="ms-1 d-none d-sm-inline">Dashboard</span>
                     <br />
-                  </a>
+                  </Link>
                 </li>
                 {/* bar for Users with sub menu of User and Roles */}
                 <li className="nav-item dropdown w-100">
@@ -72,20 +69,20 @@ const NavigationBar = () => {
                     aria-labelledby="navbarDropdown"
                   >
                     <li>
-                      <a href="#users-management" className="dropdown-item">
+                      <Link to="/admin/users-management" className="dropdown-item">
                         User
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a href="#roles-management " className="dropdown-item">
+                      <Link to="/admin/roles-management" className="dropdown-item">
                         Roles
-                      </a>
+                      </Link>
                     </li>
                   </ul>
                 </li>
                 {/* Menu for auditlog */}
                 <li className="nav-item">
-                  <a href="/audit-logs">
+                  <Link to="/admin/audit-logs">
                     <img
                       className="images-4"
                       alt="audit-img"
@@ -93,7 +90,7 @@ const NavigationBar = () => {
                     />
                     <span className="ms-1 d-none d-sm-inline">Audit Log</span>
                     <br />
-                  </a>
+                  </Link>
                 </li>
                 {/* section for configuration with submenues of application,settings,faq,fraud */}
                 <li className="nav-item dropdown w-100">
@@ -125,35 +122,35 @@ const NavigationBar = () => {
                     aria-labelledby="navbarDropdown"
                   >
                     <li>
-                      <a href="#Application-List" className="dropdown-item">
+                      <Link to="/admin/application-List" className="dropdown-item">
                         Application
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a
-                        href="#Application-Settings-List"
+                      <Link
+                        to="/admin/app-settings"
                         className="dropdown-item"
                       >
                         Setting
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a href="#admin-FAQ-List" className="dropdown-item">
+                      <Link to="#admin-FAQ-List" className="dropdown-item">
                         FAQ
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a
-                        href="#fraud-management-admin"
+                      <Link
+                        to="/admin/fraud-management"
                         className="dropdown-item"
                       >
                         Fraud
-                      </a>
+                      </Link>
                     </li>
                   </ul>
                 </li>
                 <li>
-                  <a href="/notification">
+                  <Link to="/admin/notification">
                     <img
                       className="images-6"
                       alt="noti-img"
@@ -163,18 +160,11 @@ const NavigationBar = () => {
                       Notification
                     </span>
                     <br />
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
           </div>
-          <Router>
-            <Switch>
-              <Route path="/configuration">
-                <FraudConfig />
-              </Route>
-            </Switch>
-          </Router>
         </div>
       </div>
     </div>

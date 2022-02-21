@@ -1,12 +1,11 @@
 import React, { useState, useReducer, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Pagination } from "@mui/material";
 import "./index.css";
 import axios from "axios";
 
 export default function Dashboard() {
   const [tableData, setTableData] = useState([]);
-  const history = useHistory();
 
   //for sorting
   const [currentCreated, setCurrentCreated] = useState("createdUnsort");
@@ -495,6 +494,8 @@ export default function Dashboard() {
       tableData.map((item) => {
         if (item.status === "In Draft") add += 1;
       });
+    } else {
+      return console.log("count is not either draft or approval");
     }
     return add;
   }
@@ -515,7 +516,7 @@ export default function Dashboard() {
                         <p className="d-inline ms-5">{counter("draft")}</p>
                         <sup className="text-warning">In Draft</sup>
                       </div>
-                      <button className="btn align-self-center me-3 add-content" onClick={() => history.push("/normal-editor")}>
+                      <button className="btn align-self-center me-3 add-content" onClick={() => <Link to="/editor/normal" />}>
                         New Release Note
                       </button>
                     </div>
@@ -529,15 +530,18 @@ export default function Dashboard() {
                         state.isCreatedDesc ? (
                           <img
                             src={process.env.PUBLIC_URL + "/icons/descend.svg"}
+                            alt="descending"
                           />
                         ) : (
                           <img
                             src={process.env.PUBLIC_URL + "/icons/ascend.svg"}
+                            alt="ascending"
                           />
                         )
                       ) : (
                         <img
                           src={process.env.PUBLIC_URL + "/icons/unsort.svg"}
+                          alt="click to sort"
                         />
                       )}
                     </button>
@@ -548,6 +552,7 @@ export default function Dashboard() {
                         Title
                         <img
                             src={process.env.PUBLIC_URL + "/icons/descend.svg"}
+                            alt="dropdown for title"
                         />
                       </button>
                     </div>
@@ -576,7 +581,7 @@ export default function Dashboard() {
                     </button>
                   </th>
                   <th colSpan={2}>
-                    <div class="dropdown">
+                    <div className="dropdown">
                       <p
                         data-bs-toggle="dropdown"
                         data-bs-auto-close="outside"
@@ -585,23 +590,22 @@ export default function Dashboard() {
                         Feedback Button
                         <img
                             src={process.env.PUBLIC_URL + "/icons/descend.svg"}
-                            alt="descending"
+                            alt="dropdown for feedback button"
                         />
                       </p>
                       <div className="dropdown-menu float-end">
                         {fbuttonLabel.map((cb, index) => (
-                          <label className="form-check mb-2">
+                          <label className="form-check mb-2" key={`cb-${index}`}>
                             <input
                               className="form-check-input"
-                              key={`cb-${index}`}
                               type="checkbox"
                               id={cb.id}
                               checked={checkedFeedbackState[index]}
-                              onClick={() =>
+                              onChange={() =>
                                 handleCheckbox(cb.value, "fbutton", index)
                               }
                             />
-                            <label className="form-check-label" for={cb.id}>
+                            <label className="form-check-label" htmlFor={cb.id}>
                               {cb.name}
                             </label>
                             <br />
@@ -611,10 +615,16 @@ export default function Dashboard() {
                     </div>
                   </th>
                   <th>
-                    <p className="mt-3">Feedback<img src={process.env.PUBLIC_URL + "/icons/descend.svg"} /></p>
+                    <p className="mt-3">
+                      Feedback
+                      <img 
+                      src={process.env.PUBLIC_URL + "/icons/descend.svg"}
+                      alt="dropdown for schedule" 
+                      />
+                    </p>
                   </th>
                   <th>
-                    <div class="dropdown">
+                    <div className="dropdown">
                       <p
                         data-bs-toggle="dropdown"
                         data-bs-auto-close="outside"
@@ -623,23 +633,22 @@ export default function Dashboard() {
                         Visibility
                         <img
                             src={process.env.PUBLIC_URL + "/icons/descend.svg"}
-                            alt="descending"
+                            alt="dropdown for visibilty"
                         />
                       </p>
                       <div className="dropdown-menu">
                         {visibleLabel.map((cb, index) => (
-                          <label className="form-check mb-2">
+                          <label className="form-check mb-2" key={`cb-${index}`}>
                             <input
                               className="form-check-input"
-                              key={`cb-${index}`}
                               id={cb.id}
                               type="checkbox"
                               checked={checkedVisibleState[index]}
-                              onClick={() =>
+                              onChange={() =>
                                 handleCheckbox(cb.value, "visible", index)
                               }
                             />
-                            <label className="form-check-label" for={cb.id}>
+                            <label className="form-check-label" htmlFor={cb.id}>
                               {cb.name}
                             </label>
                             <br />
@@ -649,7 +658,7 @@ export default function Dashboard() {
                     </div>
                   </th>
                   <th>
-                    <div class="dropdown">
+                    <div className="dropdown">
                       <p
                         data-bs-toggle="dropdown"
                         data-bs-auto-close="outside"
@@ -658,23 +667,23 @@ export default function Dashboard() {
                         Status
                         <img
                             src={process.env.PUBLIC_URL + "/icons/descend.svg"}
-                            alt="descending"
+                            alt="dropdown for Status"
                         />
                       </p>
                       <div className="dropdown-menu">
                         {statusLabel.map((cb, index) => (
-                          <label for={cb.id} className="form-check mb-2">
+                          <label htmlFor={cb.id} className="form-check mb-2" key={`cb-${index}`}>
                             <input
                               className="form-check-input"
-                              key={`cb-${index}`}
+                              
                               id={cb.id}
                               type="checkbox"
                               checked={checkedStatusState[index]}
-                              onClick={() =>
+                              onChange={() =>
                                 handleCheckbox(cb.value, "stats", index)
                               }
                             />
-                            <label className="form-check-label" for={cb.id}>
+                            <label className="form-check-label" htmlFor={cb.id}>
                               {cb.name}
                             </label>
                             <br />

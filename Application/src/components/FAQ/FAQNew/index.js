@@ -1,28 +1,20 @@
+import React from "react";
 import "./style.css";
-import Buttons from "../../Buttons/Buttons";
 
-export default function NewFAQ() {
-  const button = [
-    {
-      type: "button-red",
-      text: "Cancel",
-    },
-    {
-      type: "button-green",
-      text: "Create",
-    },
-  ];
-
+export default function FAQNewCC({ ...props }) {
   return (
-    <div class="container-addnew-admin">
-      <h2 className="title-addfaq">Add New FAQ</h2>
-      <div>
-        <label class="switch">
-          <input type="checkbox"></input>
-          <span class="slider round"></span>
-        </label>
-        <p id="visible">Visibility</p>
-      </div>
+    <div class="addfaqcc" id="FAQAddCC">
+      <button
+        onClick={() => props.changeState(false)}
+        type="button"
+        class="btn-close float-right"
+        aria-label="Close"
+      ></button>
+      <label class="switch">
+        <input type="checkbox"></input>
+        <span class="slider round"></span>
+      </label>
+      <p id="visible">Visibility</p>
       <br />
       <br />
       <br />
@@ -61,9 +53,11 @@ export default function NewFAQ() {
           placeholder="Enter an answer."
         ></textarea>
       </div>
-      <div className="button-float">
-        <Buttons button={button[0]}></Buttons>
-        <Buttons button={button[1]}></Buttons>
+      <div className="button-float float-right">
+        <button className="button-green">Create</button>
+        <button className="button-red" onClick={() => props.changeState(false)}>
+          Cancel
+        </button>
       </div>
     </div>
   );

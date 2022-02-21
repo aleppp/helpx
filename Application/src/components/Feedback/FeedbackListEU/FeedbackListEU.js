@@ -84,6 +84,10 @@ export default function FeedbackEUList() {
             alt="Very Satisfied"
           />
         );
+      default:
+        return(
+          console.log("out of bound, no icon will be displayed")
+        );
     }
   }
 
@@ -124,7 +128,7 @@ export default function FeedbackEUList() {
                         </td>
                         <td>{fb.DateCreated}</td>
                         <td>
-                          <div class="dropdown">
+                          <div className="dropdown">
                             {ratingSelector(fb.Rating)}
                             <SelectRating />
                           </div>

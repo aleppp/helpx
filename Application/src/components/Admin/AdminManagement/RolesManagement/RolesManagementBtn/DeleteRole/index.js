@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React from "react";
 import "./style.css";
 import Button from "../../../../../Buttons/Buttons";
 
 export const DeleteRole = (props) => {
-  const [role, setRole] = useState(props.role);
+  //const [role, setRole] = useState(props.role); //commented it 1st in case if it will be used
 
   const button = [
     {

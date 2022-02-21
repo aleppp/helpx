@@ -1,16 +1,15 @@
-.center {
+.feedback-center {
   position: absolute;
   bottom: 0;
-  top: 480px;
+  top: 90%;
   left: 0;
   margin: 150px;
 }
-.center h2 {
+.feedback-center h2 {
   font-size: 20px;
 }
-
-.button {
-  float: center;
+button {
+  float: left;
   margin-right: 30px;
   margin-bottom: 40px;
   width: 100px;
@@ -30,46 +29,4 @@ input[type="text"] {
   box-sizing: border-box;
   text-align: justify;
   font-family: Mulish;
-}
-
-.modal > .content {
-  width: 100%;
-  padding: 10px 5px;
-  display: flex;
-  flex-direction: column;
-}
-
-.modal > .actions {
-  float: right;
-  width: 100%;
-  padding: 10px 5px;
-  margin: auto;
-  text-align: center;
-}
-
-.modal > .close {
-  cursor: pointer;
-  position: absolute;
-  display: block;
-  padding: 2px 5px;
-  line-height: 20px;
-  right: -10px;
-  top: -10px;
-  font-size: 24px;
-  background: #ffffff;
-  border-radius: 18px;
-  border: 1px solid #cfcece;
-}
-
-.image {
-  display: flex;
-  flex-direction: row;
-}
-
-.modal {
-  font-size: 12px;
-  display: flex;
-  flex-direction: column;
-  width: 100;
-  position: relative;
 }

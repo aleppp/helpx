@@ -1,34 +1,36 @@
-@import url("https://fonts.googleapis.com/css2?family=Mulish:wght@200&display=swap");
-
-h1 {
-  font-size: 30px;
-  font-family: "Mulish", sans-serif;
+#user-mana {
+  display: flex;
+  width: 1550px;
+  overflow-x: hidden;
 }
 
-table {
-  font-family: Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-  border: 1px solid black;
-  background-color: white;
+.button-float-right {
+  float: right;
 }
 
-th {
+#user-mana th {
   border-bottom: 1px solid black;
   padding-top: 12px;
   padding-bottom: 12px;
-  text-align: left;
   background-color: white;
   color: black;
 }
 
-td,
-th {
-  padding: 8px;
-  text-align: left;
+#user-mana {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 1600px;
+  background-color: white;
+  margin: 5px;
 }
 
-tr:hover {
+#user-mana td,
+#user-mana th {
+  text-align: center;
+  width: auto;
+}
+
+#user-mana tr:hover {
   background-color: #ddd;
 }
 
@@ -36,15 +38,11 @@ tr:hover {
   width: max-content;
 }
 
-.user-management-component {
+.roles-management-component {
   background-color: white;
   margin: 15px 15px;
 }
 
 .dropdown {
   width: 25px;
-}
-
-.checkbox {
-  width: 30px;
 }

@@ -2,36 +2,97 @@
   box-sizing: border-box;
 }
 
-input[type="text"],
-select,
-textarea {
+#FAQEditCC .editfaqcc {
+  background-color: #f2f2f2;
+  padding: 20px;
+  float: right;
+  text-align: left;
+}
+
+#FAQEditCC input[type="text"] {
   width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  resize: vertical;
+  font-size: 15px;
+}
+
+#FAQEditCC .select-section {
+  width: 180px;
   padding: 12px;
   border: 1px solid #ccc;
   border-radius: 4px;
   resize: vertical;
-  font-size: 18px;
+  font-size: 15px;
 }
 
-#question {
+#FAQEditCC .select-order {
+  width: 100px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+  font-size: 15px;
+}
+
+#FAQEditCC .textarea-answer {
+  width: 500px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  resize: vertical;
+  font-size: 15px;
+  height: 150px;
+}
+
+#FAQEditCC .textarea-question {
+  width: 500px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  resize: vertical;
+  font-size: 15px;
   height: 100px;
 }
 
-#answer {
-  height: 200px;
+#FAQEditCC .question-label {
+  text-align: left;
 }
 
-label {
+#FAQEditCC .answer-label {
+  text-align: left;
+}
+
+#FAQEditCC label {
   padding: 12px 12px 12px 0;
   display: inline-block;
 }
 
-.container {
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  padding: 20px;
-  width: 30%;
+#FAQEditCC .display-row {
+  display: flex;
+  flex-direction: row;
+  width: max-content;
+  column-count: 2;
+  column-gap: 8px;
+}
+
+#FAQEditCC .display-column {
+  display: flex;
+  flex-direction: column;
+  width: max-content;
+  column-count: 2;
+  column-gap: 8px;
+}
+
+#FAQEditCC .float-left {
+  float: left;
+}
+
+#FAQEditCC .float-right {
   float: right;
+  padding-right: 10px;
+}
+
+#FAQEditCC .float-center {
+  align-items: center;
 }
 
 /* Clear floats after the columns */
@@ -41,13 +102,13 @@ label {
   clear: both;
 }
 
-#visible {
+#FAQEditCC #visible {
   float: right;
   margin: 5px;
   font-weight: bold;
 }
 
-.switch {
+#FAQEditCC .switch {
   position: relative;
   width: 60px;
   height: 34px;
@@ -55,13 +116,13 @@ label {
   margin: 5px;
 }
 
-.switch input {
+#FAQEditCC .switch input {
   opacity: 0;
   width: 0;
   height: 0;
 }
 
-.slider {
+#FAQEditCC .slider {
   position: absolute;
   cursor: pointer;
   top: 0;
@@ -73,7 +134,7 @@ label {
   transition: 0.4s;
 }
 
-.slider:before {
+#FAQEditCC .slider:before {
   position: absolute;
   content: "";
   height: 26px;
@@ -85,27 +146,26 @@ label {
   transition: 0.4s;
 }
 
-/* To slide the toggle */
-input:checked + .slider {
-  background-color: #2196f3;
-}
-
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196f3;
-}
-
-input:checked + .slider:before {
+#FAQEditCC input:checked + .slider:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
   transform: translateX(26px);
 }
 
+/* To slide the toggle */
+#FAQEditCC input:checked + .slider {
+  background-color: #2196f3;
+}
+
+#FAQEditCC input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
+}
+
 /* Rounded sliders */
-.slider.round {
+#FAQEditCC .slider.round {
   border-radius: 34px;
 }
 
-.slider.round:before {
+#FAQEditCC .slider.round:before {
   border-radius: 50%;
 }
-

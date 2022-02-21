@@ -2,7 +2,9 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Detail from "../Details";
 import "./NormalEditor.css";
+import { Link } from "react-router-dom";
 
 const content = {
   appid: 1,
@@ -46,9 +48,9 @@ const NormalEditor = () => {
     <>
       <div className="NormalEditor">
         <div className="background">
-          <a className="button-usetemplate" href="/template-editor">
+          <Link to="/editor/template" className="button-usetemplate">
             Use Template
-          </a>
+          </Link>
           <h3 className="h3">Title </h3>
           <form>
             <input
@@ -83,6 +85,9 @@ const NormalEditor = () => {
             />
           </div>
         </div>
+      </div>
+      <div>
+        <Detail />
       </div>
     </>
   );

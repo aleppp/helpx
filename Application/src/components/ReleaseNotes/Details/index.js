@@ -1,68 +1,74 @@
 import "./index.css";
 
-const label = { componentsProps: { input: { "aria-label": "Demo switch" } } };
-
-function Index() {
+function Detail() {
   return (
     <div className="superContain">
       <div className="container-details">
         <h2>Details</h2>
 
-        <button className="darkgreen" onclick="preview()">
+        <button className="darkgreen-detail" onclick="preview()">
           Preview
         </button>
 
-        <div className="word">
-          <input type="checkbox" />
-          <label htmlFor="Visibility"> Visibility </label>
-          <div className="tooltip">
-            <img
-              src={process.env.PUBLIC_URL + "/images/helpIcon.png"}
-              className="helpIcon"
-            />
-            <span className="tooltiptext">
-              <p>Visible On: End user can view the content</p>
-              <br />
-              Visible Off: Only Content creator, Content approval and Admin can
-              view this content
-            </span>
-          </div>
-        </div>
-
-        <div className="word">
-          <input type="checkbox" />
-          <label htmlFor="Show Feedback Button"> Show Feedback Button </label>
-          <div className="tooltip">
-            <img
-              src={process.env.PUBLIC_URL + "/images/helpIcon.png"}
-              className="helpIcon"
-            />
-            <span className="tooltiptext">
-              <p>Feedback On: End user can give feedback about the content</p>
-              <br />
-              Feedback Off: End user cannot give feedback about the content
-            </span>
-          </div>
-        </div>
-
-        <div className="word">
-          <img
-            src={process.env.PUBLIC_URL + "/images/calendar.png"}
-            className="calendar"
+        <div className="form-check form-switch d-flex detail-input">
+          <input 
+            className="form-check-input align-self-center mt-2" 
+            type="checkbox" 
+            id="visiblity"
           />
-          <label htmlFor="Schedule">Schedule: 30/2/2022 </label>
-          <a href="www.editlink.com">Edit</a>
+          <label 
+            className="form-check-label ms-3 mt-2"
+            htmlFor="visiblity"
+            data-bs-toggle="tooltip"
+            data-bs-placement="right"
+            title="On: End user can view the content&#013;Off: Only Content creator, Content approval and Admin can
+            view this content"
+          >
+            Visible to End-User
+            <img
+              src={process.env.PUBLIC_URL + "/images/helpIcon.png"}
+              className="helpIcon"
+            />
+          </label>
+        </div>
+      
+        <div className="form-check form-switch d-flex detail-input">
+          <input 
+            className="form-check-input align-self-center mt-2" 
+            type="checkbox" 
+            id="fbutton"
+          />
+          <label 
+            className="form-check-label align-self-center ms-3 mt-3" 
+            htmlFor="fbutton"
+            data-bs-toggle="tooltip"
+            data-bs-placement="right"
+            data-bs-html="true"
+            title="Feedback On: End user can give feedback about the content&#10;Feedback Off:
+              End user cannot give feedback about the content"
+          >
+            Feedback Button
+            <img
+              src={process.env.PUBLIC_URL + "/images/helpIcon.png"}
+              className="helpIcon"
+            />
+          </label>
+        </div>
+        
+        <div className="detail-input">
+          <label htmlFor="schedule">Schedule</label>
+          <input type="date" id="schedule" />
         </div>
       </div>
 
       <div className="buttonContainer">
-        <button className="blue" onclick="sendForApproval()">
+        <button className="blue-detail" onclick="sendForApproval()">
           Send for Approval
         </button>
-        <button className="red" onclick="delete()">
+        <button className="red-detail" onclick="delete()">
           Delete
         </button>
-        <button className="green" onclick="saveAsDraft()">
+        <button className="green-detail" onclick="saveAsDraft()">
           Save as Draft
         </button>
       </div>
@@ -70,4 +76,4 @@ function Index() {
   );
 }
 
-export default Index;
+export default Detail;

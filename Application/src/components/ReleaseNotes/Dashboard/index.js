@@ -1,11 +1,12 @@
 import React, { useState, useReducer, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { Pagination } from "@mui/material";
 import "./index.css";
 import axios from "axios";
 
 export default function Dashboard() {
   const [tableData, setTableData] = useState([]);
+  const history = useHistory();
 
   //for sorting
   const [currentCreated, setCurrentCreated] = useState("createdUnsort");
@@ -516,7 +517,7 @@ export default function Dashboard() {
                         <p className="d-inline ms-5">{counter("draft")}</p>
                         <sup className="text-warning">In Draft</sup>
                       </div>
-                      <button className="btn align-self-center me-3 add-content" onClick={() => <Link to="/editor/normal" />}>
+                      <button className="btn align-self-center me-3 add-content" onClick={() => history.push("/editor/normal")}>
                         New Release Note
                       </button>
                     </div>

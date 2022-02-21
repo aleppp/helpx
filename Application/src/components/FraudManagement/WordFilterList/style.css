@@ -52,6 +52,16 @@
 #WordFilterListCC tbody tr td {
   font-size: 18px;
   vertical-align: middle;
+  text-align: center;
+}
+
+#WordFilterListCC th {
+  background-color: #38b09d;
+  text-align: center;
+}
+
+#WordFilterListCC p {
+  padding-left: 10%;
 }
 
 #WordFilterListCC tfoot {
@@ -61,7 +71,6 @@
 
 #WordFilterListCC .pageBar {
   float: right;
-  margin-top: 2%;
 }
 
 @media only screen and (max-width: 700px) {

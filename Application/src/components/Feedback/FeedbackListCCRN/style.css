@@ -1,91 +1,95 @@
-@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@20;200;500;711;898&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Mulish:wght@20;200;500;711;898&display=swap");
 
-h2{
-  font-family: 'Mulish', sans-serif;
+h2 {
+  font-family: "Mulish", sans-serif;
   font-weight: 898;
 }
 
-.container{
-  background-color:#EDEDED;
-  font-family: 'Mulish', sans-serif;
-  right: 100px;
-  margin: 0;
+.container-fblistccrn {
+  background-color: #ededed;
+  font-family: "Mulish", sans-serif;
   margin-bottom: 50px;
-  padding:50px;
+  margin: 80px;
+  margin-left: 170px;
+  padding-top: 10px;
+  padding: 30px;
+  width: 50%;
+  height: 100%;
 }
 
 .dropdown {
-  float: right;
+  float: left;
   position: relative;
-
-
 }
-.feedbackList{
-  background-color: #FFFBFB;
-  font-family: 'Mulish', sans-serif;
-  right: 100px;
+.feedbackList {
+  background-color: #fffbfb;
+  font-family: "Mulish", sans-serif;
   margin: 30;
   margin-top: 40px;
-  margin-bottom: 30px;
-  padding: 30px;
+  padding: 10px;
 }
 
-.feedbackList tr, td{
+.feedbackList tr,
+td {
   text-align: justify;
   padding: 10px;
   width: auto;
 }
 
-.feedbackList th{
-  text-align:left;
+.feedbackList th {
+  text-align: left;
   float: left;
   padding-left: 10px;
   vertical-align: center;
 }
-.feedbackList img{
+.feedbackList img {
   height: 35px;
-  width:35px;
+  width: 35px;
   float: left;
   display: block;
 }
 
-.read{
+.read {
   float: right;
-  display: inline-block;
   text-align: center;
   font-size: 10px;
-  position: relative;
 }
 
-.read table{
-  float:right;
+.read table {
+  float: right;
 }
 
-.read td{
+.read td {
   text-align: left;
   width: auto;
   float: left;
   position: relative;
   padding: 10px;
 }
-.read img{
+.read img {
   float: right;
-  width:13px;
+  width: 13px;
   height: 15px;
 }
-.read button{
+.read button {
   background: none;
   border: none;
   color: blue;
 }
 
-.HeaderName{
+.HeaderName {
   vertical-align: center;
 }
 
+.fblistccrn-table {
+  margin: 0%;
+  border: none;
+  width: 100%;
+  height: 30%;
+}
 
-
-
-
-
-
+.fblistccrn-table2 {
+  margin: 0%;
+  margin-left: 30px;
+  border: none;
+}

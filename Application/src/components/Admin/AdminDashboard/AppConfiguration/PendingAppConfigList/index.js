@@ -25,9 +25,12 @@ function PendingAppConfigList() {
         <div>
           <table id="pending-app" className="mt-2 mb-2 text-center">
             <thead>
-              <th>Application</th>
-              <th>Description</th>
-              <th>Action</th>
+              <tr>
+                <th>Application</th>
+                <th>Description</th>
+                <th>Action</th>
+              </tr>
+              
             </thead>
             <tbody>
               {unconfiguredApps.slice(0, 3).map((unconfigured, i) => (

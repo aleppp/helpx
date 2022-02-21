@@ -1,19 +1,9 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import "./style.css";
-import Button from "../../../Buttons/Buttons";
+import React, { useState } from "react";
+import "../style.css";
+import Button from "../../../../Buttons/Buttons";
 
 export const EditFraud = (props) => {
   const [fraud, setFraud] = useState(props.fraud);
-  const editAdminFraud = (fraudData) => {
-    axios
-      .post("/fraudmanagement/upd", {
-        fraudData,
-      })
-      .catch((error) => {
-        console.log("Failed to edit the term", error);
-      });
-  };
 
   const button = [
     {

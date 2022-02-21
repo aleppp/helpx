@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React from "react";
 import "./style.css";
 import Button from "../../Buttons/Buttons";
 
@@ -16,10 +15,10 @@ export const AddNewTerm = (props) => {
   ];
 
   return (
-    <div class="container-addterm">
+    <div className="container-addterm">
       <p className="title-addterm">Add New Term</p>
 
-      <label className="float-left" for="name">
+      <label className="float-left" htmlFor="name">
         <strong>Term</strong>
       </label>
       <textarea

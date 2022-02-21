@@ -1,8 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Mulish:wght@500&display=swap%22");
 
-.superContain .container h2 {
+.superContain h2 {
   font-size: 20px;
-  text-align: left;
+  text-align: center;
 }
 
 .superContain {
@@ -34,41 +34,24 @@
   margin-bottom: 50px;
 }
 
-label {
-  display: flex;
-}
-
-.word {
-  padding-top: 3pt;
-  padding-bottom: 3pt;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-.word label {
-  margin-left: 5px;
-  margin-right: 5px;
-}
-
 /* ================ Button ==================== */
 
-button {
+.superContain button {
   border: none;
-  border-radius: 5px;
-  margin: 3px;
+  border-radius: 3px;
+  margin-top: 10px;
   text-align: center;
   transition-duration: 0.4s;
 }
 
-.darkgreen {
+.darkgreen-detail {
   background-color: #26afab;
   color: white;
   border: 1px solid #26afab;
   padding: 5px 10px;
-  width: 70px;
+  width: 100px;
 }
-.blue {
+.blue-detail {
   background-color: #20419a;
   color: white;
   border: 1px solid #20419a;
@@ -76,7 +59,7 @@ button {
   margin-top: 7px;
   margin-left: 7px;
 }
-.red {
+.red-detail {
   background-color: #fd4343;
   color: white;
   border: 1px solid #fd4343;
@@ -84,7 +67,7 @@ button {
   margin-top: 7px;
   margin-left: 7px;
 }
-.green {
+.green-detail {
   background-color: #26afab;
   color: white;
   border: 1px solid #26afab;
@@ -93,79 +76,46 @@ button {
   margin-left: 7px;
 }
 
-.darkgreen:hover {
+.darkgreen-detail:hover {
   background-color: #ffffff;
   color: #26afab;
   cursor: pointer;
   border: 1px solid;
 }
-.blue:hover {
+.blue-detail:hover {
   background-color: #ffffff;
   color: #20419a;
   cursor: pointer;
   border: 1px solid;
 }
-.red:hover {
+.red-detail:hover {
   background-color: #ffffff;
   color: #fd4343;
   cursor: pointer;
   border: 1px solid;
 }
-.green:hover {
+.green-detail:hover {
   background-color: #ffffff;
   color: #26afab;
   cursor: pointer;
   border: 1px solid;
 }
 
-.darkgreen:active {
+.darkgreen-detail:active {
   background-color: #26afab;
 }
-.blue:active {
+.blue-detail:active {
   background-color: #20419a;
 }
-.red:active {
+.red-detail:active {
   background-color: #fd4343;
 }
-.green:active {
+.green-detail:active {
   background-color: #26afab;
 }
 
 /* ================== Tooltip ================== */
-
-.tooltip {
-  position: relative;
-  display: inline-block;
-  color: #777777;
-  margin-top: 5px;
-}
-
 .helpIcon {
   width: 20px;
 }
 
-.tooltip .tooltiptext {
-  visibility: hidden;
-  width: 200px;
-  background-color: rgb(255, 255, 255);
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  color: rgb(17, 17, 17);
-  text-align: center;
-  border-radius: 6px;
-  padding: 10px 15px;
-
-  /* Position the tooltip */
-  position: absolute;
-  z-index: 1;
-}
-
-.tooltip:hover .tooltiptext {
-  visibility: visible;
-}
-
-.calendar {
-  position: relative;
-  display: inline-block;
-  width: 25px;
-  height: 25px;
-}

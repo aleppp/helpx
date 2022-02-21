@@ -4,6 +4,7 @@ import "./style.css";
 import { Pagination } from "@mui/material";
 import "bootstrap/dist/css/bootstrap.min.css";
 import FraudButton from "./FraudBtn/FraudButton";
+import AddNewFraud from "./FraudBtn/AddNewFraud/addnew";
 
 export default function FraudConfig() {
   const [fraudManagement, setFraudManagement] = useState([]);
@@ -139,6 +140,7 @@ export default function FraudConfig() {
           <button className="button-blue" onClick={() => setShowAdd(!showAdd)}>
             Add New
           </button>
+          {showAdd ? <AddNewFraud /> : null}
         </div>
       </div>
       <table id="fraud">

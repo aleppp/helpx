@@ -1,7 +1,6 @@
 import React, { useState, Component } from "react";
 import DeleteFraud from "./DeleteFraud/DeleteFraud";
 import { EditFraud } from "./EditFraud/EditFraud";
-import { AddNewFraud } from "./AddNewFraud/addnew";
 
 const FraudButton = ({ fraudButton, i }) => {
   const [showDelete, setShowDelete] = useState(false);
@@ -24,7 +23,6 @@ const FraudButton = ({ fraudButton, i }) => {
         </button>
       </td>
       <td>
-        {showAdd ? <AddNewFraud /> : null}
         {showEdit ? <EditFraud /> : null}
         {showDelete ? <DeleteFraud /> : null}
       </td>

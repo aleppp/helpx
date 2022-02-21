@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import "../style.css";
 import Button from "../../../../Buttons/Buttons";
 
-export const AddNewFraud = () => {
+export default function AddNewFraud() {
   const button = [
     {
       type: "button-blue-small",
-      text: "Submit",
+      text: "Create",
     },
     {
       type: "button-red",
@@ -18,15 +18,14 @@ export const AddNewFraud = () => {
     <div class="container-addfraud">
       <p className="title-addfraud">Add New</p>
       <br />
-      <label className="float-left" for="name">
+      <label className="float-left" for="term">
         Term
       </label>
       <textarea
         className="textarea-name-del"
         name="term"
-        placeholder="Enter a term."
+        placeholder="Enter a term..."
       ></textarea>
-
       <br />
       <br />
       <div className="float-center">
@@ -35,4 +34,4 @@ export const AddNewFraud = () => {
       </div>
     </div>
   );
-};
+}

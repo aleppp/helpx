@@ -51,6 +51,7 @@ export default function AuditLogDatatable() {
   const csvData = [
     ["DateTime", "User", "Category", "Changes", "ChangedObject"],
     ["2021-11-16 12:15:03", "Alif", "UserID", "Remove", "Jenny"],
+    ["2021-11-16 12:15:03", "Alif", "FirstName", "Assign", "Siti"],
   ];
 
   //using sorting

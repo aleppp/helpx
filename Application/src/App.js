@@ -21,6 +21,7 @@ import NormalEditor from "./components/ReleaseNotes/Editor/NormalEditor";
 import FraudConfig from "./components/FraudManagement/FraudAdmin";
 import ContentBody from "./components/ReleaseNotes/ContentBody/ContentBody";
 import FAQCCPage from "./components/FAQ/FAQCCPage";
+import UserHeader from "./components/ReleaseNotes/Navigation/UserHeader";
 
 class App extends Component {
   constructor(props) {
@@ -34,6 +35,7 @@ class App extends Component {
     return (
       <div className="chunk">
         {isAuthorized && <Header />}
+        {isAuthorized && <UserHeader />}
         {isAuthorized &&
           (isAdmin === "true" ? <NavigationBar /> : <UserNavigation />)}
         <Switch>

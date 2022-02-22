@@ -1,18 +1,6 @@
 import "../style.css";
-import Buttons from "../../../Buttons/Buttons";
 
-export default function EditListOfApp() {
-  const button = [
-    {
-      type: "button-blue-small",
-      text: "Save",
-    },
-    {
-      type: "button-red",
-      text: "Cancel",
-    },
-  ];
-
+export default function EditListOfApp({ appList, ...props }) {
   return (
     <div class="container-editapp-1">
       <h2 className="title-editapp">Edit Application</h2>
@@ -35,8 +23,10 @@ export default function EditListOfApp() {
         ></textarea>
       </div>
       <div className="float-center-app">
-        <Buttons button={button[0]}></Buttons>
-        <Buttons button={button[1]}></Buttons>
+        <button className="button-blue-small">Save</button>
+        <button className="button-red" onClick={() => props.changeState(false)}>
+          Cancel
+        </button>
       </div>
     </div>
   );

@@ -51,6 +51,7 @@ export default function AuditLogDatatable() {
   const csvData = [
     ["DateTime", "User", "Category", "Changes", "ChangedObject"],
     ["2021-11-16 12:15:03", "Alif", "UserID", "Remove", "Jenny"],
+    ["2021-11-16 12:15:03", "Alif", "FirstName", "Assign", "Siti"],
   ];
 
   //using sorting
@@ -123,7 +124,7 @@ export default function AuditLogDatatable() {
         <h1>Audit Log History</h1>
 
         <CSVLink data={csvData} filename={"AuditLog.csv"}>
-          <span className="export">
+          <span className="export-1">
             <img
               src="/images/export.png"
               alt="Download"
@@ -134,7 +135,7 @@ export default function AuditLogDatatable() {
         </CSVLink>
       </div>
 
-      <table className="table-audit">
+      <table id="table-audit">
         <thead>
           <tr>
             <th id="datetime" onClick={(e) => dispatchSort(e)}>
@@ -169,7 +170,7 @@ export default function AuditLogDatatable() {
         </tbody>
       </table>
       <Pagination
-        className="pageBar"
+        className="page-a1"
         count={count}
         size="large"
         color="primary"

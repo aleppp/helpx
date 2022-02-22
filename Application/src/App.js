@@ -22,6 +22,7 @@ import FraudConfig from "./components/FraudManagement/FraudAdmin";
 import ContentBody from "./components/ReleaseNotes/ContentBody/ContentBody";
 import FAQCCPage from "./components/FAQ/FAQCCPage";
 import UserHeader from "./components/ReleaseNotes/Navigation/UserHeader";
+import BookmarkListEU from "./components/Bookmark/BookmarkListEU";
 
 class App extends Component {
   constructor(props) {
@@ -120,6 +121,12 @@ class App extends Component {
             exact
             path="/content/faq"
             render={(props) => <FAQCCPage auth={this.auth} {...props} />}
+          />
+
+          <ProtectedRoute
+            exact
+            path="/content/bookmark"
+            render={(props) => <BookmarkListEU auth={this.auth} {...props} />}
           />
         </Switch>
       </div>

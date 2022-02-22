@@ -3,7 +3,7 @@
 .audit-1 h1 {
   font-size: 30px;
   font-family: "Mulish", sans-serif;
-  margin-inline: 30%;
+  margin-inline: 17%;
   display: flex;
   margin-bottom: 10px;
 }
@@ -17,19 +17,39 @@
 .export-1 {
   display: flex;
   float: right;
-  margin-right: 80px;
+  margin-left: 700px;
+  margin-top: 50px;
   vertical-align: middle;
-  margin-bottom: 0px;
 }
 
-.table-audit {
-  font-family: "Mulish", sans-serif;
-  border-collapse: collapse;
-  width: 95%;
+#table-audit {
+  font-family: Arial, Helvetica, sans-serif;
   border: 1px solid black;
+  border-collapse: collapse;
+  width: 1300px;
   background-color: white;
-  margin-right: 100px;
-  margin-top: 0px;
+  margin: 5px;
+  margin-right: 40px;
+  margin-left: 320px;
+  overflow-x: hidden;
+}
+
+#table-audit th {
+  border-bottom: 1px solid black;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  background-color: white;
+  color: black;
+}
+
+#table-audit td,
+#table-audit th {
+  width: auto;
+  text-align: center;
+}
+
+#table-audit tr:hover {
+  background-color: #ddd;
 }
 
 .th-a1 {
@@ -42,30 +62,33 @@
   margin: 60px;
 }
 
-td,
-th {
-  padding: 15px;
-  text-align: left;
-}
-
-tr:hover {
-  background-color: #ddd;
-}
-
 .action-column td {
   width: max-content;
 }
 
 .audit-1 {
   background-color: white;
-  margin: 190px 5px 80px 50px;
-  flex: center;
+  margin: 190px 5px 10px 50px;
+  display: flex;
 }
 
 .page-a1 {
   float: left;
-  margin: 250px 150px 500px 800px;
+  margin: 10px 5px 50px 1450px;
   flex: center;
   vertical-align: middle;
   display: flex;
+}
+
+.canvas {
+  display: flex;
+  flex-direction: column;
+  background-color: #27323c;
+  position: absolute;
+  max-width: 100%;
+  width: 1800px;
+  height: 150px;
+  font-size: 15px;
+  font-family: "Mulish";
+  font-weight: bold;
 }

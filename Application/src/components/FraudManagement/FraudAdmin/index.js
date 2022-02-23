@@ -14,8 +14,6 @@ export default function FraudConfig() {
   const [currentCreated, setCurrentCreated] = useState("createdUnsort");
   const [dateClicked, setDateClicked] = useState([]);
 
-  const [showEdit, setShowEdit] = useState(false);
-  const [showDel, setShowDel] = useState(false);
   const [showAdd, setShowAdd] = useState(false);
 
   useEffect(() => {
@@ -133,81 +131,102 @@ export default function FraudConfig() {
     return { jump, currentData, currentPage, maxPage };
   }
   return (
-    <div className="container-fluid">
+    <div className="container-fluid" id="fraud-settings">
       <div className="row">
-        <div className="fraud-management-component">
-          <h1 className="fraud-title">Filtered Words</h1>
-          <button className="button-blue" onClick={() => setShowAdd(!showAdd)}>
-            Add New
-          </button>
+        <div className="col-lg-12 col-md-6 col-sm-3">
+          <div className="row">
+            <h1 id="fraud-title" className="text-start">
+              Filtered Words
+            </h1>
+          </div>
+          <div className="row ">
+            <div className="">
+              <button
+                className="button-blue"
+                onClick={() => setShowAdd(!showAdd)}
+              >
+                Add New
+              </button>
+            </div>
+          </div>
+          <div>{showAdd ? <AddNewFraud /> : null}</div>
+          <div className="row">
+            <table id="fraud">
+              <thead>
+                <tr>
+                  <th id="id" onClick={(e) => dispatchSort(e)}>
+                    ID
+                    {state.isCreatedSorted ? (
+                      state.isCreatedDesc ? (
+                        <img
+                          src={
+                            process.env.PUBLIC_URL + "/icons/descendblack.svg"
+                          }
+                          alt="descending"
+                        />
+                      ) : (
+                        <img
+                          src={
+                            process.env.PUBLIC_URL + "/icons/ascendblack.svg"
+                          }
+                          alt="ascending"
+                        />
+                      )
+                    ) : (
+                      <img
+                        src={process.env.PUBLIC_URL + "/icons/unsortblack.svg"}
+                        alt="click to sort"
+                      />
+                    )}
+                  </th>
+                  <th id="term" onClick={(e) => dispatchSort(e)}>
+                    Term
+                    {state.isCreatedSorted ? (
+                      state.isCreatedDesc ? (
+                        <img
+                          src={
+                            process.env.PUBLIC_URL + "/icons/descendblack.svg"
+                          }
+                          alt="descending"
+                        />
+                      ) : (
+                        <img
+                          src={
+                            process.env.PUBLIC_URL + "/icons/ascendblack.svg"
+                          }
+                          alt="ascending"
+                        />
+                      )
+                    ) : (
+                      <img
+                        src={process.env.PUBLIC_URL + "/icons/unsortblack.svg"}
+                        alt="click to sort"
+                      />
+                    )}
+                  </th>
+                  <th>Action</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {_DATA.currentData().map((fraudButton, i) => (
+                  <FraudButton fraudButton={fraudButton} i={i} />
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <div>
+            <Pagination
+              className="pageBar"
+              count={count}
+              size="large"
+              color="primary"
+              page={page}
+              shape="rounded"
+              onChange={handleChange}
+            />
+          </div>
         </div>
-      </div>
-      <div>{showAdd ? <AddNewFraud /> : null}</div>
-      <table id="fraud">
-        <thead>
-          <tr>
-            <th id="id" onClick={(e) => dispatchSort(e)}>
-              ID
-              {state.isCreatedSorted ? (
-                state.isCreatedDesc ? (
-                  <img
-                    src={process.env.PUBLIC_URL + "/icons/descendblack.svg"}
-                    alt="descending"
-                  />
-                ) : (
-                  <img
-                    src={process.env.PUBLIC_URL + "/icons/ascendblack.svg"}
-                    alt="ascending"
-                  />
-                )
-              ) : (
-                <img
-                  src={process.env.PUBLIC_URL + "/icons/unsortblack.svg"}
-                  alt="click to sort"
-                />
-              )}
-            </th>
-            <th id="term" onClick={(e) => dispatchSort(e)}>
-              Term
-              {state.isCreatedSorted ? (
-                state.isCreatedDesc ? (
-                  <img
-                    src={process.env.PUBLIC_URL + "/icons/descendblack.svg"}
-                    alt="descending"
-                  />
-                ) : (
-                  <img
-                    src={process.env.PUBLIC_URL + "/icons/ascendblack.svg"}
-                    alt="ascending"
-                  />
-                )
-              ) : (
-                <img
-                  src={process.env.PUBLIC_URL + "/icons/unsortblack.svg"}
-                  alt="click to sort"
-                />
-              )}
-            </th>
-            <th>Action</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {_DATA.currentData().map((fraudButton, i) => (
-            <FraudButton fraudButton={fraudButton} i={i} />
-          ))}
-        </tbody>
-      </table>
-      <div>
-        <Pagination
-          className="pageBar"
-          count={count}
-          size="large"
-          color="primary"
-          page={page}
-          shape="rounded"
-          onChange={handleChange}
-        />
       </div>
     </div>
   );

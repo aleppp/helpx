@@ -26,14 +26,9 @@ h1 {
 #applist td,
 #applist th {
   text-align: center;
-  width: auto;
+  width: max-content !important;
 }
 
 #applist tr:hover {
   background-color: #ddd;
-}
-
-.action-column td {
-  width: max-content;
-  text-align: center;
 }

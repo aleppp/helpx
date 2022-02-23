@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Button from "../../../Buttons/Buttons";
 import "./ApplicationList.css";
+import ApplicationListData from "./ApplicationListData/ApplicationListData";
 
 function ApplicationList() {
   const [appList, setAppList] = useState([]);
@@ -15,50 +15,50 @@ function ApplicationList() {
       .catch((err) => console.log(err));
   }, []);
 
-  const button = [
-    {
-      type: "button-green",
-      text: "Edit",
-    },
-    {
-      type: "button-red",
-      text: "Delete",
-    },
-    {
-      type: "button-blue",
-      text: "Add New",
-    },
-  ];
   return (
-    <div>
-      <div className="app-list">
-        <h1>List of Application</h1>
-        <div className="button-float-right">
-          <Button button={button[2]} />
+    <div className="container-fluid" id="app-list">
+      <div className="row">
+        <div className="col-lg-12 col-md-6 col-sm-3">
+          <div className="row">
+            <h1 className="text-start">List of Application</h1>
+          </div>
+          <div className="row">
+            <div className="button-float-right">
+              <button className="button-blue">Add New</button>
+            </div>
+          </div>
+          <div className="row">
+            <table id="applist">
+              <thead>
+                <th>
+                  Application ID
+                  <button className="filter-app-settings">
+                    <img
+                      src={process.env.PUBLIC_URL + "/images/expandMore.png"}
+                      alt="filter"
+                    />
+                  </button>
+                </th>
+                <th>
+                  Application Name
+                  <button className="filter-app-settings">
+                    <img
+                      src={process.env.PUBLIC_URL + "/images/expandMore.png"}
+                      alt="filter"
+                    />
+                  </button>
+                </th>
+                <th>Application URL</th>
+                <th>Action</th>
+              </thead>
+              <tbody>
+                {appList.map((app, i) => (
+                  <ApplicationListData appList={app} i={i} />
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
-      <div>
-        <table id="applist">
-          <thead>
-            <th>Application ID</th>
-            <th>Application Name</th>
-            <th>Application URL</th>
-            <th>Action</th>
-          </thead>
-          <tbody>
-            {appList.map((app, i) => (
-              <tr key={i}>
-                <td>{app.id}</td>
-                <td>{app.name}</td>
-                <td>{app.url}</td>
-                <td className="action-column">
-                  <Button button={button[0]}></Button>
-                  <Button button={button[1]}></Button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
       </div>
     </div>
   );

@@ -6,32 +6,27 @@ h1 {
   font-family: "Mulish", sans-serif;
 }
 
-.app-list {
-  background-color: white;
-  margin: 15px 15px;
-}
-
 #applist {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
-  width: 100%;
-  border: 1px solid black;
+  width: 1500px;
+  border: 1px solid black !important;
   background-color: white;
+  margin: 5px;
 }
 
 #applist th {
   border-bottom: 1px solid black;
   padding-top: 12px;
   padding-bottom: 12px;
-  text-align: left;
   background-color: white;
   color: black;
 }
 
 #applist td,
 #applist th {
-  padding: 8px;
-  text-align: left;
+  text-align: center;
+  width: auto;
 }
 
 #applist tr:hover {

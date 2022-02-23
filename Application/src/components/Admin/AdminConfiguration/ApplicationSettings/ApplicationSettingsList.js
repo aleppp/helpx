@@ -31,7 +31,9 @@ function ApplicationSettingsList() {
         <div className="row">
           <div className="col-lg-12 col-md-6 col-sm-3">
             <div className="row">
-              <h1 className="text-start">Applications Settings</h1>
+              <h1 id="title" className="text-start">
+                Applications Settings
+              </h1>
             </div>
             <div className="row ">
               <div className="">
@@ -65,36 +67,6 @@ function ApplicationSettingsList() {
                 </tbody>
               </table>
             </div>
-          </div>
-          <div className="row">
-            <table id="appSettings">
-              <thead>
-                <tr>
-                  <th>Application ID</th>
-                  <th>
-                    Application Name
-                    <button className="filter-app-settings">
-                      <img
-                        src={process.env.PUBLIC_URL + "/images/expandMore.png"}
-                        alt="filter"
-                      />
-                    </button>
-                  </th>
-                  <th>Background Color</th>
-                  <th>Font Size</th>
-                  <th>Font Family</th>
-                  <th>Theme</th>
-                  <th>Navigation Bar</th>
-                  <th>Action</th>
-                </tr>
-                
-              </thead>
-              <tbody>
-                {appSettingsList.map((appSettings, i) => (
-                  <EditButton appSettings={appSettings} key={i} />
-                ))}
-              </tbody>
-            </table>
           </div>
         </div>
       </div>

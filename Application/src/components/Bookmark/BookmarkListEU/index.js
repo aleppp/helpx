@@ -126,12 +126,6 @@ export default function BookmarkListEU() {
 
   return (
     <>
-      <div className="Content-Nav">
-        <UserNavigation />
-      </div>
-      <div className="Content-Header">
-        <UserHeader />
-      </div>
       <div className="BookmarkList-EU">
         <div className="overall">
           <h1>

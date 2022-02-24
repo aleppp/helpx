@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "../style.css";
 import axios from "axios";
 
@@ -8,7 +8,6 @@ export default function DeleteFraud() {
       .delete("http://localhost:8080/fraudmanagement/del", { id: ID })
       .then((res) => {
         if (res.status === 200) {
-          alert("success!");
         }
       })
       .catch((err) => console.log(err));
@@ -23,7 +22,7 @@ export default function DeleteFraud() {
       <br />
       <br />
       <div className="float-center">
-        <button className="button-blue-small" onClick={handleDelete}>
+        <button className="button-blue-small" onClick={handleDelete()}>
           Confirm
         </button>
         <button className="button-red">Cancel</button>

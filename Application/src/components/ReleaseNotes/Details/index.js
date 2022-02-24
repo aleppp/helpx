@@ -1,6 +1,44 @@
+import axios from "axios";
+import { useState } from "react";
+import GetCurrentLocalDateTime from "../../../services/GetCurrentLocalDateTime";
 import "./index.css";
 
-function Detail() {
+function Detail({titles, bodys}) {
+  const datesCreated = GetCurrentLocalDateTime();
+  const [datesPublished, setDatePublished] = useState(GetCurrentLocalDateTime());
+  const [isfeebacksallowed, setIsFeedbackAllowed] = useState(false)
+  const [isVisibles, setIsVisible] = useState(false)
+  const [contentType, setContentType] = useState(0);
+  const usersid = parseInt(localStorage.getItem("userid")) ;
+  const appsid = parseInt(localStorage.getItem("appid"));
+  
+
+  const handleSend = (Status) => {
+    let content = {
+      appid:appsid,
+      userid:usersid,
+      contenttypeid:contentType,
+      statusid:Status,
+      isfeebackallowed:isfeebacksallowed,
+      isvisible:isVisibles,
+      title:titles,
+      body:bodys,
+      datecreated:datesCreated,
+      datemodified:datesCreated,
+      datepublished:datesPublished
+    };
+    axios.post("http://localhost:8080/content/ins",{content}).then((res) =>{
+        if(res.status === 200) {
+          alert("success!")
+        }
+      })
+      .catch((err) => console.log(err))
+  }
+
+  const handleDelete = () => {
+    
+  }
+
   return (
     <div className="superContain">
       <div className="container-details">
@@ -15,6 +53,7 @@ function Detail() {
             className="form-check-input align-self-center mt-2" 
             type="checkbox" 
             id="visiblity"
+            onChange={(e) => setIsVisible(!isVisibles)}
           />
           <label 
             className="form-check-label ms-3 mt-2"
@@ -37,6 +76,7 @@ function Detail() {
             className="form-check-input align-self-center mt-2" 
             type="checkbox" 
             id="fbutton"
+            onChange={(e) => setIsFeedbackAllowed(!isfeebacksallowed)}
           />
           <label 
             className="form-check-label align-self-center ms-3 mt-3" 
@@ -54,21 +94,60 @@ function Detail() {
             />
           </label>
         </div>
+
+        <div className="d-flex justify-content-start">
+          <div className="form-check d-flex detail-input">
+            <input 
+              className="form-check-input align-self-center mt-2" 
+              type="radio" 
+              name="docType" 
+              id="note"
+              value="1"
+              onChange={(e) => {setContentType(parseInt(e.target.value))}} 
+            />
+            <label 
+              className="form-check-label align-self-center ms-3 mt-3" 
+              htmlFor="note"
+            >
+              Release Note
+            </label>
+          </div>
+          <div className="form-check d-flex detail-input">
+            <input 
+              className="form-check-input align-self-center mt-2" 
+              type="radio" 
+              name="docType" 
+              id="doc" 
+              value="2"
+              onChange={(e) => {setContentType(e.target.value.toString())}}
+            />
+            <label 
+              className="form-check-label align-self-center ms-3 mt-3" 
+              htmlFor="doc"
+            >
+              Documentation
+            </label>
+          </div>
+        </div>
         
         <div className="detail-input">
           <label htmlFor="schedule">Schedule</label>
-          <input type="date" id="schedule" />
+          <input 
+          type="date" 
+          id="schedule"
+          onChange={(e) => setDatePublished(e.target.value)}
+          />
         </div>
       </div>
 
       <div className="buttonContainer">
-        <button className="blue-detail" onclick="sendForApproval()">
+        <button className="blue-detail" onClick={() => handleSend(2)}>
           Send for Approval
         </button>
-        <button className="red-detail" onclick="delete()">
+        <button className="red-detail" onClick={() => handleDelete()}>
           Delete
         </button>
-        <button className="green-detail" onclick="saveAsDraft()">
+        <button className="green-detail" onClick={() => handleSend(1)}>
           Save as Draft
         </button>
       </div>

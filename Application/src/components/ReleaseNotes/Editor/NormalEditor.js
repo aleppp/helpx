@@ -87,7 +87,7 @@ const NormalEditor = () => {
         </div>
       </div>
       <div>
-        <Detail title={title} body={body} />
+        <Detail titles={title} bodys={body} />
       </div>
     </>
   );

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./style.css";
-
 import RolesButton from "./RolesManagementBtn/RolesButton";
+import { AddNewRole } from "./RolesManagementBtn/AddNewRole";
 
 function RolesManagement() {
   const [RolesManagement, setRolesManagement] = useState([]);
@@ -34,6 +34,8 @@ function RolesManagement() {
               </button>
             </div>
           </div>
+
+          <div>{showAdd ? <AddNewRole /> : null}</div>
 
           <div className="row">
             <table>

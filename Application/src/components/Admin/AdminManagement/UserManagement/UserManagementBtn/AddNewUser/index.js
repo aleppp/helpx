@@ -2,20 +2,21 @@ import React from "react";
 import "./style.css";
 import Button from "../../../../../Buttons/Buttons";
 
-const button = [
-  {
-    type: "button-red",
-    text: "Delete",
-  },
-  {
-    type: "button-blue-small",
-    text: "Submit",
-  },
-];
-export default function App() {
+export default function AddNewUser() {
+  const button = [
+    {
+      type: "button-red",
+      text: "Delete",
+    },
+    {
+      type: "button-blue-small",
+      text: "Submit",
+    },
+  ];
+
   return (
     <div class="container">
-      <h2> Add New User </h2>
+      <h4> Add New User </h4>
 
       <br />
       <label for="username">Name</label>

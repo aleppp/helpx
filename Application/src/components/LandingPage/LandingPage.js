@@ -10,12 +10,15 @@ class LandingPage extends Component {
   componentDidMount() {
     if(localStorage.getItem("access_token") && localStorage.getItem("id_token") && 
       localStorage.getItem("expires_at") && localStorage.getItem("user_email") &&
-      localStorage.getItem("isAdmin")) {
+      localStorage.getItem("isAdmin") && localStorage.getItem("userid") &&
+      localStorage.getItem("appid")) {
         localStorage.removeItem("access_token");
         localStorage.removeItem("id_token");
         localStorage.removeItem("expires_at");
         localStorage.removeItem("user_email");
         localStorage.removeItem("isAdmin");
+        localStorage.removeItem("userid");
+        localStorage.removeItem("appid");
      }
   }
 

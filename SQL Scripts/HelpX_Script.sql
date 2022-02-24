@@ -252,7 +252,7 @@ CREATE TABLE IF NOT EXISTS ContentFiles (
 
 CREATE TABLE IF NOT EXISTS userslogin(
   ID INT NOT NULL AUTO_INCREMENT,
-  UserID INT NOT NULL,
+  UserID INT,
   email VARCHAR(50),
   datelogin DATETIME,
   PRIMARY KEY (ID),
@@ -285,7 +285,7 @@ WHERE
       Email
     FROM
       Users
-    WHERE
+    WHERE 
       Email = 'alifmuqri.hazmi@petronas.com.my'
   );
 -- Applications
@@ -1922,9 +1922,10 @@ DELIMITER $$
 CREATE PROCEDURE `sp_users_sel`()
 BEGIN 
 SELECT us.ID as id, 
+ua.id as appid,
 us.FirstName,
 us.Email,
-ap.Name,
+ap.Name as appname,
 lr.Name
 FROM users as us
 LEFT JOIN usersapplications as ua
@@ -1941,19 +1942,24 @@ DELIMITER ;
 DROP PROCEDURE IF EXISTS `sp_users_ins`;
 DELIMITER $$
 CREATE PROCEDURE `sp_users_ins`(
-IN FirstName varchar(20), LastName varchar(20), email varchar(50), DateCreated datetime, DateModified datetime, UserAppID int, UserRoleID int, UserID int,  AppID int)
+IN FirstName varchar(20), LastName varchar(20), email varchar(50), DateCreated datetime, DateModified datetime, UserAppID int, UserRoleID int, targetUserID int,  AppID int)
 BEGIN
-DECLARE newuserid INT DEFAULT (SELECT us.id FROM users AS us WHERE us.id = userid);
+
+DECLARE newuserid INT DEFAULT (SELECT us.id FROM users AS us WHERE us.id = 2);
 DECLARE newuserappid INT DEFAULT (SELECT ua.id FROM usersapplications AS ua WHERE ua.id = UserAppID);
+
+select targetUserID, UserAppID AS '** DEBUG:';
 
 INSERT INTO users(FirstName, Lastname, email, DateCreated, DateModified)
 VALUES(FirstName,LastName, email,DateCreated, DateModified);
 
+INSERT INTO usersapplications(UserID, AppID, DateCreated, DateModified)
+VALUES(newuserid, AppID, DateCreated, DateModified);
+
 INSERT INTO usersappsroles(UserAppID, UserRoleID, DateCreated, DateModified)
 VALUES(newuserappID, UserRoleID, DateCreated, DateModified);
 
-INSERT INTO usersapplications(UserID, AppID, DateCreated, DateModified)
-VALUES(newuserID, AppID, DateCreated, DateModified);
+
 END $$
 DELIMITER ;
 
@@ -2278,14 +2284,17 @@ DELIMITER ;
 -- insert data for user login date to check inactive user
 DROP PROCEDURE IF EXISTS `sp_userslogin_ins`;
 DELIMITER $$
-CREATE PROCEDURE `sp_userslogin_ins`(email VARCHAR(50))
+CREATE PROCEDURE `sp_userslogin_ins`(`NEW_MAIL` VARCHAR(50))
 BEGIN
-DECLARE userid INT DEFAULT (SELECT u.id FROM users AS u WHERE u.email = email);
-
-INSERT INTO userslogin(userid,email,datelogin)
-VALUES (userid,email,now());
+DECLARE `NEW_USER` INT DEFAULT(SELECT ID FROM users WHERE Email = `NEW_MAIL`);
+IF `NEW_USER` IS NULL THEN SET `NEW_USER` = (SELECT `ID` FROM `users` WHERE `Email` = `NEW_MAIL`);
+END IF;
+INSERT INTO userslogin(`UserID`,`Email`,`datelogin`)
+VALUES (`NEW_USER`,`NEW_MAIL`,now());
 END $$
 DELIMITER ;
+
+SELECT ID FROM users WHERE Email = 'alifmuqri.hazmi@petronas.com.my';
 
 DROP PROCEDURE IF EXISTS sp_users_sel_notActive;
 DELIMITER $$
@@ -2306,16 +2315,16 @@ CALL sp_template_ins(1,1,'Release Note 1','Here are some details on..', now(), n
 CALL sp_content_ins(1, 1, 1, 1, true, true, 'Release Note 5.0', 'This is a new Release Notes', now(), now(), '2021-11-20 00:00:00');
 
 CALL `sp_fraudmanagement_ins`('park yoo', now(), now()) ;
-CALL sp_users_ins('Amirul', 'Luqman Shamshi', 'mirul@petronas.com', now(), now(), 2,2,2,2);
 
-CALL `sp_faq_ins`(1, 'Question', 'Answer', true, true, now(), now());
+CALL `sp_faq_ins`(1, 'Question', 'Answer', 1, true, true, now(), now());
 CALL sp_bookmarks_ins(1, 'helpx.petronas.com/releasenote/1.11', 'Release Note 1.11', now(), now());
 
 CALL `sp_lookupuserroles_ins`(6, 'Admin App', 'have an eye for detail', now(), now()) ;
 
 CALL sp_notifications_ins(1, 1, 'Notifications', true, now(), now()) ;
 
-call `sp_applications_ins`('Setel',null,now(),now());
+call `sp_applications_ins`('Setel','/setel',now(),now());
+CALL sp_applications_ins('HelpX','/helpx',now(),now());
 
 call `sp_applicationsattributes_ins`(1,1,'Red',now(),now());
 call `sp_applicationsattributes_ins`(1,2,16,now(),now());
@@ -2327,14 +2336,15 @@ call `sp_applicationsattributes_ins`(2,2,16,now(),now());
 call `sp_applicationsattributes_ins`(2,3,'Mulish',now(),now());
 call `sp_applicationsattributes_ins`(2,4,'Monothematic',now(),now());
 call `sp_applicationsattributes_ins`(2,5,'Vertical',now(),now());
+
 call `sp_userslogin_ins`('alifmuqri.hazmi@petronas.com');
-
-CALL sp_auditlogs_ins(1,1,1,1,1,now());
-CALL sp_auditlogs_ins(2,3,2,2,2,now());
-
-CALL sp_feedback_ins(1, 2, 'Feedback thirteen', 4, now(), now());
-CALL sp_applications_ins('HelpX','/helpx',now(),now());
 
 call sp_users_ins('Mohammad', 'Abdullah', 'mohd.abdullah@petronas.com.my',now(),now(),2,2,2,2);
 call sp_users_ins('Nur', 'Hamid', 'nur.hamid@petronas.com.my',now(),now(),3,4,3,1);
 call sp_users_ins('Zulaikha', 'Ahmad', 'zulaikha.ahmad@petronas.com.my',now(),now(),4,3,4,2);
+CALL sp_auditlogs_ins(1,1,1,1,1,now());
+CALL sp_auditlogs_ins(2,3,2,2,2,now());
+
+CALL sp_feedback_ins(1, 2, 'Feedback thirteen', 4, now(), now());
+
+

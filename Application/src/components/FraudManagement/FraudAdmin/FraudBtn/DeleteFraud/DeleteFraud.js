@@ -1,22 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "../style.css";
 import axios from "axios";
 
 export default function DeleteFraud() {
-  const [fraudDelete, setFraudDelete] = useState([]);
-
-  useEffect(() => {
+  const handleDelete = (ID) => {
     axios
-      .post("http://localhost:8080/content/ins")
+      .delete("http://localhost:8080/fraudmanagement/del", { id: ID })
       .then((res) => {
         if (res.status === 200) {
           alert("success!");
         }
       })
       .catch((err) => console.log(err));
-  });
-
-  const handleDelete = () => {};
+  };
 
   return (
     <div class="container-deletefraud">

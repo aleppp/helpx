@@ -3,9 +3,11 @@ import axios from "axios";
 
 import "./style.css";
 import DeleteButton from "./UserManagementBtn/DeleteUser/DeleteButton";
+import AddNewUser from "./UserManagementBtn/AddNewUser";
 
 function UserManagement() {
   const [UserManagement, setUserManagement] = useState([]);
+  const [showAdd, setShowAdd] = useState(false);
 
   useEffect(() => {
     axios
@@ -25,9 +27,15 @@ function UserManagement() {
           </div>
           <div className="row ">
             <div className="">
-              <button className="button-blue">Add New</button>
+              <button
+                className="button-blue"
+                onClick={() => setShowAdd(!showAdd)}
+              >
+                Add New
+              </button>
             </div>
           </div>
+          <div>{showAdd ? <AddNewUser /> : null}</div>
 
           <div className="row">
             <table>

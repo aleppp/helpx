@@ -65,7 +65,7 @@ export default function AuditLogDatatable() {
   };
   const [state, dispatch] = useReducer(sortReducer, initialState);
   function sortReducer(state, action) {
-    if (dateClicked === "datetime") {
+    if (dateClicked === "user" || dateClicked === "datetime") {
       switch (action.type) {
         case "createdUnsort":
           return {
@@ -99,19 +99,41 @@ export default function AuditLogDatatable() {
         setCurrentCreated("createdAsc");
         dispatch({ type: "createdUnsort" });
         sortData = sortData.sort((a, b) =>
-          a.DateCreated.localeCompare(b.DateCreated)
+          a.DateTime.localeCompare(b.DateTime)
         );
       } else if (currentCreated === "createdAsc") {
         setCurrentCreated("createdDesc");
         dispatch({ type: "createdAsc" });
         sortData = sortData.sort((a, b) =>
-          b.DateCreated.localeCompare(a.DateCreated)
+          b.DateTime.localeCompare(a.DateTime)
         );
       } else {
         setCurrentCreated("createdAsc");
         dispatch({ type: "createdUnsort" });
         sortData = sortData.sort((a, b) =>
-          a.DateCreated.localeCompare(b.DateCreated)
+          a.DateTime.localeCompare(b.DateTime)
+        );
+      }
+    }
+
+    if (targetDate === "user") {
+      if (currentCreated === "createdUnsort") {
+        setCurrentCreated("createdAsc");
+        dispatch({ type: "createdUnsort" });
+        sortData = sortData.sort((a, b) =>
+          a.DateTime.localeCompare(b.DateTime)
+        );
+      } else if (currentCreated === "createdAsc") {
+        setCurrentCreated("createdDesc");
+        dispatch({ type: "createdAsc" });
+        sortData = sortData.sort((a, b) =>
+          b.DateTime.localeCompare(a.DateTime)
+        );
+      } else {
+        setCurrentCreated("createdAsc");
+        dispatch({ type: "createdUnsort" });
+        sortData = sortData.sort((a, b) =>
+          a.DateTime.localeCompare(b.DateTime)
         );
       }
     }
@@ -142,15 +164,34 @@ export default function AuditLogDatatable() {
               Date & Time
               {state.isCreatedSorted ? (
                 state.isCreatedDesc ? (
-                  <img src={process.env.PUBLIC_URL + "/icons/descend.svg"} />
+                  <img
+                    src={process.env.PUBLIC_URL + "/icons/unsortblack.svg"}
+                  />
                 ) : (
-                  <img src={process.env.PUBLIC_URL + "/icons/ascend.svg"} />
+                  <img
+                    src={process.env.PUBLIC_URL + "/icons/unsortblack.svg"}
+                  />
                 )
               ) : (
-                <img src={process.env.PUBLIC_URL + "/icons/unsort.svg"} />
+                <img src={process.env.PUBLIC_URL + "/icons/unsortblack.svg"} />
               )}
             </th>
-            <th>User</th>
+            <th id="user" onClick={(e) => dispatchSort(e)}>
+              User
+              {state.isCreatedSorted ? (
+                state.isCreatedDesc ? (
+                  <img
+                    src={process.env.PUBLIC_URL + "/icons/unsortblack.svg"}
+                  />
+                ) : (
+                  <img
+                    src={process.env.PUBLIC_URL + "/icons/unsortblack.svg"}
+                  />
+                )
+              ) : (
+                <img src={process.env.PUBLIC_URL + "/icons/unsortblack.svg"} />
+              )}
+            </th>
             <th>Category</th>
             <th>Changes</th>
             <th>Changed Object</th>

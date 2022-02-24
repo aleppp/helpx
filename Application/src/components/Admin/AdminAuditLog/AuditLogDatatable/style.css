@@ -17,9 +17,14 @@
 .export-1 {
   display: flex;
   float: right;
-  margin-left: 700px;
+  margin-left: 690px;
   margin-top: 50px;
   vertical-align: middle;
+}
+
+#datetime,
+#user {
+  cursor: pointer;
 }
 
 #table-audit {

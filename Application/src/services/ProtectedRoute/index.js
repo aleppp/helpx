@@ -25,7 +25,28 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
     return role;
   };
 
+  const getUserId = () => {
+    let userid;
+    users.map((user) => {
+      if(user.Email === tokenEmail) {
+        userid = user.id;
+      }
+    });
+    return userid;
+  };
+
+  const getAppId = () => {
+    let appid;
+    users.map((user) => {
+      if(user.Email === tokenEmail) {
+        appid = user.appid;
+      }
+    });
+    return appid;
+  }
   const userRole = getRole();
+  const userid = getUserId();
+  const appid = getAppId();
 
   const checkAdmin = () => {
     return (
@@ -36,6 +57,8 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
   };
 
   localStorage.setItem("isAdmin", checkAdmin() ? "true" : "false");
+  localStorage.setItem("userid", userid);
+  localStorage.setItem("appid", appid);
 
   console.log(userRole);
 

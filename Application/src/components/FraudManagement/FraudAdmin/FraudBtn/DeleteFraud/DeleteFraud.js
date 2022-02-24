@@ -1,36 +1,36 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../style.css";
-import Button from "../../../../Buttons/Buttons";
+import axios from "axios";
 
 export default function DeleteFraud() {
-  const button = [
-    {
-      type: "button-blue-small",
-      text: "Confirm",
-    },
-    {
-      type: "button-red",
-      text: "Cancel",
-    },
-  ];
+  const [fraudDelete, setFraudDelete] = useState([]);
+
+  useEffect(() => {
+    axios
+      .post("http://localhost:8080/content/ins")
+      .then((res) => {
+        if (res.status === 200) {
+          alert("success!");
+        }
+      })
+      .catch((err) => console.log(err));
+  });
+
+  const handleDelete = () => {};
 
   return (
     <div class="container-deletefraud">
-      <p className="title-deletefraud">Delete Term</p>
+      <label className="title-deletefraud">Delete Term</label>
       <br />
-      <label className="float-left" for="term">
-        Term
-      </label>
-      <textarea
-        className="textarea-name-del"
-        name="term"
-        placeholder="Enter a term..."
-      ></textarea>
+      <br />
+      <h5 className="float-center-text">Confirm to delete?</h5>
       <br />
       <br />
       <div className="float-center">
-        <Button button={button[0]}></Button>
-        <Button button={button[1]}></Button>
+        <button className="button-blue-small" onClick={handleDelete}>
+          Confirm
+        </button>
+        <button className="button-red">Cancel</button>
       </div>
     </div>
   );
